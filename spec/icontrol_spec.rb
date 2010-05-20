@@ -34,14 +34,44 @@ end
 
 
 describe IControl,"when connecting to an endpoint" do
-  before do 
-    IControl.config[:base_url] = "http://localhost"
-    FakeWeb.register_uri :get, EndpointHelper.wsdl_endpoint("IControl::GlobalLB::Rule"), :body => WSDLFixture.wsdl("IControl.GlobalLB.Rule")
+  
+  describe "and not yet configured" do 
+    it "should raise an exception if a method is called" do
+      lambda{
+        IControl::GlobalLB::Rule.get_list 
+      }.should raise_exception NoMethodError
+    end
   end
+  
 
-  it "should create a class and read its wsdl on the fly thus declaring its operations" do 
-    IControl::GlobalLB::Rule.wsdl.should_not be(nil)
-    IControl::GlobalLB::Rule.wsdl.operations.should_not be(nil)
+  describe "and already configured" do 
+    before do 
+      IControl.config[:base_url] = "https://localhost/iControl/iControlPortal.cgi"
+      IControl.config[:user] = "test_user"
+      IControl.config[:password] = "secret"
+      
+      FakeWeb.register_uri :get, EndpointHelper.wsdl_endpoint("IControl::GlobalLB::Rule"), :body => WSDLFixture.wsdl("IControl.GlobalLB.Rule")
+      FakeWeb.register_uri :post, EndpointHelper.soap_endpoint, :body => WSDLFixture.wsdl("IControl.GlobalLB.Rule")
+    end
+    
+    after do 
+      FakeWeb.clean_registry
+      IControl.config[:base_url] = IControl.config[:user] = IControl.config[:password] = ""
+    end
+
+    it "should create a class and read its wsdl on the fly thus declaring its operations" do 
+      IControl::GlobalLB::Rule.wsdl.should_not be(nil)
+      IControl::GlobalLB::Rule.wsdl.operations.should_not be(nil)
+    end
+    
+    it "should allow the pass of a block when calling server methods" do 
+      lambda{
+        IControl::GlobalLB::Rule.get_list do |soap|
+          raise "this should be happening"
+        end
+      }.should raise_exception
+    end
+
   end
-
+   
 end

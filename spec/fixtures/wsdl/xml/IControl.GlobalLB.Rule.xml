@@ -2992,7 +2992,7 @@ All other trademarks mentioned in this document are the property of their respec
 
         	</documentation>
 	<port name="GlobalLB.RulePort" binding="tns:GlobalLB.RuleBinding">
-		<soap:address location="https://f5pre.uoc.es:443/iControl/iControlPortal.cgi"/>
+		<soap:address location="http://localhost/iControl/iControlPortal.cgi"/>
 	</port>
 </service>
 </definitions>
