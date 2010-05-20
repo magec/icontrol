@@ -25,7 +25,7 @@ class IControl::LocalLB::VirtualServer
   end
 
   def http_class_profiles
-    return httpclass_profile
+    return httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}
   end
 
 private
