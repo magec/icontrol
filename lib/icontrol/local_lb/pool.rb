@@ -7,6 +7,14 @@ class IControl::LocalLB::Pool
     :pool_name
   end
 
+  def status_for(pool_member)
+    status = IControl::LocalLB::PoolMember.get_object_status do |soap|
+      soap.body = { "pool_names" => {:value => [@attributes[:id]] } }
+    end
+    pool_info = status.find { |i| i.address == pool_member.address && i.port == pool_member.port }
+    return pool_info.status if pool_info
+  end
+
   
   # This method clones a pool with another name (id)
   def clone(id)
