@@ -72,6 +72,7 @@ describe IControl::LocalLB::VirtualServer,"http_class_profiles" do
         http_class_profiles.should_not be(nil)
         http_class_profiles.class.should be(Array)
         http_class_profiles.first.class.should be(IControl::LocalLB::ProfileHttpClass)
+        http_class_profiles.first.id.should_not be(nil)
       end
     end
   end  
