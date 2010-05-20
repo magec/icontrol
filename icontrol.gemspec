@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "icontrol.gemspec",
      "lib/icontrol.rb",
      "lib/icontrol/base.rb",
      "lib/icontrol/local_lb/pool.rb",
