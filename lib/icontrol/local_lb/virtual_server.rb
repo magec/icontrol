@@ -9,9 +9,11 @@ class IControl::LocalLB::VirtualServer
         @profile_context = options[:profile_context]
         @profile_name = options[:profile_name]
       end
-
     end
 
+  def self.id_name 
+    "virtual_server" 
+  end
 
 
   def default_pool

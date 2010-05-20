@@ -2,6 +2,11 @@
 IControl::LocalLB::Pool
 
 class IControl::LocalLB::Pool
+
+  def self.id_name 
+    :pool_name
+  end
+
   
   # This method clones a pool with another name (id)
   def clone(id)

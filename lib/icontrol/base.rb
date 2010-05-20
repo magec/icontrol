@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 require 'savon'
 require 'net/https'
@@ -20,8 +21,14 @@ module IControl
 
   class Base
 
+    def self.id_name
+      ""
+    end
+
     def initialize(attributes)
-      @attributes = attributes
+      id = attributes.delete(self.class.id_name) if attributes && attributes[self.class.id_name]
+      @attributes = attributes || {}
+      @attributes[:id] ||= id 
     end
 
     # Generic type mapping
