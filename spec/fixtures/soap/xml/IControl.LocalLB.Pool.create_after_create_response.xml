@@ -1,0 +1,17 @@
+<SOAP-ENV:Envelope
+	xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<SOAP-ENV:Body>
+<SOAP-ENV:Fault>
+<faultcode
+	xsi:type="xsd:string">SOAP-ENV:Server</faultcode>
+<faultstring
+	xsi:type="xsd:string">Exception caught in LocalLB::urn:iControl:LocalLB/Pool::create()
+Exception: Common::OperationFailed
+	primary_error_code   : 16908390 (0x01020066)
+	secondary_error_code : 0
+	error_string         : 01020066:3: The requested pool (new_test_pool) already exists in partition Common.</faultstring>
+</SOAP-ENV:Fault>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

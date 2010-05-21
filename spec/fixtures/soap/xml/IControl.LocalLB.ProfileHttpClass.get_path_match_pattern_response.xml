@@ -1,0 +1,37 @@
+<E:Envelope
+   xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+   xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:y="http://www.w3.org/2001/XMLSchema"
+   xmlns:iControl="urn:iControl"
+   E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+  <E:Body>
+    <m:get_path_match_patternResponse
+       xmlns:m="urn:iControl:LocalLB/ProfileHttpClass">
+      <return
+	 s:type="A:Array"
+	 A:arrayType="iControl:LocalLB.ProfileMatchPatternStringArray[1]">
+	<item>
+	  <values
+	     s:type="A:Array"
+	     A:arrayType="iControl:LocalLB.MatchPatternString[2]">
+	    <item>
+	      <pattern
+		 s:type="y:string">^/path/1/*</pattern>
+	      <is_glob
+		 s:type="y:boolean">false</is_glob>
+	    </item>
+	    <item>
+	      <pattern
+		 s:type="y:string">^/path/2/*</pattern>
+	      <is_glob
+		 s:type="y:boolean">false</is_glob>
+	    </item>
+	  </values>
+	  <default_flag
+	     s:type="y:boolean">false</default_flag>
+	</item>
+      </return>
+    </m:get_path_match_patternResponse>
+  </E:Body>
+</E:Envelope>
