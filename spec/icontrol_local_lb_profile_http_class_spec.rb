@@ -50,7 +50,6 @@ describe IControl::LocalLB::ProfileHttpClass do
     it "should allow retreive its associated path_match_patterns" do
       IControl::LocalLB::ProfileHttpClass.find(:all)[0].host_match_pattern.class.should be(Array)
     end
-
   end
 
 
@@ -66,12 +65,31 @@ describe IControl::LocalLB::ProfileHttpClass do
   end
 
 
-  describe "pool assignation" do
+  describe "pool assignment" do
     it "should allow to assign a new pool overwriting the one before" do
-      pending
+      first_pool = nil
       http_method_calling("IControl::LocalLB::Pool","get_list") do 
-        @profile.pool = IControl::LocalLB::Pool.find(:first)
+        first_pool = IControl::LocalLB::Pool.find(:all)[1]
+      end
+      http_method_calling("IControl::LocalLB::ProfileHttpClass","get_pool_name") do 
+        before_pool = @profile.pool
+        before_pool.class.should be(IControl::LocalLB::Pool)
+        after_pool = nil
+        http_method_calling("IControl::LocalLB::ProfileHttpClass","set_pool_name") do
+          after_pool = @profile.pool = first_pool
+          after_pool.class.should be(IControl::LocalLB::Pool)
+        end
+        before_pool.id.should_not ==(after_pool.id)
+      end      
+    end
+    
+    it "should raise an exception when then pool does not exist" do
+      http_method_calling("IControl::LocalLB::ProfileHttpClass","set_non_existent_pool_name") do
+        lambda{
+          @profile.pool = IControl::LocalLB::Pool.new(:id => "I-Dont-Exist")
+        }.should raise_exception
       end
     end
+
   end
 end
