@@ -80,14 +80,14 @@ describe IControl::LocalLB::Pool do
   describe "status_for method" do 
     it "should return the status of a given pool member given its address and port" do
       http_method_calling("IControl::LocalLB::PoolMember","get_object_status") do 
-        status = @pool.status_for IControl::LocalLB::PoolMember.new(:address => "192.168.6.118",:port => "80")
+        status = @pool.status_for IControl::LocalLB::PoolMember.new(:address => "192.168.6.112",:port => "4033")
         status.class.should be(Hash)
       end
     end
 
-    it "should return nil of the member is not found in the pool" do
+    it "should return nil if the member is not found in the pool" do
       http_method_calling("IControl::LocalLB::PoolMember","get_object_status") do 
-        status = @pool.status_for IControl::LocalLB::PoolMember.new(:address => "122.168.6.118",:port => "80")
+        status = @pool.status_for IControl::LocalLB::PoolMember.new(:address => "112.168.6.111",:port => "4033")
         status.should be(nil)
       end
     end

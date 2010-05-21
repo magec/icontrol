@@ -34,10 +34,14 @@ module IControl
     # Generic type mapping
     def self.map_response(response)
       response_key = response.keys.first
-      if response[response_key].has_key? :return
-        return IControl::Mappings.map_object(response[response_key][:return]) 
+      if response_key
+        if response[response_key].has_key? :return
+          return IControl::Mappings.map_object(response[response_key][:return]) 
+        else
+          return nil
+        end
       else
-        return nil
+        raise "invalid_response #{response.inspect}"
       end
     end
 

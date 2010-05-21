@@ -58,16 +58,19 @@ describe IControl::LocalLB::VirtualServer,"profiles" do
 end
 
 
-describe IControl::LocalLB::VirtualServer,"http_class_profiles" do
+describe IControl::LocalLB::VirtualServer,"http_class_profiles method" do
 
-  it "should have method called profiles" do 
-
+  it "should exist" do 
+    @virtual_server = nil
+    
     http_method_calling("IControl::LocalLB::VirtualServer","get_list") do 
       @virtual_server = IControl::LocalLB::VirtualServer.find("test_virtual_server")
+      @virtual_server.class.should be(IControl::LocalLB::VirtualServer)
     end    
     
     http_method_calling("IControl::LocalLB::Pool","get_list") do 
       http_method_calling("IControl::LocalLB::VirtualServer","get_httpclass_profile") do 
+        
         http_class_profiles = @virtual_server.http_class_profiles
         http_class_profiles.should_not be(nil)
         http_class_profiles.class.should be(Array)
