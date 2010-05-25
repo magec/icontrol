@@ -3,9 +3,7 @@ IControl::LocalLB::Pool
 
 class IControl::LocalLB::Pool
 
-  def self.id_name 
-    :pool_name
-  end
+  set_id_name :pool_name
 
   def status_for(pool_member)
     status = IControl::LocalLB::PoolMember.get_object_status do |soap|
@@ -15,10 +13,9 @@ class IControl::LocalLB::Pool
     return pool_info.status if pool_info
   end
 
-  
-  # This method clones a pool with another name (id)
-  def clone(id)
-    
+    # This method clones a pool with another name (id)
+  def clone(new_id)
+    return IControl::LocalLB::Pool.create(:id => new_id, :lb_methods => lb_method, :members => member)
   end
   
   def self.create(attributes)    
@@ -28,14 +25,9 @@ class IControl::LocalLB::Pool
       soap.body = {
         "pool_names" => {:item => attributes[:id] },
         "lb_methods" => {:item => attributes[:lb_method]},
-        "members" => {:item => members}
+        "members"    => {:item => members}
       }
     end
     return new(attributes)
-  end
-
-private
-  def default_body
-    {"pool_names" =>  {:value => [@attributes[:id]] }}
   end
 end

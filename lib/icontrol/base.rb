@@ -19,10 +19,21 @@ module IControl
   end
 
 
+
+
   class Base
 
+
+    def self.set_id_name(id_name)
+      @id_name = id_name
+    end
+
     def self.id_name
-      ""
+      @id_name
+    end
+
+    def default_body
+      {self.class.id_name.to_s + "s" =>  {:value => [@attributes[:id]] }}
     end
 
     def initialize(attributes)
