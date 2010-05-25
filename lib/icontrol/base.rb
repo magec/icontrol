@@ -41,7 +41,7 @@ module IControl
           return nil
         end
       else
-        raise "invalid_response #{response.inspect}"
+        raise "Invalid Response #{response.inspect}"
       end
     end
 
