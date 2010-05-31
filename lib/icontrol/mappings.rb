@@ -11,9 +11,13 @@ module IControl
       when /VirtualServerProfileAttribute\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::VirtualServer::VirtualServerProfileAttribute.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerHttpClass\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::ProfileHttpClass.new(i)}
       when /iControl:LocalLB\.ProfileString\[/ then [result[:item]].flatten.map{|i| IControl::LocalLB::Pool.new(i.merge({:id => i[:value] }) ) }
-      when /iControl:LocalLB\.PoolMember\.MemberObjectStatus\[\]\[/ then result[:item][:item].map{|j| IControl::LocalLB::PoolMember.new(j[:member].merge(:status => j[:object_status])  ) }
+      when /iControl:LocalLB\.PoolMember\.MemberObjectStatus\[\]\[/ then  [result[:item][:item]].map do |j| 
+          IControl::LocalLB::PoolMember.new( j[:member].merge(:status => j[:object_status])  ) 
+        end
+      when /iControl:LocalLB\.Pool\.MonitorAssociation\[/ then IControl::LocalLB::MonitorRule.from_xml(result[:item][:monitor_rule])
+      when /iControl:LocalLB\.ObjectStatus\[/ then (result[:item])
       else
-        raise "No type matching found"
+        raise "No type matching found (#{result[:array_type]})" 
       end
     end
   end
