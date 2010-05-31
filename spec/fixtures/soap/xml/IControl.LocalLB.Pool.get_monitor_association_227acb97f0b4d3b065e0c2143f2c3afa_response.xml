@@ -1,0 +1,33 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_monitor_associationResponse
+	xmlns:m="urn:iControl:LocalLB/Pool">
+<return
+	s:type="A:Array"
+	A:arrayType="iControl:LocalLB.Pool.MonitorAssociation[1]">
+<item>
+<pool_name
+	s:type="y:string">pool_test1</pool_name>
+<monitor_rule
+	s:type="iControl:LocalLB.MonitorRule">
+<type
+	s:type="iControl:LocalLB.MonitorRuleType">MONITOR_RULE_TYPE_SINGLE</type>
+<quorum
+	s:type="y:long">0</quorum>
+<monitor_templates
+	s:type="A:Array"
+	A:arrayType="y:string[1]">
+<item>Binari</item>
+</monitor_templates>
+</monitor_rule>
+</item>
+</return>
+</m:get_monitor_associationResponse>
+</E:Body>
+</E:Envelope>

@@ -12,3 +12,4 @@ class WSDLFixture
   end
 
 end
+
