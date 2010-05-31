@@ -1,7 +1,10 @@
 $LOAD_PATH << File.dirname(__FILE__) 
+require 'icontrol/attributable'
 require 'icontrol/base'
 require 'icontrol/mappings'
 require 'icontrol/local_lb/profile_http_class'
 require 'icontrol/local_lb/pool'
 require 'icontrol/local_lb/pool_member'
 require 'icontrol/local_lb/virtual_server'
+require 'icontrol/local_lb/monitor'
+require 'icontrol/local_lb/monitor_rule'
