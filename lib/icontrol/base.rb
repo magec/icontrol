@@ -1,12 +1,14 @@
-
 # -*- coding: utf-8 -*-
 require 'savon'
 require 'net/https'
+require 'digest/md5'
 
 # The idea is to create an object proxy to the web service client with the same structure 
 # than the IControl stuff
 
 module IControl
+
+  class NotConfiguredException < Exception; end
 
   module Common
     class IPPortDefinition
@@ -19,27 +21,10 @@ module IControl
   end
 
 
-
-
   class Base
 
-
-    def self.set_id_name(id_name)
-      @id_name = id_name
-    end
-
-    def self.id_name
-      @id_name
-    end
-
     def default_body
-      {self.class.id_name.to_s + "s" =>  {:value => [@attributes[:id]] }}
-    end
-
-    def initialize(attributes)
-      id = attributes.delete(self.class.id_name) if attributes && attributes[self.class.id_name]
-      @attributes = attributes || {}
-      @attributes[:id] ||= id 
+      { self.class.id_name.to_s + "s" =>  {:value => [@attributes[:id]] } }
     end
 
     # Generic type mapping
@@ -75,10 +60,8 @@ module IControl
 
     def method_missing(method_name,*args,&block)
       
-      if @attributes.has_key?(method_name)
-        return @attributes[method_name] 
-      end if @attributes
-      
+       return super if @attributes.has_key? method_name 
+
       if self.class.wsdl.operations.keys.include?("get_#{method_name}".to_sym)
         return self.class.send("get_#{method_name}".to_sym) do |soap|
           soap.body = default_body
@@ -93,6 +76,9 @@ module IControl
       
       return super
     end
+
+    include Attributable
+
   end
 
   class << self
@@ -111,14 +97,22 @@ module IControl
     :test_path => File.join(File.dirname(__FILE__),"..","..","spec","fixtures")
   }
 
-  def self.save_test_info(response,wsdl,class_name,method_name)
-    response_file_name = raw_file_name = File.join(IControl.config[:test_path],"soap","xml","#{class_name}.#{method_name}_response")
-    while File.exists?(response_file_name + ".xml")
-      response_file_name = raw_file_name + "." + Time.now.strftime("%Y%m%d%m%S") + Time.now.usec.to_s 
+  def self.save_test_info(request,response,wsdl,class_name,method_name)
+    
+    request_md5 = Digest::MD5.hexdigest(request)
+    request_file_name  = request_raw_file_name = File.join(IControl.config[:test_path],"soap","xml","#{class_name}.#{method_name}_#{request_md5}_request")
+    response_file_name = response_raw_file_name = File.join(IControl.config[:test_path],"soap","xml","#{class_name}.#{method_name}_#{request_md5}_response")
+
+    timestamp = Time.now.strftime("%Y%m%d%m%S") + Time.now.usec.to_s 
+
+    while File.exists?(response_file_name + ".xml") || File.exists?(request_file_name + ".xml")
+      response_file_name = response_raw_file_name + "." + timestamp
+      request_file_name = request_raw_file_name + "." + timestamp
     end
-    File.open(response_file_name + ".xml","w") do |file|
-      file << response.to_xml
-    end
+
+    File.open(response_file_name + ".xml","w") { |file| file << response.to_xml }
+    File.open(request_file_name + ".xml","w") { |file| file << request }
+    
     wsdl_file_name = File.join(IControl.config[:test_path],"wsdl","xml","#{class_name}.xml")
     unless File.exists?(wsdl_file_name) 
       File.open(wsdl_file_name,"w") do |file|
@@ -153,6 +147,8 @@ module IControl
                   @client = Savon::Client.new IControl.config[:base_url] + "?WSDL=#{name.to_s}.#{class_name.to_s}"
                   @client.request.basic_auth IControl.config[:user],IControl.config[:password]
                   @client.request.http.ssl_client_auth( :verify_mode => OpenSSL::SSL::VERIFY_NONE )
+                else
+                  raise IControl::NotConfiguredException
                 end
               end
               
@@ -161,15 +157,18 @@ module IControl
               # TODO: Make use of the delegation patern much more clean I think
                             
               define_method("method_missing") do |method_name,*args,&block|
+                raise IControl::NotConfiguredException unless IControl.configured?
                 if client 
                   if client.wsdl.operations.keys.include?(method_name)  
                     # When calling a soap method we transparently add the ns
+                    request = ""
                     response = client.send(method_name,*args) do |soap|
                       soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{name}/#{class_name}"
                       block.call(soap) if block
+                      request = soap.to_xml
                     end
                     # In case we save test fixtures
-                    IControl.save_test_info(response, client.wsdl ,"IControl.#{name}.#{class_name}",method_name) if IControl.config[:test]
+                    IControl.save_test_info(request,response, client.wsdl ,"IControl.#{name}.#{class_name}",method_name) if IControl.config[:test]
                     return self.map_response(response.to_hash)
                   else
                     client.send(method_name,*args,&block)
