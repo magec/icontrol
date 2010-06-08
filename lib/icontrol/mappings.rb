@@ -16,6 +16,16 @@ module IControl
         end
       when /iControl:LocalLB\.Pool\.MonitorAssociation\[/ then IControl::LocalLB::MonitorRule.from_xml(result[:item][:monitor_rule])
       when /iControl:LocalLB\.ObjectStatus\[/ then (result[:item])
+      when /iControl:LocalLB.VirtualServer.VirtualServerType\[/ then IControl::LocalLB::VirtualServer::VirtualServerType.from_string(result[:item])
+      when /iControl:LocalLB.VirtualServer.VirtualServerCMPEnableMode\[/ then IControl::LocalLB::VirtualServer::VirtualServerCMPEnableMode.from_string(result[:item])
+      when /iControl:Common\.IPPortDefinition\[/ then IControl::Common::IPPortDefinition.new(result[:item])
+      when /iControl:Common.ProtocolType\[/ then IControl::Common::ProtocolType.from_string(result[:item])
+      when /iControl:Common.EnabledState\[/ then IControl::Common::EnabledState.from_string(result[:item])
+      when /iControl:Common.ULong64\[\d+\]/ then IControl::Common::ULong64.new(result[:item])
+      when /iControl:Common.SourcePortBehavior\[\d+\]/ then IControl::Common::SourcePortBehavior.from_string(result[:item])
+      when /iControl:LocalLB.HardwareAccelerationMode\[/ then IControl::LocalLB::HardwareAccelerationMode.from_string(result[:item])
+      when /iControl:LocalLB.SnatType\[/ then IControl::LocalLB::SnatType.from_string(result[:item])
+      when /iControl:Common.VLANFilterList\[/ then IControl::Common::VLANFilterList.new(result[:item])
       else
         raise "No type matching found (#{result[:array_type]})" 
       end
