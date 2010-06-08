@@ -1,0 +1,18 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_cmp_enable_modeResponse
+	xmlns:m="urn:iControl:LocalLB/VirtualServer">
+<return
+	s:type="A:Array"
+	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerCMPEnableMode[1]">
+<item>RESOURCE_TYPE_CMP_ENABLE_ALL</item>
+</return>
+</m:get_cmp_enable_modeResponse>
+</E:Body>
+</E:Envelope>
