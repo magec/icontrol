@@ -12,6 +12,7 @@
 	s:type="A:Array"
 	A:arrayType="y:string[21]">
 <item>test_virtual_server</item>
+<item>test_virtual_server_nil</item>
 <item>test_virtual_server1</item>
 </return>
 </m:get_listResponse>
