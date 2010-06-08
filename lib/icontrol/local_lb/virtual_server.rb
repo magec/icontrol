@@ -34,6 +34,15 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
+  class VirtualServerPersistence
+    attr_accessor :profile_name,:default_profile
+    def initialize(options)
+      @profile_name = options[:profile_name]
+      @default_profile = ( options[:default_profile] == "true" )
+    end
+  end
+
+
   set_id_name :virtual_server
 
   # This method creates a new virtual_server
@@ -140,14 +149,23 @@ class IControl::LocalLB::VirtualServer
     super
   end
 
-  def default_pool
-    return IControl::LocalLB::Pool.find(default_pool_name)
-  end
-  
+  # Gets the lists of profiles the specified virtual server are associated with.
   def profiles
     return get_profile
   end
 
+  # Gets the default pool for the specified virtual server. 
+  def default_pool
+    return IControl::LocalLB::Pool.find(default_pool_name)
+  end
+  
+  
+  # Gets the lists of persistence profiles the specified virtual servers are associated with.
+  def persistence_profile
+    super
+  end
+  
+  
   def http_class_profiles
     return httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}
   end

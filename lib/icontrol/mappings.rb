@@ -26,6 +26,7 @@ module IControl
       when /iControl:LocalLB.HardwareAccelerationMode\[/ then IControl::LocalLB::HardwareAccelerationMode.from_string(result[:item])
       when /iControl:LocalLB.SnatType\[/ then IControl::LocalLB::SnatType.from_string(result[:item])
       when /iControl:Common.VLANFilterList\[/ then IControl::Common::VLANFilterList.new(result[:item])
+      when /iControl:LocalLB.VirtualServer.VirtualServerPersistence\[\]\[\d+\]/ then  result[:item][:item] && IControl::LocalLB::VirtualServer::VirtualServerPersistence.new(result[:item][:item])
       else
         raise "No type matching found (#{result[:array_type]})" 
       end
