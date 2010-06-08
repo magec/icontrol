@@ -241,6 +241,20 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+  describe "persistence_profile method" do
+    it "should exists" do
+      lambda { @virtual_server.persistence_profile }.should_not raise_exception(NoMethodError)
+    end
+
+    it "should return an VirtualServerPersistence instance" do
+      @virtual_server.persistence_profile.class.should be(IControl::LocalLB::VirtualServer::VirtualServerPersistence)
+    end    
+
+    it "should return an nil if none is specified" do
+      @virtual_server_nil.persistence_profile.should be(nil)
+    end    
+  end
+
   describe "vlan method" do
     it "should exists" do
       lambda { @virtual_server.vlan }.should_not raise_exception(NoMethodError)
