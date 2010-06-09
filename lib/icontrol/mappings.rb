@@ -47,7 +47,8 @@ module IControl
 
   class Mappings
     def self.map_object(return_object)
-      return MAPPINGS[return_object[:type]].map_object(return_object)
+      return MAPPINGS[return_object[:type]].map_object(return_object) if return_object.is_a?(Hash) 
+      return return_object
     end
   end
 end

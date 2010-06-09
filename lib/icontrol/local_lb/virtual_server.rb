@@ -207,6 +207,15 @@ class IControl::LocalLB::VirtualServer
     get_statistics.statistics
   end
   
+  # Gets the version information for this interface.
+  def version
+    super
+  end
+
+  def gtm_score
+    super
+  end
+
   def http_class_profiles
     return httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}
   end
