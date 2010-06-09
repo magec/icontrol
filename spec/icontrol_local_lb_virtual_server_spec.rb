@@ -255,6 +255,22 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+  describe "rules method" do
+    it "should exists" do
+      lambda { @virtual_server.rules }.should_not raise_exception(NoMethodError)
+    end
+
+    it "should return an list of Rules" do
+      @virtual_server.rules.should_not be_empty
+      @virtual_server.rules.first.class.should be(IControl::LocalLB::Rule)
+    end    
+
+    it "should return an empty list if no rule is associated with the virtual server" do
+      @virtual_server_nil.rules.should be_empty
+    end    
+  end
+
+
   describe "vlan method" do
     it "should exists" do
       lambda { @virtual_server.vlan }.should_not raise_exception(NoMethodError)
