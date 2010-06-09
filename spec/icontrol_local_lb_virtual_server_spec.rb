@@ -300,6 +300,27 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+  describe "version method" do
+    it "should exists" do
+      lambda { @virtual_server.version }.should_not raise_exception(NoMethodError)
+    end
+
+    it "should return a String" do
+      @virtual_server.version.class.should be(String)
+      @virtual_server.version.should_not be_empty
+    end    
+  end
+
+  describe "gtp_score method" do
+    it "should exists" do
+      lambda { @virtual_server.gtm_score }.should_not raise_exception(NoMethodError)
+    end
+
+    it "should return a ULong64" do
+      @virtual_server.gtm_score.class.should be(IControl::Common::ULong64)
+    end    
+  end
+
   describe "vlan method" do
     it "should exists" do
       lambda { @virtual_server.vlan }.should_not raise_exception(NoMethodError)
