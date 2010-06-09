@@ -31,6 +31,14 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
+  class VirtualServerClonePool
+    attr_accessor :pool,:clone_type
+    def initialize(attributes)
+      @pool = IControl::LocalLB::Pool.find(attributes[:pool_name])
+      @clone_type = IControl::LocalLB::ClonePoolType.from_string(attributes[:type])
+    end
+  end
+
   class VirtualServerProfileAttribute
     attr_accessor :profile_type,:profile_context,:profile_name
     def initialize(options)
@@ -165,17 +173,21 @@ class IControl::LocalLB::VirtualServer
     return IControl::LocalLB::Pool.find(default_pool_name)
   end
     
-  # Gets the lists of persistence profiles the specified virtual servers are associated with.
+  # Gets the lists of persistence profiles the virtual server is associated with.
   def persistence_profile
     super
   end  
   
+  # Gets the lists of clone pools the virtual server is associated with.
+  def clone_pool
+    super
+  end
+
   # Gets the lists of rules the specified virtual servers are associated with.
   # If a specified virtual server is not associated with any rule, then the list
   # of rules for that virtual server will be empty
   def rules
-    if my_rule = get_rule then return my_rule.sort{|a,b| a.priority  <=> b.priority }.map{|i| IControl::LocalLB::Rule.find(i.rule_name)}  end
-    return []
+    get_rule.sort{|a,b| a.priority  <=> b.priority }.map{|i| IControl::LocalLB::Rule.find(i.rule_name)}  
   end
   
   def http_class_profiles

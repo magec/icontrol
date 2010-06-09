@@ -27,7 +27,8 @@ module IControl
       when /iControl:LocalLB.SnatType\[/ then IControl::LocalLB::SnatType.from_string(result[:item])
       when /iControl:Common.VLANFilterList\[/ then IControl::Common::VLANFilterList.new(result[:item])
       when /iControl:LocalLB.VirtualServer.VirtualServerPersistence\[\]\[\d+\]/ then  result[:item][:item] && IControl::LocalLB::VirtualServer::VirtualServerPersistence.new(result[:item][:item])
-      when /iControl:LocalLB.VirtualServer.VirtualServerRule\[\]\[\d+\]/ then result[:item][:item] && [result[:item][:item]].flatten.map{ |i| IControl::LocalLB::VirtualServerRule.new(i) }
+      when /iControl:LocalLB.VirtualServer.VirtualServerRule\[\]\[\d+\]/ then [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServerRule.new(i) }
+      when /iControl:LocalLB.VirtualServer.VirtualServerClonePool\[\]\[\d+\]/ then  [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServer::VirtualServerClonePool.new(i) }
       else
         raise "No type matching found (#{result[:array_type]})" 
       end

@@ -3,12 +3,17 @@ module IControl
     
     class HardwareAccelerationMode
       include IControl::ConstDefiner
-      declare_constants [:HW_ACCELERATION_MODE_NONE,:HW_ACCELERATION_ASSIST,:HW_ACCELERATION_MODE_FULL],HardwareAccelerationMode
+      declare_constants  [:HW_ACCELERATION_MODE_NONE, :HW_ACCELERATION_ASSIST, :HW_ACCELERATION_MODE_FULL ], HardwareAccelerationMode
+    end
+
+    class ClonePoolType
+      include IControl::ConstDefiner
+      declare_constants [ :CLONE_POOL_TYPE_UNDEFINED, :CLONE_POOL_TYPE_CLIENTSIDE, :CLONE_POOL_TYPE_SERVERSIDE ], ClonePoolType
     end
 
     class SnatType
       include IControl::ConstDefiner
-      declare_constants [:SNAT_TYPE_NONE,:SNAT_TYPE_TRANSLATION_ADDRESS,:SNAT_TYPE_SNATPOOL,:SNAT_TYPE_AUTOMAP],SnatType
+      declare_constants [ :SNAT_TYPE_NONE, :SNAT_TYPE_TRANSLATION_ADDRESS, :SNAT_TYPE_SNATPOOL, :SNAT_TYPE_AUTOMAP ], SnatType
     end
 
     class ProfileType
