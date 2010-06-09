@@ -22,6 +22,18 @@ class IControl::LocalLB::VirtualServer
     declare_constants valid_consts,VirtualServerCMPEnableMode
     
   end
+
+
+  class VirtualServerStatisticEntry
+    attr_accessor :virtual_server,:statistics
+    def initialize(result)
+      @virtual_server = IControl::LocalLB::VirtualServer.find(result[:item][:virtual_server][:name])
+      @statistics = {}
+      result[:item][:statistics][:item].each do |entry|
+        @statistics[IControl::Common::StatisticType.from_string(entry[:type])] = IControl::Common::ULong64.new(entry[:value])
+      end
+    end
+  end
   
   class VirtualServerRule
     attr_accessor :rule_name,:priority
@@ -188,6 +200,11 @@ class IControl::LocalLB::VirtualServer
   # of rules for that virtual server will be empty
   def rules
     get_rule.sort{|a,b| a.priority  <=> b.priority }.map{|i| IControl::LocalLB::Rule.find(i.rule_name)}  
+  end
+
+  # Gets the statistics.
+  def statistics
+    get_statistics.statistics
   end
   
   def http_class_profiles

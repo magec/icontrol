@@ -29,13 +29,21 @@ module IControl
       when /iControl:LocalLB.VirtualServer.VirtualServerPersistence\[\]\[\d+\]/ then  result[:item][:item] && IControl::LocalLB::VirtualServer::VirtualServerPersistence.new(result[:item][:item])
       when /iControl:LocalLB.VirtualServer.VirtualServerRule\[\]\[\d+\]/ then [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServerRule.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerClonePool\[\]\[\d+\]/ then  [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServer::VirtualServerClonePool.new(i) }
+      when /iControl:LocalLB.VirtualServer.VirtualServerStatisticEntry\[/ then IControl::LocalLB::VirtualServer::VirtualServerStatisticEntry.new(result)
       else
         raise "No type matching found (#{result[:array_type]})" 
       end
     end
   end
+
+
+  class StatMapper
+    def self.map_object(result)
+      ArrayMapper.map_object(result[:statistics])
+    end
+  end
   
-  MAPPINGS = { "A:Array" => ArrayMapper }
+  MAPPINGS = { "A:Array" => ArrayMapper, "iControl:LocalLB.VirtualServer.VirtualServerStatistics" => StatMapper }
 
   class Mappings
     def self.map_object(return_object)
