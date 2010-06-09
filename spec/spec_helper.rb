@@ -16,13 +16,6 @@ IControl.config[:password] = "secret"
 
 
 # Mapping of the wsdl's
-classes = [
-           "IControl::GlobalLB::Rule",
-           "IControl::LocalLB::PoolMember",
-           "IControl::LocalLB::Pool",
-           "IControl::LocalLB::ProfileHttpClass",
-           "IControl::LocalLB::VirtualServer"
-          ]
 
 FileList["spec/fixtures/wsdl/xml/*"].each do |file_name|
   klass = file_name.split("/").last.gsub(".xml","").to_s.gsub(".","::").to_s
