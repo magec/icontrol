@@ -285,6 +285,21 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+  describe "statistics method" do
+    it "should exists" do
+      lambda { @virtual_server.statistics }.should_not raise_exception(NoMethodError)
+    end
+
+    it "should return a VirtualServerStatisticEntry" do
+      @virtual_server.statistics.should_not be_empty
+    end    
+
+    it "should return a hash of statistics" do
+      @virtual_server.statistics.class.should be(Hash)
+      @virtual_server.statistics.first[0].ancestors.should include(IControl::Common::StatisticType)
+    end    
+  end
+
   describe "vlan method" do
     it "should exists" do
       lambda { @virtual_server.vlan }.should_not raise_exception(NoMethodError)
