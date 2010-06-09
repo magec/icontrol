@@ -270,6 +270,20 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+  describe "clone_pool method" do
+    it "should exists" do
+      lambda { @virtual_server.clone_pool }.should_not raise_exception(NoMethodError)
+    end
+
+    it "should return a list of VirtualServerClonePool" do
+      @virtual_server.clone_pool.should_not be_empty
+      @virtual_server.clone_pool.first.class.should be(IControl::LocalLB::VirtualServer::VirtualServerClonePool)
+    end    
+
+    it "should return an empty list if no clone_pool is associated with the virtual server" do
+      @virtual_server_nil.clone_pool.should be_empty
+    end    
+  end
 
   describe "vlan method" do
     it "should exists" do

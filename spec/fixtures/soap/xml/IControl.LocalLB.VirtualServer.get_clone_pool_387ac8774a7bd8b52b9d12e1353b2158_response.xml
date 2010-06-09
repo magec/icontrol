@@ -1,0 +1,32 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_clone_poolResponse
+	xmlns:m="urn:iControl:LocalLB/VirtualServer">
+<return
+	s:type="A:Array"
+	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerClonePool[][1]">
+<item
+	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerClonePool[2]">
+<item>
+<pool_name
+	s:type="y:string">test_pool1</pool_name>
+<type
+	s:type="iControl:LocalLB.ClonePoolType">CLONE_POOL_TYPE_CLIENTSIDE</type>
+</item>
+<item>
+<pool_name
+	s:type="y:string">test_pool1</pool_name>
+<type
+	s:type="iControl:LocalLB.ClonePoolType">CLONE_POOL_TYPE_SERVERSIDE</type>
+</item>
+</item>
+</return>
+</m:get_clone_poolResponse>
+</E:Body>
+</E:Envelope>
