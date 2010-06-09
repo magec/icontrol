@@ -2,27 +2,33 @@ IControl::LocalLB::VirtualServer
 class IControl::LocalLB::VirtualServer
 
   class VirtualServerType    
-
+    
     include IControl::ConstDefiner
     
     valid_consts = [:RESOURCE_TYPE_POOL,:RESOURCE_TYPE_IP_FORWARDING,:RESOURCE_TYPE_L2_FORWARDING,
                     :RESOURCE_TYPE_REJECT,:RESOURCE_TYPE_FAST_L4,:RESOURCE_TYPE_FAST_HTTP]
-
+    
     declare_constants valid_consts,VirtualServerType
     
   end
-
   
-
   class VirtualServerCMPEnableMode
     
     include IControl::ConstDefiner
     
     valid_consts = [:RESOURCE_TYPE_CMP_ENABLE_ALL,:RESOURCE_TYPE_CMP_ENABLE_SINGLE,
                     :RESOURCE_TYPE_CMP_ENABLE_GROUP,:RESOURCE_TYPE_CMP_ENABLE_UNKNOWN]
-
+    
     declare_constants valid_consts,VirtualServerCMPEnableMode
-
+    
+  end
+  
+  class VirtualServerRule
+    attr_accessor :rule_name,:priority
+    def initialize(attributes)
+      @rule_name = attributes[:rule_name]
+      @priority  = ( attributes[:priority] && attributes[:priority].to_i ) || -1
+    end
   end
 
   class VirtualServerProfileAttribute
@@ -158,13 +164,19 @@ class IControl::LocalLB::VirtualServer
   def default_pool
     return IControl::LocalLB::Pool.find(default_pool_name)
   end
-  
-  
+    
   # Gets the lists of persistence profiles the specified virtual servers are associated with.
   def persistence_profile
     super
-  end
+  end  
   
+  # Gets the lists of rules the specified virtual servers are associated with.
+  # If a specified virtual server is not associated with any rule, then the list
+  # of rules for that virtual server will be empty
+  def rules
+    if my_rule = get_rule then return my_rule.sort{|a,b| a.priority  <=> b.priority }.map{|i| IControl::LocalLB::Rule.find(i.rule_name)}  end
+    return []
+  end
   
   def http_class_profiles
     return httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}
