@@ -30,6 +30,7 @@ module IControl
       when /iControl:LocalLB.VirtualServer.VirtualServerRule\[\]\[\d+\]/ then [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServerRule.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerClonePool\[\]\[\d+\]/ then  [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServer::VirtualServerClonePool.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerStatisticEntry\[/ then IControl::LocalLB::VirtualServer::VirtualServerStatisticEntry.new(result)
+      when /y:boolean\[/ then  result[:item]
       else
         raise "No type matching found (#{result[:array_type]})" 
       end
