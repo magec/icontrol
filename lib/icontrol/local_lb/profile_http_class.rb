@@ -43,4 +43,9 @@ class IControl::LocalLB::ProfileHttpClass
     end
   end
 
+  # Gets the lists of patterns used to match the hosts.
+  def host_match_pattern
+    super
+  end
+
 end
