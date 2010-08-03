@@ -2,27 +2,20 @@ IControl::LocalLB::VirtualServer
 class IControl::LocalLB::VirtualServer
 
   class VirtualServerType    
-    
     include IControl::ConstDefiner
-    
     valid_consts = [:RESOURCE_TYPE_POOL,:RESOURCE_TYPE_IP_FORWARDING,:RESOURCE_TYPE_L2_FORWARDING,
                     :RESOURCE_TYPE_REJECT,:RESOURCE_TYPE_FAST_L4,:RESOURCE_TYPE_FAST_HTTP]
     
     declare_constants valid_consts,VirtualServerType
-    
   end
   
   class VirtualServerCMPEnableMode
-    
     include IControl::ConstDefiner
-    
     valid_consts = [:RESOURCE_TYPE_CMP_ENABLE_ALL,:RESOURCE_TYPE_CMP_ENABLE_SINGLE,
                     :RESOURCE_TYPE_CMP_ENABLE_GROUP,:RESOURCE_TYPE_CMP_ENABLE_UNKNOWN]
     
     declare_constants valid_consts,VirtualServerCMPEnableMode
-    
   end
-
 
   class VirtualServerStatisticEntry
     attr_accessor :virtual_server,:statistics
@@ -34,7 +27,7 @@ class IControl::LocalLB::VirtualServer
       end
     end
   end
-  
+
   class VirtualServerRule
     attr_accessor :rule_name,:priority
     def initialize(attributes)
@@ -73,27 +66,76 @@ class IControl::LocalLB::VirtualServer
 
   # This method creates a new virtual_server
   # receives a Hash with this values
-  # :name     => "The name of the virtual host"
-  # :address  => "the ip address of the virtual server"
-  # :port     => "the port the server is going to listen to"
-  # :protocol => "a protocol type"
+  # :name      => "The name of the virtual host"
+  # :address   => "the ip address of the virtual server"
+  # :port      => "the port the server is going to listen to"
+  # :protocol  => "a protocol type"
+  # :wildmask  => "The wildmask of the virtual server"
+  # :type => "The type of the virtual_server"
+  # :default_pool_name  => "The default pool name"
+  # :profiles 
   def self.create(attributes)
-    
+    item = 0
+    profiles = {}
+    attributes[:profiles].each {|i| profiles["item#{item+=1}"] = {"profile_context" => i["profile_context"],"profile_name" => "tcp" || i["profile"].id} }
+    response = super do |soap|      
+      soap.body = {
+        "definitions" => {:item => {
+            :name => attributes[:name],
+            :address => attributes[:address],
+            "port" => attributes[:port],
+            :protocol => attributes[:protocol] || "PROTOCOL_TCP"
+          }
+        },
+        "wildmasks" => {:item => attributes[:wildmask] || "255.255.255.255"},
+        "resources" => {:item => {          
+              :type => attributes[:type] || IControl::LocalLB::VirtualServer::VirtualServerType::RESOURCE_TYPE_POOL,
+              "default_pool_name" => attributes[:default_pool] && attributes[:default_pool].id || "" 
+
+          }
+        },
+        "profiles"  => {:item => profiles}
+      }
+    end
+    return find(attributes[:name])    
   end
 
-  # Gets the wildmasks for the specified virtual servers.
+  def destroy
+    return delete_virtual_server
+  end
+
+  # Gets the wildmask for the specified virtual server.
   def wildmask
     super
   end
+  # Sets the wildmask
+  def wildmask=(wildmask)
+    IControl::LocalLB::VirtualServer.set_wildmask do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "wildmasks" => {:item => wildmask }
+      }
+    end    
+  end
+
 
   def type
     super
   end
 
+  # Sets the type for the virtual server
+  def type=(new_type)
+    IControl::LocalLB::VirtualServer.set_type do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "types" => {:item => new_type.class_name}
+      }
+    end
+  end
+
   # Gets the CMP enable modes from the specified virtual servers.
   # This is read-only, as the modes are set according to the system and
-  # configuration, and influenced by the desired CMP enabled state.
-  
+  # configuration, and influenced by the desired CMP enabled state.  
   def cmp_enable_mode
     super
   end
@@ -101,6 +143,18 @@ class IControl::LocalLB::VirtualServer
   # Gets the destination IP and port of the specified virtual servers.
   def destination
     super
+  end
+
+  # Sets the destination IP and port
+  # it receives an IPPortDefinition instance with the keys
+  # :address and :port
+  def destination=(destination)
+    IControl::LocalLB::VirtualServer.set_destination do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "destinations" => {:item => {:address => destination.address, :port => destination.port }}
+      }
+    end
   end
 
 
@@ -183,6 +237,15 @@ class IControl::LocalLB::VirtualServer
   # Gets the default pool for the specified virtual server. 
   def default_pool
     return IControl::LocalLB::Pool.find(default_pool_name)
+  end
+
+  def default_pool=(pool)
+    IControl::LocalLB::VirtualServer.set_default_pool_name do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "default_pools" => {:item => pool.id }
+      }
+    end
   end
     
   # Gets the lists of persistence profiles the virtual server is associated with.
