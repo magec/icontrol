@@ -61,6 +61,33 @@ describe IControl::LocalLB::ProfileHttpClass do
 
   end
 
+
+  describe "host_match_pattern method" do 
+
+    before do
+      @profile2 = IControl::LocalLB::ProfileHttpClass.find("test_profile2")
+    end
+    
+    it "should exist" do
+      @profile.methods.should include(:host_match_pattern)
+    end
+
+    it "should return an Array" do
+      @profile.host_match_pattern.class.should be(Array)      
+    end
+
+    it "should not contents any nil value in the Array" do
+      @profile.host_match_pattern.should_not include(nil)
+    end
+
+    it "should return valid values" do
+      patterns = @profile2.host_match_pattern
+      patterns.length.should be_>(1)
+      patterns.first[:pattern].should_not be nil      
+    end
+    
+  end
+
   describe "default_profile= method" do 
 
     it "should exist" do
