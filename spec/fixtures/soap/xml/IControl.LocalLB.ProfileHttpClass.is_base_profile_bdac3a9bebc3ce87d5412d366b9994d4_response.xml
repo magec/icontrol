@@ -1,0 +1,18 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:is_base_profileResponse
+	xmlns:m="urn:iControl:LocalLB/ProfileHttpClass">
+<return
+	s:type="A:Array"
+	A:arrayType="y:boolean[1]">
+<item>false</item>
+</return>
+</m:is_base_profileResponse>
+</E:Body>
+</E:Envelope>

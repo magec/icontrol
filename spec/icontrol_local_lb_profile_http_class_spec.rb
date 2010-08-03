@@ -37,6 +37,14 @@ describe IControl::LocalLB::ProfileHttpClass do
   end
 
 
+  describe "base_profile? method" do
+
+    it "should return a boolean value" do 
+      @profile.base_profile?.should be_equal(false)
+    end
+
+  end
+
   describe "pool method" do
 
     it "should return a Pool instance or nil if none found" do
