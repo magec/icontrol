@@ -11,33 +11,25 @@ module IControl
       declare_constants [ :CLONE_POOL_TYPE_UNDEFINED, :CLONE_POOL_TYPE_CLIENTSIDE, :CLONE_POOL_TYPE_SERVERSIDE ], ClonePoolType
     end
 
+    class ProfileContextType
+      include IControl::ConstDefiner
+      declare_constants [ :PROFILE_CONTEXT_TYPE_ALL, :PROFILE_CONTEXT_TYPE_CLIENT, :PROFILE_CONTEXT_TYPE_SERVER], ProfileContextType
+    end
+
     class SnatType
       include IControl::ConstDefiner
       declare_constants [ :SNAT_TYPE_NONE, :SNAT_TYPE_TRANSLATION_ADDRESS, :SNAT_TYPE_SNATPOOL, :SNAT_TYPE_AUTOMAP ], SnatType
     end
 
     class ProfileType
-      class PROFILE_TYPE_TCP; end
-      class PROFILE_TYPE_UDP; end
-      class PROFILE_TYPE_FTP; end
-      class PROFILE_TYPE_FAST_L4; end
-      class PROFILE_TYPE_HTTP; end
-      class PROFILE_TYPE_SERVER_SSL; end
-      class PROFILE_TYPE_CLIENT_SSL; end
-      class PROFILE_TYPE_AUTH; end
-      class PROFILE_TYPE_PERSISTENCE; end
-      class PROFILE_TYPE_CONNECTION_POOL; end
-      class PROFILE_TYPE_STREAM; end
-      class PROFILE_TYPE_STREAM; end
-      class PROFILE_TYPE_FAST_HTTP; end
-      class PROFILE_TYPE_IIOP; end
-      class PROFILE_TYPE_RTSP; end
-      class PROFILE_TYPE_STATISTICS; end
-      class PROFILE_TYPE_HTTPCLASS; end
-      class ROFILE_TYPE_HTTPCLASS; end
-      class PROFILE_TYPE_SCTP; end
-      class PROFILE_TYPE_INSTANCE; end
-      class PROFILE_TYPE_SIPP; end
+      include IControl::ConstDefiner
+
+      declare_constants [ :PROFILE_TYPE_TCP, :PROFILE_TYPE_UDP, :PROFILE_TYPE_FTP, :PROFILE_TYPE_FAST_L4, 
+                          :PROFILE_TYPE_HTTP, :PROFILE_TYPE_SERVER_SSL, :PROFILE_TYPE_CLIENT_SSL, 
+                          :PROFILE_TYPE_AUTH, :PROFILE_TYPE_PERSISTENCE, :PROFILE_TYPE_CONNECTION_POOL, 
+                          :PROFILE_TYPE_STREAM, :PROFILE_TYPE_FAST_HTTP, :PROFILE_TYPE_IIOP, 
+                          :PROFILE_TYPE_RTSP, :PROFILE_TYPE_STATISTICS, :PROFILE_TYPE_HTTPCLASS, :PROFILE_TYPE_SCTP, 
+                          :PROFILE_TYPE_INSTANCE, :PROFILE_TYPE_SIPP ], ProfileType
     end
   end
 end
