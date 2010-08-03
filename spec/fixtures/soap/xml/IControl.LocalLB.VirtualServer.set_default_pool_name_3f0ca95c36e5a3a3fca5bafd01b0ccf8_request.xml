@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/VirtualServer"><env:Body><wsdl:set_default_pool_name><virtual_servers>test_virtual_server</virtual_servers><default_pools>pool_test1</default_pools></wsdl:set_default_pool_name></env:Body></env:Envelope>
