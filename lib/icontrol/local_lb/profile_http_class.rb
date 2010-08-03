@@ -27,6 +27,10 @@ class IControl::LocalLB::ProfileHttpClass
     self.is_base_profile
   end
 
-  
+  # Gets the names of the default profile from which the specifie profile will derive default values for its attributes.
+  def default_profile
+    profile = super
+    IControl::LocalLB::ProfileHttpClass.find(profile)
+  end
 
 end
