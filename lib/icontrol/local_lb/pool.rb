@@ -26,6 +26,10 @@ class IControl::LocalLB::Pool
     new_pool.monitor_rule = prv_monitor_rule
     return new_pool
   end
+
+  def destroy
+    return delete_pool
+  end
   
   # Returns a collection of the monitors associated with this pool
   def monitor_rule
