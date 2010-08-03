@@ -22,4 +22,11 @@ class IControl::LocalLB::ProfileHttpClass
     end
   end
 
+  # Determines whether the specified profile is base/pre-configured profile, or user-defined profile.
+  def base_profile?
+    self.is_base_profile
+  end
+
+  
+
 end
