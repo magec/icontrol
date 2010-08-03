@@ -31,6 +31,17 @@ describe IControl::LocalLB::VirtualServer do
     
   end
 
+  describe "default_pool= method" do
+    it "should have method called default_pool=" do 
+      pending
+    end
+  end
+
+  describe "destroy method" do 
+    it "should delete the virtual server" do
+      pending
+    end
+  end
 
   describe "profiles method" do
     
@@ -75,6 +86,12 @@ describe IControl::LocalLB::VirtualServer do
     end
   end
 
+  describe "type= method" do
+    it "should change the type of the virtual server" do
+      pending
+    end
+  end
+
   describe "cmp_enable_mode method" do 
 
     it "should exists" do 
@@ -95,6 +112,16 @@ describe IControl::LocalLB::VirtualServer do
 
     it "should return an IPPortDefinition instance" do 
       @virtual_server.destination.class.should be(IControl::Common::IPPortDefinition)
+    end
+  end
+
+  describe "destination= method" do 
+    it "should exists" do
+      @virtual_server.methods.should include(:destination=)
+    end
+
+    it "should change the destination of the virtual server" do 
+      pending
     end
   end
 
@@ -233,6 +260,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an FallBackPersistenceProfile instance" do
+      @virtual_server.fallback_persistence_profile.inspect
       pending
     end    
 
@@ -335,4 +363,17 @@ describe IControl::LocalLB::VirtualServer do
       vlan.vlans.class.should be(Array)
     end
   end
+
+  describe "create method" do
+    it "should create a new virtual_server when correctly called" do
+      virtual_server = 
+        IControl::LocalLB::VirtualServer.create(:address => "192.168.145.7",
+                                                :port => 99,
+                                                :name => "test_virtual_server",
+                                                :default_pool => IControl::LocalLB::Pool.find("pool_test1"),
+                                                :profiles => [{"profile_context" => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL,"profile" => IControl::LocalLB::ProfileHttpClass.find("test_profile1")}])
+      virtual_server.id.should == "test_virtual_server"
+    end    
+  end
+  
 end
