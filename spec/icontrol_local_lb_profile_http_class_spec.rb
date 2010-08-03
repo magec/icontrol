@@ -61,6 +61,18 @@ describe IControl::LocalLB::ProfileHttpClass do
 
   end
 
+  describe "default_profile= method" do 
+
+    it "should exist" do
+      @profile.methods.should include(:default_profile=)
+    end
+
+    it "should allow asignment of another profile " do
+      @profile.default_profile = IControl::LocalLB::ProfileHttpClass.find("anythingelse")
+    end
+
+  end
+
   describe "pool method" do
 
     it "should return a Pool instance or nil if none found" do

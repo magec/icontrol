@@ -6,16 +6,7 @@
 	xmlns:iControl="urn:iControl"
 	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <E:Body>
-<m:get_listResponse
-	xmlns:m="urn:iControl:LocalLB/ProfileHttpClass">
-<return
-	s:type="A:Array"
-	A:arrayType="y:string[21]">
-<item>test_profile1</item>
-<item>test_profile2</item>
-<item>httpclass</item>
-<item>anythingelse</item>
-</return>
-</m:get_listResponse>
+<m:set_default_profileResponse
+	xmlns:m="urn:iControl:LocalLB/ProfileHttpClass"></m:set_default_profileResponse>
 </E:Body>
 </E:Envelope>

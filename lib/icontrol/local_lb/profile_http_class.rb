@@ -33,4 +33,14 @@ class IControl::LocalLB::ProfileHttpClass
     IControl::LocalLB::ProfileHttpClass.find(profile)
   end
 
+  # Sets the names of the default profiles from which the specified profiles will derive default values for its attributes.
+  def default_profile=(profile)
+    IControl::LocalLB::ProfileHttpClass.set_default_profile do |soap|
+      soap.body = {
+        "profile_names" => {"value" => id},
+        "defaults" => {"value" => profile.id}
+      }
+    end
+  end
+
 end
