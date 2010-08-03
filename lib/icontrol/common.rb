@@ -10,6 +10,10 @@ module IControl
     
     module ClassMethods
 
+      def class_name
+        self.name.split("::").last
+      end
+      
       def declare_constants(constants,parent)
         constants.each do |const_name|
           klass = Class.new(parent)
