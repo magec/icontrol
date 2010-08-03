@@ -1,6 +1,5 @@
 = icontrol
 
-Description goes here.
 
 == Note on Patches/Pull Requests
  
