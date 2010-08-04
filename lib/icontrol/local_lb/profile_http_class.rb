@@ -48,4 +48,114 @@ class IControl::LocalLB::ProfileHttpClass
     super
   end
 
+  # Resets the lists to parent defaults.
+  def set_default_host_match_pattern
+    super
+    host_match_pattern
+  end
+
+  # Adds a new pattern to the lists of patterns used to match the hosts
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def add_host_match_pattern (pattern,is_glob = false)
+    pattern_operation("add","host",pattern,is_glob)
+  end
+
+  # Removes from the  lists of patterns used to match the hosts
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def remove_host_match_pattern (pattern,is_glob = false)
+    pattern_operation("remove","host",pattern,is_glob)
+  end
+
+  # Gets the lists of patterns used to match the paths.
+  def path_match_pattern
+    super
+  end
+
+  # Resets the lists to parent defaults.
+  def set_default_path_match_pattern
+    super
+    path_match_pattern
+  end
+
+  # Adds a pattern to the lists of patterns used to match the paths
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def add_path_match_pattern (pattern,is_glob = false)
+    pattern_operation("add","path",pattern,is_glob)    
+  end
+
+  # Removes from the lists of patterns used to match the paths
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def remove_path_match_pattern (pattern,is_glob = false)
+    pattern_operation("remove","path",pattern,is_glob)
+  end
+
+  # Gets the lists of  used to match the headers.
+  def header_match_pattern
+    super
+  end
+
+  # Resets the lists to parent defaults.
+  def set_default_header_match_pattern
+    super
+    header_match_pattern
+  end
+
+  # Adds a pattern to the lists of patterns used to match the headers
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def add_header_match_pattern (pattern,is_glob = false)
+    pattern_operation("add","header",pattern,is_glob)
+  end
+
+  # Removes from the lists of patterns used to match the headers
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def remove_header_match_pattern (pattern,is_glob = false)
+    pattern_operation("remove","header",pattern,is_glob)
+  end
+
+  # Gets the lists of  used to match the headers.
+  def cookie_match_pattern
+    super
+  end
+
+  # Resets the lists to parent defaults.
+  def set_default_cookie_match_pattern
+    super
+    cookie_match_pattern
+  end
+
+  # Adds a pattern to the lists of patterns used to match the cookies
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def add_cookie_match_pattern (pattern,is_glob = false)
+    pattern_operation("add","cookie",pattern,is_glob)
+  end
+
+  # Removes from the lists of patterns used to match the cookies
+  # * pattern: The string of the pattern that is to be used
+  # * is_glob: Whether the pattern is a string or not (defaults to false, i.e. regexps)
+  def remove_cookie_match_pattern (pattern,is_glob = false)
+    pattern_operation("remove","cookie",pattern,is_glob)
+  end
+
+
+
+  private
+  
+  def pattern_operation(op,type,pattern,is_glob)
+    pattern_hash = {"pattern" => pattern ,"is_glob" => is_glob}
+    IControl::LocalLB::ProfileHttpClass.send("#{op}_#{type}_match_pattern") do |soap|
+      soap.body = {
+        "profile_names" => {"value" => id},
+        "patterns" => {"item" => {"value" => pattern_hash }}
+      }
+    end
+    pattern_hash    
+  end
+
 end
