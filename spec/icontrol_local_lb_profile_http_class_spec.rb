@@ -4,6 +4,7 @@ describe IControl::LocalLB::ProfileHttpClass do
 
   before do
     @profile = IControl::LocalLB::ProfileHttpClass.find("test_profile1")
+    @profile2 = IControl::LocalLB::ProfileHttpClass.find("test_profile2")
   end
   
   describe "find method" do
@@ -61,33 +62,75 @@ describe IControl::LocalLB::ProfileHttpClass do
 
   end
 
-
-  describe "host_match_pattern method" do 
-
-    before do
-      @profile2 = IControl::LocalLB::ProfileHttpClass.find("test_profile2")
+  ["host","cookie","header","path"].each do |type|
+    
+    describe "#{type}_match_pattern method" do 
+      
+      it "should exist" do
+        @profile2.methods.should include("#{type}_match_pattern".to_sym)
+      end
+      
+      it "should return an Array" do
+        @profile2.send("#{type}_match_pattern").class.should be(Array)      
+      end
+      
+      it "should not contents any nil value in the Array" do
+        @profile2.send("#{type}_match_pattern").should_not include(nil)
+      end
+      
+      it "should return valid values" do
+        patterns = @profile2.send("#{type}_match_pattern")
+        patterns.length.should be_>(1)
+        patterns.first[:pattern].should_not be nil      
+      end
     end
     
-    it "should exist" do
-      @profile.methods.should include(:host_match_pattern)
+    describe "set_default_#{type}_match_pattern method" do 
+
+      it "should exist" do
+        @profile2.methods.should include("set_default_#{type}_match_pattern".to_sym)
+      end
+      
+      it "should return an empty array" do 
+        value = @profile2.send("set_default_#{type}_match_pattern")
+        value.class.should be(Array)
+      end
+
+      it "should empty the contents of the array after called" do
+        pending
+      end
     end
 
-    it "should return an Array" do
-      @profile.host_match_pattern.class.should be(Array)      
+    ["add","remove"].each do |op|
+            
+      describe "#{op}_#{type}_host_match_pattern method" do 
+      
+        it "should exist" do
+          @profile2.methods.should include("#{op}_#{type}_match_pattern".to_sym)
+        end
+      
+        it "sould return the recently created pattern if it correctly adds it" do
+          pattern = "test_#{type}"
+          result = @profile2.send("#{op}_#{type}_match_pattern",pattern,true)
+          result["pattern"].should ==(pattern)
+          result["is_glob"].should be(true)
+        end
+        
+        it "sould allow the addition of string patterns as well" do
+          pattern = "test_#{type}-regexp"
+          result = @profile2.send("#{op}_#{type}_match_pattern",pattern)
+          result["pattern"].should ==(pattern)
+          result["is_glob"].should be(false)
+        end    
+        
+        it "should #{op} a new #{type} pattern" do
+          pending
+        end
+      end
+      
     end
-
-    it "should not contents any nil value in the Array" do
-      @profile.host_match_pattern.should_not include(nil)
-    end
-
-    it "should return valid values" do
-      patterns = @profile2.host_match_pattern
-      patterns.length.should be_>(1)
-      patterns.first[:pattern].should_not be nil      
-    end
-    
   end
-
+  
   describe "default_profile= method" do 
 
     it "should exist" do
