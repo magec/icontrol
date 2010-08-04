@@ -143,10 +143,63 @@ class IControl::LocalLB::ProfileHttpClass
     pattern_operation("remove","cookie",pattern,is_glob)
   end
 
+  # Gets the string (which may include a TCL expression) with which to rewrite the URLs.
+  def rewrite_url    
+    value = super.first
+    value_string = value.value
+    value_string = "" if value.default_flag # solves a bug in the parsing of the response when empty fields are give
+    return {:rule => value_string,:default_flag => value.default_flag}
+  end
+
+  # Sets the strings (which may include a TCL expression) with which to rewrite the URLs.
+  # if default_flag is true then the rewriting is disabled (default_flag means work as default)
+  def set_rewrite_url(rule,default_flag = false)
+    match_operation("rewrite_url",rule,default_flag)
+  end
+
+  # Unsets the rewrite url
+  def unset_rewrite_url
+    set_rewrite_url("",true)
+  end
+
+  # Gets the string (which may include a TCL expression) to indicates where to
+  # redirect the original HTTP request once a match occurs.  For example, to redirect
+  # requests to https://myserver.com to http://myotherserver.com.
+  def redirect_location
+    value = super.first
+    value_string = value.value
+    value_string = "" if value.default_flag # solves a bug in the parsing of the response when empty fields are give
+    return {:rule => value_string,:default_flag => value.default_flag}
+  end
+
+  # Sets the strings (which may include a TCL expression) with which to rewrite the URLs.
+  # if default_flag is true then the rewriting is disabled (default_flag means work as default)
+  def set_redirect_location(rule,default_flag = false)
+    match_operation("redirect_location",rule,default_flag)
+  end
+
+  # Unsets the rewrite url
+  def unset_redirect_location
+    set_redirect_location("",true)
+  end
 
 
-  private
   
+  private
+
+  #
+  def match_operation(type,rule,default_flag)
+    parameter = type == "redirect_location" ? "redirect_locations" : "urls"
+    IControl::LocalLB::ProfileHttpClass.send("set_#{type}") do |soap|
+      soap.body = {
+        "profile_names" => {"value" => id},
+        parameter => {"item" => {"value" => rule,"default_flag" => default_flag}}
+      }
+    end
+    send("#{type}")
+  end
+
+  # Generic method for matching manipulation
   def pattern_operation(op,type,pattern,is_glob)
     pattern_hash = {"pattern" => pattern ,"is_glob" => is_glob}
     IControl::LocalLB::ProfileHttpClass.send("#{op}_#{type}_match_pattern") do |soap|
