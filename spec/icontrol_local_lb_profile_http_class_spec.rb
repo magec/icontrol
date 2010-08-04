@@ -172,4 +172,67 @@ describe IControl::LocalLB::ProfileHttpClass do
       }.should raise_exception
     end
   end
+  
+  describe "rewrite_url method" do
+    it "should exist" do
+      @profile.methods.should include("rewrite_url".to_sym)
+    end
+
+    it "should return a hash containing the rewritting rule and the " do
+      rewrite_url = @profile2.rewrite_url
+      rewrite_url.class.should be(Hash)
+      rewrite_url[:rule].class.should be(String)
+    end
+  end
+
+  describe "unset_rewrite_url" do 
+    it "should exist" do
+      @profile.methods.should include("unset_rewrite_url".to_sym)
+    end
+
+    it "should leave the field empty" do
+      @profile.unset_rewrite_url[:rule].should ==""
+    end
+    
+  end
+
+  describe "set_rewrite_url method" do
+
+    it "should exist" do
+      @profile.methods.should include("set_rewrite_url".to_sym)
+    end
+
+    it "should allow the assignment of a new rewrite url" do
+      rewrite_url = @profile2.set_rewrite_url "/new_url_test"
+      rewrite_url[:rule].class.should be(String)
+    end
+
+  end
+
+  describe "redirect_location method" do
+    it "should exist" do
+      @profile.methods.should include("redirect_location".to_sym)
+    end
+
+    it "should return a hash containing the redirect_location " do
+      rewrite_url = @profile2.redirect_location
+      rewrite_url.class.should be(Hash)
+      rewrite_url[:rule].class.should be(String)
+    end
+  end
+
+
+  describe "set_redirect_location method" do
+
+    it "should exist" do
+      @profile.methods.should include("set_redirect_location".to_sym)
+    end
+
+    it "should allow the assignment of a new redirect_location" do
+      rewrite_url = @profile2.set_redirect_location "new_host"
+      rewrite_url[:rule].class.should be(String)
+    end
+
+  end
+
 end
