@@ -61,6 +61,32 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
+  class HttpClassProfileEnumerator
+
+    STATE_CHANGED=[ :<<, :push, :pop, :shift, :unshift, :insert, :join, :reverse!, :sort!, :collect!,:map!, :delete, :delete_at, :delete_if, :reject!,:slice!, :uniq!, :compact!,  :flatten!, :shuffle! ]
+
+
+    def initialize(contents,parent)
+      @contents = contents
+      @parent = parent
+    end
+    
+    def save!
+      @parent.remove_all_httpclass_profiles
+      @parent.add_httpclass_profile(@contents)
+    end
+
+    def method_missing(method_name,*args)
+      if @contents.methods.include? method_name
+        output = @contents.send(method_name,*args)
+        save! if STATE_CHANGED.include? method_name
+        return output
+      else
+        super
+      end
+    end
+  end
+
 
   set_id_name :virtual_server
 
@@ -279,8 +305,22 @@ class IControl::LocalLB::VirtualServer
     super
   end
 
-  def http_class_profiles
-    return httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}
+  def httpclass_profiles
+    @httpclass_profile ||= HttpClassProfileEnumerator.new( httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
+    @httpclass_profile
   end
 
+  #  Adds/associates HTTP class profiles to the specified virtual server.
+  def add_httpclass_profile(http_class_profiles)
+    IControl::LocalLB::VirtualServer.add_httpclass_profile do |soap|
+      item = "item"; count = 0
+      profiles = {}
+      http_class_profiles.each{ |i| profiles[item + (count +=1).to_s] =  {"profile_name" => i.class == String ? i : i.id, "priority" => count } }
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "profiles" => {"value" =>  profiles  }
+      }
+    end    
+  end
+  
 end
