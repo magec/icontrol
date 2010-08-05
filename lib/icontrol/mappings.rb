@@ -9,7 +9,7 @@ module IControl
       when /iControl:Common\.IPPortDefinition\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::PoolMember.new(i)}
       when /iControl:LocalLB.LBMethod/ then [result[:item]].flatten
       when /VirtualServerProfileAttribute\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::VirtualServer::VirtualServerProfileAttribute.new(i) }
-      when /iControl:LocalLB.VirtualServer.VirtualServerHttpClass\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::ProfileHttpClass.new(i)}
+      when /iControl:LocalLB.VirtualServer.VirtualServerHttpClass\[\]/ then [result[:item][:item]].flatten.compact.map{|i| IControl::LocalLB::ProfileHttpClass.new(i)}
       when /iControl:LocalLB\.ProfileString\[/ then [result[:item]].flatten.map{|i| IControl::LocalLB::Pool.new(i.merge({:id => i[:value] }) ) }
       when /iControl:LocalLB\.PoolMember\.MemberObjectStatus\[\]\[/ then  [result[:item][:item]].map do |j| 
           IControl::LocalLB::PoolMember.new( j[:member].merge(:status => j[:object_status])  ) 
