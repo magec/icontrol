@@ -5,6 +5,14 @@ class IControl::LocalLB::ProfileHttpClass
 
   set_id_name :profile_name
 
+  # Creates the specified HTTP class profiles.
+  def self.create!(profile_name)
+    self.create do |soap|
+      soap.body = {"profile_names" => {"value" => profile_name} }
+    end
+    return self.find(profile_name)
+  end  
+
   def profile_type
     return IControl::LocalLB::ProfileType::PROFILE_TYPE_HTTPCLASS
   end
@@ -183,8 +191,6 @@ class IControl::LocalLB::ProfileHttpClass
     set_redirect_location("",true)
   end
 
-
-  
   private
 
   #
