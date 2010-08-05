@@ -143,6 +143,7 @@ module IControl
               
               define_method("client") do 
                 return @client if @client
+                @client = nil
                 if IControl.configured?
                   @client = Savon::Client.new IControl.config[:base_url] + "?WSDL=#{name.to_s}.#{class_name.to_s}"
                   @client.request.basic_auth IControl.config[:user],IControl.config[:password]
@@ -150,6 +151,7 @@ module IControl
                 else
                   raise IControl::NotConfiguredException
                 end
+                return @client
               end
               
               # This is done this way cause I need access to name and class_name
@@ -157,6 +159,7 @@ module IControl
               # TODO: Make use of the delegation patern much more clean I think
                             
               define_method("method_missing") do |method_name,*args,&block|
+
                 raise IControl::NotConfiguredException unless IControl.configured?
                 if client 
                   if client.wsdl.operations.keys.include?(method_name)  
