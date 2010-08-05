@@ -235,4 +235,14 @@ describe IControl::LocalLB::ProfileHttpClass do
 
   end
 
+  describe "create method" do 
+    it "should exist" do
+      IControl::LocalLB::ProfileHttpClass.methods.should include(:create!)
+    end
+
+    it "should return the created Profile" do
+      IControl::LocalLB::ProfileHttpClass.create!("new_created_profile")
+    end
+  end
+
 end
