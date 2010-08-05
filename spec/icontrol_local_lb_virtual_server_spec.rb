@@ -54,16 +54,16 @@ describe IControl::LocalLB::VirtualServer do
     
   end
 
-  describe "http_class_profiles method" do
+  describe "httpclass_profiles method" do
 
     it "should exist" do 
       @virtual_server.class.should be(IControl::LocalLB::VirtualServer)
      
-      http_class_profiles = @virtual_server.http_class_profiles
-      http_class_profiles.should_not be(nil)
-      http_class_profiles.class.should be(Array)
-      http_class_profiles.first.class.should be(IControl::LocalLB::ProfileHttpClass)
-      http_class_profiles.first.id.should_not be(nil)
+      httpclass_profiles = @virtual_server.httpclass_profiles
+      httpclass_profiles.should_not be(nil)
+      httpclass_profiles.class.should be(IControl::LocalLB::VirtualServer::HttpClassProfileEnumerator)
+      httpclass_profiles.first.class.should be(IControl::LocalLB::ProfileHttpClass)
+      httpclass_profiles.first.id.should_not be(nil)
     end  
   end
 
@@ -374,6 +374,30 @@ describe IControl::LocalLB::VirtualServer do
                                                 :profiles => [{"profile_context" => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL,"profile" => IControl::LocalLB::ProfileHttpClass.find("test_profile1")}])
       virtual_server.id.should == "test_virtual_server"
     end    
+
   end
+
+    describe "add_httpclass_profile" do
+      it "should exist" do 
+        @virtual_server.methods.should include(:add_httpclass_profile)
+      end
+
+      it "should allow the addition of a new http class profile by means of a << operator using strings" do
+        pending ("A better way of testing should be used (state changes)")
+=begin
+        @virtual_server.httpclass_profiles << "test_profile2"
+        @virtual_server.httpclass_profiles << "test_profile1"
+
+        aux = @virtual_server.httpclass_profiles.first
+        @virtual_server.httpclass_profiles[0] = @virtual_server.httpclass_profiles[1]
+        @virtual_server.httpclass_profiles[1] = aux
+=end
+      end
+
+      it "should allow the use of array operator on the httpclass_profile output object" do
+      end
+
+    end
+
   
 end
