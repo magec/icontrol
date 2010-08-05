@@ -15,13 +15,13 @@
 	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerHttpClass[2]">
 <item>
 <profile_name
-	s:type="y:string">BIN_CAMPUS</profile_name>
+	s:type="y:string">test_profile1</profile_name>
 <priority
-	s:type="y:long">0</priority>
+	s:type="y:long">2</priority>
 </item>
 <item>
 <profile_name
-	s:type="y:string">SERP</profile_name>
+	s:type="y:string">test_profile2</profile_name>
 <priority
 	s:type="y:long">1</priority>
 </item>
