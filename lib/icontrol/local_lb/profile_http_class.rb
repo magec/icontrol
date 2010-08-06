@@ -5,6 +5,17 @@ class IControl::LocalLB::ProfileHttpClass
 
   set_id_name :profile_name
 
+
+  # Deletes the specified HTTP class profiles.
+  def delete
+    super.delete_profile
+  end
+
+  def ==(profile)
+    return self.id == profile.id
+  end
+
+
   # Creates the specified HTTP class profiles.
   def self.create!(profile_name)
     self.create do |soap|
@@ -154,9 +165,12 @@ class IControl::LocalLB::ProfileHttpClass
   # Gets the string (which may include a TCL expression) with which to rewrite the URLs.
   def rewrite_url    
     value = super.first
-    value_string = value.value
-    value_string = "" if value.default_flag # solves a bug in the parsing of the response when empty fields are give
-    return {:rule => value_string,:default_flag => value.default_flag}
+    if value
+      value_string = value.value
+      value_string = "" if value_string.class != String      
+      return {:rule => value_string,:default_flag => value.default_flag}
+    end
+    value
   end
 
   # Sets the strings (which may include a TCL expression) with which to rewrite the URLs.
@@ -175,9 +189,12 @@ class IControl::LocalLB::ProfileHttpClass
   # requests to https://myserver.com to http://myotherserver.com.
   def redirect_location
     value = super.first
-    value_string = value.value
-    value_string = "" if value.default_flag # solves a bug in the parsing of the response when empty fields are give
-    return {:rule => value_string,:default_flag => value.default_flag}
+    if value
+      value_string = value.value
+      value_string = "" if value_string.class != String
+      return {:rule => value_string,:default_flag => value.default_flag}
+    end
+    value
   end
 
   # Sets the strings (which may include a TCL expression) with which to rewrite the URLs.
@@ -207,7 +224,12 @@ class IControl::LocalLB::ProfileHttpClass
 
   # Generic method for matching manipulation
   def pattern_operation(op,type,pattern,is_glob)
-    pattern_hash = {"pattern" => pattern ,"is_glob" => is_glob}
+    if pattern.class == Hash
+      pattern["is_glob"] = pattern[:is_glob]
+      pattern_hash = pattern
+    else
+      pattern_hash = {"pattern" => pattern ,"is_glob" => is_glob} 
+    end
     IControl::LocalLB::ProfileHttpClass.send("#{op}_#{type}_match_pattern") do |soap|
       soap.body = {
         "profile_names" => {"value" => id},
