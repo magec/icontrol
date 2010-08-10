@@ -9,7 +9,7 @@ require 'digest/md5'
 module IControl
 
   class NotConfiguredException < Exception; end
-
+  
   module Common
     class IPPortDefinition
       attr_accessor :address,:port

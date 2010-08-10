@@ -2,6 +2,8 @@
 # This is a helper for defining constants
 module IControl
 
+  class NoSuchPoolException < Exception; end
+
   module ConstDefiner
 
     def self.included(base)

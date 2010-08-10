@@ -61,20 +61,17 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class HttpClassProfileEnumerator
+  class GenericEnumerator
 
     STATE_CHANGED=[ :<<, :push, :pop, :shift, :unshift, :insert, :join, :reverse!, :sort!, :collect!,:map!, :delete, :delete_at, :delete_if, :reject!,:slice!, :uniq!, :compact!,  :flatten!, :shuffle! ]
 
+    attr_accessor :parent,:contents
 
     def initialize(contents,parent)
       @contents = contents
       @parent = parent
     end
     
-    def save!
-      @parent.remove_all_httpclass_profiles
-      @parent.add_httpclass_profile(@contents)
-    end
 
     def method_missing(method_name,*args)
       if @contents.methods.include? method_name
@@ -88,6 +85,20 @@ class IControl::LocalLB::VirtualServer
   end
 
 
+  class HttpClassProfileEnumerator < GenericEnumerator
+    def save!
+      @parent.remove_all_httpclass_profiles
+      @parent.add_httpclass_profile(@contents)
+    end
+  end
+
+  class RuleEnumerator < GenericEnumerator
+    def save!
+      @parent.remove_all_rules
+      @parent.add_rule(@contents)
+    end
+ end
+
   set_id_name :virtual_server
 
   # This method creates a new virtual_server
@@ -100,24 +111,32 @@ class IControl::LocalLB::VirtualServer
   # :type => "The type of the virtual_server"
   # :default_pool_name  => "The default pool name"
   # :profiles 
+  #
   def self.create(attributes)
     item = 0
     profiles = {}
-    attributes[:profiles].each {|i| profiles["item#{item+=1}"] = {"profile_context" => i["profile_context"],"profile_name" => "tcp" || i["profile"].id} }
+    raise IControl::NoSuchPoolException.new(attributes[:default_pool]) unless attributes[:default_pool]
+    
+    attributes[:profiles].each do |i| 
+      if i.class == Hash
+        profiles["item#{item+=1}"] = {"profile_context" => i["profile_context"].class_name,"profile_name" => ( i["profile"] ? i["profile"] :  "tcp" ) }
+      else
+        profiles["item#{item+=1}"] = {"profile_context" => i.profile_context,"profile_name" => i.profile_name || "tcp" }
+      end
+    end
     response = super do |soap|      
       soap.body = {
         "definitions" => {:item => {
             :name => attributes[:name],
             :address => attributes[:address],
             "port" => attributes[:port],
-            :protocol => attributes[:protocol] || "PROTOCOL_TCP"
+            :protocol => (attributes[:protocol] || IControl::Common::ProtocolType::PROTOCOL_TCP).class_name
           }
         },
         "wildmasks" => {:item => attributes[:wildmask] || "255.255.255.255"},
         "resources" => {:item => {          
-              :type => attributes[:type] || IControl::LocalLB::VirtualServer::VirtualServerType::RESOURCE_TYPE_POOL,
-              "default_pool_name" => attributes[:default_pool] && attributes[:default_pool].id || "" 
-
+            :type => (attributes[:type] || IControl::LocalLB::VirtualServer::VirtualServerType::RESOURCE_TYPE_POOL).class_name,
+            "default_pool_name" => attributes[:default_pool] ? attributes[:default_pool].id : "" 
           }
         },
         "profiles"  => {:item => profiles}
@@ -183,7 +202,6 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-
   # Gets the protocols supported by the specified virtual servers
   def protocol
     super
@@ -192,6 +210,16 @@ class IControl::LocalLB::VirtualServer
   # Gets the protocols supported by the specified virtual servers.
   def enabled_state
     super
+  end
+
+  # Sets the enabled state of the specified virtual servers.  
+  def enabled_state=(state)
+    IControl::LocalLB::VirtualServer.set_enabled_state do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "states" => {:item => state.class_name}
+      }
+    end if state
   end
 
   #  Gets the rate classes that will be used to rate limit the traffic. 
@@ -240,14 +268,32 @@ class IControl::LocalLB::VirtualServer
     super
   end
 
+  def snat_type=(new_type)
+    method = new_type == IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP ? "set_snat_automap" : "set_snat_none"
+    IControl::LocalLB::VirtualServer.send(method) do |soap|
+      soap.body = {"virtual_servers" => {:item => id}}
+    end
+  end
+
   # Gets the SNAT pools to be used in iSNAT configurations for the specified virtual servers.
   def snat_pool
     super
   end
 
   # Gets the persistence profiles to use for fallback persistence for the specified virtual servers. 
+  # A string is returned
   def fallback_persistence_profile
     super
+  end
+  
+  # Sets de fallback persistence profile profile has to be a string
+  def fallback_persistence_profile=(profile)
+    IControl::LocalLB::VirtualServer.set_fallback_persistence_profile do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "profile_names" => {:item => profile}
+      }
+    end if profile
   end
 
   # Gets the lists of VLANs on which access to the specified Virtual Servers are enabled/disabled.
@@ -271,7 +317,7 @@ class IControl::LocalLB::VirtualServer
         "virtual_servers" => {:item => id},
         "default_pools" => {:item => pool.id }
       }
-    end
+    end if pool
   end
     
   # Gets the lists of persistence profiles the virtual server is associated with.
@@ -288,8 +334,9 @@ class IControl::LocalLB::VirtualServer
   # If a specified virtual server is not associated with any rule, then the list
   # of rules for that virtual server will be empty
   def rules
-    get_rule.sort{|a,b| a.priority  <=> b.priority }.map{|i| IControl::LocalLB::Rule.find(i.rule_name)}  
+    @rules ||= RuleEnumerator.new( get_rule.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
   end
+
 
   # Gets the statistics.
   def statistics
@@ -305,9 +352,29 @@ class IControl::LocalLB::VirtualServer
     super
   end
 
+  def add_persistence_profile(persistence_profile)
+    IControl::LocalLB::VirtualServer.add_persistence_profile do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "profiles" => {:item => {:item => {"profile_name" => persistence_profile.profile_name,"default_profile" => persistence_profile.default_profile}}}
+      } 
+    end if persistence_profile && persistence_profile!= ""
+  end
+
+  def rules=(my_rules)
+    @rules = my_rules
+    @rules.parent = self
+    @rules.save!
+  end
+  
   def httpclass_profiles
     @httpclass_profile ||= HttpClassProfileEnumerator.new( httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
-    @httpclass_profile
+  end
+
+  def httpclass_profiles=(profiles)
+    @httpclass_profile = profiles
+    @httpclass_profile.parent = self
+    @httpclass_profile.save!
   end
 
   #  Adds/associates HTTP class profiles to the specified virtual server.
@@ -319,6 +386,19 @@ class IControl::LocalLB::VirtualServer
       soap.body = {
         "virtual_servers" => {:item => id},
         "profiles" => {"value" =>  profiles  }
+      }
+    end    
+  end
+
+
+  def add_rule(rules)
+    IControl::LocalLB::VirtualServer.add_rule do |soap|
+      item = "item"; count = 0
+      my_rules = {}
+      rules.each{ |i| my_rules[item + (count +=1).to_s] =  {"rule_name" => i.class == String ? i : i.rule_name, "priority" => count } }
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "rules" => {"value" =>  my_rules  }
       }
     end    
   end
