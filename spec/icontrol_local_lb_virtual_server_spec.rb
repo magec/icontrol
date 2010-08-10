@@ -166,6 +166,16 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+  describe "connection_limit= method" do
+    it "should exists" do
+       @virtual_server.methods.should include(:connection_limit=)
+    end
+    it "should allow the assignment of a connection limit" do
+      lambda { @virtual_server.connection_limit= 4194967294 }.should_not raise_exception
+    end
+
+  end
+
   describe "rate_class method" do
     it "should exists" do
       lambda { @virtual_server.rate_class }.should_not raise_exception(NoMethodError)
