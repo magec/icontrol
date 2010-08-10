@@ -45,9 +45,29 @@ module IControl
       attr_accessor :high,:low
 
       def initialize(options)
-        @hight = options[:high]
-        @low   = options[:low]
-      end      
+        @high = options[:high].to_i
+        @low  = options[:low].to_i
+      end    
+
+      def to_f
+        retVal = 0.0
+        if @high >=0
+          retVal = @high << 32 & 0xffff0000
+        else 
+          retVal = ((@high & 0x7fffffff) << 32) + (0x80000000 << 32)
+        end
+        if  @low >=0
+          retVal += @low
+        else 
+          retVal += ((@low & 0x7fffffff) + 0x7fffffff)
+        end
+        return retVal; 
+      end
+      
+      def to_hash
+        return {:high => @high,:low => @low}
+      end
+
     end
 
     class SourcePortBehavior
