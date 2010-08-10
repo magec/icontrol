@@ -147,7 +147,7 @@ describe IControl::LocalLB::ProfileHttpClass do
 
     it "should return a Pool instance or nil if none found" do
 
-      @profile.pool.class.should be(IControl::LocalLB::Pool)
+      @profile.pool.should be(nil)
 
     end
 
@@ -159,11 +159,10 @@ describe IControl::LocalLB::ProfileHttpClass do
       first_pool = nil
       first_pool = IControl::LocalLB::Pool.find("test_pool1")
       before_pool = @profile.pool
-      before_pool.class.should be(IControl::LocalLB::Pool)
+      before_pool.should be(nil)
       after_pool = nil
       after_pool = @profile.pool = first_pool
       after_pool.class.should be(IControl::LocalLB::Pool)
-      before_pool.id.should_not ==(after_pool.id)
     end
     
     it "should raise an exception when then pool does not exist" do
@@ -191,7 +190,7 @@ describe IControl::LocalLB::ProfileHttpClass do
     end
 
     it "should leave the field empty" do
-      @profile.unset_rewrite_url[:rule].should ==""
+      @profile.unset_rewrite_url.should be(nil)
     end
     
   end

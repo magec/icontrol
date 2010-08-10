@@ -23,7 +23,7 @@ describe IControl::LocalLB::VirtualServer do
 
   describe "defaul_pool method" do
 
-    it "should have method called default_pool" do 
+    it "should exist" do
       default_pool = @virtual_server.default_pool
       default_pool.should_not be(nil)
       default_pool.class.should be(IControl::LocalLB::Pool)
@@ -145,6 +145,17 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+  describe "enabled_state= method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:enabled_state=)
+    end
+
+    it "should allow the assingment of an enabled state" do
+      lambda{ @virtual_server_nil.enabled_state = @virtual_server.enabled_state }.should_not raise_exception
+    end
+  end
+  
+
   describe "connection_limit" do
     it "should exists" do
       lambda { @virtual_server.connection_limit }.should_not raise_exception(NoMethodError)
@@ -240,6 +251,24 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+
+  describe "snat_type= method" do 
+    it "should exists" do 
+      @virtual_server.methods.should include(:snat_type=)
+    end
+    
+    it "should change the state of the snat_type of an object to automap if IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP is specified" do
+      lambda { @virtual_server.snat_type= IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP }.should_not raise_exception
+      #@virtual_server.snat_type.should ==IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP
+      pending(" for a state control")
+    end
+
+    it "should change the state of the snat_type of an object to none if IControl::LocalLB::SnatType::SNAT_TYPE_NONE is specified" do
+      @virtual_server.snat_type = IControl::LocalLB::SnatType::SNAT_TYPE_NONE
+      @virtual_server.snat_type.should ==IControl::LocalLB::SnatType::SNAT_TYPE_NONE
+    end
+  end
+
   describe "snat_pool method" do
     it "should exists" do
       lambda { @virtual_server.snat_pool }.should_not raise_exception(NoMethodError)
@@ -253,20 +282,29 @@ describe IControl::LocalLB::VirtualServer do
       pending
     end
   end
-
+  
   describe "fallback_persistence_profile method" do
     it "should exists" do
       lambda { @virtual_server.fallback_persistence_profile }.should_not raise_exception(NoMethodError)
     end
 
     it "should return an FallBackPersistenceProfile instance" do
-      @virtual_server.fallback_persistence_profile.inspect
-      pending
+      @virtual_server.fallback_persistence_profile.class.should be(String)
     end    
 
     it "should return an nil if none is specified" do
       @virtual_server_nil.fallback_persistence_profile.should be(nil)
     end    
+  end
+
+  describe "fallback_persistence_profile= method" do 
+    it "should exists" do 
+      @virtual_server.methods.should include(:fallback_persistence_profile=)
+    end
+
+    it "should allow the assignment of a fallback_persistence_profile" do
+      @virtual_server.fallback_persistence_profile= "dest_addr"
+    end
   end
 
   describe "persistence_profile method" do
@@ -290,7 +328,7 @@ describe IControl::LocalLB::VirtualServer do
 
     it "should return an list of Rules" do
       @virtual_server.rules.should_not be_empty
-      @virtual_server.rules.first.class.should be(IControl::LocalLB::Rule)
+      @virtual_server.rules.first.class.should be(IControl::LocalLB::VirtualServerRule)
     end    
 
     it "should return an empty list if no rule is associated with the virtual server" do
@@ -371,33 +409,51 @@ describe IControl::LocalLB::VirtualServer do
                                                 :port => 99,
                                                 :name => "test_virtual_server",
                                                 :default_pool => IControl::LocalLB::Pool.find("pool_test1"),
-                                                :profiles => [{"profile_context" => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL,"profile" => IControl::LocalLB::ProfileHttpClass.find("test_profile1")}])
+                                                :profiles => [{"profile_context" => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL }])
       virtual_server.id.should == "test_virtual_server"
     end    
 
+    it "should raise an exception if no pool is specified" do 
+      lambda do 
+        virtual_server = 
+          IControl::LocalLB::VirtualServer.create(:address => "192.168.145.7",
+                                                  :port => 99,
+                                                  :name => "test_virtual_server",
+                                                  :default_pool => nil,
+                                                  :profiles => [{"profile_context" => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL,"profile" => IControl::LocalLB::ProfileHttpClass.find("test_profile1")}])
+        virtual_server.id.should == "test_virtual_server"
+      end.should raise_exception(IControl::NoSuchPoolException)
+    end
   end
 
-    describe "add_httpclass_profile" do
-      it "should exist" do 
-        @virtual_server.methods.should include(:add_httpclass_profile)
-      end
-
-      it "should allow the addition of a new http class profile by means of a << operator using strings" do
-        pending ("A better way of testing should be used (state changes)")
-=begin
-        @virtual_server.httpclass_profiles << "test_profile2"
-        @virtual_server.httpclass_profiles << "test_profile1"
-
-        aux = @virtual_server.httpclass_profiles.first
-        @virtual_server.httpclass_profiles[0] = @virtual_server.httpclass_profiles[1]
-        @virtual_server.httpclass_profiles[1] = aux
-=end
-      end
-
-      it "should allow the use of array operator on the httpclass_profile output object" do
-      end
-
+  describe "add_httpclass_profile" do
+    it "should exist" do 
+      @virtual_server.methods.should include(:add_httpclass_profile)
     end
+    
+    it "should allow the addition of a new http class profile by means of a << operator using strings" do
+      pending ("A better way of testing should be used (state changes)")
+    end
+    
+    it "should allow the use of array operator on the httpclass_profile output object" do
+    end
+    
+  end
 
+  describe "add_rule" do
+    it "should exist" do 
+      @virtual_server.methods.should include(:add_rule)
+    end
+    
+    it "should allow the addition of a new rule profile by means of a << operator using rules" do
+      pending ("A better way of testing should be used (state changes)")
+    end
+    
+    it "should allow the use of array operator on the httpclass_profile output object" do
+    end
+    
+  end
+
+  
   
 end
