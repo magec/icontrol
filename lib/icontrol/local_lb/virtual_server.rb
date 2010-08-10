@@ -226,6 +226,13 @@ class IControl::LocalLB::VirtualServer
   def rate_class
     super
   end
+  
+  # Sets the rate class that will be used to rate limit the traffic.
+  def rate_class=(rate)
+    IControl::LocalLB::VirtualServer.set_rate_class do |soap|
+      soap.body = {"virtual_servers" => {:item => id},"rate_classes" => {:item => rate}}
+    end    
+  end
 
   # Gets the mirror connection states for the specified virtual servers.
   def connection_mirror_state
