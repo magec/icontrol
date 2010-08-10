@@ -190,6 +190,18 @@ describe IControl::LocalLB::VirtualServer do
     end
   end
 
+  describe "rate_class= method" do
+    it "should exists" do
+       @virtual_server.methods.should include(:rate_class=)
+    end
+    it "should allow the assignment of a rate_class" do
+      lambda { @virtual_server_nil.rate_class= "rate_class_test" }.should_not raise_exception
+    end
+
+  end
+
+
+
   describe "connection_mirror_state method" do
     it "should exists" do
       lambda { @virtual_server.connection_mirror_state }.should_not raise_exception(NoMethodError)
