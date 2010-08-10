@@ -237,6 +237,13 @@ class IControl::LocalLB::VirtualServer
     super
   end
 
+  # Sets the connection limits of the specified virtual server.
+  def connection_limit=(limit)
+    IControl::LocalLB::VirtualServer.set_connection_limit do |soap|
+      soap.body = {"virtual_servers" => {:item => id},:limits => {:item => IControl::Common::ULong64.new(:low => limit).to_hash}}
+    end
+  end
+
   # Gets the port translation states for the specified virtual servers.  Enables or disables port translation.
   def translate_port_state
     super
