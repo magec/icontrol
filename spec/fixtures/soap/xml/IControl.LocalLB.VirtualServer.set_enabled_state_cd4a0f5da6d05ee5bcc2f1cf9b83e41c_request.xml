@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/VirtualServer"><env:Body><wsdl:set_enabled_state><virtual_servers><item>test_virtual_server_nil</item></virtual_servers><states><item>STATE_ENABLED</item></states></wsdl:set_enabled_state></env:Body></env:Envelope>
