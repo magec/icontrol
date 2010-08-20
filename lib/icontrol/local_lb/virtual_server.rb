@@ -1,42 +1,65 @@
+#
+# TODO:
+#    - protocol_type= does not seem to work ( there is something that prevent the protocol to be assigned in the server side )
+#    - module_score   Does not return any module score
+#    - persostence_record Does not work, it expects more arguments than documented
+#
+
 IControl::LocalLB::VirtualServer
 class IControl::LocalLB::VirtualServer
 
-  class VirtualServerType    
+  class Type    
     include IControl::ConstDefiner
     valid_consts = [:RESOURCE_TYPE_POOL,:RESOURCE_TYPE_IP_FORWARDING,:RESOURCE_TYPE_L2_FORWARDING,
                     :RESOURCE_TYPE_REJECT,:RESOURCE_TYPE_FAST_L4,:RESOURCE_TYPE_FAST_HTTP]
     
-    declare_constants valid_consts,VirtualServerType
+    declare_constants valid_consts,Type
   end
   
-  class VirtualServerCMPEnableMode
+  class CMPEnableMode
     include IControl::ConstDefiner
     valid_consts = [:RESOURCE_TYPE_CMP_ENABLE_ALL,:RESOURCE_TYPE_CMP_ENABLE_SINGLE,
                     :RESOURCE_TYPE_CMP_ENABLE_GROUP,:RESOURCE_TYPE_CMP_ENABLE_UNKNOWN]
     
-    declare_constants valid_consts,VirtualServerCMPEnableMode
+    declare_constants valid_consts,CMPEnableMode
   end
 
-  class VirtualServerStatisticEntry
+  class StatisticEntry
     attr_accessor :virtual_server,:statistics
-    def initialize(result)
-      @virtual_server = IControl::LocalLB::VirtualServer.find(result[:item][:virtual_server][:name])
-      @statistics = {}
-      result[:item][:statistics][:item].each do |entry|
-        @statistics[IControl::Common::StatisticType.from_string(entry[:type])] = IControl::Common::ULong64.new(entry[:value])
+
+    def self.from_xml(result)
+      result[:item] = [result[:item]].flatten
+      aux_result = result[:item].map do |i| 
+        aux = self.new
+        aux.virtual_server = IControl::LocalLB::VirtualServer.find(i[:virtual_server][:name])
+        aux.statistics = {}
+        i[:statistics][:item].each do |entry|
+          aux.statistics[IControl::Common::StatisticType.from_string(entry[:type])] = IControl::Common::ULong64.new(entry[:value])
+        end
+        aux
       end
+      return aux_result.length == 1 ? aux_result.first : aux_result
     end
   end
 
-  class VirtualServerRule
+  class ModuleScore
+    attr_accessor :tmos_module ,:score
+    def initialize(attribules)
+      @score = attributes[:score]
+      @tmos_module = IControl::Common::TMOSModule.from_string(attributes[:tmos_module])
+    end    
+  end
+=begin  
+  class Rule
     attr_accessor :rule_name,:priority
     def initialize(attributes)
       @rule_name = attributes[:rule_name]
       @priority  = ( attributes[:priority] && attributes[:priority].to_i ) || -1
     end
   end
+=end
 
-  class VirtualServerClonePool
+  class ClonePool
     attr_accessor :pool,:clone_type
     def initialize(attributes)
       @pool = IControl::LocalLB::Pool.find(attributes[:pool_name])
@@ -44,7 +67,7 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class VirtualServerProfileAttribute
+  class ProfileAttribute
     attr_accessor :profile_type,:profile_context,:profile_name
     def initialize(options)
       @profile_type = options[:profile_type]
@@ -53,7 +76,7 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class VirtualServerPersistence
+  class Persistence
     attr_accessor :profile_name,:default_profile
     def initialize(options)
       @profile_name = options[:profile_name]
@@ -97,7 +120,14 @@ class IControl::LocalLB::VirtualServer
       @parent.remove_all_rules
       @parent.add_rule(@contents)
     end
- end
+  end
+
+  class AuthProfileEnumerator < GenericEnumerator
+    def save!      
+      @parent.remove_all_authentication_profiles
+      @parent.add_authentication_profile(@contents)
+    end
+  end
 
   set_id_name :virtual_server
 
@@ -135,7 +165,7 @@ class IControl::LocalLB::VirtualServer
         },
         "wildmasks" => {:item => attributes[:wildmask] || "255.255.255.255"},
         "resources" => {:item => {          
-            :type => (attributes[:type] || IControl::LocalLB::VirtualServer::VirtualServerType::RESOURCE_TYPE_POOL).class_name,
+            :type => (attributes[:type] || IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_POOL).class_name,
             "default_pool_name" => attributes[:default_pool] ? attributes[:default_pool].id : "" 
           }
         },
@@ -224,7 +254,8 @@ class IControl::LocalLB::VirtualServer
 
   #  Gets the rate classes that will be used to rate limit the traffic. 
   def rate_class
-    super
+    rate_class = get_rate_class
+    IControl::LocalLB::RateClass.find(rate_class) if rate_class
   end
   
   # Sets the rate class that will be used to rate limit the traffic.
@@ -237,6 +268,12 @@ class IControl::LocalLB::VirtualServer
   # Gets the mirror connection states for the specified virtual servers.
   def connection_mirror_state
     super
+  end
+
+  def connection_mirror_state=(state)
+    IControl::LocalLB::VirtualServer.set_connection_mirror_state do |soap|
+      soap.body = {"virtual_servers" => {:item => id},:states => {:item => state.class_name }}
+    end
   end
   
   #  Gets the connection limits for the specified virtual servers.
@@ -291,7 +328,8 @@ class IControl::LocalLB::VirtualServer
 
   # Gets the SNAT pools to be used in iSNAT configurations for the specified virtual servers.
   def snat_pool
-    super
+    snat = super
+    IControl::LocalLB::SNATPool.find(snat) if snat
   end
 
   # Gets the persistence profiles to use for fallback persistence for the specified virtual servers. 
@@ -300,6 +338,17 @@ class IControl::LocalLB::VirtualServer
     super
   end
   
+
+  def enable_fallback_persistence_profile!
+    fallback_persistence_profile = IControl::Common::EnabledState::STATE_ENABLED
+  end
+
+  def disable_fallback_persistence_profile!
+    fallback_persistence_profile = IControl::Common::EnabledState::STATE_DISABLED
+  end
+
+private
+
   # Sets de fallback persistence profile profile has to be a string
   def fallback_persistence_profile=(profile)
     IControl::LocalLB::VirtualServer.set_fallback_persistence_profile do |soap|
@@ -309,6 +358,8 @@ class IControl::LocalLB::VirtualServer
       }
     end if profile
   end
+
+public 
 
   # Gets the lists of VLANs on which access to the specified Virtual Servers are enabled/disabled.
   def vlan
@@ -350,7 +401,6 @@ class IControl::LocalLB::VirtualServer
   def rules
     @rules ||= RuleEnumerator.new( get_rule.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
   end
-
 
   # Gets the statistics.
   def statistics
@@ -409,12 +459,155 @@ class IControl::LocalLB::VirtualServer
     IControl::LocalLB::VirtualServer.add_rule do |soap|
       item = "item"; count = 0
       my_rules = {}
-      rules.each{ |i| my_rules[item + (count +=1).to_s] =  {"rule_name" => i.class == String ? i : i.rule_name, "priority" => count } }
+      rules.each{ |i| my_rules[item + (count +=1).to_s] =  {"rule_name" => i.class == String ? i : i.id, "priority" => count } }
       soap.body = {
         "virtual_servers" => {:item => id},
         "rules" => {"value" =>  my_rules  }
       }
     end    
   end
+
+  def add_authentication_profile(profiles)
+    IControl::LocalLB::VirtualServer.add_authentication_profile do |soap|
+      item = "item"; count = 0
+      my_profiles = {}
+      profiles.each{ |i| my_profiles[item + (count +=1).to_s] =  {"profile_name" => i.class == String ? i : i.id, "priority" => count } }
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "profiles" => {"value" =>  my_profiles  }
+      }
+    end    
+  end
+
+#  add_authentication_profile
+#  remove_authentication_profile
+#  remove_all_authentication_profiles
+
+  def object_status
+    super
+  end
+
+  def authentication_profiles
+    @authentication_profile ||= AuthProfileEnumerator.new(authentication_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
+  end
+
+  def authentication_profiles=(profiles)
+    @authentication_profile = profiles
+    @authentication_profile.parent = self
+    @authentication_profile.save!
+  end
+
+  def self.all_statistics
+    self.get_all_statistics
+  end
   
+  def persistence_record(mode)
+    raise "Not Implemented"
+  end
+  
+  def version
+    super
+  end
+  
+  def module_score
+    super
+  end
+
+  # Sets the protocol it reeives a ProtocolType constant
+  def protocol=(protocol)
+    IControl::LocalLB::VirtualServer.set_protocol do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "protocols" => {:item => protocol.class_name }
+      }
+    end
+  end
+    
+  def enable_address_translation!
+    translate_address_state = IControl::Common::EnabledState::STATE_ENABLED
+  end
+
+  def disable_address_translation!
+    translate_address_state = IControl::Common::EnabledState::STATE_DISABLED
+  end
+
+  private
+
+  # Sets the translate address state receives a EnabledState constant
+  def translate_address_state=(translate_address_state)
+    IControl::LocalLB::VirtualServer.set_translate_address_state do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "states" => {:item => translate_address_state}
+      }
+    end
+  end
+  
+  public 
+
+  def enable_cmp!
+    cmp_enabled_state = IControl::Common::EnabledState::STATE_ENABLED
+  end
+
+  def disable_cmp!
+    cmp_enabled_state = IControl::Common::EnabledState::STATE_DISABLED
+  end
+  
+  private
+  
+  # Sets the translate cmp address state receives a EnabledState constant
+  def cmp_enabled_state=(cmp_enabled_state)
+    IControl::LocalLB::VirtualServer.set_cmp_enabled_state do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "states" => {:item => cmp_enabled_state}
+      }
+    end
+  end
+
+  public
+  
+  # sets the snat_pool receives a Pool instance
+  def snat_pool=(snat_pool)
+    IControl::LocalLB::VirtualServer.set_snat_pool do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "snatpools" => {:item => snat_pool.id}
+      }
+    end
+  end
+
+  def destroy 
+    IControl::LocalLB::VirtualServer.delete_virtual_server do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id}
+      }
+    end
+  end
+  
+  def self.destroy_all
+    puts "NOT IMPLEMENTED (for security reasons)"
+  end
+  
+  def vlan=(vlan)
+    puts "NOT IMPLEMENTED"
+    raise LocalLB::MethodNotImplementedException
+  end
+  
+=begin
+  add_profile
+  remove_profile
+  remove_all_profiles
+  remove_persistence_profile
+
+
+  add_clone_pool
+  remove_clone_pool
+  remove_all_clone_pools
+
++ reset_statistics
+  delete_persistence_record
+  remove_httpclass_profile
+  set_gtm_score
+=end
 end
