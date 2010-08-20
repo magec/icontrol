@@ -21,3 +21,4 @@ pkg
 ## PROJECT::SPECIFIC
 ## wsdl
 spec/fixtures/wsdl/xml/*
+icontrol.gemspec
