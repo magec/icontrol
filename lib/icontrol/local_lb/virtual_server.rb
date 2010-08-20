@@ -216,6 +216,8 @@ class IControl::LocalLB::VirtualServer
   end
 
   # Gets the destination IP and port of the specified virtual servers.
+  # it returns an instance of class IControl::Common::IPPortDefinition
+  # that has mainly two methods, address and port
   def destination
     super
   end
@@ -416,6 +418,10 @@ public
     super
   end
 
+  def persistence_profile=(persistence_profile)
+    add_persistence_profile(persistence_profile)
+  end
+
   def add_persistence_profile(persistence_profile)
     IControl::LocalLB::VirtualServer.add_persistence_profile do |soap|
       soap.body = {
@@ -531,8 +537,6 @@ public
     translate_address_state = IControl::Common::EnabledState::STATE_DISABLED
   end
 
-  private
-
   # Sets the translate address state receives a EnabledState constant
   def translate_address_state=(translate_address_state)
     IControl::LocalLB::VirtualServer.set_translate_address_state do |soap|
@@ -542,8 +546,6 @@ public
       }
     end
   end
-  
-  public 
 
   def enable_cmp!
     cmp_enabled_state = IControl::Common::EnabledState::STATE_ENABLED
@@ -552,8 +554,6 @@ public
   def disable_cmp!
     cmp_enabled_state = IControl::Common::EnabledState::STATE_DISABLED
   end
-  
-  private
   
   # Sets the translate cmp address state receives a EnabledState constant
   def cmp_enabled_state=(cmp_enabled_state)
@@ -565,8 +565,6 @@ public
     end
   end
 
-  public
-  
   # sets the snat_pool receives a Pool instance
   def snat_pool=(snat_pool)
     IControl::LocalLB::VirtualServer.set_snat_pool do |soap|
