@@ -3,6 +3,7 @@
 module IControl
 
   class NoSuchPoolException < Exception; end
+  class MethodNotImplementedException < Exception; end
 
   module ConstDefiner
 
@@ -78,6 +79,11 @@ module IControl
     class EnabledState      
       include ConstDefiner
       declare_constants [:STATE_ENABLED,:STATE_DISABLED],EnabledState
+    end
+
+    class TMOSModule
+      include ConstDefiner
+      declare_constants [:TMOS_MODULE_ASM, :TMOS_MODULE_SAM, :TMOS_MODULE_WAM], TMOSModule
     end
 
     class ProtocolType
