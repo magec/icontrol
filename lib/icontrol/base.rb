@@ -94,7 +94,8 @@ module IControl
     :password => "",
     :base_url => "",                # base url for the web-service (https://example.com/iControl/iControlPortal.cgi)
     :test_mode => false,           # When test mode is set, the soap responses are saved (this is done to ease the testing fixtures generation)
-    :test_path => File.join(File.dirname(__FILE__),"..","..","spec","fixtures")
+    :test_path => File.join(File.dirname(__FILE__),"..","..","spec","fixtures"),
+    :test_file_prefix => ""
   }
 
   def self.save_test_info(request,response,wsdl,class_name,method_name)
@@ -171,7 +172,7 @@ module IControl
                       request = soap.to_xml
                     end
                     # In case we save test fixtures
-                    IControl.save_test_info(request,response, client.wsdl ,"IControl.#{name}.#{class_name}",method_name) if IControl.config[:test]
+                    IControl.save_test_info(request,response, client.wsdl ,"IControl.#{name}.#{class_name}#{IControl.config[:test_file_prefix]}",method_name) if IControl.config[:test]
                     return self.map_response(response.to_hash)
                   else
                     client.send(method_name,*args,&block)
