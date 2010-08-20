@@ -31,5 +31,17 @@ module IControl
                           :PROFILE_TYPE_RTSP, :PROFILE_TYPE_STATISTICS, :PROFILE_TYPE_HTTPCLASS, :PROFILE_TYPE_SCTP, 
                           :PROFILE_TYPE_INSTANCE, :PROFILE_TYPE_SIPP ], ProfileType
     end
+
+    class PersistenceMode
+      include IControl::ConstDefiner
+
+      declare_constants [ :PERSISTENCE_MODE_NONE, :PERSISTENCE_MODE_SOURCE_ADDRESS_AFFINITY, 
+                          :PERSISTENCE_MODE_DESTINATION_ADDRESS_AFFINITY, :PERSISTENCE_MODE_COOKIE, 
+                          :PERSISTENCE_MODE_MSRDP, :PERSISTENCE_MODE_SSL_SID, :PERSISTENCE_MODE_SIP, 
+                          :PERSISTENCE_MODE_UIE, :PERSISTENCE_MODE_HASH ], PersistenceMode
+      
+    end
+
+    
   end
 end
