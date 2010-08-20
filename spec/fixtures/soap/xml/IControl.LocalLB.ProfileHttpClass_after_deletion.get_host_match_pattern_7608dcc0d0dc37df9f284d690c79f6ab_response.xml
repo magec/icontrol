@@ -6,13 +6,19 @@
 	xmlns:iControl="urn:iControl"
 	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <E:Body>
-<m:get_rate_classResponse
-	xmlns:m="urn:iControl:LocalLB/VirtualServer">
+<m:get_host_match_patternResponse
+	xmlns:m="urn:iControl:LocalLB/ProfileHttpClass">
 <return
 	s:type="A:Array"
-	A:arrayType="y:string[1]">
-<item>rate_class_test</item>
+	A:arrayType="iControl:LocalLB.ProfileMatchPatternStringArray[1]">
+<item>
+<values
+	s:type="A:Array"
+	A:arrayType="iControl:LocalLB.MatchPatternString[0]"></values>
+<default_flag
+	s:type="y:boolean">true</default_flag>
+</item>
 </return>
-</m:get_rate_classResponse>
+</m:get_host_match_patternResponse>
 </E:Body>
 </E:Envelope>

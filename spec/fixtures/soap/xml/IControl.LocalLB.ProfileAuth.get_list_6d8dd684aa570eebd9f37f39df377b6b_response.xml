@@ -6,13 +6,19 @@
 	xmlns:iControl="urn:iControl"
 	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <E:Body>
-<m:get_rate_classResponse
-	xmlns:m="urn:iControl:LocalLB/VirtualServer">
+<m:get_listResponse
+	xmlns:m="urn:iControl:LocalLB/ProfileAuth">
 <return
 	s:type="A:Array"
-	A:arrayType="y:string[1]">
-<item>rate_class_test</item>
+	A:arrayType="y:string[7]">
+<item>ldap</item>
+<item>radius</item>
+<item>ssl_cc_ldap</item>
+<item>ssl_ocsp</item>
+<item>ssl_crldp</item>
+<item>tacacs</item>
+<item>krbdelegate</item>
 </return>
-</m:get_rate_classResponse>
+</m:get_listResponse>
 </E:Body>
 </E:Envelope>

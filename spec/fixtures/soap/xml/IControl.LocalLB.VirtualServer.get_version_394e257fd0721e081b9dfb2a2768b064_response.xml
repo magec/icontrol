@@ -6,13 +6,10 @@
 	xmlns:iControl="urn:iControl"
 	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <E:Body>
-<m:get_rate_classResponse
+<m:get_versionResponse
 	xmlns:m="urn:iControl:LocalLB/VirtualServer">
 <return
-	s:type="A:Array"
-	A:arrayType="y:string[1]">
-<item>rate_class_test</item>
-</return>
-</m:get_rate_classResponse>
+	s:type="y:string">BIG-IP_v10.0.1</return>
+</m:get_versionResponse>
 </E:Body>
 </E:Envelope>

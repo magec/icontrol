@@ -1,0 +1,1559 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_all_statisticsResponse
+	xmlns:m="urn:iControl:LocalLB/VirtualServer">
+<return
+	s:type="iControl:LocalLB.VirtualServer.VirtualServerStatistics">
+<statistics
+	s:type="A:Array"
+	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerStatisticEntry[31]">
+<item>
+<virtual_server
+	s:type="iControl:Common.VirtualServerDefinition">
+<name
+	s:type="y:string">test_virtual_server</name>
+<address
+	s:type="y:string">1.1.1.1</address>
+<port
+	s:type="y:long">444</port>
+<protocol
+	s:type="iControl:Common.ProtocolType">PROTOCOL_TCP</protocol>
+</virtual_server>
+<statistics
+	s:type="A:Array"
+	A:arrayType="iControl:Common.Statistic[28]">
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MINIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">8</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MEAN_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">126744</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MAXIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">517456</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_NO_NODE_ERRORS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">19522599</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">315912341</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">313144</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">301187</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">17</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">17734</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_REQUESTS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">17576</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CURRENT_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+</statistics>
+</item>
+<item>
+<virtual_server
+	s:type="iControl:Common.VirtualServerDefinition">
+<name
+	s:type="y:string">VIP_docs_8080_pre</name>
+<address
+	s:type="y:string">192.168.145.3</address>
+<port
+	s:type="y:long">8080</port>
+<protocol
+	s:type="iControl:Common.ProtocolType">PROTOCOL_TCP</protocol>
+</virtual_server>
+<statistics
+	s:type="A:Array"
+	A:arrayType="iControl:Common.Statistic[28]">
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MINIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">6023</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MEAN_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">9986</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MAXIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">369667</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_NO_NODE_ERRORS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1477863</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">8658236</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">7186</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">8722</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">10</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">715</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_REQUESTS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1236</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CURRENT_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+</statistics>
+</item>
+<item>
+<virtual_server
+	s:type="iControl:Common.VirtualServerDefinition">
+<name
+	s:type="y:string">test_virtual_server_nil</name>
+<address
+	s:type="y:string">2.2.2.2</address>
+<port
+	s:type="y:long">7777</port>
+<protocol
+	s:type="iControl:Common.ProtocolType">PROTOCOL_TCP</protocol>
+</virtual_server>
+<statistics
+	s:type="A:Array"
+	A:arrayType="iControl:Common.Statistic[28]">
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MINIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">2191</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MEAN_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">13138</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MAXIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1391364</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_NO_NODE_ERRORS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">152505609</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1553421495</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1624683</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1774758</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">58</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">167988</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_REQUESTS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">165353</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CURRENT_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+</statistics>
+</item>
+<item>
+<virtual_server
+	s:type="iControl:Common.VirtualServerDefinition">
+<name
+	s:type="y:string">test_virtual_server2</name>
+<address
+	s:type="y:string">192.168.145.3</address>
+<port
+	s:type="y:long">50500</port>
+<protocol
+	s:type="iControl:Common.ProtocolType">PROTOCOL_TCP</protocol>
+</virtual_server>
+<statistics
+	s:type="A:Array"
+	A:arrayType="iControl:Common.Statistic[28]">
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MINIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">15058</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MEAN_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">41183</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MAXIMUM_CONNECTION_DURATION</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">122807</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_NO_NODE_ERRORS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">70489</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">922148</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1179</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">1274</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">4</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">184</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PVA_CLIENT_SIDE_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_CURRENT_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_MAXIMUM_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_EPHEMERAL_TOTAL_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_REQUESTS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_TOTAL_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_CURRENT_PVA_ASSISTED_CONNECTIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+</statistics>
+</item>
+</statistics>
+<time_stamp
+	s:type="iControl:Common.TimeStamp">
+<year
+	s:type="y:long">2010</year>
+<month
+	s:type="y:long">8</month>
+<day
+	s:type="y:long">12</day>
+<hour
+	s:type="y:long">11</hour>
+<minute
+	s:type="y:long">39</minute>
+<second
+	s:type="y:long">3</second>
+</time_stamp>
+</return>
+</m:get_all_statisticsResponse>
+</E:Body>
+</E:Envelope>

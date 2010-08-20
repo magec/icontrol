@@ -6,13 +6,14 @@
 	xmlns:iControl="urn:iControl"
 	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <E:Body>
-<m:get_rate_classResponse
+<m:get_module_scoreResponse
 	xmlns:m="urn:iControl:LocalLB/VirtualServer">
 <return
 	s:type="A:Array"
-	A:arrayType="y:string[1]">
-<item>rate_class_test</item>
+	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerModuleScore[][1]">
+<item
+	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerModuleScore[0]"></item>
 </return>
-</m:get_rate_classResponse>
+</m:get_module_scoreResponse>
 </E:Body>
 </E:Envelope>

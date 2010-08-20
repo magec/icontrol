@@ -6,13 +6,7 @@
 	xmlns:iControl="urn:iControl"
 	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <E:Body>
-<m:get_rate_classResponse
-	xmlns:m="urn:iControl:LocalLB/VirtualServer">
-<return
-	s:type="A:Array"
-	A:arrayType="y:string[1]">
-<item>rate_class_test</item>
-</return>
-</m:get_rate_classResponse>
+<m:set_connection_mirror_stateResponse
+	xmlns:m="urn:iControl:LocalLB/VirtualServer"></m:set_connection_mirror_stateResponse>
 </E:Body>
 </E:Envelope>

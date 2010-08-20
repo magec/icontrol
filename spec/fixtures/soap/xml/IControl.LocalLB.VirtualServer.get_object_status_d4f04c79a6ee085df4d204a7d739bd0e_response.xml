@@ -6,18 +6,20 @@
 	xmlns:iControl="urn:iControl"
 	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <E:Body>
-<m:get_destinationResponse
+<m:get_object_statusResponse
 	xmlns:m="urn:iControl:LocalLB/VirtualServer">
 <return
 	s:type="A:Array"
-	A:arrayType="iControl:Common.IPPortDefinition[1]">
+	A:arrayType="iControl:LocalLB.ObjectStatus[1]">
 <item>
-<address
-	s:type="y:string">192.168.143.11</address>
-<port
-	s:type="y:long">101</port>
+<availability_status
+	s:type="iControl:LocalLB.AvailabilityStatus">AVAILABILITY_STATUS_RED</availability_status>
+<enabled_status
+	s:type="iControl:LocalLB.EnabledStatus">ENABLED_STATUS_ENABLED</enabled_status>
+<status_description
+	s:type="y:string">The children pool member(s) are down</status_description>
 </item>
 </return>
-</m:get_destinationResponse>
+</m:get_object_statusResponse>
 </E:Body>
 </E:Envelope>
