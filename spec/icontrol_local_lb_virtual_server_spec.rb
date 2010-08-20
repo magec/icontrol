@@ -33,13 +33,22 @@ describe IControl::LocalLB::VirtualServer do
 
   describe "default_pool= method" do
     it "should have method called default_pool=" do 
-      pending
+      register_conversation(["IControl.LocalLB.VirtualServer.get_default_pool_name_before_pool_change","IControl.LocalLB.VirtualServer.get_default_pool_name_after_change"])
+
+      @virtual_server.default_pool.id.should ==("test_pool1")
+      @virtual_server.default_pool = IControl::LocalLB::Pool.find("pool_test2")
+      @virtual_server.default_pool.id.should ==("pool_test2")
+
     end
   end
 
   describe "destroy method" do 
     it "should delete the virtual server" do
-      pending
+      register_conversation(["IControl.LocalLB.VirtualServer.get_list_before_delete","IControl.LocalLB.VirtualServer.get_list_after_delete"])
+      virtual_server = IControl::LocalLB::VirtualServer.find("test_virtual_server2")
+      virtual_server.id.should == "test_virtual_server2"
+      lambda { virtual_server.destroy }.should_not raise_exception
+      IControl::LocalLB::VirtualServer.find("test_virtual_server2").should be_nil
     end
   end
 
@@ -49,7 +58,7 @@ describe IControl::LocalLB::VirtualServer do
       profiles = @virtual_server.profiles
       profiles.should_not be(nil)
       profiles.class.should be(Array)
-      profiles.first.class.should be(IControl::LocalLB::VirtualServer::VirtualServerProfileAttribute)
+      profiles.first.class.should be(IControl::LocalLB::VirtualServer::ProfileAttribute)
     end
     
   end
@@ -82,13 +91,17 @@ describe IControl::LocalLB::VirtualServer do
     it "should return a constant child of VirtualServerType" do
       vs_type = @virtual_server.type
       vs_type.should_not be(nil)
-      vs_type.ancestors.should include(IControl::LocalLB::VirtualServer::VirtualServerType)
+      vs_type.ancestors.should include(IControl::LocalLB::VirtualServer::Type)
     end
   end
 
   describe "type= method" do
     it "should change the type of the virtual server" do
-      pending
+      register_conversation(["IControl.LocalLB.VirtualServer.get_type_before_type_change","IControl.LocalLB.VirtualServer.get_type_after_type_change"])
+      @virtual_server_nil.type.should be(IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_POOL)
+      lambda { @virtual_server_nil.type = IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_IP_FORWARDING }.should raise_exception(Savon::SOAPFault)
+      @virtual_server_nil.type = IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_REJECT
+      @virtual_server_nil.type.should be(IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_REJECT)
     end
   end
 
@@ -101,7 +114,7 @@ describe IControl::LocalLB::VirtualServer do
     it "should return a constant telling the cmp_enable_mode of the virtual server" do
       cmp_enable = @virtual_server.cmp_enable_mode
       cmp_enable.should_not be(nil)
-      cmp_enable.ancestors.should include(IControl::LocalLB::VirtualServer::VirtualServerCMPEnableMode)
+      cmp_enable.ancestors.should include(IControl::LocalLB::VirtualServer::CMPEnableMode)
     end
   end
 
@@ -121,7 +134,12 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should change the destination of the virtual server" do 
-      pending
+      register_conversation(["IControl.LocalLB.VirtualServer.get_destination_before_change","IControl.LocalLB.VirtualServer.get_destination_after_change"])
+      destination = @virtual_server_nil.destination
+      destination.port.should == "100"
+      destination.port = 101
+      @virtual_server_nil.destination= destination
+      @virtual_server_nil.destination.port.should =="101"
     end
   end
 
@@ -173,16 +191,15 @@ describe IControl::LocalLB::VirtualServer do
     it "should allow the assignment of a connection limit" do
       lambda { @virtual_server.connection_limit= 4194967294 }.should_not raise_exception
     end
-
   end
 
   describe "rate_class method" do
-    it "should exists" do
+    it "should exists" do      
       lambda { @virtual_server.rate_class }.should_not raise_exception(NoMethodError)
     end
 
     it "should return an IControl::LocalLB::RateClass instance" do
-      pending
+      @virtual_server.rate_class.class.should be(IControl::LocalLB::RateClass)
     end    
 
     it "should return nil if there is not a rate class associated with the virtual_server" do 
@@ -200,8 +217,6 @@ describe IControl::LocalLB::VirtualServer do
 
   end
 
-
-
   describe "connection_mirror_state method" do
     it "should exists" do
       lambda { @virtual_server.connection_mirror_state }.should_not raise_exception(NoMethodError)
@@ -210,6 +225,16 @@ describe IControl::LocalLB::VirtualServer do
     it "should return an IControl::Common::EnabledState constant" do
       @virtual_server.connection_mirror_state.ancestors.should include(IControl::Common::EnabledState)
     end    
+  end
+
+  describe "connection_mirror_state= method" do
+    it "should exists" do
+       @virtual_server.methods.should include(:connection_mirror_state=)
+    end
+    it "should allow the assignment of a rate_class" do
+      lambda { @virtual_server_nil.connection_mirror_state= IControl::Common::EnabledState::STATE_DISABLED }.should_not raise_exception
+    end
+
   end
 
   describe "translate_port_state method" do
@@ -230,6 +255,26 @@ describe IControl::LocalLB::VirtualServer do
     it "should return an IControl::Common::EnabledState constant" do
       @virtual_server.translate_address_state.ancestors.should include(IControl::Common::EnabledState)
     end    
+  end
+
+  describe "enable_address_translation! method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:enable_address_translation!)
+    end
+
+    it "should do something" do
+      lambda { @virtual_server.enable_address_translation! }.should_not raise_exception
+    end
+  end
+
+  describe "disable_address_translation! method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:disable_address_translation!)
+    end
+
+    it "should do something" do
+      lambda { @virtual_server.disable_address_translation! }.should_not raise_exception
+    end
   end
 
   describe "sorce_port_behavior method" do
@@ -280,14 +325,18 @@ describe IControl::LocalLB::VirtualServer do
     end
     
     it "should change the state of the snat_type of an object to automap if IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP is specified" do
-      lambda { @virtual_server.snat_type= IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP }.should_not raise_exception
-      #@virtual_server.snat_type.should ==IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP
-      pending(" for a state control")
+      @virtual_server.methods.should include(:snat_type=)
+      register_conversation ["IControl.LocalLB.VirtualServer.get_snat_type_before_automap_change",
+                             "IControl.LocalLB.VirtualServer.get_snat_type_after_automap_change"]
+      
+      @virtual_server_nil.snat_type.should == IControl::LocalLB::SnatType::SNAT_TYPE_NONE
+      @virtual_server_nil.snat_type= IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP
+      @virtual_server_nil.snat_type.should ==IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP
     end
 
     it "should change the state of the snat_type of an object to none if IControl::LocalLB::SnatType::SNAT_TYPE_NONE is specified" do
-      @virtual_server.snat_type = IControl::LocalLB::SnatType::SNAT_TYPE_NONE
-      @virtual_server.snat_type.should ==IControl::LocalLB::SnatType::SNAT_TYPE_NONE
+#      @virtual_server.snat_type = IControl::LocalLB::SnatType::SNAT_TYPE_NONE
+#      @virtual_server.snat_type.should ==IControl::LocalLB::SnatType::SNAT_TYPE_NONE
     end
   end
 
@@ -301,7 +350,7 @@ describe IControl::LocalLB::VirtualServer do
     end    
 
     it "should return a SnatPool" do
-      pending
+      @virtual_server.snat_pool.class.should be(IControl::LocalLB::SNATPool)
     end
   end
   
@@ -319,23 +368,13 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
-  describe "fallback_persistence_profile= method" do 
-    it "should exists" do 
-      @virtual_server.methods.should include(:fallback_persistence_profile=)
-    end
-
-    it "should allow the assignment of a fallback_persistence_profile" do
-      @virtual_server.fallback_persistence_profile= "dest_addr"
-    end
-  end
-
   describe "persistence_profile method" do
     it "should exists" do
       lambda { @virtual_server.persistence_profile }.should_not raise_exception(NoMethodError)
     end
 
     it "should return an VirtualServerPersistence instance" do
-      @virtual_server.persistence_profile.class.should be(IControl::LocalLB::VirtualServer::VirtualServerPersistence)
+      @virtual_server.persistence_profile.class.should be(IControl::LocalLB::VirtualServer::Persistence)
     end    
 
     it "should return an nil if none is specified" do
@@ -344,6 +383,7 @@ describe IControl::LocalLB::VirtualServer do
   end
 
   describe "rules method" do
+
     it "should exists" do
       lambda { @virtual_server.rules }.should_not raise_exception(NoMethodError)
     end
@@ -356,6 +396,7 @@ describe IControl::LocalLB::VirtualServer do
     it "should return an empty list if no rule is associated with the virtual server" do
       @virtual_server_nil.rules.should be_empty
     end    
+
   end
 
   describe "clone_pool method" do
@@ -365,7 +406,7 @@ describe IControl::LocalLB::VirtualServer do
 
     it "should return a list of VirtualServerClonePool" do
       @virtual_server.clone_pool.should_not be_empty
-      @virtual_server.clone_pool.first.class.should be(IControl::LocalLB::VirtualServer::VirtualServerClonePool)
+      @virtual_server.clone_pool.first.class.should be(IControl::LocalLB::VirtualServer::ClonePool)
     end    
 
     it "should return an empty list if no clone_pool is associated with the virtual server" do
@@ -454,7 +495,10 @@ describe IControl::LocalLB::VirtualServer do
     end
     
     it "should allow the addition of a new http class profile by means of a << operator using strings" do
-      pending ("A better way of testing should be used (state changes)")
+      @virtual_server_nil.httpclass_profiles.class.should be(IControl::LocalLB::VirtualServer::HttpClassProfileEnumerator)
+      @virtual_server_nil.httpclass_profiles.length.should be 0
+      @virtual_server_nil.httpclass_profiles << IControl::LocalLB::ProfileHttpClass.find("test_profile1")
+      @virtual_server_nil.httpclass_profiles.length.should be 1
     end
     
     it "should allow the use of array operator on the httpclass_profile output object" do
@@ -468,14 +512,153 @@ describe IControl::LocalLB::VirtualServer do
     end
     
     it "should allow the addition of a new rule profile by means of a << operator using rules" do
-      pending ("A better way of testing should be used (state changes)")
+      @virtual_server_nil.rules.class.should be(IControl::LocalLB::VirtualServer::RuleEnumerator)
+      @virtual_server_nil.rules.length.should be 0
+      @virtual_server_nil.rules << IControl::LocalLB::Rule.find("irule_test")
+      @virtual_server_nil.rules.length.should be 1
     end
     
     it "should allow the use of array operator on the httpclass_profile output object" do
-    end
-    
+    end    
   end
 
+  describe "object_status method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:object_status)
+    end
+
+    it "should return the status of the virtual server" do
+      @virtual_server.object_status.class.should be(Hash)
+    end
+  end
+
+  describe "authentication_profiles method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:authentication_profiles)
+    end
+
+    it "return an array of authentication_profiles" do
+      @virtual_server.authentication_profiles.class.should be(IControl::LocalLB::VirtualServer::AuthProfileEnumerator)
+      @virtual_server.authentication_profiles.first.class.should be(IControl::LocalLB::ProfileAuth)
+      
+    end
+
+    it "should allow the adding of a new profile by means of the << operator" do
+      @virtual_server_nil.authentication_profiles.class.should be(IControl::LocalLB::VirtualServer::AuthProfileEnumerator)
+      @virtual_server_nil.authentication_profiles.length.should be 0
+      @virtual_server_nil.authentication_profiles << IControl::LocalLB::ProfileAuth.find("ldap")
+      @virtual_server_nil.authentication_profiles.length.should be 1
+    end
+  end
+
+  describe "self.all_statistics method" do
+    it "should exist" do
+      @virtual_server.class.methods.should include(:all_statistics)
+    end
+
+    it "should return an array with every statistic of the virtual servers" do
+      IControl::LocalLB::VirtualServer.get_all_statistics.class.should be(Array)
+      IControl::LocalLB::VirtualServer.get_all_statistics.first.class.should be(IControl::LocalLB::VirtualServer::StatisticEntry)
+    end
+  end
+
+  describe "persistence_record method" do
+
+    it "should exist" do
+      @virtual_server.methods.should include(:persistence_record)
+    end
+
+  end
   
-  
+  describe "version method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:version)
+    end
+
+    it "should return the version of the system" do
+      @virtual_server.version.class.should be(String)
+      @virtual_server.version.length.should > 0
+    end
+  end
+
+  describe "module_score method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:module_score)
+    end
+
+    it "should return nil is none exist" do
+      @virtual_server.module_score.should be_nil
+    end
+  end
+
+  describe "protocol= method" do
+    
+    it "should exist" do
+      @virtual_server.methods.should include(:protocol=)
+    end
+
+    it "should change the current protocol value" do
+
+    end
+  end
+
+  describe "enable_fallback_persistence_profile! method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:enable_fallback_persistence_profile!)
+    end
+
+    it "should enable the fallback_persistence profile" do
+      lambda { @virtual_server.enable_fallback_persistence_profile! }.should_not raise_exception
+    end
+  end
+
+  describe "disable_fallback_persistence_profile! method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:disable_fallback_persistence_profile!)
+    end
+
+    it "should disable the fallback_persistence profile" do
+      lambda { @virtual_server.disable_fallback_persistence_profile! }.should_not raise_exception
+    end
+  end
+
+  describe "enable_cmp!" do
+    it "should exist" do
+      @virtual_server.methods.should include(:enable_cmp!)
+    end
+
+    it "should enable the cmp" do
+      lambda { @virtual_server.enable_cmp! }.should_not raise_exception
+    end
+  end
+
+  describe "disable_cmp! method" do
+    it "should exist" do
+      @virtual_server.methods.should include(:disable_cmp!)
+    end
+
+    it "should disable the cmp" do
+      lambda { @virtual_server.disable_cmp! }.should_not raise_exception
+    end
+  end
+
+  describe "snat_pool= method" do
+
+    it "should exist" do
+      @virtual_server.methods.should include(:snat_pool=)
+    end
+
+    it "assign a new snat pool" do
+      register_conversation(["IControl.LocalLB.VirtualServer.get_snat_pool_before_snat_pool",
+                             "IControl.LocalLB.VirtualServer.get_snat_pool_after_snat_pool"])
+
+      @virtual_server_nil.snat_pool.should be_nil
+      @virtual_server_nil.snat_pool = IControl::LocalLB::SNATPool.find("test_snat")
+      after_snat = @virtual_server_nil.snat_pool
+      after_snat.class.should be(IControl::LocalLB::SNATPool)
+      after_snat.id.should ==("test_snat")
+    end
+
+  end
+
 end

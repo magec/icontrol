@@ -5,6 +5,7 @@ describe IControl::LocalLB::ProfileHttpClass do
   before do
     @profile = IControl::LocalLB::ProfileHttpClass.find("test_profile1")
     @profile2 = IControl::LocalLB::ProfileHttpClass.find("test_profile2")
+    @arguments = {"host" => "test.com","cookie" => "test_cookie","header" => "test_header", "path" => "/test/path"}
   end
   
   describe "find method" do
@@ -97,7 +98,12 @@ describe IControl::LocalLB::ProfileHttpClass do
       end
 
       it "should empty the contents of the array after called" do
-        pending
+        register_conversation ["IControl.LocalLB.ProfileHttpClass_before_deletion.get_#{type}_match_pattern",
+                               "IControl.LocalLB.ProfileHttpClass_after_deletion.get_#{type}_match_pattern"]
+        pattern = @profile.send"get_#{type}_match_pattern"
+        pattern.length.should_not be 0
+        pattern = @profile.send("set_default_#{type}_match_pattern")
+        pattern.length.should be 0
       end
     end
 
@@ -124,7 +130,25 @@ describe IControl::LocalLB::ProfileHttpClass do
         end    
         
         it "should #{op} a new #{type} pattern" do
-          pending
+          register_conversation ["IControl.LocalLB.ProfileHttpClass_before_#{op}.get_#{type}_match_pattern",
+                                 "IControl.LocalLB.ProfileHttpClass_after_#{op}.get_#{type}_match_pattern"]
+          match_pattern =  @profile.send("#{type}_match_pattern")
+          case op
+          when "add" then 
+            match_pattern.length.should be 0 
+          when "remove" then  
+            match_pattern.length.should > 0
+            match_pattern.first[:pattern].should ==@arguments[type]
+          end
+          lambda { @profile.send("#{op}_#{type}_match_pattern",@arguments[type])}.should_not raise_exception
+          match_pattern =  @profile.send("#{type}_match_pattern")
+          case op
+          when "add" then 
+            match_pattern.length.should_not be 0
+            match_pattern.first[:pattern].should ==@arguments[type]
+          when "remove" then 
+            match_pattern.length.should be 0
+          end
         end
       end
       
