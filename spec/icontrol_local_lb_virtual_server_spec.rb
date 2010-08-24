@@ -459,11 +459,25 @@ describe IControl::LocalLB::VirtualServer do
       vlan = @virtual_server.vlan
       vlan.class.should be(IControl::Common::VLANFilterList)
       @virtual_server_nil.vlan.vlans.class.should be(Array)
-      @virtual_server_nil.vlan.vlans.should be_empty
       vlan.vlans.should_not be_empty
       vlan.vlans.class.should be(Array)
     end
   end
+
+  describe "vlan= method" do 
+    it "should exists" do
+       @virtual_server.methods.should include(:vlan=)
+    end
+    it "should allow the assignment of a VLAN" do
+      register_conversation(["IControl.LocalLB.VirtualServer_before_vlan_change.get_vlan",
+                             "IControl.LocalLB.VirtualServer_after_vlan_change.get_vlan"])
+      source_vlan = @virtual_server.vlan
+      @virtual_server_nil.vlan.vlans.should be_empty
+      @virtual_server_nil.vlan = source_vlan
+      @virtual_server_nil.vlan.vlans.should_not be_empty
+    end
+  end
+
 
   describe "create method" do
     it "should create a new virtual_server when correctly called" do

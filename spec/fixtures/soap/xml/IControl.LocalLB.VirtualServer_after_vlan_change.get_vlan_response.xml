@@ -13,10 +13,13 @@
 	A:arrayType="iControl:Common.VLANFilterList[1]">
 <item>
 <state
-	s:type="iControl:Common.EnabledState">STATE_DISABLED</state>
+	s:type="iControl:Common.EnabledState">STATE_ENABLED</state>
 <vlans
 	s:type="A:Array"
-	A:arrayType="y:string[0]"></vlans>
+	A:arrayType="y:string[2]">
+<item>test_vlan1</item>
+<item>test_vlan2</item>
+</vlans>
 </item>
 </return>
 </m:get_vlanResponse>
