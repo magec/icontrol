@@ -377,6 +377,7 @@ private
 
 public 
 
+
   # Gets the lists of VLANs on which access to the specified Virtual Servers are enabled/disabled.
   def vlan
     super
@@ -602,8 +603,19 @@ public
   end
   
   def vlan=(vlan)
-    puts "NOT IMPLEMENTED"
-    raise LocalLB::MethodNotImplementedException
+    count=0;
+    vlans = {}
+    vlan.vlans.each { |i| vlans["item#{count+=1}"]=i}
+    IControl::LocalLB::VirtualServer.set_vlan do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "vlans" => { :item => 
+          { :state => vlan.state.name.split("::").last,
+            :vlans => vlans
+          }
+        }
+      }
+    end
   end
   
 =begin
