@@ -458,6 +458,23 @@ public
     add_persistence_profile(persistence_profile)
   end
 
+
+  def remove_persistence_profile(persistence_profile)
+    IControl::LocalLB::VirtualServer.remove_persistence_profile do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        "profiles" => {:item => {:item => {"profile_name" => persistence_profile.profile_name,"default_profile" => persistence_profile.default_profile}}}
+      } 
+    end if persistence_profile && persistence_profile!= ""    
+  end
+
+
+  def default_persistence_profile=(persistence_profile)
+    self.remove_persistence_profile(persistence_profile)
+    persistence_profile.default_profile = true
+    self.add_persistence_profile(persistence_profile)
+  end
+
   def add_persistence_profile(persistence_profile)
     IControl::LocalLB::VirtualServer.add_persistence_profile do |soap|
       soap.body = {
