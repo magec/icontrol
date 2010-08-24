@@ -191,6 +191,10 @@ describe IControl::LocalLB::VirtualServer do
     it "should allow the assignment of a connection limit" do
       lambda { @virtual_server.connection_limit= 4194967294 }.should_not raise_exception
     end
+
+    it "should allow the assignment of a connection limit using an ULong64 instance" do 
+      lambda { @virtual_server.connection_limit= IControl::Common::ULong64.new(:high => 0,:low => 4194967294) }.should_not raise_exception
+    end
   end
 
   describe "rate_class method" do
