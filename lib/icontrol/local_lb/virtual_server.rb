@@ -300,7 +300,10 @@ class IControl::LocalLB::VirtualServer
   # Sets the connection limits of the specified virtual server.
   def connection_limit=(limit)
     IControl::LocalLB::VirtualServer.set_connection_limit do |soap|
-      soap.body = {"virtual_servers" => {:item => id},:limits => {:item => IControl::Common::ULong64.new(:low => limit).to_hash}}
+      limit = limit.is_a?(IControl::Common::ULong64) ? limit : IControl::Common::ULong64.new(:low => limit)
+      soap.body = {
+        "virtual_servers" => {:item => id},
+        :limits => {:item => limit.to_hash}}
     end
   end
 
