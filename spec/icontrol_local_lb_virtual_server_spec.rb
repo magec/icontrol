@@ -84,14 +84,14 @@ describe IControl::LocalLB::VirtualServer do
 
   describe "type method" do 
 
-    it "shold exists" do 
+    it "should exists" do 
       lambda { @virtual_server.type }.should_not raise_exception(NoMethodError)
     end
 
     it "should return a constant child of VirtualServerType" do
       vs_type = @virtual_server.type
       vs_type.should_not be(nil)
-      vs_type.ancestors.should include(IControl::LocalLB::VirtualServer::Type)
+      IControl::LocalLB::VirtualServer::Type.constants.should include(vs_type.name.split("::").last.to_sym)
     end
   end
 
@@ -114,7 +114,7 @@ describe IControl::LocalLB::VirtualServer do
     it "should return a constant telling the cmp_enable_mode of the virtual server" do
       cmp_enable = @virtual_server.cmp_enable_mode
       cmp_enable.should_not be(nil)
-      cmp_enable.ancestors.should include(IControl::LocalLB::VirtualServer::CMPEnableMode)
+      IControl::LocalLB::VirtualServer::CMPEnableMode.constants.should include(cmp_enable.name.split("::").last.to_sym)
     end
   end
 
@@ -149,7 +149,7 @@ describe IControl::LocalLB::VirtualServer do
     end
     
     it "should return an IControl::Common::ProtocolType constant" do 
-      @virtual_server.protocol.ancestors.should include(IControl::Common::ProtocolType)
+      IControl::Common::ProtocolType.constants.should include @virtual_server.protocol.name.split("::").last.to_sym
     end
   end
 
@@ -159,7 +159,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an IControl::Common::EnabledState constant" do 
-        @virtual_server.enabled_state.ancestors.should include(IControl::Common::EnabledState)
+      IControl::Common::EnabledState.constants.should include @virtual_server.enabled_state.name.split("::").last.to_sym
     end    
   end
 
@@ -223,7 +223,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an IControl::Common::EnabledState constant" do
-      @virtual_server.connection_mirror_state.ancestors.should include(IControl::Common::EnabledState)
+      IControl::Common::EnabledState.constants.should include(@virtual_server.connection_mirror_state.name.split("::").last.to_sym)
     end    
   end
 
@@ -243,7 +243,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an IControl::Common::EnabledState constant" do
-      @virtual_server.translate_port_state.ancestors.should include(IControl::Common::EnabledState)
+      IControl::Common::EnabledState.constants.should include(@virtual_server.translate_port_state.name.split("::").last.to_sym)
     end    
   end
 
@@ -253,7 +253,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an IControl::Common::EnabledState constant" do
-      @virtual_server.translate_address_state.ancestors.should include(IControl::Common::EnabledState)
+      IControl::Common::EnabledState.constants.should include(@virtual_server.translate_address_state.name.split("::").last.to_sym)
     end    
   end
 
@@ -283,7 +283,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an IControl::Common::SourcePortBehavior constant" do
-      @virtual_server.source_port_behavior.ancestors.should include(IControl::Common::SourcePortBehavior)
+      IControl::Common::SourcePortBehavior.constants.should include(@virtual_server.source_port_behavior.name.split("::").last.to_sym)
     end    
   end
 
@@ -303,7 +303,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an IControl::LocalLB::HardwareAccelerationMode instance" do
-      @virtual_server.actual_hardware_acceleration.ancestors.should include(IControl::LocalLB::HardwareAccelerationMode)
+      IControl::LocalLB::HardwareAccelerationMode.constants.should include(@virtual_server.actual_hardware_acceleration.name.split("::").last.to_sym)
     end    
 
   end
@@ -314,7 +314,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "should return an IControl::LocalLB::SnatType constant" do
-      @virtual_server.snat_type.ancestors.should include(IControl::LocalLB::SnatType)
+      IControl::LocalLB::SnatType.constants.should include (@virtual_server.snat_type.name.split("::").last.to_sym)
     end    
   end
 
@@ -425,7 +425,7 @@ describe IControl::LocalLB::VirtualServer do
 
     it "should return a hash of statistics" do
       @virtual_server.statistics.class.should be(Hash)
-      @virtual_server.statistics.first[0].ancestors.should include(IControl::Common::StatisticType)
+      IControl::Common::StatisticType.constants.should include(@virtual_server.statistics.first[0].name.split("::").last.to_sym)
     end    
   end
 

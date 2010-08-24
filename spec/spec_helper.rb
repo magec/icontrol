@@ -44,7 +44,7 @@ def register_fixtures
 end
 
 Spec::Runner.configure do |config|
-  IControl.config[:base_url] = "https://localhost:443/iControl/iControlPortal.cgi"
+  IControl.config[:base_url] = "https://localhost:443"
   IControl.config[:user] = "test_user"
   IControl.config[:password] = "secret"
 
