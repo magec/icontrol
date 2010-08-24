@@ -353,6 +353,7 @@ describe IControl::LocalLB::VirtualServer do
       @virtual_server_nil.snat_pool.should be nil
     end    
 
+
     it "should return a SnatPool" do
       @virtual_server.snat_pool.class.should be(IControl::LocalLB::SNATPool)
     end
@@ -664,6 +665,10 @@ describe IControl::LocalLB::VirtualServer do
 
     it "should exist" do
       @virtual_server.methods.should include(:snat_pool=)
+    end
+
+    it "should do nothing if nil is passed" do
+      lambda { @virtual_server.snat_pool= nil }.should_not raise_exception
     end
 
     it "assign a new snat pool" do
