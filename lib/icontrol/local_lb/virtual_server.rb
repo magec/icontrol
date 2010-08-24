@@ -259,11 +259,11 @@ class IControl::LocalLB::VirtualServer
   end
 
   def disable
-    enabled_state= IControl::Common::EnabledState::STATE_DISABLED
+    self.enabled_state= IControl::Common::EnabledState::STATE_DISABLED
   end
 
   def enable
-    enabled_state= IControl::Common::EnabledState::STATE_ENABLED
+    self.enabled_state= IControl::Common::EnabledState::STATE_ENABLED
   end
 
   # Sets the enabled state of the specified virtual servers.  
@@ -584,11 +584,11 @@ public
   end
 
   def enable_cmp!
-    cmp_enabled_state = IControl::Common::EnabledState::STATE_ENABLED
+    self.cmp_enabled_state = IControl::Common::EnabledState::STATE_ENABLED
   end
 
   def disable_cmp!
-    cmp_enabled_state = IControl::Common::EnabledState::STATE_DISABLED
+    self.cmp_enabled_state = IControl::Common::EnabledState::STATE_DISABLED
   end
   
   # Sets the translate cmp address state receives a EnabledState constant
