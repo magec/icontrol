@@ -600,7 +600,7 @@ public
         "virtual_servers" => {:item => id},
         "snatpools" => {:item => snat_pool.id}
       }
-    end
+    end if snat_pool
   end
 
   def destroy 
