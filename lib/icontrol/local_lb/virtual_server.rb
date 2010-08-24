@@ -258,6 +258,14 @@ class IControl::LocalLB::VirtualServer
     super
   end
 
+  def disable
+    enabled_state= IControl::Common::EnabledState::STATE_DISABLED
+  end
+
+  def enable
+    enabled_state= IControl::Common::EnabledState::STATE_ENABLED
+  end
+
   # Sets the enabled state of the specified virtual servers.  
   def enabled_state=(state)
     IControl::LocalLB::VirtualServer.set_enabled_state do |soap|

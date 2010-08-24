@@ -18,10 +18,22 @@ module Attributable
   end
 
   module InstanceMethods
+
     def initialize(attributes)
       id = attributes.delete(self.class.id_name) if attributes && attributes[self.class.id_name]
       @attributes = attributes || {}
-      @attributes[:id] ||= id 
+      @attributes[:id] ||= id       
+      
+      # Now we define an alias for the id_name
+      id_name = self.class.id_name
+
+      (class << self; self; end).instance_eval do        
+        define_method(id_name) do 
+          @attributes[:id]
+        end
+      end if id_name
+
+
     end
 
     def method_missing(method_name,*args,&block)
