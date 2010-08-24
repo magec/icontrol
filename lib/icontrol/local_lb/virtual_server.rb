@@ -493,7 +493,7 @@ public
     IControl::LocalLB::VirtualServer.add_rule do |soap|
       item = "item"; count = 0
       my_rules = {}
-      rules.each{ |i| my_rules[item + (count +=1).to_s] =  {"rule_name" => i.class == String ? i : i.id, "priority" => count } }
+      rules.each{ |i| my_rules[item + (count +=1).to_s] =  {"rule_name" => i.class == String ? i : i.rule_name, "priority" => count } }
       soap.body = {
         "virtual_servers" => {:item => id},
         "rules" => {"value" =>  my_rules  }
