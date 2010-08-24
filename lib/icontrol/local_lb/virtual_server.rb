@@ -436,7 +436,17 @@ public
     super
   end
 
+
+  def remove_all_persistence_profiles! 
+    IControl::LocalLB::VirtualServer.remove_all_persistence_profiles do |soap|
+      soap.body = {
+        "virtual_servers" => {:item => id }
+      }
+    end    
+  end
+
   def persistence_profile=(persistence_profile)
+    self.remove_all_persistence_profiles!
     add_persistence_profile(persistence_profile)
   end
 
