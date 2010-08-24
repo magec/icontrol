@@ -1,5 +1,49 @@
-= icontrol
+= IControl: F5 BigIP SOAP API Client
 
+IControl allows you to easily connect to a BigIP F5 load balancer and by means of the SOAP API. You can programmatically do almost the same things that you would do throught the Web Interface.
+
+= Installing
+
+== Install the gem:
+    gem install icontrol
+
+= Configuring
+
+In order to configure you just have to set up the username, password and the server you're connecting to:
+
+	IControl.config[:user] =  'username'
+	IControl.config[:password] = 'secret'
+	IControl.config[:base_url] = "https://myf5.test.com/"
+
+= Using the library
+
+== Virtual Servers
+
+You can retreive, create, delete and modify virtual servers, for more information see IControl::LocalLB::VirtualServer. As an example of you what you can do:
+
+=== Creating a virtual Server
+ new_virtual_server = IControl::LocalLB::VirtualServer.create(:name => "foo_virtual_server",
+                                  :address => "192.168.1.1",
+                                  :port => "80",
+                                  :protocol => IControl::Common::ProtocolType::PROTOCOL_TCP,
+                                  :wildmask => "255.255.255.255",
+                         	  :type => IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_POOL,
+                                  :default_pool =>  foo_pool,
+                                  :profiles => [])
+
+=== Obtaining an instance of a virtual server
+
+
+ my_virtual_server = IControl::LocalLB::VirtualServer.find("virtual_server_name")
+
+
+=== Changing its default pool
+
+ my_virtual_server.default_pool = IControl::LocalLB::Pool.find("my_new_default_pool")
+
+=== Destroying it
+
+ my_virtual_server.destroy
 
 == Note on Patches/Pull Requests
  
