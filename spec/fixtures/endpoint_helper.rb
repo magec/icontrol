@@ -7,7 +7,7 @@ class EndpointHelper
 
   def self.soap_endpoint
     icontrol_base = IControl.config[:base_url].split("://")
-    return icontrol_base[0] + "://" + IControl.config[:user] + ":" + IControl.config[:password] + "@" + icontrol_base[1..-1].join 
+    return icontrol_base[0] + "://" + IControl.config[:user] + ":" + IControl.config[:password] + "@" + icontrol_base[1..-1].join + "/iControl/iControlPortal.cgi"
   end
 
 end

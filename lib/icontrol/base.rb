@@ -2,6 +2,7 @@
 require 'savon'
 require 'net/https'
 require 'digest/md5'
+Savon::Request.log = false
 
 # The idea is to create an object proxy to the web service client with the same structure 
 # than the IControl stuff
@@ -92,7 +93,7 @@ module IControl
   @config = {
     :user     => "",               # username and password
     :password => "",
-    :base_url => "",                # base url for the web-service (https://example.com/iControl/iControlPortal.cgi)
+    :base_url => "",                # base url for the web-service (https://example.com/)
     :test_mode => false,           # When test mode is set, the soap responses are saved (this is done to ease the testing fixtures generation)
     :test_path => File.join(File.dirname(__FILE__),"..","..","spec","fixtures"),
     :test_file_prefix => ""
@@ -146,7 +147,7 @@ module IControl
                 return @client if @client
                 @client = nil
                 if IControl.configured?
-                  @client = Savon::Client.new IControl.config[:base_url] + "?WSDL=#{name.to_s}.#{class_name.to_s}"
+                  @client = Savon::Client.new IControl.config[:base_url] + "/iControl/iControlPortal.cgi?WSDL=#{name.to_s}.#{class_name.to_s}"
                   @client.request.basic_auth IControl.config[:user],IControl.config[:password]
                   @client.request.http.ssl_client_auth( :verify_mode => OpenSSL::SSL::VERIFY_NONE )
                 else
