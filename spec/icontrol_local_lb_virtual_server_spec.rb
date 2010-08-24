@@ -387,6 +387,25 @@ describe IControl::LocalLB::VirtualServer do
     end    
   end
 
+
+  describe "remove_persistence_profile method" do
+
+    it "should remove a given persistence profile" do 
+      register_conversation ["IControl.LocalLB.VirtualServer_before_profile_removal.get_persistence_profile",
+                             "IControl.LocalLB.VirtualServer_after_profile_removal.get_persistence_profile"]
+    
+      persistence_profile = @virtual_server.persistence_profile
+      persistence_profile.should_not be_nil
+      @virtual_server.remove_persistence_profile(persistence_profile)      
+      @virtual_server.persistence_profile.should be_nil
+    end
+
+    it "should exists" do
+      @virtual_server.methods.should include :remove_persistence_profile
+    end
+    
+  end
+
   describe "rules method" do
 
     it "should exists" do

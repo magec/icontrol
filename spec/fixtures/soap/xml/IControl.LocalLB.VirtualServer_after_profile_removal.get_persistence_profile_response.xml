@@ -12,14 +12,7 @@
 	s:type="A:Array"
 	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerPersistence[][1]">
 <item
-	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerPersistence[1]">
-<item>
-<profile_name
-	s:type="y:string">cookie</profile_name>
-<default_profile
-	s:type="y:boolean">false</default_profile>
-</item>
-</item>
+	A:arrayType="iControl:LocalLB.VirtualServer.VirtualServerPersistence[0]"></item>
 </return>
 </m:get_persistence_profileResponse>
 </E:Body>
