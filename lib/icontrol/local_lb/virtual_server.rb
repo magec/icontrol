@@ -38,7 +38,7 @@ class IControl::LocalLB::VirtualServer
     RESOURCE_TYPE_CMP_ENABLE_UNKNOWN = :RESOURCE_TYPE_CMP_ENABLE_UNKNOWN
   end
 
-  class StatisticEntry
+  class StatisticEntry # :nodoc:
     attr_accessor :virtual_server,:statistics
 
     def self.from_xml(result)
@@ -56,24 +56,15 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class ModuleScore
+  class ModuleScore :nodoc:
     attr_accessor :tmos_module ,:score
     def initialize(attribules)
       @score = attributes[:score]
       @tmos_module = attributes[:tmos_module]
     end    
   end
-=begin  
-  class Rule
-    attr_accessor :rule_name,:priority
-    def initialize(attributes)
-      @rule_name = attributes[:rule_name]
-      @priority  = ( attributes[:priority] && attributes[:priority].to_i ) || -1
-    end
-  end
-=end
 
-  class ClonePool
+  class ClonePool #:nodoc:
     attr_accessor :pool,:clone_type
     def initialize(attributes)
       @pool = IControl::LocalLB::Pool.find(attributes[:pool_name])
@@ -81,7 +72,7 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class ProfileAttribute
+  class ProfileAttribute #:nodoc:
     attr_accessor :profile_type,:profile_context,:profile_name
     def initialize(options)
       @profile_type = options[:profile_type]
@@ -90,7 +81,7 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class Persistence
+  class Persistence #:nodoc:
     attr_accessor :profile_name,:default_profile
     def initialize(options)
       @profile_name = options[:profile_name]
@@ -98,7 +89,7 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class GenericEnumerator
+  class GenericEnumerator #:nodoc:
 
     STATE_CHANGED=[ :<<, :push, :pop, :shift, :unshift, :insert, :join, :reverse!, :sort!, :collect!,:map!, :delete, :delete_at, :delete_if, :reject!,:slice!, :uniq!, :compact!,  :flatten!, :shuffle! ]
 
@@ -122,21 +113,21 @@ class IControl::LocalLB::VirtualServer
   end
 
 
-  class HttpClassProfileEnumerator < GenericEnumerator
+  class HttpClassProfileEnumerator < GenericEnumerator #:nodoc:
     def save!
       @parent.remove_all_httpclass_profiles
       @parent.add_httpclass_profile(@contents)
     end
   end
 
-  class RuleEnumerator < GenericEnumerator
+  class RuleEnumerator < GenericEnumerator #:nodoc:
     def save!
       @parent.remove_all_rules
       @parent.add_rule(@contents)
     end
   end
 
-  class AuthProfileEnumerator < GenericEnumerator
+  class AuthProfileEnumerator < GenericEnumerator #:nodoc:
     def save!      
       @parent.remove_all_authentication_profiles
       @parent.add_authentication_profile(@contents)

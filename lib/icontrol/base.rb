@@ -9,7 +9,10 @@ Savon::Request.log = false
 
 module IControl #:nodoc:
 
-  class NotConfiguredException < Exception; end
+  class Exception
+    class NotConfiguredException < Exception # :nodoc:
+    end 
+  end
   
   class Base # :nodoc:
 
