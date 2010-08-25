@@ -1,6 +1,6 @@
-module IControl
+module IControl # :nodoc:
 
-  class ArrayMapper
+  class ArrayMapper # :nodoc: 
     def self.map_object(result)
       case result[:array_type]
       when /string/ then result[:item]
@@ -45,7 +45,7 @@ module IControl
   end
 
 
-  class StatMapper
+  class StatMapper # :nodoc:
     def self.map_object(result)
       ArrayMapper.map_object(result[:statistics])
     end
@@ -53,7 +53,7 @@ module IControl
   
   MAPPINGS = { "A:Array" => ArrayMapper, "iControl:LocalLB.VirtualServer.VirtualServerStatistics" => StatMapper }
 
-  class Mappings
+  class Mappings # :nodoc:
     def self.map_object(return_object)
       return MAPPINGS[return_object[:type]].map_object(return_object) if return_object.is_a?(Hash) 
       return return_object

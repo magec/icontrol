@@ -7,22 +7,11 @@ Savon::Request.log = false
 # The idea is to create an object proxy to the web service client with the same structure 
 # than the IControl stuff
 
-module IControl
+module IControl #:nodoc:
 
   class NotConfiguredException < Exception; end
   
-  module Common
-    class IPPortDefinition
-      attr_accessor :address,:port
-      def initialize(options)
-        @address = options[:address]
-        @port = options[:port]
-      end
-    end    
-  end
-
-
-  class Base
+  class Base # :nodoc:
 
     def default_body
       { self.class.id_name.to_s + "s" =>  {:value => [@attributes[:id]] } }

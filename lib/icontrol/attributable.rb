@@ -1,4 +1,4 @@
-module Attributable
+module Attributable # :nodoc: 
 
   def self.included(klass)
     klass.class_eval do
@@ -7,7 +7,7 @@ module Attributable
     end
   end
 
-  module ClassMethods
+  module ClassMethods # :nodoc:
     def set_id_name(id_name)
       @id_name = id_name
     end
@@ -17,7 +17,7 @@ module Attributable
     end
   end
 
-  module InstanceMethods
+  module InstanceMethods # :nodoc:
 
     def initialize(attributes)
       id = attributes.delete(self.class.id_name) if attributes && attributes[self.class.id_name]
