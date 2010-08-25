@@ -39,7 +39,7 @@ def register_fixtures
   FileList["spec/fixtures/soap/xml/*request*"].each do |file_name|
     response_file_name = file_name.gsub("request","response")
     request_body = File.read(file_name)
-    FakeWeb.register_uri :post, EndpointHelper.soap_endpoint, File.read(file_name), :body => File.read(response_file_name)
+    FakeWeb.register_uri :post, EndpointHelper.soap_endpoint, File.read(file_name), :body => File.read(response_file_name) unless response_file_name =~ /after/
   end
 end
 
