@@ -12,30 +12,30 @@ class IControl::LocalLB::VirtualServer
   #  A list of virtual server types. 
   module Type    
     #   The virtual server is based on a pool.
-    class RESOURCE_TYPE_POOL ; VALUE = 0; end
+    RESOURCE_TYPE_POOL = :RESOURCE_TYPE_POOL
     #  The virtual server only supports IP forwarding. There is no load balancing on this type of virtual server.
-    class RESOURCE_TYPE_IP_FORWARDING ; VALUE = 1; end
+    RESOURCE_TYPE_IP_FORWARDING = :RESOURCE_TYPE_IP_FORWARDING
     #  The virtual server only supports L2 forwarding. There is no load balancing on this type of virtual server.
-    class RESOURCE_TYPE_L2_FORWARDING ; VALUE = 2; end
+    RESOURCE_TYPE_L2_FORWARDING = :RESOURCE_TYPE_L2_FORWARDING
     #  All connections going to this virtual server will be rejected, and resets will be sent.
-    class RESOURCE_TYPE_REJECT ; VALUE = 3; end
+    RESOURCE_TYPE_REJECT = :RESOURCE_TYPE_REJECT
     #  The virtual server is based on the Fast L4 profile.
-    class RESOURCE_TYPE_FAST_L4 ; VALUE = 4; end
+    RESOURCE_TYPE_FAST_L4 = :RESOURCE_TYPE_FAST_L4
     #  The virtual server is based on the Fast HTTP profile. 
-    class RESOURCE_TYPE_FAST_HTTP ; VALUE = 5; end
+    RESOURCE_TYPE_FAST_HTTP = :RESOURCE_TYPE_FAST_HTTP
   end
   
   ##
   #  A list of CMP enable modes. 
   class CMPEnableMode
     #   The virtual server is enabled on all processing cores.
-    class RESOURCE_TYPE_CMP_ENABLE_ALL ; VALUE = 0; end
+    RESOURCE_TYPE_CMP_ENABLE_ALL = :RESOURCE_TYPE_CMP_ENABLE_ALL
     #  The virtual server is enabled on a single processing core.
-    class RESOURCE_TYPE_CMP_ENABLE_SINGLE ; VALUE = 1; end
+    RESOURCE_TYPE_CMP_ENABLE_SINGLE = :RESOURCE_TYPE_CMP_ENABLE_SINGLE
     #  The virtual server is enabled on a group of processing cores.
-    class RESOURCE_TYPE_CMP_ENABLE_GROUP ; VALUE = 2; end
+    RESOURCE_TYPE_CMP_ENABLE_GROUP = :RESOURCE_TYPE_CMP_ENABLE_GROUP
 
-    class RESOURCE_TYPE_CMP_ENABLE_UNKNOWN ; VALUE = 3; end
+    RESOURCE_TYPE_CMP_ENABLE_UNKNOWN = :RESOURCE_TYPE_CMP_ENABLE_UNKNOWN
   end
 
   class StatisticEntry
@@ -48,7 +48,7 @@ class IControl::LocalLB::VirtualServer
         aux.virtual_server = IControl::LocalLB::VirtualServer.find(i[:virtual_server][:name])
         aux.statistics = {}
         i[:statistics][:item].each do |entry|
-          aux.statistics[IControl::Common::StatisticType.const_get(entry[:type])] = IControl::Common::ULong64.new(entry[:value])
+          aux.statistics[entry[:type].to_sym] = IControl::Common::ULong64.new(entry[:value])
         end
         aux
       end
@@ -60,7 +60,7 @@ class IControl::LocalLB::VirtualServer
     attr_accessor :tmos_module ,:score
     def initialize(attribules)
       @score = attributes[:score]
-      @tmos_module = IControl::Common::TMOSModule.const_get(attributes[:tmos_module])
+      @tmos_module = attributes[:tmos_module]
     end    
   end
 =begin  
@@ -77,7 +77,7 @@ class IControl::LocalLB::VirtualServer
     attr_accessor :pool,:clone_type
     def initialize(attributes)
       @pool = IControl::LocalLB::Pool.find(attributes[:pool_name])
-      @clone_type = IControl::LocalLB::ClonePoolType.const_get(attributes[:type])
+      @clone_type = attributes[:type]
     end
   end
 
@@ -163,7 +163,7 @@ class IControl::LocalLB::VirtualServer
     
     attributes[:profiles].each do |i| 
       if i.class == Hash
-        profiles["item#{item+=1}"] = {"profile_context" => i["profile_context"].name.split("::").last,"profile_name" => ( i["profile"] ? i["profile"] :  "tcp" ) }
+        profiles["item#{item+=1}"] = {"profile_context" => i["profile_context"],"profile_name" => ( i["profile"] ? i["profile"] :  "tcp" ) }
       else
         profiles["item#{item+=1}"] = {"profile_context" => i.profile_context,"profile_name" => i.profile_name || "tcp" }
       end
@@ -174,12 +174,12 @@ class IControl::LocalLB::VirtualServer
             :name => attributes[:name],
             :address => attributes[:address],
             "port" => attributes[:port],
-            :protocol => (attributes[:protocol] || IControl::Common::ProtocolType::PROTOCOL_TCP).name.split("::").last
+            :protocol => (attributes[:protocol] || IControl::Common::ProtocolType::PROTOCOL_TCP)
           }
         },
         "wildmasks" => {:item => attributes[:wildmask] || "255.255.255.255"},
         "resources" => {:item => {          
-            :type => (attributes[:type] || IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_POOL).name.split("::").last,
+            :type => (attributes[:type] || IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_POOL),
             "default_pool_name" => attributes[:default_pool] ? attributes[:default_pool].id : "" 
           }
         },
@@ -217,7 +217,7 @@ class IControl::LocalLB::VirtualServer
     IControl::LocalLB::VirtualServer.set_type do |soap|
       soap.body = {
         "virtual_servers" => {:item => id},
-        "types" => {:item => new_type.name.split("::").last}
+        "types" => {:item => new_type }
       }
     end
   end
@@ -271,7 +271,7 @@ class IControl::LocalLB::VirtualServer
     IControl::LocalLB::VirtualServer.set_enabled_state do |soap|
       soap.body = {
         "virtual_servers" => {:item => id},
-        "states" => {:item => state.name.split("::").last}
+        "states" => {:item => state }
       }
     end if state
   end
@@ -296,7 +296,7 @@ class IControl::LocalLB::VirtualServer
 
   def connection_mirror_state=(state)
     IControl::LocalLB::VirtualServer.set_connection_mirror_state do |soap|
-      soap.body = {"virtual_servers" => {:item => id},:states => {:item => state.name.split("::").last }}
+      soap.body = {"virtual_servers" => {:item => id},:states => {:item => state}}
     end
   end
   
@@ -577,7 +577,7 @@ public
     IControl::LocalLB::VirtualServer.set_protocol do |soap|
       soap.body = {
         "virtual_servers" => {:item => id},
-        "protocols" => {:item => protocol.name.split("::").last }
+        "protocols" => {:item => protocol }
       }
     end
   end
@@ -648,7 +648,7 @@ public
       soap.body = {
         "virtual_servers" => {:item => id},
         "vlans" => { :item => 
-          { :state => vlan.state.name.split("::").last,
+          { :state => vlan.state,
             :vlans => vlans
           }
         }

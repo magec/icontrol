@@ -1,12 +1,12 @@
 
 # This is a helper for defining constants
-module IControl
+module IControl # :nodoc: 
 
   class NoSuchPoolException < Exception; end
   class MethodNotImplementedException < Exception; end
 
-  module Common
-
+  module Common # :nodoc:
+    
     class VLANFilterList
       attr_accessor :state,:vlans
       def initialize(attributes)
@@ -47,55 +47,58 @@ module IControl
 
     class SourcePortBehavior
       #   Attempt to preserve the source port (best effort). This is the default.
-      class SOURCE_PORT_PRESERVE ; VALUE = 0; end
+      SOURCE_PORT_PRESERVE = :SOURCE_PORT_PRESERVE
       #  Preserve source port. Use of the preserve-strict setting should be restricted to UDP only under very special circumstances such as nPath or transparent (that is, no translation of any other L3/L4 field), where there is a 1:1 relationship between virtual IP addresses and node addresses, or when clustered multi-processing (CMP) is disabled.
-      class SOURCE_PORT_PRESERVE_STRICT ; VALUE = 1; end
+      SOURCE_PORT_PRESERVE_STRICT = :SOURCE_PORT_PRESERVE_STRICT
       #  The change setting is useful for obfuscating internal network addresses. 
-      class SOURCE_PORT_CHANGE ; VALUE = 2; end
+      SOURCE_PORT_CHANGE = :SOURCE_PORT_CHANGE
     end
     
     ## 
     #  A list of enabled states. 
-    class EnabledState      
-      class STATE_DISABLED ; VALUE = 0; end
-      class STATE_ENABLED  ; VALUE = 1; end
+    class EnabledState  
+      
+      STATE_DISABLED = :STATE_DISABLED
+
+      STATE_ENABLED  = :STATE_ENABLED 
+      
     end
 
     ##
     #  A list of TMOS modules. 
     class TMOSModule
-      class TMOS_MODULE_SAM ; VALUE = 0; end
-      class TMOS_MODULE_ASM ; VALUE = 1; end
-      class TMOS_MODULE_WAM ; VALUE = 2; end
+      TMOS_MODULE_SAM = :TMOS_MODULE_SAM
+      TMOS_MODULE_ASM = :TMOS_MODULE_ASM
+      TMOS_MODULE_WAM = :TMOS_MODULE_WAM
     end
 
     ##
     #  An enumeration of protocol types.
     class ProtocolType
       #   Protocol is wildcard.
-      class PROTOCOL_ANY ; VALUE = 0; end
+      PROTOCOL_ANY = :PROTOCOL_ANY
       #  Protocol is IPv6 header.
-      class PROTOCOL_IPV6 ; VALUE = 1; end
+      PROTOCOL_IPV6 = :PROTOCOL_IPV6
       #  Protocol is IPv6 routing header.
-      class PROTOCOL_ROUTING ; VALUE = 2; end
+      PROTOCOL_ROUTING = :PROTOCOL_ROUTING
       #  Protocol is IPv6 no next header.
-      class PROTOCOL_NONE ; VALUE = 3; end
+      PROTOCOL_NONE = :PROTOCOL_NONE
       #  Protocol is IPv6 fragmentation header.
-      class PROTOCOL_FRAGMENT ; VALUE = 4; end
+      PROTOCOL_FRAGMENT = :PROTOCOL_FRAGMENT
       #  Protocol is IPv6 destination options.
-      class PROTOCOL_DSTOPTS ; VALUE = 5; end
+      PROTOCOL_DSTOPTS = :PROTOCOL_DSTOPTS
       #  Protocol is TCP.
-      class PROTOCOL_TCP ; VALUE = 6; end
+      PROTOCOL_TCP = :PROTOCOL_TCP
       #  Protocol is UDP.
-      class PROTOCOL_UDP ; VALUE = 7; end
+      PROTOCOL_UDP = :PROTOCOL_UDP
       #  Protocol is ICMP.
-      class PROTOCOL_ICMP ; VALUE = 8; end
+      PROTOCOL_ICMP = :PROTOCOL_ICMP
       #  Protocol is ICMPv6.
-      class PROTOCOL_ICMPV6 ; VALUE = 9; end
+      PROTOCOL_ICMPV6 = :PROTOCOL_ICMPV6
       #  Protocol is OSPF.
-      class PROTOCOL_OSPF ; VALUE = 10; end
+      PROTOCOL_OSPF = :PROTOCOL_OSPF
       #  Protocol is SCTP.             
-      class PROTOCOL_SCTP ; VALUE = 11; end
+      PROTOCOL_SCTP = :PROTOCOL_SCTP
     end
 
     class IPPortDefinition
