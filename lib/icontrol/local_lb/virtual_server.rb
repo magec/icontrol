@@ -56,7 +56,7 @@ class IControl::LocalLB::VirtualServer
     end
   end
 
-  class ModuleScore :nodoc:
+  class ModuleScore # :nodoc:
     attr_accessor :tmos_module ,:score
     def initialize(attribules)
       @score = attributes[:score]
