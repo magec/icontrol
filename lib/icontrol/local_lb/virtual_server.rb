@@ -461,9 +461,11 @@ public
 
 
   def default_persistence_profile=(persistence_profile)
-    self.remove_persistence_profile(persistence_profile)
-    persistence_profile.default_profile = true
-    self.add_persistence_profile(persistence_profile)
+    if persistence_profile
+      self.remove_persistence_profile(persistence_profile)
+      persistence_profile.default_profile = true
+      self.add_persistence_profile(persistence_profile)
+    end
   end
 
   def add_persistence_profile(persistence_profile)

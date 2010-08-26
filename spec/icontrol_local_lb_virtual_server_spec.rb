@@ -387,6 +387,20 @@ describe IControl::LocalLB::VirtualServer do
   end
 
 
+  describe "default_persistence_profile= method" do
+    it "should exists" do
+      @virtual_server.methods.should include(:default_persistence_profile=)
+    end
+
+    it "should allow the assignment of a default persistence profile" do
+      lambda { @virtual_server.default_persistence_profile = @virtual_server.persistence_profile }.should_not raise_exception
+    end
+
+    it "should do nothing if nil is passed" do
+      lambda { @virtual_server.default_persistence_profile = nil }.should_not raise_exception
+    end
+  end
+
   describe "remove_persistence_profile method" do
 
     it "should remove a given persistence profile" do 
