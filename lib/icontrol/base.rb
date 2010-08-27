@@ -33,6 +33,7 @@ module IControl #:nodoc:
     end
 
     def self.find(name)
+      return nil unless name
       return self.find_all if name == :all 
       if name == :first
         all = self.find_all
