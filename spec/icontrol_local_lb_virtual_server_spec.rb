@@ -475,6 +475,12 @@ describe IControl::LocalLB::VirtualServer do
       @virtual_server.version.class.should be(String)
       @virtual_server.version.should_not be_empty
     end    
+
+    it "should return the version of the system" do
+      @virtual_server.version.class.should be(String)
+      @virtual_server.version.length.should > 0
+    end
+
   end
 
   describe "gtp_score method" do
@@ -505,6 +511,7 @@ describe IControl::LocalLB::VirtualServer do
     it "should exists" do
        @virtual_server.methods.should include(:vlan=)
     end
+
     it "should allow the assignment of a VLAN" do
       register_conversation(["IControl.LocalLB.VirtualServer_before_vlan_change.get_vlan",
                              "IControl.LocalLB.VirtualServer_after_vlan_change.get_vlan"])
@@ -513,6 +520,16 @@ describe IControl::LocalLB::VirtualServer do
       @virtual_server_nil.vlan = source_vlan
       @virtual_server_nil.vlan.vlans.should_not be_empty
     end
+
+    it "should allow the assignment passing an array of strings instead of an instance of VLANFilterList" do
+      register_conversation(["IControl.LocalLB.VirtualServer_before_vlan_change.get_vlan",
+                             "IControl.LocalLB.VirtualServer_after_vlan_change.get_vlan"])
+      source_vlan = @virtual_server.vlan
+      @virtual_server_nil.vlan.vlans.should be_empty
+      @virtual_server_nil.vlan = source_vlan.vlans
+      @virtual_server_nil.vlan.vlans.should_not be_empty
+    end
+
   end
 
 
@@ -527,17 +544,6 @@ describe IControl::LocalLB::VirtualServer do
       virtual_server.id.should == "test_virtual_server"
     end    
 
-    it "should raise an exception if no pool is specified" do 
-      lambda do 
-        virtual_server = 
-          IControl::LocalLB::VirtualServer.create(:address => "192.168.145.7",
-                                                  :port => 99,
-                                                  :name => "test_virtual_server",
-                                                  :default_pool => nil,
-                                                  :profiles => [{"profile_context" => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL,"profile" => IControl::LocalLB::ProfileHttpClass.find("test_profile1")}])
-        virtual_server.id.should == "test_virtual_server"
-      end.should raise_exception(IControl::NoSuchPoolException)
-    end
   end
 
   describe "add_httpclass_profile" do
@@ -621,20 +627,9 @@ describe IControl::LocalLB::VirtualServer do
 
   end
   
-  describe "version method" do
-    it "should exist" do
-      @virtual_server.methods.should include(:version)
-    end
-
-    it "should return the version of the system" do
-      @virtual_server.version.class.should be(String)
-      @virtual_server.version.length.should > 0
-    end
-  end
-
   describe "module_score method" do
     it "should exist" do
-      @virtual_server.methods.should include(:module_score)
+      lambda { @virtual_server.module_score }.should_not raise_exception(NoMethodError)
     end
 
     it "should return nil is none exist" do
