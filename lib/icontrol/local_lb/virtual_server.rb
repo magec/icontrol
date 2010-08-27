@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 IControl::LocalLB::VirtualServer
 module IControl # :nodoc:
   module LocalLB # :nodoc:
@@ -7,7 +8,8 @@ module IControl # :nodoc:
     # == Creation
     # A virtual server can be created with initial values for several fields by means of the create method. 
     # ==== Examples
-    #  # Creates a TCP virtual server named foo_virtual_server listening in address 192.168.1.1 port 80 with no persistence at all
+    #  # Creates a TCP virtual server named foo_virtual_server listening in 
+    #  # address 192.168.1.1 port 80 with no persistence at all
     #  new_virtual_server = IControl::LocalLB::VirtualServer.create(:name => "foo_virtual_server",
     #                                   :address => "192.168.1.1",
     #                                   :port => "80",
@@ -18,7 +20,7 @@ module IControl # :nodoc:
     #                                   :profiles => [])
     #
     # == Querying
-    # You can retreive a given virtual server by means of the find class method. It accepts two one parameter, the name of the virtual server. You can alternativelly call it with :all in order to obtain an array of every virtual server.
+    # You can retreive a given virtual server by means of the find class method. It accepts one parameter, the name of the virtual server. You can alternativelly call it with :all in order to obtain an array of every virtual server.
     #
     # === Examples
     #  # To retreive a given virtual server
@@ -369,7 +371,8 @@ module IControl # :nodoc:
         IControl::LocalLB::Pool.find(pool_name) if pool_name
       end
 
-
+      # Sets the snat type of the virtual server
+      # +new_type+ has to be an SnatType constant ( IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP or IControl::LocalLB::SnatType::SNAT_TYPE_NONE )
       def snat_type=(new_type)
         method = new_type == IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP ? "set_snat_automap" : "set_snat_none"
         IControl::LocalLB::VirtualServer.send(method) do |soap|
@@ -379,8 +382,7 @@ module IControl # :nodoc:
 
       # Gets the SNAT pools to be used in iSNAT configurations for the specified virtual servers.
       def snat_pool
-        snat = super
-        IControl::LocalLB::SNATPool.find(snat) if snat
+        IControl::LocalLB::SNATPool.find(super)
       end
       
       def enable_fallback_persistence_profile!
@@ -420,9 +422,17 @@ module IControl # :nodoc:
         end 
       end
       
-      # Gets the lists of rules the specified virtual servers are associated with.
+      # Gets the lists of rules the specified virtual server is associated with.
       # If a specified virtual server is not associated with any rule, then the list
-      # of rules for that virtual server will be empty
+      # of rules for that virtual server will be empty.
+      # The returned Array is actually an enumerator that proxies any made changes to the server
+      # 
+      # === Examples
+      #  # Getting the rules a vitual server is associated with.
+      #  rules = virtual_server.rules
+      #
+      #  # Adding a new rule with top priority
+      #  rules.unshift(
       def rules
         @rules ||= RuleEnumerator.new( get_rule.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
       end
@@ -464,7 +474,7 @@ module IControl # :nodoc:
         end 
       end
 
-      def add_persistence_profile(persistence_profile)
+      def add_persistence_profile(persistence_profile) # :nodoc:
         IControl::LocalLB::VirtualServer.add_persistence_profile do |soap|
           soap.body = {
             "virtual_servers" => {:item => id},
@@ -503,7 +513,7 @@ module IControl # :nodoc:
       end
 
 
-      def add_rule(rules)
+      def add_rule(rules) # :nodoc:
         IControl::LocalLB::VirtualServer.add_rule do |soap|
           item = "item"; count = 0
           my_rules = {}
@@ -515,7 +525,7 @@ module IControl # :nodoc:
         end    
       end
 
-      def add_authentication_profile(profiles)
+      def add_authentication_profile(profiles) # :nodoc:
         IControl::LocalLB::VirtualServer.add_authentication_profile do |soap|
           item = "item"; count = 0
           my_profiles = {}
@@ -545,8 +555,7 @@ module IControl # :nodoc:
         @authentication_profile.save!
       end
       
-      ## 
-      # Returns all statistics of every virtual server in an Array of StatisticEntry instances
+      #Returns all statistics of every virtual server in an Array of StatisticEntry instances
       def self.all_statistics
         self.get_all_statistics
       end
@@ -610,7 +619,8 @@ module IControl # :nodoc:
         end
       end
 
-      # Sets the snat_pool, it receives a IControl::LocalLB::Pool instance
+      #Sets the snat_pool, it receives a IControl::LocalLB::Pool instance
+      #
       #=== Example
       #  virtual_server.snap_pool = IControl::LocalLB::Pool.find("my_pool")
       def snat_pool=(snat_pool)
