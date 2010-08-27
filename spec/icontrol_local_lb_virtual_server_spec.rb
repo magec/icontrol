@@ -546,37 +546,43 @@ describe IControl::LocalLB::VirtualServer do
 
   end
 
-  describe "add_httpclass_profile" do
-    it "should exist" do 
-      @virtual_server.methods.should include(:add_httpclass_profile)
-    end
-    
-    it "should allow the addition of a new http class profile by means of a << operator using strings" do
-      @virtual_server_nil.httpclass_profiles.class.should be(IControl::LocalLB::VirtualServer::HttpClassProfileEnumerator)
-      @virtual_server_nil.httpclass_profiles.length.should be 0
-      @virtual_server_nil.httpclass_profiles << IControl::LocalLB::ProfileHttpClass.find("test_profile1")
-      @virtual_server_nil.httpclass_profiles.length.should be 1
-    end
-    
-    it "should allow the use of array operator on the httpclass_profile output object" do
-    end
-    
-  end
+  [
+   {:method_name => "authentication_profiles",
+     :type => IControl::LocalLB::VirtualServer::AuthProfileEnumerator,
+     :item => IControl::LocalLB::ProfileAuth.find("ldap")},
+   {:method_name => "httpclass_profiles",
+      :type => IControl::LocalLB::VirtualServer::HttpClassProfileEnumerator, 
+      :item => IControl::LocalLB::ProfileHttpClass.find("test_profile1")},
+   {:method_name => "rules",
+      :type => IControl::LocalLB::VirtualServer::RuleEnumerator, 
+      :item => IControl::LocalLB::Rule.find("irule_test")}
+  ].each do |info|
+      
+    describe "add_#{info[:method_name]}" do
+      it "should exist" do 
+        @virtual_server.methods.should include("#{info[:method_name]}".to_sym)
+      end
+      
+      [:<<,:push,:unshift].each do |operator|    
+        it "should allow the addition of a new http class profile by means of a #{operator} operator using strings" do
+          @virtual_server_nil.send(info[:method_name]).class.should be(info[:type])
+          @virtual_server_nil.send(info[:method_name]).length.should be 0
+          @virtual_server_nil.send(info[:method_name]).send(operator,info[:item])
+          @virtual_server_nil.send(info[:method_name]).length.should be 1
+        end
+      end
 
-  describe "add_rule" do
-    it "should exist" do 
-      @virtual_server.methods.should include(:add_rule)
+      [:sort,:compact!,:flatten!,:shuffle!,:reverse!].each do |operator|    
+        it "should allow the use of the #{operator} operator " do
+          @virtual_server_nil.send(info[:method_name]).class.should be(info[:type])
+          @virtual_server_nil.send(info[:method_name]).length.should be 0
+          @virtual_server_nil.send(info[:method_name]) << info[:item]
+          @virtual_server_nil.send(info[:method_name]).send(operator)
+          @virtual_server_nil.send(info[:method_name]).length.should be 1
+        end
+      end
+
     end
-    
-    it "should allow the addition of a new rule profile by means of a << operator using rules" do
-      @virtual_server_nil.rules.class.should be(IControl::LocalLB::VirtualServer::RuleEnumerator)
-      @virtual_server_nil.rules.length.should be 0
-      @virtual_server_nil.rules << IControl::LocalLB::Rule.find("irule_test")
-      @virtual_server_nil.rules.length.should be 1
-    end
-    
-    it "should allow the use of array operator on the httpclass_profile output object" do
-    end    
   end
 
   describe "object_status method" do
@@ -586,25 +592,6 @@ describe IControl::LocalLB::VirtualServer do
 
     it "should return the status of the virtual server" do
       @virtual_server.object_status.class.should be(Hash)
-    end
-  end
-
-  describe "authentication_profiles method" do
-    it "should exist" do
-      @virtual_server.methods.should include(:authentication_profiles)
-    end
-
-    it "return an array of authentication_profiles" do
-      @virtual_server.authentication_profiles.class.should be(IControl::LocalLB::VirtualServer::AuthProfileEnumerator)
-      @virtual_server.authentication_profiles.first.class.should be(IControl::LocalLB::ProfileAuth)
-      
-    end
-
-    it "should allow the adding of a new profile by means of the << operator" do
-      @virtual_server_nil.authentication_profiles.class.should be(IControl::LocalLB::VirtualServer::AuthProfileEnumerator)
-      @virtual_server_nil.authentication_profiles.length.should be 0
-      @virtual_server_nil.authentication_profiles << IControl::LocalLB::ProfileAuth.find("ldap")
-      @virtual_server_nil.authentication_profiles.length.should be 1
     end
   end
 
