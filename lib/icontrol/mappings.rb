@@ -29,7 +29,7 @@ module IControl # :nodoc:
       when /iControl:Common.SourcePortBehavior\[\d+\]/ then IControl::Common::SourcePortBehavior.const_get(result[:item])
       when /iControl:LocalLB.HardwareAccelerationMode\[/ then IControl::LocalLB::HardwareAccelerationMode.const_get(result[:item])
       when /iControl:LocalLB.SnatType\[/ then IControl::LocalLB::SnatType.const_get(result[:item])
-      when /iControl:Common.VLANFilterList\[/ then IControl::Common::VLANFilterList.new(result[:item])
+      when /iControl:Common.VLANFilterList\[/ then IControl::Common::VLANFilterList.from_hash(result[:item])
       when /iControl:LocalLB.VirtualServer.VirtualServerPersistence\[\]\[\d+\]/ then  result[:item][:item] && IControl::LocalLB::VirtualServer::Persistence.new(result[:item][:item])
       when /iControl:LocalLB.VirtualServer.VirtualServerRule\[\]\[\d+\]/ then [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServerRule.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerClonePool\[\]\[\d+\]/ then  [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServer::ClonePool.new(i) }
