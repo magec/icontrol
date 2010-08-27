@@ -10,8 +10,14 @@ module IControl # :nodoc:
     class VLANFilterList
       attr_accessor :state,:vlans
       def initialize(attributes)
-        @state = IControl::Common::EnabledState.const_get(attributes[:state])
-        @vlans = [attributes[:vlans][:item]].flatten.compact
+        @state = attributes[:state]
+        @vlans = attributes[:vlans]
+      end
+
+      def self.from_hash(hash)
+        hash[:vlans] = [hash[:vlans][:item]].flatten.compact
+        hash[:state] = IControl::Common::EnabledState.const_get(hash[:state])
+        return self.new(hash)
       end
 
     end
