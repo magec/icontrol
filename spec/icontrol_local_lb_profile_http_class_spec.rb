@@ -82,7 +82,7 @@ describe IControl::LocalLB::ProfileHttpClass do
       it "should return valid values" do
         patterns = @profile2.send("#{type}_match_pattern")
         patterns.length.should be_>(1)
-        patterns.first[:pattern].should_not be nil      
+        patterns.first.pattern.should_not be nil      
       end
     end
     
@@ -116,17 +116,18 @@ describe IControl::LocalLB::ProfileHttpClass do
         end
       
         it "sould return the recently created pattern if it correctly adds it" do
-          pattern = "test_#{type}"
-          result = @profile2.send("#{op}_#{type}_match_pattern",pattern,true)
-          result["pattern"].should ==(pattern)
-          result["is_glob"].should be(true)
+          pattern = IControl::LocalLB::MatchPatternString.new(:pattern => "test_#{type}", :is_glob => true)
+          result = @profile2.send("#{op}_#{type}_match_pattern",pattern)
+          result.pattern.should ==(pattern.pattern)
+          result.is_glob.should be(true)
         end
         
         it "sould allow the addition of string patterns as well" do
-          pattern = "test_#{type}-regexp"
+          
+          pattern = IControl::LocalLB::MatchPatternString.new(:pattern => "test_#{type}-regexp")
           result = @profile2.send("#{op}_#{type}_match_pattern",pattern)
-          result["pattern"].should ==(pattern)
-          result["is_glob"].should be(false)
+          result.pattern.should ==(pattern.pattern)
+          result.is_glob.should be(false)
         end    
         
         it "should #{op} a new #{type} pattern" do
@@ -138,14 +139,14 @@ describe IControl::LocalLB::ProfileHttpClass do
             match_pattern.length.should be 0 
           when "remove" then  
             match_pattern.length.should > 0
-            match_pattern.first[:pattern].should ==@arguments[type]
+            match_pattern.first.pattern.should ==@arguments[type]
           end
-          lambda { @profile.send("#{op}_#{type}_match_pattern",@arguments[type])}.should_not raise_exception
+          lambda { @profile.send("#{op}_#{type}_match_pattern",IControl::LocalLB::MatchPatternString.new(:pattern => @arguments[type]))}.should_not raise_exception
           match_pattern =  @profile.send("#{type}_match_pattern")
           case op
           when "add" then 
             match_pattern.length.should_not be 0
-            match_pattern.first[:pattern].should ==@arguments[type]
+            match_pattern.first.pattern.should ==@arguments[type]
           when "remove" then 
             match_pattern.length.should be 0
           end
