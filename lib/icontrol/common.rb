@@ -1,5 +1,18 @@
+module AttributeInitializer  # :nodoc:
 
-# This is a helper for defining constants
+  ##
+  # Creates a new instance. +attributes+ is a hash with the attributes as keys and their values as values
+  # :singleton-method: new(attributes)
+
+
+  # This is a test
+  def initialize(attributes)
+    attributes.each do |k,v|
+      self.send(k.to_s + "=",v)
+    end
+  end
+end
+
 module IControl # :nodoc: 
 
   class NoSuchPoolException < Exception; end
