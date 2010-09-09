@@ -1,5 +1,22 @@
 module IControl # :nodoc:
   module LocalLB # :nodoc: 
+
+
+    ## 
+    #  A struct that describes a pattern, represented either as a glob or a regular expression. 
+    class MatchPatternString
+      attr_accessor :is_glob,:pattern
+      def initialize(options)
+        @is_glob = options[:is_glob] ? true : false
+        @pattern = options[:pattern]
+      end
+
+      # True if it is a regexp
+      def is_regexp?
+        return !@is_glob
+      end
+    end
+
     ##
     #  A list of possible levels for hardware acceleration. 
     class HardwareAccelerationMode
