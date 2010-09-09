@@ -5,7 +5,7 @@ module IControl # :nodoc:
       case result[:array_type]
       when /string/ then result[:item]
       when /iControl:LocalLB\.ProfileMatchPatternStringArray/ then map_object(result[:item][:values])
-      when /iControl:LocalLB\.MatchPatternString/ then [result[:item]].flatten.compact
+      when /iControl:LocalLB\.MatchPatternString/ then [result[:item]].flatten.compact.map{|i| IControl::LocalLB::MatchPatternString.new(i) }
       when /iControl:Common\.IPPortDefinition\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::PoolMember.new(i)}
       when /iControl:LocalLB.LBMethod/ then [result[:item]].flatten
       when /VirtualServerProfileAttribute\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::VirtualServer::ProfileAttribute.new(i) }
