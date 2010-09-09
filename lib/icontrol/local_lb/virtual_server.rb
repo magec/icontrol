@@ -422,19 +422,35 @@ module IControl # :nodoc:
         end 
       end
       
-      # Gets the lists of rules the specified virtual server is associated with.
+      # Gets the lists of rules the specified virtual server is associated with ordered by priority.
       # If a specified virtual server is not associated with any rule, then the list
       # of rules for that virtual server will be empty.
-      # The returned Array is actually an enumerator that proxies any made changes to the server
+      # Notice the returned Array is actually an enumerator that proxies any made changes to the server, 
+      # so every change made to that enumerator is sent over to the server to reflect the changes
       # 
       # === Examples
+      #  
       #  # Getting the rules a vitual server is associated with.
       #  rules = virtual_server.rules
       #
       #  # Adding a new rule with top priority
-      #  rules.unshift(
+      #  rules.unshift(IControl::LocalLB::Rule.find("my_rule")
+      #
+      #  # Adding a new rule with the least priority
+      #  rules << IControl::LocalLB::Rule.find("my_rule")
+      #
+      #  # Deleting the rules
+      #  rules.delete
+      #
       def rules
         @rules ||= RuleEnumerator.new( get_rule.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
+      end
+
+      # Allows the assignment of rules the +my_rules+ is and Array of rules, the priority is the order of the Array
+      def rules=(my_rules)
+        @rules = my_rules
+        @rules.parent = self
+        @rules.save!
       end
 
       # Gets the statistics.
@@ -442,6 +458,7 @@ module IControl # :nodoc:
         get_statistics.statistics
       end
       
+      # Removes every persistence_profile
       def remove_all_persistence_profiles! 
         IControl::LocalLB::VirtualServer.remove_all_persistence_profiles do |soap|
           soap.body = {
@@ -450,12 +467,13 @@ module IControl # :nodoc:
         end    
       end
 
+      # Overwrites the persistence profiles
       def persistence_profile=(persistence_profile)
         self.remove_all_persistence_profiles!
         add_persistence_profile(persistence_profile)
       end
 
-
+      # Deletes +persistence_profile+ from the list of persistence_profiles the virtual_server holds
       def remove_persistence_profile(persistence_profile)
         IControl::LocalLB::VirtualServer.remove_persistence_profile do |soap|
           soap.body = {
@@ -465,7 +483,7 @@ module IControl # :nodoc:
         end if persistence_profile && persistence_profile!= ""    
       end
 
-
+      # Sets the default persistence profile
       def default_persistence_profile=(persistence_profile)
         if persistence_profile
           self.remove_persistence_profile(persistence_profile)
@@ -483,16 +501,31 @@ module IControl # :nodoc:
         end if persistence_profile && persistence_profile!= ""
       end
 
-      def rules=(my_rules)
-        @rules = my_rules
-        @rules.parent = self
-        @rules.save!
-      end
-      
+      # Gets the lists of httpclass_profiles the specified virtual server is associated with ordered by priority.
+      # If a specified virtual server is not associated with any httpclass_profile, then the list
+      # of profiles for that virtual server will be empty.
+      # Notice the returned Array is actually an enumerator that proxies any made changes to the server, 
+      # so every change made to that enumerator is sent over to the server to reflect the changes
+      # 
+      # === Examples
+      #  
+      #  # Getting the profules a vitual server is associated with.
+      #  httpclass_profiles = virtual_server.httpclass_profiles
+      #
+      #  # Adding a new profile with top priority
+      #  httpclass_profiles.unshift(IControl::LocalLB::ProfileHttpClass.find("my_profile"))
+      #
+      #  # Adding a new profile with the least priority
+      #  httpclass_profiles << IControl::LocalLB::ProfileHttpClass.find("my_profile")
+      #
+      #  # Deleting the profiles
+      #  httpclass_profiles.delete
+      #      
       def httpclass_profiles
         @httpclass_profile ||= HttpClassProfileEnumerator.new( httpclass_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
       end
 
+      # Allows the assignment of httpclass profiles the +profiles+ is and Array of httpclass profiles, the priority is the order of the Array
       def httpclass_profiles=(profiles)
         @httpclass_profile = profiles
         @httpclass_profile.parent = self
@@ -545,10 +578,31 @@ module IControl # :nodoc:
         super
       end
 
+      # Gets the lists of authentication_profiles the specified virtual server is associated with ordered by priority.
+      # If a specified virtual server is not associated with any authentication_profile, then the list
+      # of profiles for that virtual server will be empty.
+      # Notice the returned Array is actually an enumerator that proxies any made changes to the server, 
+      # so every change made to that enumerator is sent over to the server to reflect the changes
+      # 
+      # === Examples
+      #  
+      #  # Getting the profiles a vitual server is associated with.
+      #  authentication_profiles = virtual_server.authentication_profiles
+      #
+      #  # Adding a new profile with top priority
+      #  authentication_profiles.unshift(IControl::LocalLB::ProfileAuth.find("my_profile"))
+      #
+      #  # Adding a new profile with the least priority
+      #  authentication_profiles << IControl::LocalLB::ProfileAuth.find("my_profile")
+      #
+      #  # Deleting the profiles
+      #  authentication_profiles.delete
+      #      
       def authentication_profiles
         @authentication_profile ||= AuthProfileEnumerator.new(authentication_profile.sort {|a,b| a.priority.to_i <=> b.priority.to_i}.map{|i| i}.compact,self)
       end
-
+      
+      # Allows the assignment of athentication profiles the +profiles+ is and Array of authentication profiles, the priority is the order of the Array
       def authentication_profiles=(profiles)
         @authentication_profile = profiles
         @authentication_profile.parent = self
@@ -676,18 +730,13 @@ module IControl # :nodoc:
           }
         end
       end
-      
 =begin
          add_profile
          remove_profile
          remove_all_profiles
-         remove_persistence_profile
-
-
          add_clone_pool
          remove_clone_pool
          remove_all_clone_pools
-
          + reset_statistics
          delete_persistence_record
          remove_httpclass_profile
