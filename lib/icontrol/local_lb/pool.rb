@@ -13,6 +13,18 @@ class IControl::LocalLB::Pool
     return pool_info.status if pool_info
   end
 
+
+  # Adds a member to this pool
+  def add_member(member = {})
+    argument = member.is_a?(Hash) ? IControl::Common::IPPortDefinition.new( :address => member[:address], :port => member[:port] ) : member
+    raise "Wrong Argument" if !argument.is_a? IControl::Common::IPPortDefinition
+    
+    IControl::LocalLB::Pool.add_member do |soap|
+      soap.body = { "pool_names" => {:value => pool_name },:members => { :item => { :value => argument.to_hash } } }
+    end
+    
+  end
+
   def lb_method
     aux = super
     return aux.first if aux.respond_to? 'first'
