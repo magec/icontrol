@@ -126,6 +126,10 @@ module IControl # :nodoc:
         @address = options[:address]
         @port = options[:port]
       end
+
+      def to_hash
+        return {:address => @address, :port => @port}
+      end
     end    
   end
 end
