@@ -12,6 +12,32 @@ describe IControl::LocalLB::Pool do
     end
   end
 
+  describe "add_member method" do
+    
+    it "should exists" do 
+      @pool.methods.should include(:add_member)
+    end
+
+    it "should add a new member when an IPPortDefinition is passed" do
+
+      register_conversation(["IControl.LocalLB.Pool_before_member_addition.get_member","IControl.LocalLB.Pool_after_member_addition.get_member"])
+      before_number = @pool.member.length
+      @pool.add_member(IControl::Common::IPPortDefinition.new(:address => "192.168.1.229",:port => "90"))
+      after_number = @pool.member.length
+      after_number.should ==( before_number + 1 )
+    end
+
+    it "should add a new member when Hash with address and port is passed" do
+
+      register_conversation(["IControl.LocalLB.Pool_before_member_addition.get_member","IControl.LocalLB.Pool_after_member_addition.get_member"])
+      before_number = @pool.member.length
+      @pool.add_member(:address => "192.168.1.229",:port => "90")
+      after_number = @pool.member.length
+      after_number.should ==( before_number + 1 )
+    end
+    
+  end
+
   describe "find method" do
 
     describe "when pool is not found" do 
