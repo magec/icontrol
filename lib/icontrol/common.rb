@@ -3,8 +3,7 @@ module AttributeInitializer  # :nodoc:
   ##
   # Creates a new instance. +attributes+ is a hash with the attributes as keys and their values as values
   # :singleton-method: new(attributes)
-
-
+  
   # This is a test
   def initialize(attributes)
     attributes.each do |k,v|
@@ -14,6 +13,39 @@ module AttributeInitializer  # :nodoc:
 end
 
 module IControl # :nodoc: 
+
+  class StatisticEntry
+    
+    class << self      
+      attr_accessor :entry_name,:entry_class
+      
+      def set_class_internals(entry_name,entry_class)
+        @entry_name = entry_name
+        @entry_class = entry_class
+        class_eval { attr_accessor(entry_name)}
+        return self
+      end
+    end
+
+    attr_accessor :statistics
+    
+    def self.from_xml(result)
+      result[:item] = [result[:item]].flatten
+      aux_result = result[:item].map do |i| 
+        aux = self.new
+        # The F5 does not respond to statistics the same way 
+        aux.send(self.entry_name.to_s + "=",
+                 self.entry_class.find(i[self.entry_name].is_a?(String) ? i[self.entry_name] : i[self.entry_name][:name]))
+        aux.statistics = {}
+        i[:statistics][:item].each do |entry|
+          aux.statistics[entry[:type].to_sym] = IControl::Common::ULong64.new(entry[:value])
+        end
+        aux
+      end
+      return aux_result.length == 1 ? aux_result.first.statistics : aux_result
+    end
+    
+  end
 
   class NoSuchPoolException < Exception; end
   class MethodNotImplementedException < Exception; end

@@ -130,24 +130,10 @@ module IControl # :nodoc:
         RESOURCE_TYPE_CMP_ENABLE_UNKNOWN = :RESOURCE_TYPE_CMP_ENABLE_UNKNOWN
       end
 
-      class StatisticEntry # :nodoc:
-        attr_accessor :virtual_server,:statistics
-
-        def self.from_xml(result)
-          result[:item] = [result[:item]].flatten
-          aux_result = result[:item].map do |i| 
-            aux = self.new
-            aux.virtual_server = IControl::LocalLB::VirtualServer.find(i[:virtual_server][:name])
-            aux.statistics = {}
-            i[:statistics][:item].each do |entry|
-              aux.statistics[entry[:type].to_sym] = IControl::Common::ULong64.new(entry[:value])
-            end
-            aux
-          end
-          return aux_result.length == 1 ? aux_result.first : aux_result
-        end
+      class StatisticEntry < IControl::StatisticEntry
+        set_class_internals(:virtual_server,IControl::LocalLB::VirtualServer)
       end
-
+      
       class ModuleScore # :nodoc:
         attr_accessor :tmos_module ,:score
         def initialize(attribules)
@@ -455,7 +441,7 @@ module IControl # :nodoc:
 
       # Gets the statistics.
       def statistics
-        get_statistics.statistics
+        get_statistics
       end
       
       # Removes every persistence_profile
