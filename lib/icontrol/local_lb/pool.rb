@@ -6,15 +6,23 @@ class IControl::LocalLB::Pool
   set_id_name :pool_name
 
   class StatisticEntry < IControl::StatisticEntry
-    set_class_internals(:pool_name,IControl::LocalLB::Pool)
+    set_item_initializer(:pool_name) do |i|
+      IControl::LocalLB::Pool.find(i[:pool_name])
+    end
   end
 
   def status_for(pool_member)
     status = IControl::LocalLB::PoolMember.get_object_status do |soap|
       soap.body = { "pool_names" => {:value => [@attributes[:id]] } }
     end
-    pool_info = status.find { |i| i.address == pool_member.address && i.port == pool_member.port }
+    pool_info = status.find { |i| i.ip_port_definition == pool_member.ip_port_definition }
     return pool_info.status if pool_info
+  end
+
+  def members
+    self.member.map do |i| 
+      IControl::LocalLB::PoolMember.new(i,self.pool_name)
+    end
   end
 
 

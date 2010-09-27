@@ -131,7 +131,9 @@ module IControl # :nodoc:
       end
 
       class StatisticEntry < IControl::StatisticEntry
-        set_class_internals(:virtual_server,IControl::LocalLB::VirtualServer)
+        set_item_initializer(:virtual_server) do |i|
+          IControl::LocalLB::VirtualServer.find(i[:virtual_server][:name])
+        end
       end
       
       class ModuleScore # :nodoc:

@@ -17,12 +17,12 @@ module IControl # :nodoc:
   class StatisticEntry
     
     class << self      
-      attr_accessor :entry_name,:entry_class
+      attr_accessor :entry_name,:entry_initializer
       
-      def set_class_internals(entry_name,entry_class)
+      def set_item_initializer (entry_name,&entry_initializer)
         @entry_name = entry_name
-        @entry_class = entry_class
-        class_eval { attr_accessor(entry_name)}
+        @entry_initializer = entry_initializer
+        class_eval { attr_accessor(entry_name) }
         return self
       end
     end
@@ -34,8 +34,7 @@ module IControl # :nodoc:
       aux_result = result[:item].map do |i| 
         aux = self.new
         # The F5 does not respond to statistics the same way 
-        aux.send(self.entry_name.to_s + "=",
-                 self.entry_class.find(i[self.entry_name].is_a?(String) ? i[self.entry_name] : i[self.entry_name][:name]))
+        aux.send(self.entry_name.to_s + "=",self.entry_initializer.call(i))
         aux.statistics = {}
         i[:statistics][:item].each do |entry|
           aux.statistics[entry[:type].to_sym] = IControl::Common::ULong64.new(entry[:value])
@@ -151,12 +150,16 @@ module IControl # :nodoc:
       #  Protocol is SCTP.             
       PROTOCOL_SCTP = :PROTOCOL_SCTP
     end
-
+    
     class IPPortDefinition
       attr_accessor :address,:port
       def initialize(options)
         @address = options[:address]
         @port = options[:port]
+      end
+
+      def ==(aux)
+        return aux.address == address && aux.port && port
       end
 
       def to_hash
