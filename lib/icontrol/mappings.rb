@@ -6,7 +6,7 @@ module IControl # :nodoc:
       when /string/ then result[:item]
       when /iControl:LocalLB\.ProfileMatchPatternStringArray/ then map_object(result[:item][:values])
       when /iControl:LocalLB\.MatchPatternString/ then [result[:item]].flatten.compact.map{|i| IControl::LocalLB::MatchPatternString.new(i) }
-      when /iControl:Common\.IPPortDefinition\[\]/ then result[:item][:item] ? [result[:item][:item]].flatten.map{|i| IControl::LocalLB::PoolMember.new(i)} : [] 
+      when /iControl:Common\.IPPortDefinition\[\]/ then result[:item][:item] ? [result[:item][:item]].flatten.map{|i| IControl::Common::IPPortDefinition.new(i)} : [] 
       when /iControl:LocalLB.LBMethod/ then [result[:item]].flatten
       when /VirtualServerProfileAttribute\[\]/ then [result[:item][:item]].flatten.map{|i| IControl::LocalLB::VirtualServer::ProfileAttribute.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerHttpClass\[\]/ then [result[:item][:item]].flatten.compact.sort{|a,b| a[:priority] <=> b[:priority]}.map{ |i| IControl::LocalLB::ProfileHttpClass.new(i)}
@@ -16,7 +16,8 @@ module IControl # :nodoc:
           end
         end.compact
       when /iControl:LocalLB\.PoolMember\.MemberObjectStatus\[\]\[/ then  [result[:item][:item]].map do |j| 
-          IControl::LocalLB::PoolMember.new( j[:member].merge(:status => j[:object_status])  ) 
+          ip_port_definition = IControl::Common::IPPortDefinition.new(:address => j[:member][:address ], :port => j[:member][:address])
+          IControl::LocalLB::PoolMember.new(ip_port_definition,nil, j[:object_status]) 
         end
       when /iControl:LocalLB\.Pool\.MonitorAssociation\[/ then IControl::LocalLB::MonitorRule.from_xml(result[:item][:monitor_rule])
       when /iControl:LocalLB\.ObjectStatus\[/ then (result[:item])
@@ -35,6 +36,8 @@ module IControl # :nodoc:
       when /iControl:LocalLB.VirtualServer.VirtualServerClonePool\[\]\[\d+\]/ then  [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServer::ClonePool.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerStatisticEntry\[/ then IControl::LocalLB::VirtualServer::StatisticEntry.from_xml(result)
       when /iControl:LocalLB.Pool.PoolStatisticEntry\[/ then IControl::LocalLB::Pool::StatisticEntry.from_xml(result)
+      when /iControl:LocalLB.PoolMember.MemberStatistics\[/ then IControl::LocalLB::PoolMember::StatisticEntry.from_xml({:item => {:item => result[:item][:member], :statistics => result[:item][:statistics][:item][:statistics]}})
+
       when /iControl:LocalLB.VirtualServer.VirtualServerAuthentication\[/ then [result[:item][:item]].flatten.compact.sort{|a,b| a[:priority] <=> b[:priority]}.map{ |i|  IControl::LocalLB::ProfileAuth.new(i)}
       when /y:boolean\[/ then  result[:item]
       when /iControl:LocalLB.VirtualServer.VirtualServerModuleScore\[/ then result[:item][:item] && IControl::LocalLB::VirtualServer::ModuleScore.new(result[:item])
@@ -52,7 +55,7 @@ module IControl # :nodoc:
     end
   end
   
-  MAPPINGS = { "A:Array" => ArrayMapper, "iControl:LocalLB.VirtualServer.VirtualServerStatistics" => StatMapper, "iControl:LocalLB.Pool.PoolStatistics" => StatMapper }
+  MAPPINGS = { "A:Array" => ArrayMapper, "iControl:LocalLB.VirtualServer.VirtualServerStatistics" => StatMapper, "iControl:LocalLB.Pool.PoolStatistics" => StatMapper ,"iControl:LocalLB.PoolMember.MemberStatistics" => StatMapper}
 
   class Mappings # :nodoc:
     def self.map_object(return_object)
