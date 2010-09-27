@@ -34,6 +34,7 @@ module IControl # :nodoc:
       when /iControl:LocalLB.VirtualServer.VirtualServerRule\[\]\[\d+\]/ then [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServerRule.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerClonePool\[\]\[\d+\]/ then  [result[:item][:item]].flatten.compact.map{ |i| IControl::LocalLB::VirtualServer::ClonePool.new(i) }
       when /iControl:LocalLB.VirtualServer.VirtualServerStatisticEntry\[/ then IControl::LocalLB::VirtualServer::StatisticEntry.from_xml(result)
+      when /iControl:LocalLB.Pool.PoolStatisticEntry\[/ then IControl::LocalLB::Pool::StatisticEntry.from_xml(result)
       when /iControl:LocalLB.VirtualServer.VirtualServerAuthentication\[/ then [result[:item][:item]].flatten.compact.sort{|a,b| a[:priority] <=> b[:priority]}.map{ |i|  IControl::LocalLB::ProfileAuth.new(i)}
       when /y:boolean\[/ then  result[:item]
       when /iControl:LocalLB.VirtualServer.VirtualServerModuleScore\[/ then result[:item][:item] && IControl::LocalLB::VirtualServer::ModuleScore.new(result[:item])
@@ -51,7 +52,7 @@ module IControl # :nodoc:
     end
   end
   
-  MAPPINGS = { "A:Array" => ArrayMapper, "iControl:LocalLB.VirtualServer.VirtualServerStatistics" => StatMapper }
+  MAPPINGS = { "A:Array" => ArrayMapper, "iControl:LocalLB.VirtualServer.VirtualServerStatistics" => StatMapper, "iControl:LocalLB.Pool.PoolStatistics" => StatMapper }
 
   class Mappings # :nodoc:
     def self.map_object(return_object)

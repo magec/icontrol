@@ -5,6 +5,10 @@ class IControl::LocalLB::Pool
 
   set_id_name :pool_name
 
+  class StatisticEntry < IControl::StatisticEntry
+    set_class_internals(:pool_name,IControl::LocalLB::Pool)
+  end
+
   def status_for(pool_member)
     status = IControl::LocalLB::PoolMember.get_object_status do |soap|
       soap.body = { "pool_names" => {:value => [@attributes[:id]] } }
