@@ -12,6 +12,24 @@ describe IControl::LocalLB::Pool do
     end
   end
 
+
+  describe "statisics method" do
+    it "should exists" do
+      lambda { @pool.statistics }.should_not raise_exception(NoMethodError)
+    end
+
+    it "should return a PoolStatisticEntry" do
+      @pool.statistics.should_not be_empty
+    end    
+
+    it "should return a hash of statistics" do
+      @pool.statistics.class.should be(Hash)
+      IControl::Common::StatisticType.constants.should include(@pool.statistics.first[0])
+
+    end    
+  end
+
+
   describe "add_member method" do
     
     it "should exists" do 
