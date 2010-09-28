@@ -15,9 +15,9 @@
 	A:arrayType="iControl:Common.IPPortDefinition[1]">
 <item>
 <address
-	s:type="y:string">192.168.6.3</address>
+	s:type="y:string">192.168.1.229</address>
 <port
-	s:type="y:long">5050</port>
+	s:type="y:long">90</port>
 </item>
 </item>
 </return>

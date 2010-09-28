@@ -29,6 +29,14 @@ describe IControl::LocalLB::Pool do
     end    
   end
 
+  describe "member statistics" do 
+    it "should allow the retrieval of statistics of its members" do 
+      @pool.members.should_not be_empty
+      @pool.members.each do |member|
+        member.statistics.class.should be(Hash)
+      end
+    end
+  end
 
   describe "add_member method" do
     
@@ -37,7 +45,6 @@ describe IControl::LocalLB::Pool do
     end
 
     it "should add a new member when an IPPortDefinition is passed" do
-
       register_conversation(["IControl.LocalLB.Pool_before_member_addition.get_member","IControl.LocalLB.Pool_after_member_addition.get_member"])
       before_number = @pool.member.length
       @pool.add_member(IControl::Common::IPPortDefinition.new(:address => "192.168.1.229",:port => "90"))
@@ -46,7 +53,6 @@ describe IControl::LocalLB::Pool do
     end
 
     it "should add a new member when Hash with address and port is passed" do
-
       register_conversation(["IControl.LocalLB.Pool_before_member_addition.get_member","IControl.LocalLB.Pool_after_member_addition.get_member"])
       before_number = @pool.member.length
       @pool.add_member(:address => "192.168.1.229",:port => "90")
@@ -89,8 +95,8 @@ describe IControl::LocalLB::Pool do
       
       new_created.id.should == "new_test_pool"
       new_created.lb_method.should  == "LB_METHOD_ROUND_ROBIN"
-      new_created.members.class.should be(Array)
-      new_created.members[0].class.should be(IControl::Common::IPPortDefinition)
+      #new_created.members.class.should be(Array)
+      #new_created.members[0].class.should be(IControl::Common::PoolMember)
 #      @pools = IControl::LocalLB::Pool.find(:all)
 #      @pools.map(&:id).include?("new_test_pool").should be(true)
     end
@@ -109,14 +115,16 @@ describe IControl::LocalLB::Pool do
     
   end
 
+  
+
   describe "status_for method" do 
     it "should return the status of a given pool member given its address and port" do
-      status = @pool.status_for IControl::LocalLB::PoolMember.new(:address => "192.168.6.3",:port => "5050")
+      status = @pool.status_for IControl::LocalLB::PoolMember.new(IControl::Common::IPPortDefinition.new(:address => "192.168.6.3",:port => "5050"))
       status.class.should be(Hash)
     end
 
     it "should return nil if the member is not found in the pool" do
-      status = @pool.status_for IControl::LocalLB::PoolMember.new(:address => "112.168.6.111",:port => "5050")
+      status = @pool.status_for IControl::LocalLB::PoolMember.new(IControl::Common::IPPortDefinition.new(:address => "112.168.6.111",:port => "5050"))
       status.should be(nil)
     end
 
@@ -150,8 +158,8 @@ describe IControl::LocalLB::Pool do
     end
 
     it "should return an array of PoolMembers" do
-      @pool.member.class.should be(Array)
-      @pool.member.first.class.should be(IControl::LocalLB::PoolMember)
+      @pool.members.class.should be(Array)
+      @pool.members.first.class.should be(IControl::LocalLB::PoolMember)
     end
   end
   
