@@ -37,6 +37,7 @@ end
 # Mapping of the soap conversations
 def register_fixtures
   FileList["spec/fixtures/soap/xml/*request*"].each do |file_name|
+    next if file_name =~ /after/ 
     response_file_name = file_name.gsub("request","response")
     request_body = File.read(file_name)
     FakeWeb.register_uri :post, EndpointHelper.soap_endpoint, File.read(file_name), :body => File.read(response_file_name) unless response_file_name =~ /after/
