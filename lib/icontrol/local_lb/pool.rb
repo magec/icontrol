@@ -62,39 +62,21 @@ class IControl::LocalLB::Pool
 
   def monitor_rule=(new_monitor_rule)
     item = 0
-
     templates = new_monitor_rule.monitor_templates.map { |i| {:"item#{item+=1}" => i}}
     rule_type = ( templates.length > 1 ) ? "MONITOR_RULE_TYPE_AND_LIST" : "MONITOR_RULE_TYPE_SINGLE"
-    response = IControl::LocalLB::Pool.set_monitor_association do |soap|
-      soap.body = {
-        "monitor_associations" => {
-          "item" => {
-            "pool_name" => @attributes[:id] ,
-
-            "monitor_rule" => {
-              :type => rule_type,
-              :quorum => new_monitor_rule.quorum,
-              "monitor_templates" => templates
-            }
-          }
-
-        }
-      }
-    end
+    return self.class.set_monitor_association("monitor_associations" => {
+                                           "item" => {"pool_name" => @attributes[:id] ,
+                                             "monitor_rule" => {:type => rule_type,:quorum => new_monitor_rule.quorum, "monitor_templates" => templates }
+                                           }
+                                         }
+                                         )
   end
 
   def self.create(attributes)    
-    response = super do |soap|      
-      item = 0
-      members = {}
-     attributes[:members].each{ |i| members[:"item#{item+=1}"] = {:address => i.address, :port => i.port } }
-
-      soap.body = {
-        "pool_names" => {:item => attributes[:id] },
-        "lb_methods" => {:item => attributes[:lb_method]},
-        "members"    => {:item => members}
-      }
-    end
+    item = 0
+    members = {}
+    attributes[:members].each{ |i| members[:"item#{item+=1}"] = {:address => i.address, :port => i.port } }
+    response = super("pool_names" => {:value=> attributes[:id] },"lb_methods" => {:item => attributes[:lb_method]},"members"    => {:item => members})    
     return new(attributes)
   end
 end

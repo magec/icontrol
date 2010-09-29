@@ -267,12 +267,7 @@ module IControl # :nodoc:
 
       # Sets the wildmask
       def wildmask=(wildmask)
-        IControl::LocalLB::VirtualServer.set_wildmask do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "wildmasks" => {:item => wildmask }
-          }
-        end    
+        self.set_wildmask("wildmasks" => {:item => wildmask } )
       end
 
 
@@ -282,24 +277,14 @@ module IControl # :nodoc:
 
       # Sets the type for the virtual server
       def type=(new_type)
-        IControl::LocalLB::VirtualServer.set_type do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "types" => {:item => new_type }
-          }
-        end
+        self.set_type("types" => {:item => new_type })
       end
 
       # Sets the destination IP and port
       # it receives an IPPortDefinition instance with the keys
       # :address and :port
       def destination=(destination)
-        IControl::LocalLB::VirtualServer.set_destination do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "destinations" => {:item => {:address => destination.address, :port => destination.port }}
-          }
-        end
+        self.set_destination("destinations" => {:item => {:address => destination.address, :port => destination.port }})
       end
 
       def disable
@@ -312,12 +297,7 @@ module IControl # :nodoc:
 
       # Sets the enabled state of the specified virtual servers.  
       def enabled_state=(state)
-        IControl::LocalLB::VirtualServer.set_enabled_state do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "states" => {:item => state }
-          }
-        end if state
+        self.set_enabled_state("states" => {:item => state}) if state
       end
 
       #  Gets the rate classes that will be used to rate limit the traffic. 
@@ -328,15 +308,11 @@ module IControl # :nodoc:
       
       # Sets the rate class that will be used to rate limit the traffic.
       def rate_class=(rate)
-        IControl::LocalLB::VirtualServer.set_rate_class do |soap|
-          soap.body = {"virtual_servers" => {:item => id},"rate_classes" => {:item => rate}}
-        end    
+        self.set_rate_class("rate_classes" => {:item => rate})
       end
 
       def connection_mirror_state=(state)
-        IControl::LocalLB::VirtualServer.set_connection_mirror_state do |soap|
-          soap.body = {"virtual_servers" => {:item => id},:states => {:item => state}}
-        end
+        self.set_connection_mirror_state(:states => {:item => state})
       end
       
       ##
@@ -345,12 +321,8 @@ module IControl # :nodoc:
 
       # Sets the connection limits of the specified virtual server.
       def connection_limit=(limit)
-        IControl::LocalLB::VirtualServer.set_connection_limit do |soap|
-          limit = limit.is_a?(IControl::Common::ULong64) ? limit : IControl::Common::ULong64.new(:low => limit)
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            :limits => {:item => limit.to_hash}}
-        end
+        limit = limit.is_a?(IControl::Common::ULong64) ? limit : IControl::Common::ULong64.new(:low => limit)
+        self.set_connection_limit(:limits => {:item => limit.to_hash})
       end
 
       # Gets the last hop pools for the specified virtual servers.
@@ -363,9 +335,7 @@ module IControl # :nodoc:
       # +new_type+ has to be an SnatType constant ( IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP or IControl::LocalLB::SnatType::SNAT_TYPE_NONE )
       def snat_type=(new_type)
         method = new_type == IControl::LocalLB::SnatType::SNAT_TYPE_AUTOMAP ? "set_snat_automap" : "set_snat_none"
-        IControl::LocalLB::VirtualServer.send(method) do |soap|
-          soap.body = {"virtual_servers" => {:item => id}}
-        end
+        self.send(method)
       end
 
       # Gets the SNAT pools to be used in iSNAT configurations for the specified virtual servers.
@@ -383,12 +353,7 @@ module IControl # :nodoc:
 
       # Sets de fallback persistence profile profile has to be a string
       def fallback_persistence_profile=(profile)
-        IControl::LocalLB::VirtualServer.set_fallback_persistence_profile do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "profile_names" => {:item => profile}
-          }
-        end if profile
+        self.set_fallback_persistence_profile("profile_names" => {:item => profile}) if profile
       end
 
       # Gets the lists of profiles the specified virtual server are associated with.
@@ -402,12 +367,7 @@ module IControl # :nodoc:
       end
 
       def default_pool=(pool)
-        IControl::LocalLB::VirtualServer.set_default_pool_name do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "default_pools" => {:item => pool && pool.id }
-          }
-        end 
+        self.set_default_pool_name("default_pools" => {:item => pool && pool.id })
       end
       
       # Gets the lists of rules the specified virtual server is associated with ordered by priority.
@@ -448,11 +408,7 @@ module IControl # :nodoc:
       
       # Removes every persistence_profile
       def remove_all_persistence_profiles! 
-        IControl::LocalLB::VirtualServer.remove_all_persistence_profiles do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id }
-          }
-        end    
+        self.remove_all_persistence_profiles
       end
 
       # Overwrites the persistence profiles
@@ -462,13 +418,15 @@ module IControl # :nodoc:
       end
 
       # Deletes +persistence_profile+ from the list of persistence_profiles the virtual_server holds
+
       def remove_persistence_profile(persistence_profile)
-        IControl::LocalLB::VirtualServer.remove_persistence_profile do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "profiles" => {:item => {:item => {"profile_name" => persistence_profile.profile_name,"default_profile" => persistence_profile.default_profile}}}
-          } 
-        end if persistence_profile && persistence_profile!= ""    
+        # We explicitly call method_missing because name clashing
+        self.method_missing(:remove_persistence_profile,"profiles" => {
+                                          :item => {
+                                            :item => {
+                                              "profile_name" => persistence_profile.profile_name,"default_profile" => persistence_profile.default_profile}
+                                          }
+                                        }) if persistence_profile && persistence_profile!= ""    
       end
 
       # Sets the default persistence profile
@@ -481,12 +439,13 @@ module IControl # :nodoc:
       end
 
       def add_persistence_profile(persistence_profile) # :nodoc:
-        IControl::LocalLB::VirtualServer.add_persistence_profile do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "profiles" => {:item => {:item => {"profile_name" => persistence_profile.profile_name,"default_profile" => persistence_profile.default_profile}}}
-          } 
-        end if persistence_profile && persistence_profile!= ""
+        # We explicitly call method_missing because name clashing
+        self.method_missing(:add_persistence_profile,"profiles" => {
+                                       :item => {
+                                         :item => {
+                                           "profile_name" => persistence_profile.profile_name,"default_profile" => persistence_profile.default_profile}
+                                       }
+                                     }) if persistence_profile && persistence_profile!= ""
       end
 
       # Gets the lists of httpclass_profiles the specified virtual server is associated with ordered by priority.
@@ -522,40 +481,25 @@ module IControl # :nodoc:
 
       #  Adds/associates HTTP class profiles to the specified virtual server.
       def add_httpclass_profile(http_class_profiles)
-        IControl::LocalLB::VirtualServer.add_httpclass_profile do |soap|
-          item = "item"; count = 0
-          profiles = {}
-          http_class_profiles.each{ |i| profiles[item + (count +=1).to_s] =  {"profile_name" => i.class == String ? i : i.id, "priority" => count } }
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "profiles" => {"value" =>  profiles  }
-          }
-        end    
+        item = "item"; count = 0
+        profiles = {}
+        http_class_profiles.each{ |i| profiles[item + (count +=1).to_s] =  {"profile_name" => i.class == String ? i : i.id, "priority" => count } }
+        self.method_missing(:add_httpclass_profile,"profiles" => {"value" =>  profiles  })
       end
 
 
       def add_rule(rules) # :nodoc:
-        IControl::LocalLB::VirtualServer.add_rule do |soap|
-          item = "item"; count = 0
-          my_rules = {}
-          rules.each{ |i| my_rules[item + (count +=1).to_s] =  {"rule_name" => i.class == String ? i : i.rule_name, "priority" => count } }
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "rules" => {"value" =>  my_rules  }
-          }
-        end    
+        item = "item"; count = 0
+        my_rules = {}
+        rules.each{ |i| my_rules[item + (count +=1).to_s] =  {"rule_name" => i.class == String ? i : i.rule_name, "priority" => count } }
+        self.method_missing(:add_rule,"rules" => {"value" =>  my_rules  })
       end
 
       def add_authentication_profile(profiles) # :nodoc:
-        IControl::LocalLB::VirtualServer.add_authentication_profile do |soap|
-          item = "item"; count = 0
-          my_profiles = {}
-          profiles.each{ |i| my_profiles[item + (count +=1).to_s] =  {"profile_name" => i.class == String ? i : i.id, "priority" => count } }
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "profiles" => {"value" =>  my_profiles  }
-          }
-        end    
+        item = "item"; count = 0
+        my_profiles = {}
+        profiles.each{ |i| my_profiles[item + (count +=1).to_s] =  {"profile_name" => i.class == String ? i : i.id, "priority" => count } }
+        self.method_missing(:add_authentication_profile,"profiles" => {"value" =>  my_profiles })
       end
 
       #  add_authentication_profile
@@ -610,12 +554,7 @@ module IControl # :nodoc:
       ##
       # Sets the protocol of the virtual server it receives a ProtocolType constant
       def protocol=(protocol)
-        IControl::LocalLB::VirtualServer.set_protocol do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "protocols" => {:item => protocol }
-          }
-        end
+        self.set_protocol("protocols" => {:item => protocol })
       end
       
       ##
@@ -633,12 +572,7 @@ module IControl # :nodoc:
       ##
       # Sets the translate address state receives a EnabledState constant
       def translate_address_state=(translate_address_state)
-        IControl::LocalLB::VirtualServer.set_translate_address_state do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "states" => {:item => translate_address_state}
-          }
-        end
+        self.set_translate_address_state("states" => {:item => translate_address_state})
       end
 
       # Sets the cmp_enabled_state to STATE_ENABLED
@@ -653,12 +587,7 @@ module IControl # :nodoc:
       
       # Sets the translate cmp address state receives a EnabledState constant
       def cmp_enabled_state=(cmp_enabled_state)
-        IControl::LocalLB::VirtualServer.set_cmp_enabled_state do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "states" => {:item => cmp_enabled_state}
-          }
-        end
+        self.set_cmp_enabled_state("states" => {:item => cmp_enabled_state})
       end
 
       #Sets the snat_pool, it receives a IControl::LocalLB::Pool instance
@@ -666,21 +595,12 @@ module IControl # :nodoc:
       #=== Example
       #  virtual_server.snap_pool = IControl::LocalLB::Pool.find("my_pool")
       def snat_pool=(snat_pool)
-        IControl::LocalLB::VirtualServer.set_snat_pool do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "snatpools" => {:item => snat_pool.id}
-          }
-        end if snat_pool
+        self.set_snat_pool("snatpools" => {:item => snat_pool.id}) if snat_pool
       end
 
       # Destroys the virtual server
       def destroy 
-        IControl::LocalLB::VirtualServer.delete_virtual_server do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id}
-          }
-        end
+        self.delete_virtual_server
       end
       
       # Destroy every virtual server
@@ -707,16 +627,7 @@ module IControl # :nodoc:
         count=0;
         vlans = {}
         vlan.vlans.each { |i| vlans["item#{count+=1}"]=i}
-        IControl::LocalLB::VirtualServer.set_vlan do |soap|
-          soap.body = {
-            "virtual_servers" => {:item => id},
-            "vlans" => { :item => 
-              { :state => vlan.state,
-                :vlans => vlans
-              }
-            }
-          }
-        end
+        self.set_vlan("vlans" => { :item => { :state => vlan.state, :vlans => vlans } })
       end
 =begin
          add_profile
