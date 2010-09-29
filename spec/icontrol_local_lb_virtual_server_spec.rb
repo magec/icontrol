@@ -38,7 +38,6 @@ describe IControl::LocalLB::VirtualServer do
       @virtual_server.default_pool.id.should ==("test_pool1")
       @virtual_server.default_pool = IControl::LocalLB::Pool.find("pool_test2")
       @virtual_server.default_pool.id.should ==("pool_test2")
-
     end
   end
 
@@ -163,6 +162,7 @@ describe IControl::LocalLB::VirtualServer do
   end
 
   describe "enabled_state= method" do
+
     it "should exist" do
       @virtual_server.methods.should include(:enabled_state=)
     end
