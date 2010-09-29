@@ -4,7 +4,7 @@ require 'net/https'
 require 'digest/md5'
 Savon::Request.log = false
 
-# The idea is to create an object proxy to the web service client with the same structure 
+# The idea is to create an object proxy to the web service client with the same structure
 # than the IControl stuff
 
 module IControl #:nodoc:
@@ -13,6 +13,8 @@ module IControl #:nodoc:
   end 
   
   class Base # :nodoc:
+
+    include Attributable
 
     def default_body
       { self.class.id_name.to_s + "s" =>  {:value => [@attributes[:id]] } }
@@ -51,25 +53,19 @@ module IControl #:nodoc:
     end    
 
     def method_missing(method_name,*args,&block)
-      
-       return super if @attributes.has_key? method_name 
+      # When calling an instance method we first check whether there is an argument with
+      # that name and return it. If that is not the case we fallback in the class default method but adding the instance as
+      # argument (the id), cause thats the way the api works, passing the id
 
-      if self.class.wsdl.operations.keys.include?("get_#{method_name}".to_sym)
-        return self.class.send("get_#{method_name}".to_sym) do |soap|
-          soap.body = default_body
-        end
-      end
+      return super if @attributes.has_key? method_name 
 
-      if self.class.wsdl.operations.keys.include?("#{method_name}".to_sym)
-        return self.class.send("#{method_name}".to_sym) do |soap|
-          soap.body = default_body
-        end
-      end
-      
-      return super
+      method_name = "get_#{method_name}".to_sym if self.class.wsdl.operations.keys.include?("get_#{method_name}".to_sym)
+      args[0]= default_body.merge( args[0] || {} )
+
+      return self.class.send(method_name,*args,block)
+
     end
 
-    include Attributable
 
   end
 
@@ -140,7 +136,7 @@ module IControl #:nodoc:
                 if IControl.configured?
                   @client = Savon::Client.new IControl.config[:base_url] + "/iControl/iControlPortal.cgi?WSDL=#{name.to_s}.#{class_name.to_s}"
                   @client.request.basic_auth IControl.config[:user],IControl.config[:password]
-                  @client.request.http.ssl_client_auth( :verify_mode => OpenSSL::SSL::VERIFY_NONE )
+                  @client.request.http.ssl_client_auth( :verify_mode => OpenSSL::SSL::VERIFY_NONE ) ## Security issue
                 else
                   raise IControl::NotConfiguredException
                 end
@@ -152,14 +148,15 @@ module IControl #:nodoc:
               # TODO: Make use of the delegation patern much more clean I think
                             
               define_method("method_missing") do |method_name,*args,&block|
-
+                
                 raise IControl::NotConfiguredException unless IControl.configured?
                 if client 
                   if client.wsdl.operations.keys.include?(method_name)  
-                    # When calling a soap method we transparently add the ns
+                    # When calling a soap method we transparently add the ns (I'd rather say we obscurely)
                     request = ""
                     response = client.send(method_name,*args) do |soap|
                       soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{name}/#{class_name}"
+                      soap.body = args.first if args.first && args.first.is_a?(Hash)
                       block.call(soap) if block
                       request = soap.to_xml
                     end
