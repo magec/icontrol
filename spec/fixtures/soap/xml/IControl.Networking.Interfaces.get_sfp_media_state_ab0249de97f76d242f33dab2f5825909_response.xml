@@ -1,0 +1,18 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_sfp_media_stateResponse
+	xmlns:m="urn:iControl:Networking/Interfaces">
+<return
+	s:type="A:Array"
+	A:arrayType="iControl:Common.EnabledState[1]">
+<item>STATE_DISABLED</item>
+</return>
+</m:get_sfp_media_stateResponse>
+</E:Body>
+</E:Envelope>

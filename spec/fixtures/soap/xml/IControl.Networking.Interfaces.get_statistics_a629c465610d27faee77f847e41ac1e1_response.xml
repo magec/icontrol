@@ -1,0 +1,186 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_statisticsResponse
+	xmlns:m="urn:iControl:Networking/Interfaces">
+<return
+	s:type="iControl:Networking.Interfaces.InterfaceStatistics">
+<statistics
+	s:type="A:Array"
+	A:arrayType="iControl:Networking.Interfaces.InterfaceStatisticEntry[1]">
+<item>
+<interface_name
+	s:type="y:string">1.1</interface_name>
+<statistics
+	s:type="A:Array"
+	A:arrayType="iControl:Common.Statistic[11]">
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_BYTES_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">191</high>
+<low
+	s:type="y:long">1376724314</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_BYTES_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">1595</high>
+<low
+	s:type="y:long">-1170739583</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">1</high>
+<low
+	s:type="y:long">691094939</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">1</high>
+<low
+	s:type="y:long">1797502337</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MULTICASTS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">34001372</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_MULTICASTS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">80940</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_ERRORS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_ERRORS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_DROPPED_PACKETS_IN</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">11</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_DROPPED_PACKETS_OUT</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">22</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+<item>
+<type
+	s:type="iControl:Common.StatisticType">STATISTIC_COLLISIONS</type>
+<value
+	s:type="iControl:Common.ULong64">
+<high
+	s:type="y:long">0</high>
+<low
+	s:type="y:long">0</low>
+</value>
+<time_stamp
+	s:type="y:long">0</time_stamp>
+</item>
+</statistics>
+</item>
+</statistics>
+<time_stamp
+	s:type="iControl:Common.TimeStamp">
+<year
+	s:type="y:long">2010</year>
+<month
+	s:type="y:long">10</month>
+<day
+	s:type="y:long">1</day>
+<hour
+	s:type="y:long">11</hour>
+<minute
+	s:type="y:long">22</minute>
+<second
+	s:type="y:long">49</second>
+</time_stamp>
+</return>
+</m:get_statisticsResponse>
+</E:Body>
+</E:Envelope>

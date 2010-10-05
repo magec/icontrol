@@ -1,0 +1,27 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_media_option_sfpResponse
+	xmlns:m="urn:iControl:Networking/Interfaces">
+<return
+	s:type="A:Array"
+	A:arrayType="iControl:Networking.Interfaces.InterfaceMediaOption[1]">
+<item>
+<interface_name
+	s:type="y:string">1.1</interface_name>
+<media_options
+	s:type="A:Array"
+	A:arrayType="iControl:Networking.Interfaces.MediaType[2]">
+<item>MT_NONE</item>
+<item>MT_AUTO</item>
+</media_options>
+</item>
+</return>
+</m:get_media_option_sfpResponse>
+</E:Body>
+</E:Envelope>
