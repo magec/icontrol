@@ -15,3 +15,6 @@ require 'icontrol/local_lb/rule'
 require 'icontrol/local_lb/virtual_server'
 require 'icontrol/local_lb/monitor'
 require 'icontrol/local_lb/monitor_rule'
+require 'icontrol/networking/interfaces'
+require 'icontrol/networking/common'
+

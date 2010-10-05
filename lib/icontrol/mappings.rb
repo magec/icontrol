@@ -1,7 +1,81 @@
 module IControl # :nodoc:
+  
+  ##
+  # This method will translate the icontrol struct into a ruby class following the convention used in the source code
+  # That is:
+  # The classes will mantain an structure of: IControl::Module::Class[::Class]
+  # The inner types like iControl:LocalLB.VirtualServer.VirtualServerRule instead of translate to
+  #           IControl::LocalLB::VirtualServer::VirtualServerRule the translate to
+  #           IControl::LocalLB::VirtualServer::Rule to avoid redundancy
+  def self.icontrol_to_ruby_type(type)
+
+    type = type.gsub("iControl","IControl")
+    type = type.gsub(/\[\d*\]/,"")
+
+    return Fixnum if type == "y:long"
+    return String if type == "y:string"
+
+    splitted = type.split(":")
+    temp_name = [splitted.shift,*splitted.shift.split(".")]
+    last_names = temp_name.last(2)
+    if last_names.last =~ /#{last_names.first}/
+      temp_name.pop
+      temp_name << last_names.last.gsub(last_names.first,"")
+    end
+
+    return eval(temp_name.join("::"))
+
+  end
+
 
   class ArrayMapper # :nodoc: 
     def self.map_object(result)
+
+      ## First of all we check how many items do we have
+      elements = []
+      regexp = /\[(\d*)\]/
+
+      if result[:array_type] =~ regexp
+        ## There should be a better way to match several times
+        elements << (( $1 == "" ) ? -1 : $1.to_i)
+        while $' =~ regexp
+          elements << (( $1 == "" ) ? -1 : $1.to_i)
+        end
+      end
+
+      klass = IControl.icontrol_to_ruby_type(result[:array_type])
+
+      aux = []
+
+      elements.each do |element_number|
+        
+        # To solve a bug in the library (savon) that not 
+        # returns an array when just 1 result is received
+        result[:item] = [result[:item]] if element_number == 1  
+
+        element_number.times do |i|
+          
+          if klass.to_s =~ /IControl/
+            # In this case we are dealing with a IControl Type
+            aux << klass.from_value(result[:item].pop)
+          else
+
+            # In this case its a ruby type
+            if klass == Fixnum
+              aux << result[:item].pop.to_i
+            end
+            case klass
+            when Fixnum then puts "JUNINO" ; aux << result[:item].pop.to_i ; puts "JUAN"
+            when String then aux << result[:item].pop
+            end
+          end
+        end
+      end
+
+      if aux.length > 0
+        return aux
+      end
+
       case result[:array_type]
       when /string/ then result[:item]
       when /iControl:LocalLB\.ProfileMatchPatternStringArray/ then map_object(result[:item][:values])
@@ -41,8 +115,9 @@ module IControl # :nodoc:
       when /iControl:LocalLB.VirtualServer.VirtualServerAuthentication\[/ then [result[:item][:item]].flatten.compact.sort{|a,b| a[:priority] <=> b[:priority]}.map{ |i|  IControl::LocalLB::ProfileAuth.new(i)}
       when /y:boolean\[/ then  result[:item]
       when /iControl:LocalLB.VirtualServer.VirtualServerModuleScore\[/ then result[:item][:item] && IControl::LocalLB::VirtualServer::ModuleScore.new(result[:item])
-
       else
+        puts result.inspect
+
         raise "No type matching found (#{result[:array_type]})" 
       end
     end

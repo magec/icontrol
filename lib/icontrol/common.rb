@@ -12,6 +12,16 @@ module AttributeInitializer  # :nodoc:
   end
 end
 
+module ConstGetter
+  def from_hash(hash)
+    return class_eval { hash[:item] }
+  end
+
+  def from_value(value)
+    return class_eval {value}
+  end
+end
+
 module IControl # :nodoc: 
 
   class StatisticEntry
@@ -77,14 +87,14 @@ module IControl # :nodoc:
       def to_f
         retVal = 0.0
         if @high >=0
-          retVal = @high << 32 & 0xffff0000
+          retVal = @high << 32
         else 
-          retVal = ((@high & 0x7fffffff) << 32) + (0x80000000 << 32)
+          retVal = ((@high & 0x7fffffff) << 32) | (0x80000000 << 32)
         end
         if  @low >=0
           retVal += @low
         else 
-          retVal += ((@low & 0x7fffffff) + 0x7fffffff)
+          retVal += ((@low & 0x7fffffff) | 0x7fffffff)
         end
         return retVal; 
       end
@@ -107,11 +117,11 @@ module IControl # :nodoc:
     ## 
     #  A list of enabled states. 
     class EnabledState  
+
+      class << self; include ConstGetter end
       
       STATE_DISABLED = :STATE_DISABLED
-
       STATE_ENABLED  = :STATE_ENABLED 
-      
     end
 
     ##

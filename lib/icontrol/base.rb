@@ -20,6 +20,11 @@ module IControl #:nodoc:
       { self.class.id_name.to_s + "s" =>  {:value => [@attributes[:id]] } }
     end
 
+    def methods      
+      getters = self.class.wsdl.operations.keys.select{|i| i =~ /^get_/ }.map{ |i| i[4..(-1)].to_sym }
+      super + getters
+    end
+
     # Generic type mapping
     def self.map_response(response)
       response_key = response.keys.first
@@ -87,7 +92,7 @@ module IControl #:nodoc:
   }
 
   def self.save_test_info(request,response,wsdl,class_name,method_name)
-    
+
     request_md5 = Digest::MD5.hexdigest(request)
     request_file_name  = request_raw_file_name = File.join(IControl.config[:test_path],"soap","xml","#{class_name}.#{method_name}_#{request_md5}_request")
     response_file_name = response_raw_file_name = File.join(IControl.config[:test_path],"soap","xml","#{class_name}.#{method_name}_#{request_md5}_response")

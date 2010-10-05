@@ -6,6 +6,9 @@ require 'spec'
 require 'spec/autorun'
 require 'fakeweb'
 require 'ap'
+
+REAL_MODE=false # Extremely dangerous tests are going to be done on the device
+
 Savon::Request.log = false
 FakeWeb.allow_net_connect = false
 
@@ -38,18 +41,36 @@ end
 def register_fixtures
   FileList["spec/fixtures/soap/xml/*request*"].each do |file_name|
     next if file_name =~ /after/ 
-    response_file_name = file_name.gsub("request","response")
+    response_file_name = file_name.gsub("request.xml","response.xml")
     request_body = File.read(file_name)
     FakeWeb.register_uri :post, EndpointHelper.soap_endpoint, File.read(file_name), :body => File.read(response_file_name) unless response_file_name =~ /after/
   end
 end
 
 Spec::Runner.configure do |config|
-  IControl.config[:base_url] = "https://localhost:443"
-  IControl.config[:user] = "test_user"
-  IControl.config[:password] = "secret"
+  
+  if !REAL_MODE
 
-  register_wsdls
-  register_fixtures
-#  FakeWeb::Registry.instance.uri_map.each {|k,v| ap k; v.each {|i,j| ap j.keys }}
+    IControl.config[:base_url] = "https://localhost:443"
+    IControl.config[:user] = "test_user"
+    IControl.config[:password] = "secret"
+    
+    register_wsdls
+    register_fixtures
+
+  else
+    begin
+      Savon::Request.log = true
+      FakeWeb.allow_net_connect = true
+      if file_contents = File.open("/etc/f5/pre.cfg").read
+        IControl.config = YAML.load(file_contents)
+      end
+      IControl.config[:test] = true
+      IControl.config[:test_path] = File.join(File.dirname(__FILE__),"fixtures")
+    rescue
+      puts "There was an error when opening/parsing config file"
+      puts $!
+    end
+  end
+
 end
