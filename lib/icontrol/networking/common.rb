@@ -3,10 +3,7 @@ module IControl # :nodoc:
 
     ##
     # An enumeration of media statuses
-    class MediaStatus
-      
-      class << self; include ConstGetter end
-      
+    class MediaStatus < IControl::Enumeration
       # Active status, has link and is initialized.
       MEDIA_STATUS_UP = :MEDIA_STATUS_UP
       # Down status, has no link and is initialized.
@@ -23,10 +20,7 @@ module IControl # :nodoc:
 
     ##
     #  An enumeration of filter actions. 
-    class FilterAction
-
-      class << self; include ConstGetter end
-
+    class FilterAction < IControl::Enumeration
       # Invalid state.
       FILTER_ACTION_NONE = :FILTER_ACTION_NONE
       # Accept the packet.
@@ -41,10 +35,7 @@ module IControl # :nodoc:
 
     ##
     # A list of flow control types. 
-    class FlowControlType
-
-      class << self; include ConstGetter end
-
+    class FlowControlType < IControl::Enumeration
       # No pausing.
       FLOW_CONTROL_PAUSE_NONE =:FLOW_CONTROL_PAUSE_NONE
       # Pause transmitting.
@@ -57,10 +48,7 @@ module IControl # :nodoc:
 
     ##
     #  A list of learning modes. 
-    class LearningMode
-
-      class << self; include ConstGetter end
-
+    class LearningMode < IControl::Enumeration
       # Learning is enabled, packets are forwarded.
       LEARNING_MODE_ENABLE_FORWARD =:LEARNING_MODE_ENABLE_FORWARD
       # Learning is disabled, packets are forwarded.
@@ -71,10 +59,7 @@ module IControl # :nodoc:
 
     ##
     #  A list of member tagged/untagged types.
-    class MemberTagType 
-
-      class << self; include ConstGetter end
-
+    class MemberTagType < IControl::Enumeration
       # Tagged member.
       MEMBER_TAGGED =:MEMBER_TAGGED
       # Untagged member. 
@@ -83,10 +68,7 @@ module IControl # :nodoc:
 
     ##
     # A list of member types.
-    class MemberType 
-
-      class << self; include ConstGetter end
-
+    class MemberType < IControl::Enumeration
       # The member is an interface.
       MEMBER_INTERFACE =:MEMBER_INTERFACE
       # The member is a trunk. 
@@ -95,10 +77,7 @@ module IControl # :nodoc:
 
     ##
     # A list of PHY master/slave relationship modes.
-    class PhyMasterSlaveMode 
-
-      class << self; include ConstGetter end
-
+    class PhyMasterSlaveMode < IControl::Enumeration
       # No PHY master/slave relationship.
       PHY_MODE_NONE =:PHY_MODE_NONE
       # PHY slave mode.
@@ -111,10 +90,7 @@ module IControl # :nodoc:
 
     ##
     # A list of route entry types.
-    class RouteEntryType 
-
-      class << self; include ConstGetter end
-
+    class RouteEntryType  < IControl::Enumeration
       # Route uses gateway.
       ROUTE_TYPE_GATEWAY =:ROUTE_TYPE_GATEWAY
       # Route uses pool.
@@ -127,10 +103,7 @@ module IControl # :nodoc:
 
     ##
     # A list of Spanning Tree Protocol link types. The spanning tree algorithms include important optimizations that can only be used on point-to-point links, that is, on links which connect just two bridges. If these optimizations are used on shared links, incorrect or unstable behavior may result. By default, the implementation assumes that full-duplex links are point-to-point and that half-duplex links are shared.
-    class STPLinkType 
-
-      class << self; include ConstGetter end
-
+    class STPLinkType < IControl::Enumeration
       # Point-To-Point links.
       STP_LINK_TYPE_P2P =:STP_LINK_TYPE_P2P
       # Shared links.
@@ -141,10 +114,7 @@ module IControl # :nodoc:
 
     ##
     # A list of Spanning Tree Protocol modes. The difference between STP_MODE_TYPE_DISABLED and STP_MODE_TYPE_PASSTHROUGH is that the pass-through mode forwards spanning tree bridge protocol data units (BPDUs) received on any interface to all other interfaces, whereas the disabled mode discards them.
-    class STPModeType 
-
-      class << self; include ConstGetter end
-
+    class STPModeType < IControl::Enumeration
       # Disables Spanning Tree Protocol entirely.
       STP_MODE_TYPE_DISABLED =:STP_MODE_TYPE_DISABLED
       # BIG-IP will be transparent to spanning tree BPDUs, forwarding the BPDUs to all interfaces.
@@ -159,10 +129,7 @@ module IControl # :nodoc:
 
     ##
     # A list of Spanning Tree Protocol role types.
-    class STPRoleType 
-
-      class << self; include ConstGetter end
-
+    class STPRoleType < IControl::Enumeration
       # Disabled.
       STP_ROLE_TYPE_DISABLE =:STP_ROLE_TYPE_DISABLE
       # Root role.
@@ -179,10 +146,7 @@ module IControl # :nodoc:
 
     ##
     # A list of Spanning Tree Protocol states. 
-    class STPStateType 
-
-      class << self; include ConstGetter end
-
+    class STPStateType < IControl::Enumeration
       # STP detaching state.
       STP_STATE_TYPE_DETACH =:STP_STATE_TYPE_DETACH
       # STP blocking state.

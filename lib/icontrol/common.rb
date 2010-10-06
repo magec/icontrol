@@ -12,17 +12,63 @@ module AttributeInitializer  # :nodoc:
   end
 end
 
-module ConstGetter
-  def from_hash(hash)
-    return class_eval { hash[:item] }
-  end
-
-  def from_value(value)
-    return class_eval {value}
-  end
-end
-
 module IControl # :nodoc: 
+
+  class Struct
+    
+    class << self
+      
+      attr_accessor :attributes
+
+      ##
+      # When defining an struct we have to indicate every attribute type cause the soap responses are typed
+      # This method accepts three arguments:
+      #   attribute           = The name the atribute is going to be referenced in the instances (i.e. the ruby name)
+      #   klass               = The Ruby class of the attribute
+      #   soap_attribute_name = The soap name of the attribute in case it differs from the attribute name
+      def set_icontrol_attribute(attribute,klass,soap_attribute_name = nil)
+        @attributes ||= {}
+        @attributes[attribute] = { :klass => klass }
+        @attributes[:soap_attributes] ||= {}
+        if soap_attribute_name
+          # This is done to speed up the attribute look_up (sometimes the soap name is not convenient)
+          @attributes[:soap_attributes] ||= {soap_attribute_name => attribute}
+        else
+          @attributes[:soap_attributes] ||= {attribute => attribute}
+        end
+      end
+
+
+      def from_soap
+        
+      end
+    end    
+    
+    def initialize(attributes)
+      
+    end
+
+    # When an attribute is call its value is returned
+    def method_missing(method_name,*args)
+      
+    end
+
+
+  end
+
+  class Enumeration
+    
+    class << self
+        def from_hash(hash)
+          return class_eval { hash[:item] }
+        end
+        
+        def from_value(value)
+          return class_eval {value}
+        end
+    end
+    
+  end
 
   class StatisticEntry
     
@@ -60,6 +106,7 @@ module IControl # :nodoc:
   class MethodNotImplementedException < Exception; end
 
   module Common # :nodoc:
+
     
     class VLANFilterList
       attr_accessor :state,:vlans
@@ -116,10 +163,7 @@ module IControl # :nodoc:
     
     ## 
     #  A list of enabled states. 
-    class EnabledState  
-
-      class << self; include ConstGetter end
-      
+    class EnabledState < IControl::Enumeration
       STATE_DISABLED = :STATE_DISABLED
       STATE_ENABLED  = :STATE_ENABLED 
     end

@@ -22,10 +22,7 @@ def register_conversation(conversation)
     file_name = FileList["spec/fixtures/soap/xml/*#{op}_*request*"].first
     response_file_names << file_name.gsub("request","response")
   end
-  
-
   FakeWeb.register_uri :post, EndpointHelper.soap_endpoint, File.read(file_name), response_file_names.map{ |i| {:body => File.read(i)}}
- 
 end
 
 # Mapping of the wsdl's

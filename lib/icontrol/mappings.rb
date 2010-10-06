@@ -59,7 +59,7 @@ module IControl # :nodoc:
             # In this case we are dealing with a IControl Type
             aux << klass.from_value(result[:item].pop)
           else
-
+            
             # In this case its a ruby type
             if klass == Fixnum
               aux << result[:item].pop.to_i

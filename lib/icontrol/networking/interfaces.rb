@@ -154,10 +154,19 @@ module IControl # :nodoc:
       def set_stp_protocol_detection_reset_state
       end
 
-      class MediaType
-        
-        class << self; include ConstGetter end
+      class StatisticEntry < IControl::StatisticEntry
+        set_item_initializer(:interface) do |i|
+          IControl::Network::Interfaces.find(i[:interface_name][:name])
+        end
+      end
 
+      class Statistics < IControl::Struct
+      end
+
+      class InterfaceMediaOption < IControl::Struct
+      end
+      
+      class MediaType < IControl::Enumeration
         # Deselect All Media.
         Mt_None =:Mt_None
         # Auto-Select Best Media.

@@ -189,6 +189,7 @@ describe IControl::Networking::Interfaces do
     end
 
     it "should return without raise any exception" do
+      @interface.stp_link_type
       lambda { @interface.stp_link_type }.should_not raise_exception
     end
 
