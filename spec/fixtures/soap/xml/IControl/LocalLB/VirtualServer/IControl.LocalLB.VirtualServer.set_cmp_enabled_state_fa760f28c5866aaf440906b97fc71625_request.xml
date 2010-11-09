@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/VirtualServer"><env:Body><wsdl:set_cmp_enabled_state><virtual_servers><value>test_virtual_server</value></virtual_servers><states><item>STATE_DISABLED</item></states></wsdl:set_cmp_enabled_state></env:Body></env:Envelope>

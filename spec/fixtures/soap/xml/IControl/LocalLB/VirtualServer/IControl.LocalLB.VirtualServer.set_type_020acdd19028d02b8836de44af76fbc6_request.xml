@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/VirtualServer"><env:Body><wsdl:set_type><virtual_servers><value>test_virtual_server</value></virtual_servers><types><item>RESOURCE_TYPE_POOL</item></types></wsdl:set_type></env:Body></env:Envelope>

@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/VirtualServer"><env:Body><wsdl:delete_virtual_server><virtual_servers><value>test_virtual_server2</value></virtual_servers></wsdl:delete_virtual_server></env:Body></env:Envelope>

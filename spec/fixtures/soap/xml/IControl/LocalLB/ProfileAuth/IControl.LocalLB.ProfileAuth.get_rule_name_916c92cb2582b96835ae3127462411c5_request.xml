@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/ProfileAuth"><env:Body><wsdl:get_rule_name><s><value>ldap</value></s></wsdl:get_rule_name></env:Body></env:Envelope>

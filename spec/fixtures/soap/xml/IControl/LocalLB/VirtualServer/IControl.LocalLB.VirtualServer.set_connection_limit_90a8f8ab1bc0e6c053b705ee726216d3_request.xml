@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/VirtualServer"><env:Body><wsdl:set_connection_limit><virtual_servers><value>test_virtual_server</value></virtual_servers><limits><item><high>0</high><low>4194967294</low></item></limits></wsdl:set_connection_limit></env:Body></env:Envelope>

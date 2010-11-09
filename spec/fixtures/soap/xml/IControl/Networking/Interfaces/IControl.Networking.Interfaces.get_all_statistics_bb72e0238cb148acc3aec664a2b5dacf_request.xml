@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:Networking/Interfaces"><env:Body><wsdl:get_all_statistics><interfaces><value>1.1</value></interfaces></wsdl:get_all_statistics></env:Body></env:Envelope>

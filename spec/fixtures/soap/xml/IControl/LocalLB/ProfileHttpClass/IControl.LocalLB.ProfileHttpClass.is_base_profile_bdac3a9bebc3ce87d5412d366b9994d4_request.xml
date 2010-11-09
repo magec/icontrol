@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/ProfileHttpClass"><env:Body><wsdl:is_base_profile><profile_names><value>test_profile1</value></profile_names></wsdl:is_base_profile></env:Body></env:Envelope>

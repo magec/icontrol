@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/VirtualServer"><env:Body><wsdl:get_translate_address_state><virtual_servers><value>test_virtual_server</value></virtual_servers></wsdl:get_translate_address_state></env:Body></env:Envelope>

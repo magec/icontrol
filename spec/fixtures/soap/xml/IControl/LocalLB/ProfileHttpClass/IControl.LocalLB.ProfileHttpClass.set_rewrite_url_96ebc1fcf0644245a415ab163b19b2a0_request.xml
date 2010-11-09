@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/ProfileHttpClass"><env:Body><wsdl:set_rewrite_url><profile_names><value>test_profile1</value></profile_names><urls><item><value></value><default_flag>true</default_flag></item></urls></wsdl:set_rewrite_url></env:Body></env:Envelope>
