@@ -6,6 +6,9 @@ end
 class LongSequence
 end
 
+class DoubleSequence
+end
+
 module IControl
   
   class Base
