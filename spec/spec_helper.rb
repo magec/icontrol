@@ -1,6 +1,8 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
 require 'icontrol'
+require 'fixtures/endpoint_helper'
 require "rake"
 require 'spec'
 require 'spec/autorun'
@@ -14,7 +16,7 @@ Savon.log = false
 
 FakeWeb.allow_net_connect = false
 
-FileList["spec/fixtures/**/*.rb"].each { |fixture| require fixture }
+#FileList["spec/fixtures/**/*.rb"].each { |fixture| require fixture }
 
 
 # Mapping of the wsdl's
