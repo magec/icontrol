@@ -1,0 +1,23 @@
+<E:Envelope
+	xmlns:E="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:A="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:y="http://www.w3.org/2001/XMLSchema"
+	xmlns:iControl="urn:iControl"
+	E:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<E:Body>
+<m:get_listResponse
+	xmlns:m="urn:iControl:LocalLB/Pool">
+<return
+	s:type="A:Array"
+	A:arrayType="y:string[3]">
+<item>new_test_pools</item>
+<item>pool_testlink</item>
+<item>test_pool_2</item>
+<item>test_pool1</item>
+<item>pool_test1</item>
+<item>pool_test2</item>
+</return>
+</m:get_listResponse>
+</E:Body>
+</E:Envelope>
