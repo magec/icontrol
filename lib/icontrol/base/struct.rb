@@ -24,12 +24,13 @@ module IControl # :nodoc:
         def from_soap(xml)
           aux = {}
           @attributes.each do |k,v|
-            if v.ancestors.find{ |i| i.name  =~ /^IControl/ }              
+            
+            if v.respond_to?(:from_soap) # v.ancestors.find{ |i| i.name  =~ /^IControl/ }              
               aux[k] = v.from_soap(xml[k])
             else 
               aux[k] = xml[k]
             end
-          end
+          end if xml
           return self.new(aux)
         end
       end    

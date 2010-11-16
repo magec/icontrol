@@ -1,12 +1,36 @@
-class StringSequence
-  def self.from_soap(xml)
-    return xml[:item]
+class BasicSequence
+  class << self
+    def set_conversion_method(conversion_method)
+      @conversion_method = conversion_method
+    end
+    def from_soap(xml)
+      return [*xml[:item]].map { |i| i.send(@conversion_method) }
+    end
   end
 end
-class LongSequence
+
+class StringSequence < BasicSequence
+  set_conversion_method :to_s
 end
 
-class DoubleSequence
+class NumericSequence < BasicSequence
+  set_conversion_method :to_i
+end
+
+class FloatSequence < BasicSequence
+  set_conversion_method :to_f
+end
+
+class LongSequence < BasicSequence
+  set_conversion_method :to_i
+end
+
+class DoubleSequence < BasicSequence
+  set_conversion_method :to_f
+end
+
+class FixnumSequence < BasicSequence
+    set_conversion_method :to_i
 end
 
 module IControl
