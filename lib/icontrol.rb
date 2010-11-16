@@ -7,6 +7,16 @@ require 'icontrol/base'
 
 module IControl
 
+  module LocalLB
+    class VirtualServer < IControl::Base
+      class << self
+        def id_name
+          "virtual_server"
+        end
+      end
+    end
+  end
+  
   module GlobalLB
     class VirtualServerDefinitionSequence < IControl::Base::Sequence ; end
   end
