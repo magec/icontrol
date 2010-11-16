@@ -10,6 +10,7 @@ require 'base/struct'
 require 'base/enumeration'
 require 'base/mappings'
 require 'base/sequence'
+require 'base/predeclarations'
 
 
 Savon.log = false
