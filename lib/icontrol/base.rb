@@ -35,36 +35,9 @@ module IControl #:nodoc:
   @config = {
     :user     => "",               # username and password
     :password => "",
-    :base_url => "",                # base url for the web-service (https://example.com/)
-    :test_mode => false,           # When test mode is set, the soap responses are saved (this is done to ease the testing fixtures generation)
-    :test_path => File.join(File.dirname(__FILE__),"..","..","spec","fixtures"),
-    :test_file_prefix => ""
+    :base_url => "",               # base url for the web-service (https://example.com/)
   }
 
-  def self.save_test_info(request,response,wsdl,class_name,method_name)
-
-    request_md5 = Digest::MD5.hexdigest(request)
-    request_file_name  = request_raw_file_name = File.join(IControl.config[:test_path],"soap","xml","#{class_name}.#{method_name}_#{request_md5}_request")
-    response_file_name = response_raw_file_name = File.join(IControl.config[:test_path],"soap","xml","#{class_name}.#{method_name}_#{request_md5}_response")
-
-    timestamp = Time.now.strftime("%Y%m%d%m%S") + Time.now.usec.to_s 
-
-    while File.exists?(response_file_name + ".xml") || File.exists?(request_file_name + ".xml")
-      response_file_name = response_raw_file_name + "." + timestamp
-      request_file_name = request_raw_file_name + "." + timestamp
-    end
-
-    File.open(response_file_name + ".xml","w") { |file| file << response.to_xml }
-    File.open(request_file_name + ".xml","w") { |file| file << request }
-    
-    wsdl_file_name = File.join(IControl.config[:test_path],"wsdl","xml","#{class_name}.xml")
-    unless File.exists?(wsdl_file_name) 
-      File.open(wsdl_file_name,"w") do |file|
-        file << wsdl
-      end
-    end
-  end
-  
   class Base # :nodoc:
     
     include IControl::Base::Attributable
@@ -77,6 +50,10 @@ module IControl #:nodoc:
 
       def parent_module_name
         name.split("::")[-2]
+      end
+
+      def parent_modules
+        name.split("::")[0..-2]
       end
 
       def client        
@@ -136,14 +113,12 @@ module IControl #:nodoc:
           if self.client.wsdl.operations.keys.include?(method_name)  
             # When calling a soap method we transparently add the ns (I'd rather say we obscurely)
             request = ""
-            response = self.client.request(method_name.to_s) do |soap|
-              soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{name}/#{class_name}"
+            response = self.client.request(:wsdl, method_name.to_s) do |soap|
+              soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{parent_modules[1..-1].join(".")}/#{class_name}"
               soap.body = args.first if args.first && args.first.is_a?(Hash)
               block.call(soap) if block
               request = soap.to_xml
             end
-            # In case we save test fixtures
-            IControl.save_test_info(request,response, client.wsdl ,"IControl.#{name}.#{class_name}#{IControl.config[:test_file_prefix]}",method_name) if IControl.config[:test]
             return self.map_response(response.to_hash)
           else
             self.client.request(method_name.to_s) do |soap|
@@ -166,7 +141,7 @@ module IControl #:nodoc:
     end
     
     def getters
-      self.class.client.wsdl.operations.keys.select{|i| i =~ /^get_/ }.map{ |i| i[4..(-1)].to_sym }
+      self.class.client.wsdl.operations.keys.select{|i| i.to_s =~ /^get_/ }.map{ |i| i.to_s[4..(-1)].to_sym }
     end
 
     def methods      
