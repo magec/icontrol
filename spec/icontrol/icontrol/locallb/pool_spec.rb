@@ -1,183 +1,428 @@
-require File.expand_path(File.join(File.dirname(__FILE__),"..","..","..","spec_helper"))
+require File.expand_path(File.join(File.dirname(__FILE__),"..","..","..",'/spec_helper'))
+require 'ruby-debug'
+describe IControl::LocalLB::Pool do				  
 
-describe IControl::LocalLB::Pool do 
+   use_vcr_cassette "IControl::LocalLB::Pool", :record => :new_episodes, :match_requests_on => [:uri, :method, :body]
+  
+   before(:each) do
+      @test_server = IControl::LocalLB::Pool.find("test_pool")
+    end	 		
 
-  before do 
-    @pool = IControl::LocalLB::Pool.find("pool_test1")
-  end
-
-  describe "constructor" do
-    it "has an initializer that the attributes" do
-      pool = IControl::LocalLB::Pool.new(:id => "pool_test1")
-      pool.class.should be(IControl::LocalLB::Pool)
-    end
-  end
-
-
-  describe "statisics method" do
-    it "should exists" do
-      lambda { @pool.statistics }.should_not raise_exception(NoMethodError)
-    end
-
-    it "should return a PoolStatisticEntry" do
-      @pool.statistics.statistics.should_not be_empty
-    end    
-
-    it "should return a hash of statistics" do
-      @pool.statistics.statistics.first.class.should be(IControl::LocalLB::Pool::PoolStatisticEntry)
-
-
-#      IControl::Common::StatisticType.constants.should include(@pool.statistics.first.statistics)
-    end    
-  end
-
-  describe "member statistics" do 
-    it "should allow the retrieval of statistics of its members" do 
-      @pool.member.should_not be_empty
-      pending
-      @pool.member.each do |member|
-        member.statistics.class.should be(Hash)
-      end
-    end
-  end
-
-  describe "add_member method" do
     
-    it "should exists" do 
-      @pool.methods.should include(:add_member)
+          
+  describe "version" do 
+    it "exists" do
+
+      @test_server.methods.should include(:version)
     end
 
-    it "should add a new member when an IPPortDefinition is passed" do
-      register_conversation(["IControl.LocalLB.Pool_before_member_addition.get_member","IControl.LocalLB.Pool_after_member_addition.get_member"])
-      before_number = @pool.member.length
-      pending "Writing things"
-      @pool.add_member(IControl::Common::IPPortDefinition.new(:address => "192.168.1.229",:port => "90"))
-      after_number = @pool.member.length
-      after_number.should ==( before_number + 1 )
-    end
-
-    it "should add a new member when Hash with address and port is passed" do
-      register_conversation(["IControl.LocalLB.Pool_before_member_addition.get_member","IControl.LocalLB.Pool_after_member_addition.get_member"])
-      before_number = @pool.member.length
-      pending "Writing things"
-      @pool.add_member(:address => "192.168.1.229",:port => "90")
-      after_number = @pool.member.length
-      after_number.should ==( before_number + 1 )
-    end
-    
-  end
-
-  describe "find method" do
-
-    describe "when pool is not found" do 
-      it "should return nil" do       
-        IControl::LocalLB::Pool.find("none").should be(nil)
-      end
-    end
-    
-    describe "when pool is found" do
-      it "has to return a Pool Object" do
-        @pool.class.should be(IControl::LocalLB::Pool)
-      end
+    it "should return without raise any exception" do
+      lambda { @test_server.version }.should_not raise_exception
+      puts @test_server.version.inspect
     end
 
   end
 
-
-  describe "create method" do 
-    
-    it "should return the created object if the creation was successful" do
-      @pools = IControl::LocalLB::Pool.find(:all)
-      @pools.map(&:id).include?("new_test_pool").should be(false)
-      pending "writing things"
-      new_created = IControl::LocalLB::Pool.create(
-                                                   :id => "new_test_pool",
-                                                   :lb_method => "LB_METHOD_ROUND_ROBIN",
-                                                   :members =>  [
-                                                                 IControl::Common::IPPortDefinition.new(:address => "192.168.6.122",:port=>"4036"),
-                                                                 IControl::Common::IPPortDefinition.new(:address => "192.168.6.123",:port=>"4036")
-                                                                ]
-                                                   )
       
-      new_created.id.should == "new_test_pool"
-      new_created.lb_method.should  == "LB_METHOD_ROUND_ROBIN"
-      #new_created.members.class.should be(Array)
-      #new_created.members[0].class.should be(IControl::Common::PoolMember)
-#      @pools = IControl::LocalLB::Pool.find(:all)
-#      @pools.map(&:id).include?("new_test_pool").should be(true)
+          
+  describe "monitor_association" do 
+    it "exists" do
+
+      @test_server.methods.should include(:monitor_association)
     end
 
+    it "should return without raise any exception" do
+            Debugger.start
 
-    it "should raise an exception when the pool already existed" do
-      lambda{
-        IControl::LocalLB::Pool.create(
-                                       :id => "new_test_pool",
-                                       :lb_method => "LB_METHOD_ROUND_ROBIN",
-                                       :members =>  [IControl::Common::IPPortDefinition.new(:address => "192.168.6.122",:port=>"4036")]
-                                       )
-      }.should raise_exception
-
-    end
-    
-  end
-
-  
-
-  describe "status_for method" do 
-    it "should return the status of a given pool member given its address and port" do
-      pending "Not in the original API"
-      status = @pool.status_for IControl::LocalLB::PoolMember.new(IControl::Common::IPPortDefinition.new(:address => "192.168.6.3",:port => "5050"))
-      status.class.should be(Hash)
-    end
-
-    it "should return nil if the member is not found in the pool" do
-      pending "Not in the original API"
-      status = @pool.status_for IControl::LocalLB::PoolMember.new(IControl::Common::IPPortDefinition.new(:address => "112.168.6.111",:port => "5050"))
-      status.should be(nil)
+      lambda { @test_server.monitor_association }.should_not raise_exception
+      puts @test_server.monitor_association.inspect
     end
 
   end
 
-  
-  describe "monitor_rule method" do
-    it "should return an instance of MonitorRule" do
-      pending "Not in the original api"
-      monitor_rule = @pool.monitor_rule
-      monitor_rule.class.should be(IControl::LocalLB::MonitorRule)
+      
+      
+      
+          
+  describe "member" do 
+    it "exists" do
+
+      @test_server.methods.should include(:member)
     end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.member }.should_not raise_exception
+      puts @test_server.member.inspect
+    end
+
   end
 
+      
+      
+      
+          
+  describe "allow_snat_state" do 
+    it "exists" do
 
-  describe "monitor_rule= method" do
-    it "should allow the assignment of a monitor rule to a pool" do
-      pending "Not in the original API"
-      @monitor_rule_before = @pool.monitor_rule
-
-      monitor_rule = IControl::LocalLB::MonitorRule.new(:monitor_templates => ["tcp"])
-      @pool.monitor_rule = monitor_rule
-      @monitor_rule_after = @pool.monitor_rule
-      # A state should exists in the mock in order to make these tests
-      #      @monitor_rule_after.monitor_templates.should_not == @monitor_rule_before.monitor_templates
+      @test_server.methods.should include(:allow_snat_state)
     end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.allow_snat_state }.should_not raise_exception
+      puts @test_server.allow_snat_state.inspect
+    end
+
   end
 
+      
+          
+  describe "minimum_up_member" do 
+    it "exists" do
 
-  describe "member method" do 
-
-    it "should exists" do    
-      @pool.member.should_not be(nil)
+      @test_server.methods.should include(:minimum_up_member)
     end
 
-    it "should return an array of PoolMembers" do
-      @pool.member.class.should be(Array)
-      @pool.member.first.class.should be(IControl::Common::IPPortDefinition)
+    it "should return without raise any exception" do
+#      lambda { @test_server.minimum_up_member }.should_not raise_exception
+      puts @test_server.minimum_up_member.inspect
     end
+
   end
-  
-  describe "lb_method method" do
-    it "should return a String with a valid lb_method constant" do
-      puts @pool.lb_method.inspect
-      @pool.lb_method.first.class.should be(String)
+
+      
+      
+          
+  describe "client_ip_tos" do 
+    it "exists" do
+
+      @test_server.methods.should include(:client_ip_tos)
     end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.client_ip_tos }.should_not raise_exception
+      puts @test_server.client_ip_tos.inspect
+    end
+
   end
+
+      
+          
+  describe "minimum_active_member" do 
+    it "exists" do
+
+      @test_server.methods.should include(:minimum_active_member)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.minimum_active_member }.should_not raise_exception
+      puts @test_server.minimum_active_member.inspect
+    end
+
+  end
+
+      
+      
+      
+          
+  describe "all_statistics" do 
+    it "exists" do
+
+      @test_server.methods.should include(:all_statistics)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.all_statistics }.should_not raise_exception
+      puts @test_server.all_statistics.inspect
+    end
+
+  end
+
+      
+          
+  describe "server_link_qos" do 
+    it "exists" do
+
+      @test_server.methods.should include(:server_link_qos)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.server_link_qos }.should_not raise_exception
+      puts @test_server.server_link_qos.inspect
+    end
+
+  end
+
+      
+      
+      
+          
+  describe "monitor_instance" do 
+    it "exists" do
+
+      @test_server.methods.should include(:monitor_instance)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.monitor_instance }.should_not raise_exception
+      puts @test_server.monitor_instance.inspect
+    end
+
+  end
+
+      
+      
+      
+      
+          
+  describe "statistics" do 
+    it "exists" do
+
+      @test_server.methods.should include(:statistics)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.statistics }.should_not raise_exception
+      puts @test_server.statistics.inspect
+    end
+
+  end
+
+      
+      
+          
+  describe "allow_nat_state" do 
+    it "exists" do
+
+      @test_server.methods.should include(:allow_nat_state)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.allow_nat_state }.should_not raise_exception
+      puts @test_server.allow_nat_state.inspect
+    end
+
+  end
+
+      
+          
+  describe "minimum_up_member_enabled_state" do 
+    it "exists" do
+
+      @test_server.methods.should include(:minimum_up_member_enabled_state)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.minimum_up_member_enabled_state }.should_not raise_exception
+      puts @test_server.minimum_up_member_enabled_state.inspect
+    end
+
+  end
+
+      
+          
+  describe "object_status" do 
+    it "exists" do
+
+      @test_server.methods.should include(:object_status)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.object_status }.should_not raise_exception
+      puts @test_server.object_status.inspect
+    end
+
+  end
+
+      
+          
+  describe "aggregate_dynamic_ratio" do 
+    it "exists" do
+
+      @test_server.methods.should include(:aggregate_dynamic_ratio)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.aggregate_dynamic_ratio }.should_not raise_exception
+      puts @test_server.aggregate_dynamic_ratio.inspect
+    end
+
+  end
+
+      
+          
+  describe "server_ip_tos" do 
+    it "exists" do
+
+      @test_server.methods.should include(:server_ip_tos)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.server_ip_tos }.should_not raise_exception
+      puts @test_server.server_ip_tos.inspect
+    end
+
+  end
+
+      
+          
+  describe "gateway_failsafe_unit_id" do 
+    it "exists" do
+
+      @test_server.methods.should include(:gateway_failsafe_unit_id)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.gateway_failsafe_unit_id }.should_not raise_exception
+      puts @test_server.gateway_failsafe_unit_id.inspect
+    end
+
+  end
+
+      
+      
+          
+  describe "persistence_record" do 
+    it "exists" do
+
+      @test_server.methods.should include(:persistence_record)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.persistence_record }.should_not raise_exception
+      puts @test_server.persistence_record.inspect
+    end
+
+  end
+
+      
+          
+  describe "slow_ramp_time" do 
+    it "exists" do
+
+      @test_server.methods.should include(:slow_ramp_time)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.slow_ramp_time }.should_not raise_exception
+      puts @test_server.slow_ramp_time.inspect
+    end
+
+  end
+
+      
+      
+      
+      
+      
+      
+          
+  describe "active_member_count" do 
+    it "exists" do
+
+      @test_server.methods.should include(:active_member_count)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.active_member_count }.should_not raise_exception
+      puts @test_server.active_member_count.inspect
+    end
+
+  end
+
+      
+          
+  describe "lb_method" do 
+    it "exists" do
+
+      @test_server.methods.should include(:lb_method)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.lb_method }.should_not raise_exception
+      puts @test_server.lb_method.inspect
+    end
+
+  end
+
+      
+          
+  describe "list" do 
+    it "exists" do
+
+      @test_server.methods.should include(:list)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.list }.should_not raise_exception
+      puts @test_server.list.inspect
+    end
+
+  end
+
+      
+      
+      
+          
+  describe "simple_timeout" do 
+    it "exists" do
+
+      @test_server.methods.should include(:simple_timeout)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.simple_timeout }.should_not raise_exception
+      puts @test_server.simple_timeout.inspect
+    end
+
+  end
+
+      
+          
+  describe "minimum_up_member_action" do 
+    it "exists" do
+
+      @test_server.methods.should include(:minimum_up_member_action)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.minimum_up_member_action }.should_not raise_exception
+      puts @test_server.minimum_up_member_action.inspect
+    end
+
+  end
+
+      
+      
+          
+  describe "action_on_service_down" do 
+    it "exists" do
+
+      @test_server.methods.should include(:action_on_service_down)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.action_on_service_down }.should_not raise_exception
+      puts @test_server.action_on_service_down.inspect
+    end
+
+  end
+
+      
+          
+  describe "client_link_qos" do 
+    it "exists" do
+
+      @test_server.methods.should include(:client_link_qos)
+    end
+
+    it "should return without raise any exception" do
+      lambda { @test_server.client_link_qos }.should_not raise_exception
+      puts @test_server.client_link_qos.inspect
+    end
+
+  end
+
+      
+      
+      
 end
