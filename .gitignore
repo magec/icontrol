@@ -1,6 +1,7 @@
 ## MAC OS
 .DS_Store
 TODO
+spec/credentials.yml
 ## TEXTMATE
 *.tmproj
 tmtags
