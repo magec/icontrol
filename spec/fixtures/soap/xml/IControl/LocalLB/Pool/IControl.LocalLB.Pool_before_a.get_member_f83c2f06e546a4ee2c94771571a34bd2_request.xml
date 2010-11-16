@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="urn:iControl:LocalLB/Pool"><env:Body><wsdl:get_member><pool_names><value>pool_test1</value></pool_names></wsdl:get_member></env:Body></env:Envelope>

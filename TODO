@@ -1,7 +1,0 @@
-- Meter todo el proyecto bien separado (lo generado de lo que no lo esta) + 
-- Hacer que le codigo compilado sea correcto +
-- VirtualServerDefinitionSequence no esta declarado en globallb.rb +
-- EventSubscription esta mal ordenado en managemenr.rb +
-- Subir como version 0.1.0
-
-
