@@ -1,0 +1,2 @@
+<%= comments %>
+icontrol_attribute :<%= @properties[:name]  %>, <%= @properties[:type].split("::").map {|i|convert_to_ruby(i[0].capitalize + i[1..-1])}.join("::") %> 

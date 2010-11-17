@@ -1,0 +1,11 @@
+##
+<%= comments %>
+# :method: <%= @properties[:name] %>
+<% unless parameters.empty? %>
+# :call-seq: 
+# <%= parameters_declaration %>
+#
+# Parameters:  <% parameters.each do |param| %>
+# - <%= param.properties[:name] %> <%= convert_to_ruby(param.properties[:type]) %> <%= param.properties[:comment] %>  <% end %> 
+<% end %>
+

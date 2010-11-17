@@ -1,0 +1,11 @@
+$: << "."
+require 'erb'
+require 'rbeautify'
+require 'ast_tree/ast_node'
+require 'ast_tree/module_declaration.rb'
+require 'ast_tree/class_declaration.rb'
+require 'ast_tree/alias_declaration.rb'
+require 'ast_tree/method_declaration.rb'
+require 'ast_tree/structure_declaration.rb'
+require 'ast_tree/enumeration_declaration.rb'
+require 'ast_tree/parser.rb'
