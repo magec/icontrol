@@ -1,7 +1,7 @@
 = Generator (Development Stuff)
 The idea of the whole project is just a small ruby layer and then a code generator that could get all of the neccesary information from the F5 website. The thing is that I needed a way of having the project well documented but using metaprogramming at the same time. Therefore this directory includes all of the neccesary stuff to parse the contents of the icontrol documentation and after that (and offline) proccesses it and generates the source code that will be part of the project.
 
-The main idea then is to form an AST tree from the website and save it to disk (by means of marshalling). After that, another proccess will generate all of the stuff by means of some templates and save it into the real project. 
+The main idea then is to form an AST tree from the website and save it to disk (by means of marshalling). After that, another proccess will generate all of the stuff by means of some templates and save it into the real project. Virtually you can even implement another binding by means of this generator/processor thing, of course I chose ruby.
 
 == Scrapping the documentation
 
