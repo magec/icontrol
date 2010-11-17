@@ -1,0 +1,30 @@
+= Generator (Development Stuff)
+The idea of the whole project is just a small ruby layer and then a code generator that could get all of the neccesary information from the F5 website. The thing is that I needed a way of having the project well documented but using metaprogramming at the same time. Therefore this directory includes all of the neccesary stuff to parse the contents of the icontrol documentation and after that (and offline) process it and generate the source code that will be part of the project.
+
+The main idea then is to form an AST tree from the website and save it to disk (by means of marshalling). After that, another process will generate all of the stuff using some erb templates and saving it into the real project. Virtually you can even implement another binding with this generator/processor thing, of course I chose ruby.
+
+== Scrapping the documentation
+
+To be able to scrap the documentation website you need an account, after that 
+
+  cp credentials.yml.example credentials.yml
+  vi credentials.yml # (Fill it with correct values)
+
+then this will do it
+ 
+  ruby generator.rb
+
+If everything goes ok there should be dots filling up the screep, if so, this WILL take a while (like an hour or so :) ). After that, you will have a result.dat file that will be the input of the processor, so this only have to be done in one step.
+
+== Generating the code
+
+Once the web has been scrapped you need to run the processor.rb script with the destination directory of the project.
+
+A typical execution would be (while in the generator directory):
+
+  ruby processor.rb ../lib/
+
+Note that it will delete every file that is supposed to be generated, so be careful and don't mess with my processor.
+
+
+Jose Fernandez (magec)
