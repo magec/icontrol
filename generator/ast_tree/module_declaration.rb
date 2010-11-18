@@ -4,7 +4,7 @@ class ModuleDeclaration < ASTNode
     dir_name = normalized_file_name
     file_name = "#{dir_name}.rb"
     if dir_name != "icontrol"
-      FileUtils.remove_dir(dir_name)
+      FileUtils.remove_dir(dir_name,true)
       Dir.mkdir(dir_name)
     end
 
