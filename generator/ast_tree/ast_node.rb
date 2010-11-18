@@ -1,4 +1,17 @@
 
+class String 
+  def decamelize
+    word = self.to_s.dup
+    word = word.gsub("IControl","icontrol")
+    word.gsub!(/::/, '/')
+    word.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+    word.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
+    word.tr!("-", "_")
+    word.downcase!
+    word
+  end
+end
+
 class ASTNode
   
   TEMPLATES_DIR = "templates"
@@ -55,7 +68,7 @@ class ASTNode
   ##
   # The compilation is made on basis of a template, or simply implementing a compile method
   def compile(buffer = nil)
-    template_name = File.join(File.dirname(__FILE__),TEMPLATES_DIR,decamelize(self.class.to_s + ".erb"))
+    template_name = File.join(File.dirname(__FILE__),TEMPLATES_DIR,self.class.to_s.decamelize + ".erb")
     if File.exists?(template_name)
       template = ERB.new(File.open(template_name).read,nil,"<>")
       aux = template.result(self.get_binding)
@@ -112,13 +125,9 @@ class ASTNode
     class_name == "Class" ? "Klass" : class_name
   end
 
-  def decamelize(input)
-    decamel = input.gsub(/[[A-Z]*]/) { |p| '_' + p.downcase }
-    decamel[0] == '_' ? decamel[1..-1] : decamel
-  end
 
   def normalized_file_name
-    return normalized_class_name.downcase
+    return normalized_class_name.decamelize
   end
 
 end
