@@ -11,6 +11,14 @@ module IControl
       end
     end
   end
+
+  module Common
+   class String
+     def self.from_soap(xml)
+       xml
+     end
+   end
+  end
   
   module GlobalLB
     class VirtualServerDefinitionSequence < IControl::Base::Sequence ; end
