@@ -11,10 +11,11 @@ module IControl # :nodoc:
       def self.icontrol_to_ruby_type(type)
 
         type = type.gsub("iControl","IControl")
-        type = type.gsub(/\[\d*\]/,"")
+        type = type.gsub(/\[\d*\]/,"Sequence")
 
         return Fixnum if type == "y:long"
         return String if type == "y:string"
+        return StringSequence if type == "y:stringSequence"
 
         splitted = type.split(":")
         temp_name = [splitted.shift,*splitted.shift.split(".")]
@@ -27,19 +28,15 @@ module IControl # :nodoc:
 
       end
       
-      def self.normalized_array_type(array_type)
-        
-        return instance_eval(icontrol_to_ruby_type(array_type).to_s + array_type.gsub(/.*\[\d*\]/,"Sequence"))
-      end
-
       def self.map_object(return_object)
         if return_object[:type] == "A:Array"
-          normalized_array_type(return_object[:array_type]).from_soap(return_object)
+          icontrol_to_ruby_type(return_object[:array_type]).from_soap(return_object)
         else
           unless return_object[:type]
             puts "NOTYPE"
           else
             klass = icontrol_to_ruby_type(return_object[:type])
+
             if klass.name =~ /^IControl/
               return klass.from_soap(return_object)
             else
