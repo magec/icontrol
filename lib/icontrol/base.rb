@@ -12,7 +12,6 @@ require 'base/mappings'
 require 'base/sequence'
 require 'base/predeclarations'
 
-
 Savon.log = false
 HTTPI::Adapter.use = :net_http
 
@@ -150,13 +149,18 @@ module IControl #:nodoc:
     end
 
     def method_missing(method_name,*args,&block)
+
       # When calling an instance method we first check whether there is an argument with
       # that name and return it. If that is not the case we fallback in the class default method but adding the instance as
       # argument (the id), cause thats the way the api works, passing the id
 
+      
       return super if @attributes.has_key? method_name 
-      method_name = "get_#{method_name}"
-      args[0]= default_body.merge( args[0] || {} )
+      method_name = "get_#{method_name}" if getters.include? method_name
+
+      aux = {}
+      args[0].each { |k,v| aux[k.to_s] = v } if args[0]
+      args[0] = default_body.merge( aux  )
 
       return self.class.send(method_name,*args,&block)
 
