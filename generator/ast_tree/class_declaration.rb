@@ -25,10 +25,11 @@ class ClassDeclaration < ASTNode
     levels = full_class_name.split("::").map { |i| ".." }
     
     FileUtils.mkdir_p File.join(levels + ["spec"] + spec_file_name[0..-2])
-    File.open(File.join(levels + ["spec"] + spec_file_name),"w+") do |file|
+    spec_file = File.join(levels + ["spec"] + spec_file_name)
+    File.open(spec_file,"w+") do |file|
       render_spec(file)
     end
-    
+    RBeautify.beautify_file(spec_file)
   end
 
   def render_spec(file)
