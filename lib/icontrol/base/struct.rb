@@ -31,7 +31,7 @@ module IControl # :nodoc:
               aux[k] = xml[k]
             end
           end if xml
-          return self.new(aux)
+          return aux.values.compact.empty? ? nil : self.new(aux)
         end
       end    
         
