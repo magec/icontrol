@@ -68,7 +68,7 @@ class ASTNode
   ##
   # The compilation is made on basis of a template, or simply implementing a compile method
   def compile(buffer = nil)
-    template_name = File.join(File.dirname(__FILE__),TEMPLATES_DIR,self.class.to_s.decamelize + ".erb")
+    template_name = File.join(File.dirname(__FILE__),"..",TEMPLATES_DIR,self.class.to_s.decamelize + ".erb")
     if File.exists?(template_name)
       template = ERB.new(File.open(template_name).read,nil,"<>")
       aux = template.result(self.get_binding)
