@@ -43,13 +43,28 @@ module IControl
       end
 
       def self.from_soap(xml)
-        return [xml[:item]].flatten.map{|i| elements_class.from_soap(i)}        
+        aux = [xml[:item]].flatten.map{|i| elements_class.from_soap(i)}
+        # If the result is actually an array we return it
+        if aux.length > 1 
+          return aux
+        else
+          if aux.length == 1
+            # If is just 1 element we return the element
+            return aux[0]
+          else
+            #otherwise is empty so we return a nil 
+            nil
+          end
+        end
       end
     end
     
     class SequenceSequence
       def self.from_soap(xml)
-        puts "PEPE SequenceSequence"
+        xml[:item][:type] = "A:Array"
+        object = [Mappings.map_object(xml[:item])].flatten
+        return nil if object.compact.length == 0
+        return object
       end
     end
   end
