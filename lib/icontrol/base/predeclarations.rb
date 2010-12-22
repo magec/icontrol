@@ -2,16 +2,6 @@
 
 module IControl
 
-  module LocalLB
-    class VirtualServer < IControl::Base
-      class << self
-        def id_name
-          "virtual_server"
-        end
-      end
-    end
-  end
-
   module Common
    class String
      def self.from_soap(xml)
