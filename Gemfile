@@ -2,7 +2,7 @@ source :rubygems
 
 gem "bundler" 
 gem "savon" ,:git => "https://github.com/rubiii/savon.git", :tag => "v0.8.0.beta.3"
-gem "httpi" ,:git =>  "https://github.com/rubiii/httpi.git"
+gem "httpi" ,"~>0.6"
 
 group :test do 
   gem "rspec", "~>2.3"
