@@ -121,7 +121,7 @@ class ASTNode
   end
 
   def normalized_class_name
-    class_name = @properties[:name][0].upcase + @properties[:name][1..-1]
+    class_name = @properties[:name][0..0].upcase + @properties[:name][1..-1]
     class_name == "Class" ? "Klass" : class_name
   end
 
