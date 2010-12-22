@@ -2,6 +2,8 @@ module <%= parent_module %>
 ##
 <%= comments %>
   class <%= normalized_class_name %> < IControl::Base
+    
+    set_id_name "<%= guess_id_name %>"
 <%= @children.map{|i| i.declare }.compact.join("\n") %>
     <%= render_children %>
   end
