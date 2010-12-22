@@ -61,6 +61,7 @@ module IControl
     
     class SequenceSequence
       def self.from_soap(xml)
+        return nil unless xml[:item]
         xml[:item][:type] = "A:Array"
         object = [Mappings.map_object(xml[:item])].flatten
         return nil if object.compact.length == 0

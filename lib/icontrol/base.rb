@@ -15,7 +15,6 @@ require 'base/predeclarations'
 Savon.log = false
 HTTPI::Adapter.use = :net_http
 
-
 # The idea is to create an object proxy to the web service client with the same structure
 # than the IControl stuff
 
@@ -130,14 +129,10 @@ module IControl #:nodoc:
         end 
       end
 
-      def id_name
-        self.name.split("::").last.to_s.downcase + "_name"
-      end
-
     end
 
     def default_body
-      { self.class.id_name.to_s + "s" =>  {:value => [@attributes[:id]] } }
+      { self.class.id_name.to_s  =>  {:value => [@attributes[:id]] } }
     end
     
     def getters
@@ -146,6 +141,28 @@ module IControl #:nodoc:
 
     def methods      
       super + getters + self.class.client.wsdl.operations.keys
+    end
+
+    # Recursive method to convert the parameters to a soap hash
+    def convert_to_soap(item)
+
+      if item.is_a?(Hash)
+        aux = {}
+        item.each do |k,v| 
+          aux[k.to_s] = convert_to_soap(v) # the k.to_s is cause we want no name translation
+        end
+        return aux
+      elsif item.is_a?(Array)
+        aux = {}
+        item.each_with_index do |value,i|
+          aux["item#{i}"] = convert_to_soap(value)
+        end
+        return {:values => aux}
+      elsif item.respond_to?(:to_soap)
+        return item.to_soap
+      else
+        return item
+      end
     end
 
     def method_missing(method_name,*args,&block)
@@ -158,9 +175,7 @@ module IControl #:nodoc:
       return super if @attributes.has_key? method_name 
       method_name = "get_#{method_name}" if getters.include? method_name
 
-      aux = {}
-      args[0].each { |k,v| aux[k.to_s] = v } if args[0]
-      args[0] = default_body.merge( aux  )
+      args[0] = default_body.merge(convert_to_soap(args[0]) || {}) # Here we populate the parameters and add the id
 
       return self.class.send(method_name,*args,&block)
 

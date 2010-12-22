@@ -20,7 +20,6 @@ module IControl # :nodoc:
           @attributes[attribute] = klass 
         end
 
-
         def from_soap(xml)
           aux = {}
           @attributes.each do |k,v|
@@ -33,7 +32,13 @@ module IControl # :nodoc:
           end if xml
           return aux.values.compact.empty? ? nil : self.new(aux)
         end
+
       end    
+
+      # Converts to soap. In this case we fallback to the hash conversion of the attributes
+      def to_soap
+        return @attributes
+      end
         
       include IControl::Base::Attributable
 
