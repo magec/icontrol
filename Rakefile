@@ -1,6 +1,35 @@
 require 'rubygems'
 require 'rake'
 
+desc "Generates the source code after the dump of the doc was made"
+task "icontrol:generate_code" do
+
+  LIBRARY_PATH=File.join(File.dirname(__FILE__),"lib")
+  GENERATOR_PATH=File.join(File.dirname(__FILE__),"generator")
+  $LOAD_PATH.unshift(GENERATOR_PATH).unshift(LIBRARY_PATH)
+
+  require 'fileutils'
+
+  DEST_DIR=LIBRARY_PATH
+
+  require File.join(GENERATOR_PATH,"ast_tree")
+
+  root = Marshal.load(File.open(File.join(GENERATOR_PATH,"result.dat")).read)
+
+  new_root = ModuleDeclaration.new
+
+  Dir.chdir(DEST_DIR)
+
+  new_root.properties[:name] = "IControl"
+  new_root.children = root.children
+  new_root.children.each { |i| i.parent = new_root }
+  
+  new_root.parent = nil
+  puts "Generating Code.."
+  new_root.compile
+ 
+end
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
