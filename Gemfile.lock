@@ -1,0 +1,53 @@
+GIT
+  remote: https://github.com/myronmarston/vcr.git
+  revision: 1ff99174bc9c6b413e899b81dc4587d704e458ca
+  specs:
+    vcr (1.4.0)
+
+GIT
+  remote: https://github.com/rubiii/httpi.git
+  revision: 3faf2de7ea1b21f13e4770e346a56554f3a5296d
+  specs:
+    httpi (0.7.5)
+      rack
+
+GIT
+  remote: https://github.com/rubiii/savon.git
+  revision: d9aab510faed59a73784d13542f44bea70b91821
+  tag: v0.8.0.beta.3
+  specs:
+    savon (0.8.0.beta.3)
+      builder (~> 2.1.2)
+      crack (~> 0.1.8)
+      httpi (>= 0.6.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.2.2)
+    builder (2.1.2)
+    crack (0.1.8)
+    diff-lcs (1.1.2)
+    rack (1.2.1)
+    rspec (2.3.0)
+      rspec-core (~> 2.3.0)
+      rspec-expectations (~> 2.3.0)
+      rspec-mocks (~> 2.3.0)
+    rspec-core (2.3.1)
+    rspec-expectations (2.3.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.3.0)
+    webmock (1.6.1)
+      addressable (>= 2.2.2)
+      crack (>= 0.1.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  httpi!
+  rspec (~> 2.3)
+  savon!
+  vcr!
+  webmock (~> 1.6)
