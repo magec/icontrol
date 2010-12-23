@@ -54,11 +54,14 @@ class ASTNode
   end
   
   def convert_to_ruby(type)
+    type = type.gsub(/\[\d*\]/,"Sequence").sub("Sequence","")
     case type
     when "Short" then return "Numeric"
     when "Long" then return "Numeric"
+    when "Double" then return "Numeric"
     when "String" then return "String"
     when "Boolean" then return "Object"
+    when "Char" then return "String"
     when "CharSequence" then return "StringSequence"
     else
       return type.gsub(/^Class$/,"Klass")

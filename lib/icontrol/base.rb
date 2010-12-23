@@ -23,6 +23,9 @@ module IControl #:nodoc:
   class NotConfiguredException < Exception # :nodoc:
   end 
 
+  class NotEnoughParams < Exception
+  end
+
   class << self
     attr_accessor :config
     
@@ -141,6 +144,13 @@ module IControl #:nodoc:
 
     def methods      
       super + getters + self.class.client.wsdl.operations.keys
+    end
+    
+    ##
+    # Checks whether the correct params are passed.
+    # It checks just if the needed params are passed (specified in params), if more params are passed, they go straight to the SOAP call
+    def check_params(options,params)
+      return NotEnoughParams unless (params - options.keys).empty?
     end
 
     # Recursive method to convert the parameters to a soap hash

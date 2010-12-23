@@ -1,11 +1,14 @@
 ##
 <%= comments %>
-# :method: <%= @properties[:name] %>
-<% unless parameters.empty? %>
-# :call-seq: 
-# <%= parameters_declaration %>
-#
-# Parameters:  <% parameters.each do |param| %>
-# - <%= param.properties[:name] %> <%= convert_to_ruby(param.properties[:type]) %> <%= param.properties[:comment] %>  <% end %> 
+<% if parameters_filtered.empty? %>
+# :method: <%= method_name %>
+<% else %>
+# Parameters:  <% parameters_filtered.each do |param| %>
+#   :<%= param.properties[:name] %> =>  <%= convert_to_ruby(param.properties[:type]) %> <%= param.comments %>  <% end %> 
+
+def <%= method_name %>(options)
+  check_params(options,[<%= parameters_filtered.map {|i| ":" + i.properties[:name] }.join(",") %>])
+  super
+end
 <% end %>
 

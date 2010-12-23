@@ -16,6 +16,7 @@ class ClassDeclaration < ASTNode
   end
 
   def guess_id_name
+    return @id_name if@id_name
     methods = children_filtered(:of_class => MethodDeclaration)
     counter = Hash.new(0)
     max = { :name => "nil",:value => -1 }
@@ -29,7 +30,7 @@ class ClassDeclaration < ASTNode
         end
       end
     end
-    return max[:name]
+    return @id_name = max[:name]
   end
 
   def full_class_name
