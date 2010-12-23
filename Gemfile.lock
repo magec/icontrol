@@ -22,6 +22,9 @@ GEM
     crack (0.1.8)
     diff-lcs (1.1.2)
     httpi (0.6.1)
+    mechanize (1.0.0)
+      nokogiri (>= 1.2.1)
+    nokogiri (1.4.4)
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
@@ -39,7 +42,9 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  httpi (~> 0.6)
+  httpi (= 0.6.1)
+  mechanize
+  nokogiri
   rspec (~> 2.3)
   savon!
   vcr!
