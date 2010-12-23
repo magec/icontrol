@@ -1,4 +1,4 @@
-$: << "."
+$: << File.dirname(__FILE__)
 require 'erb'
 require 'rbeautify'
 require 'ast_tree/ast_node'

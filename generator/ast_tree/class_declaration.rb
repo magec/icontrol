@@ -5,6 +5,7 @@ class ClassDeclaration < ASTNode
   def self.spec_mode=(mode)
     @@spec_mode=mode
   end
+
   
   def parent_module
     parents(:of_class => ModuleDeclaration).map{ |i| i.properties[:name] }.reverse.join("::")
@@ -50,10 +51,12 @@ class ClassDeclaration < ASTNode
       
       FileUtils.mkdir_p File.join(levels + ["spec"] + spec_file_name[0..-2])
       spec_file = File.join(levels + ["spec"] + spec_file_name)
-      File.open(spec_file,"w+") do |file|
-        render_spec(file)
+      unless File.exists?(spec_file)
+        File.open(spec_file,"w+") do |file|
+          render_spec(file)
+        end
+        RBeautify.beautify_file(spec_file)
       end
-      RBeautify.beautify_file(spec_file)
     end
   end
 
