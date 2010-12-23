@@ -1,5 +1,6 @@
 ## MAC OS
 generator/mech.log
+generator/result.dat
 .DS_Store
 TODO
 spec/credentials.yml
