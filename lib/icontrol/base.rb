@@ -11,6 +11,7 @@ require 'base/enumeration'
 require 'base/mappings'
 require 'base/sequence'
 require 'base/predeclarations'
+require 'base/exception'
 
 Savon.log = false
 HTTPI::Adapter.use = :net_http
@@ -111,8 +112,8 @@ module IControl #:nodoc:
               
       def method_missing(method_name,*args,&block)
         raise IControl::NotConfiguredException unless IControl.configured?
-        if self.client 
-          if self.client.wsdl.operations.keys.include?(method_name)  
+        if self.client  && self.client.wsdl.operations.keys.include?(method_name)
+          begin
             # When calling a soap method we transparently add the ns (I'd rather say we obscurely)
             request = ""
             response = self.client.request(:wsdl, method_name.to_s) do |soap|
@@ -122,16 +123,14 @@ module IControl #:nodoc:
               request = soap.to_xml
             end
             return self.map_response(response.to_hash)
-          else
-            self.client.request(method_name.to_s) do |soap|
-              block.call(soap) if block
-            end
+          rescue Savon::HTTP::Error => error
+            IControl::Base::ExceptionFactory.raise_from_xml(error.http.body)
           end
         else
           super(method_name,*args,&block)
         end 
       end
-
+      
     end
 
     def default_body

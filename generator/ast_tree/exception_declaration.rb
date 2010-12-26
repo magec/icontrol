@@ -1,0 +1,2 @@
+class ExceptionDeclaration < ASTNode
+end
