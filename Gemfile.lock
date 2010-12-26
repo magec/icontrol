@@ -21,10 +21,17 @@ GEM
     builder (2.1.2)
     crack (0.1.8)
     diff-lcs (1.1.2)
+    git (1.2.5)
     httpi (0.6.1)
+    jeweler (1.5.2)
+      bundler (~> 1.0.0)
+      git (>= 1.2.5)
+      rake
     mechanize (1.0.0)
       nokogiri (>= 1.2.1)
     nokogiri (1.4.4)
+    rake (0.8.7)
+    rcov (0.9.9)
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
@@ -36,16 +43,20 @@ GEM
     webmock (1.6.1)
       addressable (>= 2.2.2)
       crack (>= 0.1.7)
+    yard (0.6.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
+  bundler (~> 1.0.0)
   httpi (= 0.6.1)
+  jeweler (~> 1.5.2)
   mechanize
   nokogiri
-  rspec (~> 2.3)
+  rcov
+  rspec (~> 2.3.0)
   savon!
   vcr!
   webmock (~> 1.6)
+  yard (~> 0.6.0)
