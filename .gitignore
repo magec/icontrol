@@ -6,6 +6,9 @@ TODO
 spec/credentials.yml
 generator/credentials.yml
 spec/fixtures/*
+.yardoc
+.bundle
+
 ## TEXTMATE
 *.tmproj
 tmtags
