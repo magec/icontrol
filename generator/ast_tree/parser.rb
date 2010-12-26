@@ -40,12 +40,27 @@ class Parser
       :extractor => Proc.new do |match|
         attrs = {}
         attrs[:name] = match.xpath(".//td[1]/text()").to_s.strip
-        attrs[:type] = subnodes_to_string(match.xpath(".//td[2]")).gsub(" ","")
+
+        temp_name = subnodes_to_string(match.xpath(".//td[2]")).gsub(" ","")
+        link = match.xpath(".//td[2]/a[@href]").first
+        
+        if link
+          # If it is a link to another class, then we get the url and translate its href
+          attrs[:type] = normalized_class_name_from_uri(link['href'])
+        else
+          # If not ge take the name without []'s
+          attrs[:type] = temp_name.gsub("[]","")
+        end
+
+        # Now we change every [] of the original text to a Sequence 
+
+        attrs[:type] += temp_name.gsub(/[^\[\]]/,"").gsub("[]","Sequence")
+
+
         attrs[:comment] = subnodes_to_string(match.xpath(".//td[3]")," ")
         attrs
       end      
     },
-
     :ThrowsExceptionDeclaration => {
       :klass => ThrowsExceptionDeclaration,
       :xpath => '//table//descendant::tr[preceding-sibling::tr[descendant::strong[text()="Exception"]]]',
@@ -127,6 +142,7 @@ class Parser
     :StructureDeclaration => "structure",
     :ModuleDeclaration => "module" , 
     :ClassDeclaration => "interface" , 
+    :ExceptionDeclaration => "exception",
     :MethodDeclaration => "operation" 
   }.each do |k,v|
     TOKEN_MAPPER[k] = {
