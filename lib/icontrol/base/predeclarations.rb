@@ -15,10 +15,10 @@ module IControl
   end
 
   module System
-    class CPUMetricSequenceSequence < IControl::Base::SequenceSequence; end
-    class FanMetricSequenceSequence < IControl::Base::SequenceSequence; end
-    class PSMetricSequenceSequence  < IControl::Base::SequenceSequence; end
-    class TemperatureMetricSequenceSequence < IControl::Base::SequenceSequence; end 
+    class CPUMetricSequence < IControl::Base::Sequence; end
+    class FanMetricSequence < IControl::Base::Sequence; end
+    class PSMetricSequence  < IControl::Base::Sequence; end
+    class TemperatureMetricSequence < IControl::Base::Sequence; end 
   end
 
   module Management
