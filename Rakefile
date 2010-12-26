@@ -72,11 +72,11 @@ task "icontrol:get_documentation" do
   agent.submit(login_form)
   
   # Then we create a parser an let it work
-  Parser.agent = agent
+  Parser.agent = agent  
   data = Parser.parse("http://devcentral.f5.com/wiki/default.aspx/iControl.APIReference")
   
   # The results are marshaller for later proccess
-  File.open(File.join(GENERATOR_PATH,"results.dat"),"w+") do |file|
+  File.open(File.join(GENERATOR_PATH,"result.dat"),"w+") do |file|
     file << Marshal.dump(data)
   end
   
