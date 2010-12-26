@@ -99,10 +99,21 @@ begin
     gem.email = "jfernandezperez@gmail.com"
     gem.homepage = "http://github.com/magec/icontrol"
     gem.authors = ["Jose Fernandez (magec)"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-#    gem.add_development_dependency "fakeweb", ">= 1.2.8"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-    gem.add_dependency "savon"
+
+    gem.add_dependency "savon" ,"~>0.8.1"
+    gem.add_dependency "httpi" ,"~>0.7.5"
+
+    gem.add_development_dependency "vcr" ,"~>1.4.0"
+    gem.add_development_dependency "webmock" , "~>1.6"
+    gem.add_development_dependency "nokogiri"
+    gem.add_development_dependency "mechanize"
+    gem.add_development_dependency "rspec", "~> 2.3.0"
+    gem.add_development_dependency "yard", "~> 0.6.0"
+    gem.add_development_dependency "bundler", "~> 1.0.0"
+    gem.add_development_dependency "jeweler", "~> 1.5.2"
+    gem.add_development_dependency "rcov", ">= 0"    
+
     gem.files = FileList['lib/**/*.rb']
   end
   Jeweler::GemcutterTasks.new

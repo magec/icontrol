@@ -1,10 +1,10 @@
 source :rubygems
 
-gem "savon" ,:git => "https://github.com/rubiii/savon.git", :tag => "v0.8.0.beta.3"
-gem "httpi" ,"=0.6.1"
+gem "savon" ,"~>0.8.1"
+gem "httpi" ,"~>0.7.5"
 
 group :development do
-  gem "vcr" , :git => "https://github.com/myronmarston/vcr.git"
+  gem "vcr" ,"~>1.4.0"
   gem "webmock" , "~>1.6"
   gem "nokogiri"
   gem "mechanize"
