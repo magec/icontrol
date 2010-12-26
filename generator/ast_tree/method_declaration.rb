@@ -8,6 +8,14 @@ class MethodDeclaration < ASTNode
     @parameters ||= @children.select { |i| i.class == MethodParameterDeclaration }
   end
   
+  def return_type
+    return children_filtered(:of_class => ReturnTypeDeclaration).first
+  end
+
+  def throws
+    return children_filtered(:of_class => ThrowsExceptionDeclaration)
+  end
+
   def comments
     # Funny and Ugly
     @properties[:comments] = @properties[:comments].gsub("the specified","this").gsub(klass.guess_id_name.gsub("_"," ").gsub(" name",""),klass.guess_id_name.gsub("_"," ").gsub(" name","")[0..-2])

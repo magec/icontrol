@@ -1,13 +1,20 @@
 ##
 <%= comments %>
-<% if parameters_filtered.empty? %>
-# :method: <%= method_name %>
+<% if return_type.properties[:type] != "void" %>
+# @return [<%= return_type.properties[:type].sub("[]","") %>] 
+<% end %>
+<% throws.each do |exception| %>
+# @raise [IControl::<%= exception.properties[:type] %>] <%= exception.properties[:comment].downcase %> 
+<% end %>
+<% unless parameters_filtered.empty? %>
+# @param [Hash] opts <% parameters_filtered.each do |param| %>
+# @option opts [<%= convert_to_ruby(param.properties[:type]).gsub("Sequence","[]") %>] :<%= param.properties[:name] %> <%= param.properties[:comment] %>  <% end %> 
+def <%= method_name %>(opts)
+  check_params(opts,[<%= parameters_filtered.map {|i| ":" + i.properties[:name] }.join(",") %>])
+  super
+end
 <% else %>
-# Parameters:  <% parameters_filtered.each do |param| %>
-#   :<%= param.properties[:name] %> =>  <%= convert_to_ruby(param.properties[:type]) %> <%= param.comments %>  <% end %> 
-
-def <%= method_name %>(options)
-  check_params(options,[<%= parameters_filtered.map {|i| ":" + i.properties[:name] }.join(",") %>])
+def <%= method_name %>
   super
 end
 <% end %>

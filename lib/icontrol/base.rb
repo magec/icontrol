@@ -19,11 +19,13 @@ HTTPI::Adapter.use = :net_http
 # The idea is to create an object proxy to the web service client with the same structure
 # than the IControl stuff
 
-module IControl #:nodoc:
+module IControl 
 
-  class NotConfiguredException < Exception # :nodoc:
+  # @private NotConfiguredException 
+  class NotConfiguredException < Exception
   end 
 
+  # @private NotEnoughParams 
   class NotEnoughParams < Exception
   end
 
@@ -41,7 +43,9 @@ module IControl #:nodoc:
     :base_url => "",               # base url for the web-service (https://example.com/)
   }
 
+  # @private Base
   class Base # :nodoc:
+
     
     include IControl::Base::Attributable
         

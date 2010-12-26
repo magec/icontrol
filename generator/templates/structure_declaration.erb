@@ -1,5 +1,8 @@
 ##
 <%= comments %>
+<% members.each do |member| %>
+# @attr [<%= member.attribute_type %>] <%= member.properties[:name] %> <%= member.properties[:comment] %> 
+<% end %>
 class <%= normalized_class_name %> < IControl::Base::Struct
 <%= render_children %>
 end

@@ -1,3 +1,4 @@
+# @private BasicSequence
 class BasicSequence
   class << self
     def set_conversion_method(conversion_method)
@@ -9,33 +10,42 @@ class BasicSequence
   end
 end
 
+# @private StringSequence
 class StringSequence < BasicSequence
   set_conversion_method :to_s
 end
 
+# @private NumericSequence
 class NumericSequence < BasicSequence
   set_conversion_method :to_i
 end
 
+# @private FloatSequence
 class FloatSequence < BasicSequence
   set_conversion_method :to_f
 end
 
+# @private LongSequence
 class LongSequence < BasicSequence
   set_conversion_method :to_i
 end
 
+# @private DoubleSequence
 class DoubleSequence < BasicSequence
   set_conversion_method :to_f
 end
 
+# @private FixnumSequence
 class FixnumSequence < BasicSequence
     set_conversion_method :to_i
 end
 
+
 module IControl
   
   class Base
+
+
     class Sequence
 
       def self.elements_class
