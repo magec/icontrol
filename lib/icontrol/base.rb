@@ -109,6 +109,27 @@ module IControl
       def find_all
         self.get_list.map {|i| self.new(:id => i)}
       end    
+
+      # Recursive method to convert the parameters to a soap hash
+      def convert_to_soap(item)        
+        if item.is_a?(Hash)
+          aux = {}
+          item.each do |k,v| 
+            aux[k.to_s] = convert_to_soap(v) # the k.to_s is cause we want no name translation
+          end
+          return aux
+        elsif item.is_a?(Array)
+          aux = {}
+          item.each_with_index do |value,i|
+            aux["item#{i}"] = convert_to_soap(value)
+          end
+          return aux
+        elsif item.respond_to?(:to_soap)
+          return item.to_soap
+        else
+          return item
+        end
+      end
               
       # This is done this way cause I need access to name and class_name
       # metaprogramming to cross the scope, don't really like it actually.
@@ -121,8 +142,8 @@ module IControl
             # When calling a soap method we transparently add the ns (I'd rather say we obscurely)
             request = ""
             response = self.client.request(:wsdl, method_name.to_s) do |soap|
-              soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{parent_modules[1..-1].join(".")}/#{class_name}"
-              soap.body = args.first if args.first && args.first.is_a?(Hash)
+              soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{parent_modules[1..-1].join(".")}/#{class_name}"              
+              soap.body = convert_to_soap(args.first) if args.first
               block.call(soap) if block
               request = soap.to_xml
             end
@@ -138,7 +159,7 @@ module IControl
     end
 
     def default_body
-      { self.class.id_name.to_s  =>  {:value => [@attributes[:id]] } }
+      { self.class.id_name.to_s  =>  {:value => @attributes[:id] } }
     end
     
     def getters
@@ -156,39 +177,16 @@ module IControl
       return NotEnoughParams unless (params - options.keys).empty?
     end
 
-    # Recursive method to convert the parameters to a soap hash
-    def convert_to_soap(item)
-
-      if item.is_a?(Hash)
-        aux = {}
-        item.each do |k,v| 
-          aux[k.to_s] = convert_to_soap(v) # the k.to_s is cause we want no name translation
-        end
-        return aux
-      elsif item.is_a?(Array)
-        aux = {}
-        item.each_with_index do |value,i|
-          aux["item#{i}"] = convert_to_soap(value)
-        end
-        return {:values => aux}
-      elsif item.respond_to?(:to_soap)
-        return item.to_soap
-      else
-        return item
-      end
-    end
-
     def method_missing(method_name,*args,&block)
 
       # When calling an instance method we first check whether there is an argument with
       # that name and return it. If that is not the case we fallback in the class default method but adding the instance as
       # argument (the id), cause thats the way the api works, passing the id
-
       
       return super if @attributes.has_key? method_name 
       method_name = "get_#{method_name}" if getters.include? method_name
 
-      args[0] = default_body.merge(convert_to_soap(args[0]) || {}) # Here we populate the parameters and add the id
+      args[0] = default_body.merge(args[0] || {} ) # Here we populate the parameters and add the id
 
       return self.class.send(method_name,*args,&block)
 
