@@ -12,36 +12,18 @@ describe <%= full_class_name %> do
 
    after(:each) do
       # Here you should provide a way of deleting the object that was used to test ( test_<%= normalized_file_name %> ) 
-   end	
-
-  <% children_filtered(:of_class => MethodDeclaration).each do |method| %>          
+   end <% children_filtered(:of_class => MethodDeclaration).each do |method| %>          
   <% method_name = method.properties[:name] =~ /^get_(.*)/ ? $1 : method.properties[:name] %>
-
-  describe "#<%= method_name %>" do
-  <% if method.properties[:name] =~ /^get_(.*)/ %>
-    it "exists" do
-      @<%= normalized_file_name %>.methods.should include(:<%= method_name %>)
-    end
-
+  describe "#<%= method_name %>" do<% if method.properties[:name] =~ /^get_(.*)/ %>
     it "should return without raise any exception" do
       lambda { @<%= normalized_file_name %>.<%= method_name %> }.should_not raise_exception
     end
-
-  <% else %>
+  <% end %>
     it "<%= method.properties[:comments] %>" do 
       pending
     end
-
+    <% if method.return_type.type != "void" %>    
     it "returns an instance of <%= method.return_type.type %>" do
       pending
-    end
-
-    <% method.throws.each do |exception| %>
-    it "raises a <%= exception.type %> <%= exception.comment.gsub("Raised ","") %>" do
-      pending
-    end
-    <% end %>
-  <% end %>
-  end
-  <% end %>
+    end<%= "\n"%><% end %>end<% end %>
 end
