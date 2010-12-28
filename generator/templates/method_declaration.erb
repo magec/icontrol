@@ -1,10 +1,10 @@
 ##
 <%= comments %>
 <% if return_type.properties[:type] != "void" %>
-# @return [<%= return_type.properties[:type].sub("[]","") %>] 
+# @return [<%= return_type.type  %>] 
 <% end %>
 <% throws.each do |exception| %>
-# @raise [IControl::<%= exception.properties[:type] %>] <%= exception.properties[:comment].downcase %> 
+# @raise [IControl::<%= exception.type %>] <%= exception.properties[:comment].downcase %> 
 <% end %>
 <% unless parameters_filtered.empty? %>
 # @param [Hash] opts <% parameters_filtered.each do |param| %>

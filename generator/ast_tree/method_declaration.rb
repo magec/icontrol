@@ -45,5 +45,18 @@ class MethodParameterDeclaration < ASTNode
   end  
 end
 
-class ReturnTypeDeclaration < ASTNode; end
-class ThrowsExceptionDeclaration < ASTNode; end
+class ReturnTypeDeclaration < ASTNode
+  def type
+    return properties[:type].sub("[]","")
+  end
+end
+
+class ThrowsExceptionDeclaration < ASTNode
+  def type
+    return "IControl::#{properties[:type]}"
+  end
+  
+  def comment
+    return properties[:comment]
+  end
+end
