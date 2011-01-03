@@ -1,7 +1,7 @@
 source :rubygems
 
 gem "savon" ,"~>0.8.1"
-gem "httpi" ,"~>0.7.5"
+gem "httpi" ,"~>0.7.6"
 
 group :development do
   gem "vcr" ,"~>1.4.0"

@@ -8,7 +8,7 @@ GEM
     git (1.2.5)
     gyoku (0.1.1)
       builder (>= 2.1.2)
-    httpi (0.7.5)
+    httpi (0.7.6)
       rack
     jeweler (1.5.2)
       bundler (~> 1.0.0)
@@ -44,7 +44,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0.0)
-  httpi (~> 0.7.5)
+  httpi (~> 0.7.6)
   jeweler (~> 1.5.2)
   mechanize
   nokogiri
