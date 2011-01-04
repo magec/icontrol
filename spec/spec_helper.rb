@@ -17,11 +17,10 @@ VCR.config do |c|
 
 end
 
-Savon.log = true
+HTTPI.log = false  
+Savon.log = false
 
 RSpec.configure do |c|
-  
-
 
   c.extend VCR::RSpec::Macros
   begin
