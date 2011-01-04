@@ -30,11 +30,12 @@ module IControl # :nodoc:
       end
       
       def self.map_object(return_object)
+        return return_object if return_object.is_a? String
         if return_object[:type] == "A:Array"
           icontrol_to_ruby_type(return_object[:array_type]).from_soap(return_object)
         else
           unless return_object[:type]
-            puts "NOTYPE"
+            puts "NOTYPE ( #{return_object[:type]} )"
           else
             klass = icontrol_to_ruby_type(return_object[:type])
 
