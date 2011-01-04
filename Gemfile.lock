@@ -38,6 +38,8 @@ GEM
       addressable (>= 2.2.2)
       crack (>= 0.1.7)
     yard (0.6.4)
+    yard-examples-from-rspec (0.0.1)
+      yard (~> 0.6.0)
 
 PLATFORMS
   ruby
@@ -54,3 +56,4 @@ DEPENDENCIES
   vcr (~> 1.4.0)
   webmock (~> 1.6)
   yard (~> 0.6.0)
+  yard-examples-from-rspec (~> 0.0.1)
