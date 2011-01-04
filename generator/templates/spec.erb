@@ -15,7 +15,7 @@ describe <%= full_class_name %> do
    end <% children_filtered(:of_class => MethodDeclaration).each do |method| %>          
   <% method_name = method.properties[:name] =~ /^get_(.*)/ ? $1 : method.properties[:name] %>
   describe "#<%= method_name %>" do<% if method.properties[:name] =~ /^get_(.*)/ %>
-    it "should return without raise any exception" do
+    it "should return without raising any exception" do
       lambda { @<%= normalized_file_name %>.<%= method_name %> }.should_not raise_exception
     end
   <% end %>
