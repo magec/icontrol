@@ -5,7 +5,8 @@ class BasicSequence
       @conversion_method = conversion_method
     end
     def from_soap(xml)
-      return [*xml[:item]].map { |i| i.send(@conversion_method) }
+      object = [*xml[:item]].map { |i| i.send(@conversion_method) }
+      return object.length == 1 ? object.first : object
     end
   end
 end
