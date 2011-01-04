@@ -191,7 +191,7 @@ module IControl::LocalLB
   class MonitorRule < IControl::Base::Struct
     icontrol_attribute :type, IControl::LocalLB::MonitorRuleType
     icontrol_attribute :quorum, Numeric
-    icontrol_attribute :monitor_templates, String
+    icontrol_attribute :monitor_templates, StringSequence
   end
 
   ##

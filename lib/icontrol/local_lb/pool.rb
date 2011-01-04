@@ -559,22 +559,22 @@ module IControl::LocalLB
     # @attr [IControl::Common::Statistic] statistics The statistics for the pool.
     class PoolStatisticEntry < IControl::Base::Struct
       icontrol_attribute :pool_name, String
-      icontrol_attribute :statistics, IControl::Common::Statistic
+      icontrol_attribute :statistics, IControl::Common::StatisticSequence
     end
+    ## A sequence of monitor associations.
+    class MonitorAssociationSequence < IControl::Base::Sequence ; end
+    ## A sequence of Pool statistics.
+    class PoolStatisticEntrySequence < IControl::Base::Sequence ; end
 
     ##
     # A struct that describes pool statistics and timestamp.
     # @attr [IControl::LocalLB::Pool::PoolStatisticEntry] statistics The statistics for a sequence of pools.
     # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
     class PoolStatistics < IControl::Base::Struct
-      icontrol_attribute :statistics, IControl::LocalLB::Pool::PoolStatisticEntry
+      icontrol_attribute :statistics, IControl::LocalLB::Pool::PoolStatisticEntrySequence
       icontrol_attribute :time_stamp, IControl::Common::TimeStamp
     end
 
 
-    ## A sequence of monitor associations.
-    class MonitorAssociationSequence < IControl::Base::Sequence ; end
-    ## A sequence of Pool statistics.
-    class PoolStatisticEntrySequence < IControl::Base::Sequence ; end
   end
 end
