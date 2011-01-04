@@ -22,6 +22,7 @@ module IControl
         aux[:primary_error_code] = $1.to_i if faultstring  =~ /primary_error_code\ +:\ (\d+)\ .*$/        
         aux[:secondary_error_code] = $1.to_i if faultstring  =~ /secondary_error_code\ +:\ (\d+)\ ?.*$/        
         error_string = $1 if faultstring  =~ /error_string\ +:\ (.*)$/        
+        raise faultstring unless exception_type
         raise eval(exception_type).new(:aux),error_string
       end
     end
