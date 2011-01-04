@@ -130,7 +130,34 @@ module IControl
           return item
         end
       end
-              
+      
+      ##
+      # The F5 api is prepared to make bulk operations on each call (i.e. do the same operation to several entities). So normally, the arguments are
+      # an array of the entities to change, and then an array of the options of the operations.
+      #  Example:
+      #  create_pool([pool_names],[lb_methods],[[members]])
+      # We avoid this implementation and limit it to a 1 item per call so this is translate to this
+      #  create_pool(pool_name,lb_method,[members])
+      # It's more clear and object oriented, It has its pros and cons but...
+      # So, the rule of conversion from this api to the F5 one (needed to place calls) is this one
+      # Every argument is changed to a 1 item array containing its value
+      # In the case that the argument is already an array, we left the key as it is, on the contrary we pluralize it
+      # If the argument value is an array 
+      def hash_to_call_args(hash)
+        aux = {}
+        hash.each do |k,v|
+          key = ( v.is_a?(Array) || self.id_name == k.to_s ) ? k : pluralize(k)
+          aux[key] = [v]
+        end
+        aux
+      end
+
+
+      def pluralize(string)
+        return "#{string}s"
+      end
+
+
       # This is done this way cause I need access to name and class_name
       # metaprogramming to cross the scope, don't really like it actually.
       # TODO: Make use of the delegation patern much more clean I think
@@ -143,12 +170,12 @@ module IControl
             request = ""
             response = self.client.request(:wsdl, method_name.to_s) do |soap|
               soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{parent_modules[1..-1].join(".")}/#{class_name}"              
-              soap.body = convert_to_soap(args.first) if args.first
+              soap.body = convert_to_soap(hash_to_call_args(args.first)) if args.first
               block.call(soap) if block
               request = soap.to_xml
             end
             return self.map_response(response.to_hash)
-          rescue Savon::HTTP::Error => error
+          rescue Savon::HTTP::Error, Savon::SOAP::Fault => error
             IControl::Base::ExceptionFactory.raise_from_xml(error.http.body)
           end
         else
@@ -159,7 +186,7 @@ module IControl
     end
 
     def default_body
-      { self.class.id_name.to_s  =>  {:value => @attributes[:id] } }
+      { self.class.id_name.to_s  =>  @attributes[:id] }
     end
     
     def getters
@@ -186,9 +213,9 @@ module IControl
       return super if @attributes.has_key? method_name 
       method_name = "get_#{method_name}" if getters.include? method_name
 
-      args[0] = default_body.merge(args[0] || {} ) # Here we populate the parameters and add the id
+      call_arguments = ( args.first || {} ).merge(default_body)
 
-      return self.class.send(method_name,*args,&block)
+      return self.class.send(method_name,call_arguments,&block)
 
     end
 
