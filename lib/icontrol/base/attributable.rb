@@ -22,6 +22,10 @@ module IControl
           @attributes[:id]
         end
 
+        def type
+          return @attributes[:type] || super
+        end
+
         def initialize(attributes)
           id = attributes.delete(self.class.id_name) if attributes && attributes[self.class.id_name]
           @attributes = attributes || {}
