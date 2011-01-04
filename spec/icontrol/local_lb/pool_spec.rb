@@ -5,14 +5,14 @@ describe IControl::LocalLB::Pool do
   use_vcr_cassette "IControl::LocalLB::Pool", :record => :all, :match_requests_on => [:uri, :method, :body] # Change :record => :new_episodes when done
 
   before(:each) do
-    # Here you should provide an implementation of the creation of the object that is going to
-    # be used to test the name will be test_pool
-
+ #   IControl::LocalLB::Pool.create(:pool_name => "test_pool",
+  #                                 :lb_method => IControl::LocalLB::LBMethod::LB_METHOD_ROUND_ROBIN,
+   #                                :members => [{:address => "192.168.50.1",:port => "80"}])
     @pool = IControl::LocalLB::Pool.find("test_pool")
   end
 
   after(:each) do
-    # Here you should provide a way of deleting the object that was used to test ( test_pool )
+#    @pool.delete_pool
   end
 
   describe "#add_member" do
@@ -84,7 +84,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "returns an instance of IControl::LocalLB::ServiceDownAction" do
-      IControl::LocalLB::ServiceDownAction.constants.should include(@pool.action_on_service_down)
+      IControl::LocalLB::ServiceDownAction.constants.should include(@pool.action_on_service_down.to_s)
     end
   end
 
@@ -174,7 +174,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "returns an instance of IControl::LocalLB::EnabledState" do
-      IControl::Common::EnabledState.constants.should include(@pool.allow_nat_state)
+      IControl::Common::EnabledState.constants.should include(@pool.allow_nat_state.to_s)
     end
   end
 
@@ -193,7 +193,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "returns an instance of EnabledState" do
-      IControl::Common::EnabledState.constants.should include(@pool.allow_snat_state)
+      IControl::Common::EnabledState.constants.should include(@pool.allow_snat_state.to_s)
     end
   end
 
@@ -271,7 +271,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "returns an instance of IControl::LocalLB::LBMethod" do
-      IControl::LocalLB::LBMethod.constants.should include(@pool.lb_method)
+      IControl::LocalLB::LBMethod.constants.should include(@pool.lb_method.to_s)
     end
   end
 
@@ -367,7 +367,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "returns an instance of IControl::Common::HAAction" do
-      IControl::Common::HAAction.constants.should include(@pool.minimum_up_member_action)
+      IControl::Common::HAAction.constants.should include(@pool.minimum_up_member_action.to_s)
     end
   end
 
@@ -386,7 +386,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "returns an instance of IControl::Common::EnabledState" do
-      IControl::Common::EnabledState.constants.should include(@pool.minimum_up_member_enabled_state)
+      IControl::Common::EnabledState.constants.should include(@pool.minimum_up_member_enabled_state.to_s)
     end
   end
 
@@ -477,15 +477,16 @@ describe IControl::LocalLB::Pool do
     end
 
     it "Gets the IP ToS values for server traffic for the specified pools." do
-      pending
+      @pool.server_ip_tos.should_not be_nil
     end
 
     it "works this way" do
-      pending
+      @pool.server_ip_tos
+      # => 65535
     end
 
     it "returns an instance of long" do
-      pending
+      @pool.server_ip_tos.class.ancestors.should include(Numeric)
     end
   end
 
@@ -495,15 +496,16 @@ describe IControl::LocalLB::Pool do
     end
 
     it "Gets the link QoS values for server traffic for the specified pools." do
-      pending
+      @pool.server_link_qos.should_not be_nil
     end
 
     it "works this way" do
-      pending
+      @pool.server_link_qos
+      # => 65535
     end
 
     it "returns an instance of long" do
-      pending
+      @pool.server_link_qos.class.ancestors.should include(Numeric)
     end
   end
 
@@ -513,15 +515,16 @@ describe IControl::LocalLB::Pool do
     end
 
     it "Gets the simple timeouts for the specified pools." do
-      pending
+      @pool.simple_timeout.should_not be_nil
     end
 
     it "works this way" do
-      pending
+      @pool.simple_timeout
+      # => 0
     end
 
     it "returns an instance of long" do
-      pending
+      @pool.simple_timeout.class.ancestors.should include(Numeric)
     end
   end
 
@@ -531,15 +534,16 @@ describe IControl::LocalLB::Pool do
     end
 
     it "Gets the ramp-up time (in seconds) to gradually ramp up the load on newly added or freshly detected UP pool members." do
-      pending
+      @pool.slow_ramp_time.should_not be_nil
     end
 
     it "works this way" do
-      pending
+      @pool.slow_ramp_time
+      # => 0
     end
 
     it "returns an instance of long" do
-      pending
+      @pool.slow_ramp_time.class.ancestors.should include(Numeric)
     end
   end
 
@@ -549,15 +553,21 @@ describe IControl::LocalLB::Pool do
     end
 
     it "Gets the statistics for the specified pools." do
-      pending
+      @pool.statistics.should_not be_nil
     end
 
     it "works this way" do
-      pending
+      statistics = @pool.statistics
+      statistics.time_stamp.inspect
+      # => #<IControl::Common::TimeStamp:0x7f4bdea1f5c8 @attributes={:month=>"1", :year=>"2011", :second=>"46", :hour=>"14", :day=>"4", :id=>nil, :minute=>"33"}>
+      statistics.statistics.statistics.first.type
+      # => :STATISTIC_SERVER_SIDE_BYTES_IN
+      statistics.statistics.statistics.first.value
+      # => #<IControl::Common::ULong64:0x7fc3107533b8 @attributes={:high=>"0", :low=>"0"}>
     end
 
     it "returns an instance of PoolStatistics" do
-      pending
+      @pool.statistics.class.should == IControl::LocalLB::Pool::PoolStatistics
     end
   end
 
@@ -567,21 +577,40 @@ describe IControl::LocalLB::Pool do
     end
 
     it "Gets the version information for this interface." do
-      pending
+      @pool.version.should_not be_nil
     end
 
     it "works this way" do
-      pending
+      @pool.version.inspect
+      # => "BIG-IP_v10.0.1"
     end
 
     it "returns an instance of String" do
-      pending
+      @pool.version.class.should == String
     end
   end
 
   describe "#remove_member" do
     it "Removes members from the specified pools." do
-      pending
+      before = @pool.member.length
+      @pool.add_member(:members => [{:address => "192.168.52.10",:port => "80"}])
+      after = @pool.member.length
+      after.should == (before + 1)
+      @pool.remove_member(:members => [{:address => "192.168.52.10",:port => "80"}])
+      @pool.member.length.should == before
+    end
+
+    it "works this way" do
+      @pool.add_member(:members => [{:address => "192.168.52.10",:port => "80"}])
+      # - ^ My pool's got a new member
+      @pool.remove_member(:members => [{:address => "192.168.52.10",:port => "80"}])      
+      # - ^ Get the hell out! of here!
+    end
+  end
+
+  describe "#set_monitor_association" do
+    it "Sets/creates the monitor associations for the specified pools. This basically creates the monitor associations between a pool and a monitor rule." do
+      IControl::LocalLB::Pool.set_monitor_association(:monitor_association => {:pool_name => "test_pool",:monitor_rule => {:type => IControl::LocalLB::MonitorRuleType::MONITOR_RULE_TYPE_SINGLE,:quorum => 0,:monitor_templates => "tcp"}} )
     end
 
     it "works this way" do
@@ -711,16 +740,6 @@ describe IControl::LocalLB::Pool do
 
   describe "#set_minimum_up_member_enabled_state" do
     it "Sets the states indicating that the feature that requires a minimum number of members to be UP is enabled/disabled for the specified pools." do
-      pending
-    end
-
-    it "works this way" do
-      pending
-    end
-  end
-
-  describe "#set_monitor_association" do
-    it "Sets/creates the monitor associations for the specified pools. This basically creates the monitor associations between a pool and a monitor rule." do
       pending
     end
 
