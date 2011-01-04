@@ -15,6 +15,7 @@ module IControl # :nodoc:
 
         return Fixnum if type == "y:long"
         return String if type == "y:string"
+        return LongSequence if type == "y:longSequence"
         return StringSequence if type == "y:stringSequence"
 
         splitted = type.split(":")
