@@ -102,7 +102,7 @@ begin
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
 
     gem.add_dependency "savon" ,"~>0.8.1"
-    gem.add_dependency "httpi" ,"~>0.7.5"
+    gem.add_dependency "httpi" ,"~>0.7.6"
 
     gem.add_development_dependency "vcr" ,"~>1.4.0"
     gem.add_development_dependency "webmock" , "~>1.6"
