@@ -175,139 +175,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A ruby client to the BigIP F5}
   s.test_files = [
-    "spec/icontrol/arx/api_spec.rb",
-    "spec/icontrol/arx/chassis_spec.rb",
-    "spec/icontrol/arx/export_spec.rb",
-    "spec/icontrol/arx/file_change_notification_spec.rb",
-    "spec/icontrol/arx/file_server_spec.rb",
-    "spec/icontrol/arx/namespace_spec.rb",
-    "spec/icontrol/arx/network_spec.rb",
-    "spec/icontrol/arx/policy_spec.rb",
-    "spec/icontrol/arx/share_spec.rb",
-    "spec/icontrol/arx/virtual_service_spec.rb",
-    "spec/icontrol/arx/volume_spec.rb",
-    "spec/icontrol/asm/object_params_spec.rb",
-    "spec/icontrol/asm/policy_spec.rb",
-    "spec/icontrol/asm/system_configuration_spec.rb",
-    "spec/icontrol/asm/web_application_group_spec.rb",
-    "spec/icontrol/asm/web_application_spec.rb",
-    "spec/icontrol/global_lb/application_spec.rb",
-    "spec/icontrol/global_lb/data_center_spec.rb",
-    "spec/icontrol/global_lb/dnssec_key_spec.rb",
-    "spec/icontrol/global_lb/dnssec_zone_spec.rb",
-    "spec/icontrol/global_lb/globals_spec.rb",
-    "spec/icontrol/global_lb/link_spec.rb",
-    "spec/icontrol/global_lb/monitor_spec.rb",
-    "spec/icontrol/global_lb/pool_member_spec.rb",
-    "spec/icontrol/global_lb/pool_spec.rb",
-    "spec/icontrol/global_lb/region_spec.rb",
-    "spec/icontrol/global_lb/rule_spec.rb",
-    "spec/icontrol/global_lb/server_spec.rb",
-    "spec/icontrol/global_lb/topology_spec.rb",
-    "spec/icontrol/global_lb/virtual_server_spec.rb",
-    "spec/icontrol/global_lb/wide_ip_spec.rb",
-    "spec/icontrol/local_lb/klass_spec.rb",
-    "spec/icontrol/local_lb/monitor_spec.rb",
-    "spec/icontrol/local_lb/nat_spec.rb",
-    "spec/icontrol/local_lb/node_address_spec.rb",
-    "spec/icontrol/local_lb/pool_member_spec.rb",
     "spec/icontrol/local_lb/pool_spec.rb",
-    "spec/icontrol/local_lb/profile_auth_spec.rb",
-    "spec/icontrol/local_lb/profile_client_ssl_spec.rb",
-    "spec/icontrol/local_lb/profile_diameter_spec.rb",
-    "spec/icontrol/local_lb/profile_dns_spec.rb",
-    "spec/icontrol/local_lb/profile_fast_http_spec.rb",
-    "spec/icontrol/local_lb/profile_fast_l4_spec.rb",
-    "spec/icontrol/local_lb/profile_ftp_spec.rb",
-    "spec/icontrol/local_lb/profile_http_class_spec.rb",
-    "spec/icontrol/local_lb/profile_http_spec.rb",
-    "spec/icontrol/local_lb/profile_iiop_spec.rb",
-    "spec/icontrol/local_lb/profile_one_connect_spec.rb",
-    "spec/icontrol/local_lb/profile_persistence_spec.rb",
-    "spec/icontrol/local_lb/profile_radius_spec.rb",
-    "spec/icontrol/local_lb/profile_rtsp_spec.rb",
-    "spec/icontrol/local_lb/profile_sctp_spec.rb",
-    "spec/icontrol/local_lb/profile_server_ssl_spec.rb",
-    "spec/icontrol/local_lb/profile_sip_spec.rb",
-    "spec/icontrol/local_lb/profile_stream_spec.rb",
-    "spec/icontrol/local_lb/profile_tcp_spec.rb",
-    "spec/icontrol/local_lb/profile_udp_spec.rb",
-    "spec/icontrol/local_lb/profile_user_statistic_spec.rb",
-    "spec/icontrol/local_lb/profile_xml_spec.rb",
-    "spec/icontrol/local_lb/ram_cache_information_spec.rb",
-    "spec/icontrol/local_lb/rate_class_spec.rb",
-    "spec/icontrol/local_lb/rule_spec.rb",
-    "spec/icontrol/local_lb/snat_pool_member_spec.rb",
-    "spec/icontrol/local_lb/snat_pool_spec.rb",
-    "spec/icontrol/local_lb/snat_spec.rb",
-    "spec/icontrol/local_lb/snat_translation_address_spec.rb",
-    "spec/icontrol/local_lb/virtual_address_spec.rb",
-    "spec/icontrol/local_lb/virtual_server_spec.rb",
-    "spec/icontrol/lt_config/field_spec.rb",
-    "spec/icontrol/lt_config/klass_spec.rb",
-    "spec/icontrol/management/ccldap_configuration_spec.rb",
-    "spec/icontrol/management/change_control_spec.rb",
-    "spec/icontrol/management/crldp_configuration_spec.rb",
-    "spec/icontrol/management/crldp_server_spec.rb",
-    "spec/icontrol/management/db_variable_spec.rb",
-    "spec/icontrol/management/event_notification_spec.rb",
-    "spec/icontrol/management/event_subscription_spec.rb",
-    "spec/icontrol/management/key_certificate_spec.rb",
-    "spec/icontrol/management/ldap_configuration_spec.rb",
-    "spec/icontrol/management/license_administration_spec.rb",
-    "spec/icontrol/management/named_spec.rb",
-    "spec/icontrol/management/ocsp_configuration_spec.rb",
-    "spec/icontrol/management/ocsp_responder_spec.rb",
-    "spec/icontrol/management/partition_spec.rb",
-    "spec/icontrol/management/provision_spec.rb",
-    "spec/icontrol/management/radius_configuration_spec.rb",
-    "spec/icontrol/management/radius_server_spec.rb",
-    "spec/icontrol/management/resource_record_spec.rb",
-    "spec/icontrol/management/snmp_configuration_spec.rb",
-    "spec/icontrol/management/tacacs_configuration_spec.rb",
-    "spec/icontrol/management/tmos_module_spec.rb",
-    "spec/icontrol/management/user_management_spec.rb",
-    "spec/icontrol/management/view_spec.rb",
-    "spec/icontrol/management/zone_runner_spec.rb",
-    "spec/icontrol/management/zone_spec.rb",
-    "spec/icontrol/networking/admin_ip_spec.rb",
-    "spec/icontrol/networking/arp_spec.rb",
-    "spec/icontrol/networking/i_session_advertised_route_spec.rb",
-    "spec/icontrol/networking/i_session_local_interface_spec.rb",
-    "spec/icontrol/networking/i_session_peer_discovery_spec.rb",
-    "spec/icontrol/networking/i_session_remote_interface_spec.rb",
-    "spec/icontrol/networking/interfaces_spec.rb",
-    "spec/icontrol/networking/packet_filter_globals_spec.rb",
-    "spec/icontrol/networking/packet_filter_spec.rb",
-    "spec/icontrol/networking/port_mirror_spec.rb",
-    "spec/icontrol/networking/profile_gre_spec.rb",
-    "spec/icontrol/networking/profile_ipip_spec.rb",
-    "spec/icontrol/networking/profile_wccpgre_spec.rb",
-    "spec/icontrol/networking/route_domain_spec.rb",
-    "spec/icontrol/networking/route_table_spec.rb",
-    "spec/icontrol/networking/self_ip_port_lockdown_spec.rb",
-    "spec/icontrol/networking/self_ip_spec.rb",
-    "spec/icontrol/networking/stp_globals_spec.rb",
-    "spec/icontrol/networking/stp_instance_spec.rb",
-    "spec/icontrol/networking/trunk_spec.rb",
-    "spec/icontrol/networking/tunnel_spec.rb",
-    "spec/icontrol/networking/vlan_group_spec.rb",
-    "spec/icontrol/networking/vlan_spec.rb",
-    "spec/icontrol/system/cluster_spec.rb",
-    "spec/icontrol/system/config_sync_spec.rb",
-    "spec/icontrol/system/connections_spec.rb",
-    "spec/icontrol/system/disk_spec.rb",
-    "spec/icontrol/system/failover_spec.rb",
-    "spec/icontrol/system/geo_ip_spec.rb",
-    "spec/icontrol/system/inet_spec.rb",
-    "spec/icontrol/system/internal_spec.rb",
-    "spec/icontrol/system/services_spec.rb",
-    "spec/icontrol/system/software_management_spec.rb",
-    "spec/icontrol/system/statistics_spec.rb",
-    "spec/icontrol/system/system_info_spec.rb",
-    "spec/icontrol/web_accelerator/applications_spec.rb",
-    "spec/icontrol/web_accelerator/policies_spec.rb",
-    "spec/icontrol/web_accelerator/proxy_message_spec.rb",
     "spec/spec_helper.rb"
   ]
 
@@ -328,17 +196,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
-      s.add_runtime_dependency(%q<savon>, ["~> 0.8.1"])
-      s.add_runtime_dependency(%q<httpi>, ["~> 0.7.6"])
-      s.add_development_dependency(%q<vcr>, ["~> 1.4.0"])
-      s.add_development_dependency(%q<webmock>, ["~> 1.6"])
-      s.add_development_dependency(%q<nokogiri>, [">= 0"])
-      s.add_development_dependency(%q<mechanize>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
-      s.add_development_dependency(%q<yard>, ["~> 0.6.0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<savon>, ["~> 0.8.1"])
       s.add_dependency(%q<httpi>, ["~> 0.7.6"])
@@ -349,17 +206,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_dependency(%q<yard-examples-from-rspec>, ["~> 0.0.1"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_dependency(%q<rcov>, [">= 0"])
-      s.add_dependency(%q<savon>, ["~> 0.8.1"])
-      s.add_dependency(%q<httpi>, ["~> 0.7.6"])
-      s.add_dependency(%q<vcr>, ["~> 1.4.0"])
-      s.add_dependency(%q<webmock>, ["~> 1.6"])
-      s.add_dependency(%q<nokogiri>, [">= 0"])
-      s.add_dependency(%q<mechanize>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3.0"])
-      s.add_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
@@ -374,17 +220,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
     s.add_dependency(%q<yard>, ["~> 0.6.0"])
     s.add_dependency(%q<yard-examples-from-rspec>, ["~> 0.0.1"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-    s.add_dependency(%q<rcov>, [">= 0"])
-    s.add_dependency(%q<savon>, ["~> 0.8.1"])
-    s.add_dependency(%q<httpi>, ["~> 0.7.6"])
-    s.add_dependency(%q<vcr>, ["~> 1.4.0"])
-    s.add_dependency(%q<webmock>, ["~> 1.6"])
-    s.add_dependency(%q<nokogiri>, [">= 0"])
-    s.add_dependency(%q<mechanize>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3.0"])
-    s.add_dependency(%q<yard>, ["~> 0.6.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
