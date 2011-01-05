@@ -3,8 +3,15 @@ class ModuleDeclaration < ASTNode
   def compile(buffer = nil)
     dir_name = normalized_file_name
     file_name = "#{dir_name}.rb"
-    if dir_name != "icontrol"
-      FileUtils.remove_dir(dir_name,true)
+
+    # If we are generating spec fictures we jump directly to that
+    if ClassDeclaration.spec_mode
+      children_filtered(:of_class => ClassDeclaration).each(&:compile)
+      return 
+    end
+    
+    if dir_name != "icontrol" 
+      FileUtils.remove_dir(dir_name,true) 
       Dir.mkdir(dir_name)
     end
 

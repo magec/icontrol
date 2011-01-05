@@ -6,6 +6,9 @@ class ClassDeclaration < ASTNode
     @@spec_mode=mode
   end
 
+  def self.spec_mode
+    @@spec_mode
+  end
   
   def parent_module
     parents(:of_class => ModuleDeclaration).map{ |i| i.properties[:name] }.reverse.join("::")
