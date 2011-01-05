@@ -22,6 +22,10 @@ describe <%= full_class_name %> do
     it "<%= method.properties[:comments] %>" do 
       pending
     end
+
+    it "works this way" do
+      pending
+    end 
     <% if method.return_type.type != "void" %>    
     it "returns an instance of <%= method.return_type.type %>" do
       pending
