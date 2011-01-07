@@ -127,4 +127,5 @@ require 'yard'
 require 'yard-examples-from-rspec'
 YARD::Rake::YardocTask.new do |task|
   task.options = ["--no-private"]
+  task.files <<  FileList['spec/**/*.rb']
 end
