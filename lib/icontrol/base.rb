@@ -12,6 +12,7 @@ require 'base/mappings'
 require 'base/sequence'
 require 'base/predeclarations'
 require 'base/exception'
+require 'base/icontrol_overlay'
 
 Savon.log = false
 HTTPI::Adapter.use = :net_http
