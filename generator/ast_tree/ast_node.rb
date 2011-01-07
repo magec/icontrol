@@ -53,8 +53,8 @@ class ASTNode
     ""
   end
   
-  def convert_to_ruby(type)
-    type = type.gsub(/\[\d*\]/,"Sequence").sub("Sequence","")
+  def convert_to_ruby(type,method_declaration = false)
+    type = type.gsub(/\[\d*\]/,"Sequence").sub("Sequence","") if method_declaration
     case type
     when "Short" then return "Numeric"
     when "Long" then return "Numeric"

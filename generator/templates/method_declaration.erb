@@ -1,5 +1,6 @@
 ##
 <%= comments %>
+# @rspec_example
 <% if return_type.properties[:type] != "void" %>
 # @return [<%= return_type.type  %>] 
 <% end %>
@@ -8,7 +9,7 @@
 <% end %>
 <% unless parameters_filtered.empty? %>
 # @param [Hash] opts <% parameters_filtered.each do |param| %>
-# @option opts [<%= convert_to_ruby(param.properties[:type]).gsub("Sequence","[]") %>] :<%= param.properties[:name] %> <%= param.properties[:comment] %>  <% end %> 
+# @option opts [<%= convert_to_ruby(param.properties[:type],true).gsub("Sequence","[]") %>] :<%= param.properties[:name] %> <%= param.properties[:comment] %>  <% end %> 
 def <%= method_name %>(opts)
   check_params(opts,[<%= parameters_filtered.map {|i| ":" + i.properties[:name] }.join(",") %>])
   super
