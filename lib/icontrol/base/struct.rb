@@ -26,8 +26,12 @@ module IControl # :nodoc:
             
             if v.respond_to?(:from_soap) # v.ancestors.find{ |i| i.name  =~ /^IControl/ }              
               aux[k] = v.from_soap(xml[k])
-            else 
-              aux[k] = xml[k]
+            else
+              if v == Numeric
+                aux[k] = xml[k].to_i
+              else
+                aux[k] = xml[k]
+              end
             end
           end if xml
           return aux.values.compact.empty? ? nil : self.new(aux)
