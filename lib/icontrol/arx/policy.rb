@@ -7,6 +7,7 @@ module IControl::ARX
 
     ##
     # Returns the details of this policies.
+    # @rspec_example
     # @return [PolicyDefinition]
     # @param [Hash] opts
     # @option opts [String] :volume Volume name.
@@ -18,6 +19,7 @@ module IControl::ARX
 
     ##
     # Returns the list of policies for this namespac and volume.
+    # @rspec_example
     # @return [String]
     # @param [Hash] opts
     # @option opts [String] :volume Volume name.
@@ -28,6 +30,7 @@ module IControl::ARX
 
     ##
     # Returns the details of this schedule.
+    # @rspec_example
     # @return [PolicySchedule]
     # @param [Hash] opts
     # @option opts [String] :schedule Schedule name.

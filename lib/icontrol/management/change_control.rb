@@ -12,24 +12,37 @@ module IControl::Management
     class InstanceInfo < IControl::Base::Struct; end
     class InstanceVariable < IControl::Base::Struct; end
     class ModuleInfo < IControl::Base::Struct; end
+    class ClassInfoSequence < IControl::Base::Sequence ; end
+    class ClassTransactionInfoSequence < IControl::Base::Sequence ; end
+    class DeprecatedClassInfoSequence < IControl::Base::Sequence ; end
+    class InstanceInfoSequence < IControl::Base::Sequence ; end
+    class InstanceInfoSequenceSequence < IControl::Base::SequenceSequence ; end
+    class InstanceSequence < IControl::Base::Sequence ; end
+    class InstanceSequenceSequence < IControl::Base::SequenceSequence ; end
+    class InstanceVariableSequence < IControl::Base::Sequence ; end
+    class InstanceVariableSequenceSequence < IControl::Base::SequenceSequence ; end
+    class ModuleInfoSequence < IControl::Base::Sequence ; end
     # This enum defines instance format types.
     class InstanceFormatType < IControl::Base::Enumeration; end
     # This enum defines instance variable types.
     class InstanceVariableType < IControl::Base::Enumeration; end    ##
     # Delete object instance
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_instance
       super
     end
 
     ##
-    # Gets the sequence of class information for the classes of objects available on the system
+    # Gets the sequence of class information for the classes of objects available on the
+    # system
+    # @rspec_example
     # @return [ClassInfo]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :filter The filter to apply to the class names
     def class_info(opts)
@@ -38,11 +51,13 @@ module IControl::Management
     end
 
     ##
-    # Gets the sequence of deprecated class information for the classes of objects that have been deprecated
+    # Gets the sequence of deprecated class information for the classes of objects that
+    # have been deprecated
+    # @rspec_example
     # @return [DeprecatedClassInfo]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :filter The filter to apply to the class names
     def deprecated_class_info(opts)
@@ -52,10 +67,11 @@ module IControl::Management
 
     ##
     # Gets the information and contents of each instance requested
+    # @rspec_example
     # @return [Instance]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::InstanceFormatType] :instance_format The format of contents
     def instance(opts)
@@ -65,10 +81,11 @@ module IControl::Management
 
     ##
     # Gets the sequence of dependencies for each instance
+    # @rspec_example
     # @return [String[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :depth Limits the depth of search. Zero indicates no limit.
     def instance_dependency(opts)
@@ -78,10 +95,11 @@ module IControl::Management
 
     ##
     # Gets the sequence of information for each instance of each class
+    # @rspec_example
     # @return [InstanceInfo[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::ClassTransactionInfo] :classes Class names and transaction information (tx = 0 indicates all instances)
     def instance_info(opts)
@@ -91,10 +109,11 @@ module IControl::Management
 
     ##
     # Gets the sequence of variable items for each instance
+    # @rspec_example
     # @return [InstanceVariable[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::InstanceVariableType] :instance_variable The format of contents
     def instance_variable(opts)
@@ -104,20 +123,22 @@ module IControl::Management
 
     ##
     # Gets the last time that the configuration was loaded.
+    # @rspec_example
     # @return [TimeStamp]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def last_load_time
       super
     end
 
     ##
     # Gets the sequence of module information for the modules available on the system
+    # @rspec_example
     # @return [ModuleInfo]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :filter The filter to apply to the module names
     def module_info(opts)
@@ -127,6 +148,7 @@ module IControl::Management
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -134,9 +156,10 @@ module IControl::Management
 
     ##
     # Put object configuration (formatted contents)
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::InstanceFormatType] :instance_format The instance format used in the data (same for all instances)
     # @option opts [String] :data Formatted configuration (collection of instance data)
@@ -147,9 +170,10 @@ module IControl::Management
 
     ##
     # Put object instance (native format)
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::Instance] :instances The instances to put (transaction_id discarded)
     def put_instance(opts)
@@ -159,9 +183,10 @@ module IControl::Management
 
     ##
     # Verify object configuration (formatted contents) can be put/saved
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::InstanceFormatType] :instance_format The instance format used in the data (same for all instances)
     # @option opts [String] :data Formatted configuration (collection of instance data)
@@ -172,9 +197,10 @@ module IControl::Management
 
     ##
     # Verify that object instance (native format) can be put
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::Instance] :instances The instances to verify (transaction_id discarded)
     def verify_instance(opts)

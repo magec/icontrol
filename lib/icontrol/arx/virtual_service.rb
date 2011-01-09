@@ -7,6 +7,7 @@ module IControl::ARX
 
     ##
     # Returns the details of this virtual service.
+    # @rspec_example
     # @return [VirtualServiceDefinition]
     def definition
       super
@@ -14,6 +15,7 @@ module IControl::ARX
 
     ##
     # Returns the list of virtual service names.
+    # @rspec_example
     # @return [String]
     def list
       super
@@ -21,6 +23,7 @@ module IControl::ARX
 
     ##
     # Returns the statistics of this virtual service.
+    # @rspec_example
     # @return [VirtualServiceStats]
     def stats
       super

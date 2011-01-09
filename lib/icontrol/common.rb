@@ -13,6 +13,55 @@ module IControl::Common
   class ULong64 < IControl::Base::Struct; end
   class VLANFilterList < IControl::Base::Struct; end
   class VirtualServerDefinition < IControl::Base::Struct; end
+  class AnySequence < IControl::Base::Sequence ; end
+  class ArmedStateSequence < IControl::Base::Sequence ; end
+  class AuthenticationMethodSequence < IControl::Base::Sequence ; end
+  class AvailabilityStatusSequence < IControl::Base::Sequence ; end
+  class BooleanSequence < IControl::Base::Sequence ; end
+  class BooleanSequenceSequence < IControl::Base::SequenceSequence ; end
+  class CharSequence < IControl::Base::Sequence ; end
+  class DoubleSequence < IControl::Base::Sequence ; end
+  class EnabledStateSequence < IControl::Base::Sequence ; end
+  class EnabledStateSequenceSequence < IControl::Base::SequenceSequence ; end
+  class EnabledStatusSequence < IControl::Base::Sequence ; end
+  class ExpirationSequence < IControl::Base::Sequence ; end
+  class FloatSequence < IControl::Base::Sequence ; end
+  class HAActionSequence < IControl::Base::Sequence ; end
+  class HAStateSequence < IControl::Base::Sequence ; end
+  class HAStateSequenceSequence < IControl::Base::SequenceSequence ; end
+  class IPAddress < IControl::Base::Sequence ; end
+  class IPAddressSequence < IControl::Base::Sequence ; end
+  class IPAddressSequenceSequence < IControl::Base::SequenceSequence ; end
+  class IPHostSequence < IControl::Base::Sequence ; end
+  class IPNetmaskSequence < IControl::Base::Sequence ; end
+  class IPNetmaskSequenceSequence < IControl::Base::SequenceSequence ; end
+  class IPPortDefinitionSequence < IControl::Base::Sequence ; end
+  class IPPortDefinitionSequenceSequence < IControl::Base::SequenceSequence ; end
+  class KeyValueSequence < IControl::Base::Sequence ; end
+  class Long64Sequence < IControl::Base::Sequence ; end
+  class LongSequence < IControl::Base::Sequence ; end
+  class ObjectStatusSequence < IControl::Base::Sequence ; end
+  class OctetSequence < IControl::Base::Sequence ; end
+  class PortNumber < IControl::Base::Sequence ; end
+  class PortSequence < IControl::Base::Sequence ; end
+  class ProtocolTypeSequence < IControl::Base::Sequence ; end
+  class ShortSequence < IControl::Base::Sequence ; end
+  class SourcePortBehaviorSequence < IControl::Base::Sequence ; end
+  class StatisticSequence < IControl::Base::Sequence ; end
+  class StatisticSequenceSequence < IControl::Base::SequenceSequence ; end
+  class StringSequence < IControl::Base::Sequence ; end
+  class StringSequenceSequence < IControl::Base::SequenceSequence ; end
+  class TMOSModuleSequence < IControl::Base::Sequence ; end
+  class TimeStampSequence < IControl::Base::Sequence ; end
+  class ULong < IControl::Base::Sequence ; end
+  class ULong64Sequence < IControl::Base::Sequence ; end
+  class ULongSequence < IControl::Base::Sequence ; end
+  class ULongSequenceSequence < IControl::Base::SequenceSequence ; end
+  class UShort < IControl::Base::Sequence ; end
+  class UShortSequence < IControl::Base::Sequence ; end
+  class VLANFilterListSequence < IControl::Base::Sequence ; end
+  class VirtualServerSequence < IControl::Base::Sequence ; end
+  class VirtualServerSequenceSequence < IControl::Base::SequenceSequence ; end
   # A list of armed states.
   class ArmedState < IControl::Base::Enumeration; end
   # A list of different authentication methods.
@@ -25,7 +74,8 @@ module IControl::Common
   class EnabledState < IControl::Base::Enumeration; end
   # A list of possible values for enabled status.
   class EnabledStatus < IControl::Base::Enumeration; end
-  # An enumeration of chaining flags used in file transfers. This is used to avoid having to transfer the whole file at one time.
+  # An enumeration of chaining flags used in file transfers. This is used to avoid having
+  # to transfer the whole file at one time.
   class FileChainType < IControl::Base::Enumeration; end
   # An enumeration of HA (High Availability) actions.
   class HAAction < IControl::Base::Enumeration; end
@@ -181,10 +231,10 @@ module IControl::Common
   ##
   # A struct that specifies a list of VLAN names used as ingress VLAN filters.
   # @attr [IControl::Common::EnabledState] state An indicator of whether the VLAN list is a list of enabled or disabled VLANs .
-  # @attr [String] vlans The list of VLAN names in the filter.
+  # @attr [StringSequence] vlans The list of VLAN names in the filter.
   class VLANFilterList < IControl::Base::Struct
     icontrol_attribute :state, IControl::Common::EnabledState
-    icontrol_attribute :vlans, String
+    icontrol_attribute :vlans, StringSequence
   end
 
   ##
@@ -422,7 +472,8 @@ module IControl::Common
   end
 
 
-  # An enumeration of chaining flags used in file transfers. This is used to avoid having to transfer the whole file at one time.
+  # An enumeration of chaining flags used in file transfers. This is used to avoid having
+  # to transfer the whole file at one time.
   class FileChainType < IControl::Base::Enumeration
     # Unitialized chain type flag.
     FILE_UNDEFINED = :FILE_UNDEFINED

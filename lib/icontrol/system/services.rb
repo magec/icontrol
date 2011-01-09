@@ -1,6 +1,7 @@
 module IControl::System
   ##
-  # The Services interface enables you to manage the various supported services on the device, such as SSHD, HTTPD, NTPD, SOD....
+  # The Services interface enables you to manage the various supported services on the
+  # device, such as SSHD, HTTPD, NTPD, SOD....
   class Services < IControl::Base
 
     set_id_name "services"
@@ -8,6 +9,9 @@ module IControl::System
     class SSHAccess < IControl::Base::Struct; end
     class SSHAccess_v2 < IControl::Base::Struct; end
     class ServiceStatus < IControl::Base::Struct; end
+    class ServiceActionSequence < IControl::Base::Sequence ; end
+    class ServiceStatusSequence < IControl::Base::Sequence ; end
+    class ServiceTypeSequence < IControl::Base::Sequence ; end
     # An enumeration for different service actions.
     class ServiceAction < IControl::Base::Enumeration; end
     # An enumeration for different service statuses.
@@ -15,66 +19,77 @@ module IControl::System
     # An enumeration for different services running in the system.
     class ServiceType < IControl::Base::Enumeration; end    ##
     # Determines whether this service are enabled or disabled on an ITCM appliance.
+    # @rspec_example
     # @return [ServiceStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def all_service_statuses
       super
     end
 
     ##
     # Gets a list of all service supported on this device.
+    # @rspec_example
     # @return [ServiceType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
     # Gets the statuses of this service
+    # @rspec_example
     # @return [ServiceStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def service_status
       super
     end
 
     ##
-    # Note: This method is deprecated; please use get_ssh_access_v2 in new applications. Gets the ssl service state and allowed addresses.
+    # Note: This method is deprecated; please use get_ssh_access_v2 in new applications.
+    # Gets the ssl service state and allowed addresses.
+    # @rspec_example
     # @return [SSHAccess]
-    # @raise [IControl::Common::AccessDenied]
-    # @raise [IControl::Common::InvalidArgument]
-    # @raise [IControl::Common::OperationFailed]
+    # @raise [IControl::IControl::Common::AccessDenied]
+    # @raise [IControl::IControl::Common::InvalidArgument]
+    # @raise [IControl::IControl::Common::OperationFailed]
     def ssh_access
       super
     end
 
     ##
     # Gets the ssl service state and allowed addresses.
+    # @rspec_example
     # @return [SSHAccess_v2]
-    # @raise [IControl::Common::AccessDenied]
-    # @raise [IControl::Common::InvalidArgument]
-    # @raise [IControl::Common::OperationFailed]
+    # @raise [IControl::IControl::Common::AccessDenied]
+    # @raise [IControl::IControl::Common::InvalidArgument]
+    # @raise [IControl::IControl::Common::OperationFailed]
     def ssh_access_v2
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
     end
 
     ##
-    # Reboots the system. This method will reboot the system within specified number of seconds. Once this method has been called, no further operations or requests should be sent to the Portal, and make sure all pending operations are completed before the reboot.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Reboots the system. This method will reboot the system within specified number of
+    # seconds. Once this method has been called, no further operations or requests should
+    # be sent to the Portal, and make sure all pending operations are completed before
+    # the reboot.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :seconds_to_reboot The number of seconds before the reboot takes place.
     def reboot_system(opts)
@@ -83,10 +98,14 @@ module IControl::System
     end
 
     ##
-    # Sets the action for all service to take. This method is asynchronous, meaning that the method may return before the requested action is completed. NOTE: For this method, the only valid values for service_action are: SERVICE_ACTION_START SERVICE_ACTION_STOP SERVICE_ACTION_REINIT SERVICE_ACTION_RESTART
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the action for all service to take. This method is asynchronous, meaning that
+    # the method may return before the requested action is completed. NOTE: For this method,
+    # the only valid values for service_action are: SERVICE_ACTION_START SERVICE_ACTION_STOP
+    # SERVICE_ACTION_REINIT SERVICE_ACTION_RESTART
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::System::Services::ServiceAction] :service_action The action for the services to take.
     def set_all_services(opts)
@@ -95,10 +114,12 @@ module IControl::System
     end
 
     ##
-    # Sets the action for this service to take. This method is asynchronous, meaning that the method may return before the requested action is completed.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the action for this service to take. This method is asynchronous, meaning that
+    # the method may return before the requested action is completed.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::System::Services::ServiceAction] :service_action The action for the services to take.
     def set_service(opts)
@@ -107,10 +128,12 @@ module IControl::System
     end
 
     ##
-    # Note: This method is deprecated; please use get_ssh_access_v2 in new applications. Sets the ssl service state and allowed addresses.
-    # @raise [IControl::Common::AccessDenied]
-    # @raise [IControl::Common::InvalidArgument]
-    # @raise [IControl::Common::OperationFailed]
+    # Note: This method is deprecated; please use get_ssh_access_v2 in new applications.
+    # Sets the ssl service state and allowed addresses.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied]
+    # @raise [IControl::IControl::Common::InvalidArgument]
+    # @raise [IControl::IControl::Common::OperationFailed]
     # @param [Hash] opts
     # @option opts [IControl::System::Services::SSHAccess] :access Access structure indicating enable/disable state of the		SSH service and an address range allowed to access		the device via ssh.
     def set_ssh_access(opts)
@@ -120,9 +143,10 @@ module IControl::System
 
     ##
     # Sets the ssl service state and allowed addresses.
-    # @raise [IControl::Common::AccessDenied]
-    # @raise [IControl::Common::InvalidArgument]
-    # @raise [IControl::Common::OperationFailed]
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied]
+    # @raise [IControl::IControl::Common::InvalidArgument]
+    # @raise [IControl::IControl::Common::OperationFailed]
     # @param [Hash] opts
     # @option opts [IControl::System::Services::SSHAccess_v2] :access Access structure indicating enable/disable state of the		SSH service and an address range allowed to access		the device via ssh.
     def set_ssh_access_v2(opts)
@@ -131,21 +155,30 @@ module IControl::System
     end
 
     ##
-    # Note: This structure is deprecated; please use SSHAccess_v2 in new applications. A struct that contains information about SSH state and access settings Note: as of v9.4.2, we have added &amp;quot;NONE" to this interface; as an address it means no access. Also please note that this interface has represented and still represents ALL access as &amp;quot;::". On the BIG-IP itself (as shown in the GUI, CLI, and db variables, v9.4.2 changed &amp;quot;::" to mean no access (returned here as NONE), and the word &amp;quot;ALL" means all access (still returned with this interface as &amp;quot;::").
+    # Note: This structure is deprecated; please use SSHAccess_v2 in new applications.
+    # A struct that contains information about SSH state and access settings Note: as of
+    # v9.4.2, we have added &amp;quot;NONE" to this interface; as an address it means no
+    # access. Also please note that this interface has represented and still represents
+    # ALL access as &amp;quot;::". On the BIG-IP itself (as shown in the GUI, CLI, and
+    # db variables, v9.4.2 changed &amp;quot;::" to mean no access (returned here as NONE),
+    # and the word &amp;quot;ALL" means all access (still returned with this interface
+    # as &amp;quot;::").
     # @attr [IControl::Common::EnabledState] state The state of the service, either 'enable' or 'disable'
-    # @attr [String] addresses The addresses and address ranges allowed to access		 the device via SSH
+    # @attr [StringSequence] addresses The addresses and address ranges allowed to access		 the device via SSH
     class SSHAccess < IControl::Base::Struct
       icontrol_attribute :state, IControl::Common::EnabledState
-      icontrol_attribute :addresses, String
+      icontrol_attribute :addresses, StringSequence
     end
 
     ##
-    # A struct that contains information about SSH state and access settings Note: In addresses, &amp;quot;::" means no access, and &amp;quot;ALL" means all access. The semantics for no access and all access are different than the previous SSHAccess interface.
+    # A struct that contains information about SSH state and access settings Note: In addresses,
+    # &amp;quot;::" means no access, and &amp;quot;ALL" means all access. The semantics
+    # for no access and all access are different than the previous SSHAccess interface.
     # @attr [IControl::Common::EnabledState] state The state of the service, either 'enable' or 'disable'
-    # @attr [String] addresses The addresses and address ranges allowed to access		 the device via SSH
+    # @attr [StringSequence] addresses The addresses and address ranges allowed to access		 the device via SSH
     class SSHAccess_v2 < IControl::Base::Struct
       icontrol_attribute :state, IControl::Common::EnabledState
-      icontrol_attribute :addresses, String
+      icontrol_attribute :addresses, StringSequence
     end
 
     ##

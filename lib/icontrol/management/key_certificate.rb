@@ -1,6 +1,15 @@
 module IControl::Management
   ##
-  # The KeyCertificate interface exposes methods that enable you to manage keys, certificates, and certificate requests. All methods in this interface are atomic operations, such that each operation involves creating a session context with the key/certificate management library, performing the required action, and cleaning up and/or destroying the session context when completed. Therefore, all operations are stateless. Note that all operations on keys, certificates, and certificate requests are performed in the directory location containing keys, certs, csr's... as structured for Apache, which is currently /config/ssl. For archiving operations, you have the option of exporting or importing archives to/from other locations. If the location is not specified, the default location of /config/ssl will be used.
+  # The KeyCertificate interface exposes methods that enable you to manage keys, certificates,
+  # and certificate requests. All methods in this interface are atomic operations, such
+  # that each operation involves creating a session context with the key/certificate
+  # management library, performing the required action, and cleaning up and/or destroying
+  # the session context when completed. Therefore, all operations are stateless. Note
+  # that all operations on keys, certificates, and certificate requests are performed
+  # in the directory location containing keys, certs, csr's... as structured for Apache,
+  # which is currently /config/ssl. For archiving operations, you have the option of
+  # exporting or importing archives to/from other locations. If the location is not specified,
+  # the default location of /config/ssl will be used.
   class KeyCertificate < IControl::Base
 
     set_id_name "mode"
@@ -13,20 +22,36 @@ module IControl::Management
     class Key < IControl::Base::Struct; end
     class KeyInformation < IControl::Base::Struct; end
     class X509Data < IControl::Base::Struct; end
+    class CertificateDetailSequence < IControl::Base::Sequence ; end
+    class CertificateDetailSequenceSequence < IControl::Base::SequenceSequence ; end
+    class CertificateInformationSequence < IControl::Base::Sequence ; end
+    class CertificateRequestInformationSequence < IControl::Base::Sequence ; end
+    class CertificateRequestSequence < IControl::Base::Sequence ; end
+    class CertificateSequence < IControl::Base::Sequence ; end
+    class KeyInformationSequence < IControl::Base::Sequence ; end
+    class KeySequence < IControl::Base::Sequence ; end
+    class ValidityTypeSequence < IControl::Base::Sequence ; end
+    class X509DataSequence < IControl::Base::Sequence ; end
     # An enumerated type that will describe the certificate type.
     class CertificateType < IControl::Base::Enumeration; end
     # An enumerated type that will describe the key type being used in the key/certificate.
     class KeyType < IControl::Base::Enumeration; end
     # An enumerated type that will describe what mode of key/cert management to use.
     class ManagementModeType < IControl::Base::Enumeration; end
-    # An enumerated type that will describe the security type being used in the key. You can use this enumeration when creating the key to indicate whether you are creating a normal key, or FIPS-enabled key.
+    # An enumerated type that will describe the security type being used in the key. You
+    # can use this enumeration when creating the key to indicate whether you are creating
+    # a normal key, or FIPS-enabled key.
     class SecurityType < IControl::Base::Enumeration; end
     # An enumerated type that will describe the validity of the certificates.
     class ValidityType < IControl::Base::Enumeration; end    ##
-    # Adds certificates identified by &amp;quot;certificate_files" to the certificate bundles, which are presumed to exist already. Each of the original certificate bundle can theoretically be a normal certificate, i.e. a certificate bundle of one. After the add operation, the bundles will contain more than one certificate.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Adds certificates identified by &amp;quot;certificate_files" to the certificate bundles,
+    # which are presumed to exist already. Each of the original certificate bundle can
+    # theoretically be a normal certificate, i.e. a certificate bundle of one. After the
+    # add operation, the bundles will contain more than one certificate.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The existing certificate bundles to which additional certificates will be added.
     # @option opts [String] :certificate_files The file names of the certificates to add to the bundles.
@@ -36,10 +61,14 @@ module IControl::Management
     end
 
     ##
-    # Adds certificates identified by &amp;quot;pem_data" to the certificate bundles, which are presumed to exist already. Each of the original certificate bundle can theoretically be a normal certificate, i.e. a certificate bundle of one. After the add operation, the bundles will contain more than one certificate.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Adds certificates identified by &amp;quot;pem_data" to the certificate bundles, which
+    # are presumed to exist already. Each of the original certificate bundle can theoretically
+    # be a normal certificate, i.e. a certificate bundle of one. After the add operation,
+    # the bundles will contain more than one certificate.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The existing certificate bundles to which additional certificates will be added.
     # @option opts [String] :pem_data The PEM formatted data of the certificates to add to the bundles.
@@ -50,9 +79,10 @@ module IControl::Management
 
     ##
     # Binds/associates this keys and certificates.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates.
     # @option opts [String] :key_ids The string identifications of the keys
@@ -63,10 +93,11 @@ module IControl::Management
 
     ##
     # Gets the validity of this certificates.
+    # @rspec_example
     # @return [ValidityType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to check for validity.
     # @option opts [long] :watermark_days The watermarks in number of days to use in checking the validity.
@@ -77,9 +108,10 @@ module IControl::Management
 
     ##
     # Deletes/uninstalls this certificates.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to delete/uninstall.
     def certificate_delete(opts)
@@ -88,10 +120,13 @@ module IControl::Management
     end
 
     ##
-    # Deletes certificates, identified by their subject's X509 data, from the certificate bundles. If the last certificate has been deleted from the bundle, the certificate file will automatically be deleted.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Deletes certificates, identified by their subject's X509 data, from the certificate
+    # bundles. If the last certificate has been deleted from the bundle, the certificate
+    # file will automatically be deleted.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The existing certificate bundles from which certificates will be removed.
     # @option opts [IControl::Management::KeyCertificate::X509Data] :x509_data The X509 data of the subjects of the certificates to be deleted from the bundle.
@@ -102,9 +137,10 @@ module IControl::Management
 
     ##
     # Exports this certificates to the given files.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to export.
     # @option opts [String] :file_names The files associated with the specified certificates to export to.
@@ -116,10 +152,11 @@ module IControl::Management
 
     ##
     # Exports this certificates to PEM-formatted data.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to export.
     def certificate_export_to_pem(opts)
@@ -128,10 +165,12 @@ module IControl::Management
     end
 
     ##
-    # Generates this certificates. This assumes that each of the associated keys, having the same identification as each certificate, has already been created.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Generates this certificates. This assumes that each of the associated keys, having
+    # the same identification as each certificate, has already been created.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::KeyCertificate::Certificate] :certs The certificates to generate.
     # @option opts [IControl::Management::KeyCertificate::X509Data] :x509_data The x509 data associated with the specified certificates.
@@ -144,9 +183,10 @@ module IControl::Management
 
     ##
     # Imports/installs this certificates from the given files.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to import/install.
     # @option opts [String] :file_names The certificate files associated with the specified certificates from which to import.
@@ -158,9 +198,10 @@ module IControl::Management
 
     ##
     # Imports/installs this certificates from the given PEM-formatted data.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to import/install.
     # @option opts [String] :pem_data The PEM-formatted data associated with the specified certificates.
@@ -172,9 +213,10 @@ module IControl::Management
 
     ##
     # Deletes this CSRs.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :csr_ids The certificate requests to delete.
     def certificate_request_delete(opts)
@@ -184,9 +226,10 @@ module IControl::Management
 
     ##
     # Exports this certificate requests to the given files.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :csr_ids The string identifications of the certificate requests to export.
     # @option opts [String] :file_names The files associated with the specified certificates to export to.
@@ -198,10 +241,11 @@ module IControl::Management
 
     ##
     # Exports this certificate requests to PEM-formatted data.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :csr_ids The string identifications of the certificate requests to export.
     def certificate_request_export_to_pem(opts)
@@ -210,10 +254,13 @@ module IControl::Management
     end
 
     ##
-    # Generates this certificate signing requests. This assumes that each of the associated keys, having the same identification as each certificate request, has already been created.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Generates this certificate signing requests. This assumes that each of the associated
+    # keys, having the same identification as each certificate request, has already been
+    # created.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::KeyCertificate::CertificateRequest] :csrs The certificate requests to generate.
     # @option opts [IControl::Management::KeyCertificate::X509Data] :x509_data The x509 data associated with the specified certificate requests.
@@ -225,9 +272,10 @@ module IControl::Management
 
     ##
     # Imports/installs this certificate requests from the given files.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :csr_ids The string identifications of the certificate requests to import/install.
     # @option opts [String] :file_names The files associated with the specified certificate requests from which to import.
@@ -239,9 +287,10 @@ module IControl::Management
 
     ##
     # Imports/installs this certificate requests from the given PEM-formatted data.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :csr_ids The string identifications of the certificate requests to import/install.
     # @option opts [String] :pem_data The PEM-formatted data associated with the specified certificates.
@@ -252,10 +301,12 @@ module IControl::Management
     end
 
     ##
-    # Exports all currently installed keys and certificates into this archive file. The archive file is a .tgz file that will contain all keys and certificates.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Exports all currently installed keys and certificates into this archive file. The
+    # archive file is a .tgz file that will contain all keys and certificates.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :archive_location The location of the archive file.
     # @option opts [String] :archive_name The archive file name.
@@ -265,20 +316,25 @@ module IControl::Management
     end
 
     ##
-    # Exports all currently installed keys and certificates into the returned archive stream. The returned archive stream is basically the contents of a .tgz file that contains all keys and certificates.
+    # Exports all currently installed keys and certificates into the returned archive stream.
+    # The returned archive stream is basically the contents of a .tgz file that contains
+    # all keys and certificates.
+    # @rspec_example
     # @return [char]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def export_all_to_archive_stream
       super
     end
 
     ##
-    # Exports this keys and certificates into this archive file. The archive file is a .tgz file that will contain only this keys and certificates that have been exported.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Exports this keys and certificates into this archive file. The archive file is a
+    # .tgz file that will contain only this keys and certificates that have been exported.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :archive_location The location of the archive file.
     # @option opts [String] :archive_name The archive file name.
@@ -290,11 +346,14 @@ module IControl::Management
     end
 
     ##
-    # Exports this keys and certificates into the returned archive stream. The returned archive stream is basically the contents of a .tgz file that contains the exported keys and certificates.
+    # Exports this keys and certificates into the returned archive stream. The returned
+    # archive stream is basically the contents of a .tgz file that contains the exported
+    # keys and certificates.
+    # @rspec_example
     # @return [char]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :keys The string identifications of the keys to be exported.
     # @option opts [String] :certs The string identifications of the certificates to be exported.
@@ -304,11 +363,15 @@ module IControl::Management
     end
 
     ##
-    # Gets the list of all certificates bundled in the certificate files as specified by the file_names. Each file_name will contain multiple certficates. Note: only call this method when the results of get_certificate_list indicate that there are multiple certificated bundled in a particular file.
+    # Gets the list of all certificates bundled in the certificate files as specified by
+    # the file_names. Each file_name will contain multiple certficates. Note: only call
+    # this method when the results of get_certificate_list indicate that there are multiple
+    # certificated bundled in a particular file.
+    # @rspec_example
     # @return [CertificateDetail[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :file_names The file names of the certificate bundles.
     def certificate_bundle(opts)
@@ -317,47 +380,55 @@ module IControl::Management
     end
 
     ##
-    # Gets the list of all installed certificates and their information. If there's a certificate bundle, only the first certificate in the bundle is returned, and and is_bundle flag will be set to true for the correponding bundle file name.
+    # Gets the list of all installed certificates and their information. If there's a certificate
+    # bundle, only the first certificate in the bundle is returned, and and is_bundle flag
+    # will be set to true for the correponding bundle file name.
+    # @rspec_example
     # @return [CertificateInformation]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def certificate_list
       super
     end
 
     ##
     # Gets the list of all CSRs and their information.
+    # @rspec_example
     # @return [CertificateRequestInformation]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def certificate_request_list
       super
     end
 
     ##
     # Gets the list of all installed keys and their information.
+    # @rspec_example
     # @return [KeyInformation]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def key_list
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
     end
 
     ##
-    # Imports/installs all keys and certificates from this archive file. The archive file should be a .tgz file that contains all keys and certificates.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Imports/installs all keys and certificates from this archive file. The archive file
+    # should be a .tgz file that contains all keys and certificates.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :archive_location The location of the archive file.
     # @option opts [String] :archive_name The archive file name.
@@ -367,10 +438,12 @@ module IControl::Management
     end
 
     ##
-    # Imports/installs all keys and certificates from the incoming archive stream. The archive stream should be the contents of a .tgz file that contains all keys and certificates.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Imports/installs all keys and certificates from the incoming archive stream. The
+    # archive stream should be the contents of a .tgz file that contains all keys and certificates.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [char] :archive_stream The archive stream from which to import keys and certificates.
     def import_all_from_archive_stream(opts)
@@ -379,10 +452,13 @@ module IControl::Management
     end
 
     ##
-    # Imports/installs this keys and certificates from this archive file. The archive file should be a .tgz file that may contain more keys and certificates than what will be imported/installed.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Imports/installs this keys and certificates from this archive file. The archive file
+    # should be a .tgz file that may contain more keys and certificates than what will
+    # be imported/installed.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :archive_location The location of the archive file.
     # @option opts [String] :archive_name The archive file name.
@@ -394,10 +470,13 @@ module IControl::Management
     end
 
     ##
-    # Imports/installs this keys and certificates from the incoming archive stream. The archive stream should be the contents of a .tgz file that may contain more keys and certificates than what will be imported/installed.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Imports/installs this keys and certificates from the incoming archive stream. The
+    # archive stream should be the contents of a .tgz file that may contain more keys and
+    # certificates than what will be imported/installed.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [char] :archive_stream The archive stream from which to import keys and certificates.
     # @option opts [String] :keys The string identifications of the keys to be imported/installed.
@@ -409,19 +488,21 @@ module IControl::Management
 
     ##
     # Checks to see if the device supports FIPS security.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def is_fips_available
       super
     end
 
     ##
     # Deletes/uninstalls this keys.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to delete/uninstall.
     def key_delete(opts)
@@ -431,9 +512,10 @@ module IControl::Management
 
     ##
     # Exports this keys to the given files.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to export.
     # @option opts [String] :file_names The files associated with the specified keys to export to.
@@ -445,10 +527,11 @@ module IControl::Management
 
     ##
     # Exports this keys to PEM-formatted data.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to export.
     def key_export_to_pem(opts)
@@ -458,9 +541,10 @@ module IControl::Management
 
     ##
     # Generates this keys.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::KeyCertificate::Key] :keys The keys to generate.
     # @option opts [IControl::Management::KeyCertificate::X509Data] :x509_data The x509 data associated with the specified keys.
@@ -473,9 +557,10 @@ module IControl::Management
 
     ##
     # Imports/installs this keys from the given files.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to import/install.
     # @option opts [String] :file_names The key files associated with the specified keys from which to import.
@@ -487,9 +572,10 @@ module IControl::Management
 
     ##
     # Imports/installs this keys from the given PEM-formatted data.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to import/install.
     # @option opts [String] :pem_data The PEM-formatted data associated with the specified keys.
@@ -501,9 +587,10 @@ module IControl::Management
 
     ##
     # Converts this keys to FIPS-enabled keys.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to convert.
     def key_to_fips(opts)
@@ -512,10 +599,13 @@ module IControl::Management
     end
 
     ##
-    # Imports/installs this pkcs12 (Public Key Cryptography Standard #12) information from the given files. This includes keys and certificates, and each file is optionally password-encrypted.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Imports/installs this pkcs12 (Public Key Cryptography Standard #12) information from
+    # the given files. This includes keys and certificates, and each file is optionally
+    # password-encrypted.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :ids The string identifications of the keys & certificates to import/install.
     # @option opts [String] :file_names The files from which to import.
@@ -527,7 +617,8 @@ module IControl::Management
     end
 
     ##
-    # A struct that describes the basic information of a certificate, typically used when creating the certificate.
+    # A struct that describes the basic information of a certificate, typically used when
+    # creating the certificate.
     # @attr [String] id The string identification of this certificate.
     # @attr [String] email The email address of the certificate's owner.
     class Certificate < IControl::Base::Struct
@@ -572,7 +663,8 @@ module IControl::Management
     end
 
     ##
-    # A struct that describes the basic information of a certificate request, typically used when creating the certificate request.
+    # A struct that describes the basic information of a certificate request, typically
+    # used when creating the certificate request.
     # @attr [String] id The string identification of this certificate request.
     # @attr [String] email The email address of the certificate request's owner.
     # @attr [String] challenge_password The challenge password.
@@ -602,7 +694,8 @@ module IControl::Management
     end
 
     ##
-    # A struct that describes the basic information of a key, typically used when creating the key.
+    # A struct that describes the basic information of a key, typically used when creating
+    # the key.
     # @attr [String] id The string identification of this key.
     # @attr [IControl::Management::KeyCertificate::KeyType] key_type The key type used by this key.
     # @attr [Numeric] bit_length The bit length used by this key
@@ -615,7 +708,8 @@ module IControl::Management
     end
 
     ##
-    # A struct that describes the full information of a key, typically returned when querying the key.
+    # A struct that describes the full information of a key, typically returned when querying
+    # the key.
     # @attr [IControl::Management::KeyCertificate::Key] key_info The basic information of the key.
     # @attr [String] file_name The full path/file name of the key on disk.
     # @attr [Numeric] flags Reserved for future use.
@@ -626,7 +720,8 @@ module IControl::Management
     end
 
     ##
-    # A struct that describes the information of the x509 data that our key/certificate management library will read from or include in a certificate.
+    # A struct that describes the information of the x509 data that our key/certificate
+    # management library will read from or include in a certificate.
     # @attr [String] common_name The common name of the certificate, normally a domain name.
     # @attr [String] country_name The country name.
     # @attr [String] state_name The state name.
@@ -702,7 +797,9 @@ module IControl::Management
     end
 
 
-    # An enumerated type that will describe the security type being used in the key. You can use this enumeration when creating the key to indicate whether you are creating a normal key, or FIPS-enabled key.
+    # An enumerated type that will describe the security type being used in the key. You
+    # can use this enumeration when creating the key to indicate whether you are creating
+    # a normal key, or FIPS-enabled key.
     class SecurityType < IControl::Base::Enumeration
       # A normal key.
       STYPE_NORMAL = :STYPE_NORMAL

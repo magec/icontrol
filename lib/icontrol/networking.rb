@@ -1,6 +1,19 @@
 module IControl::Networking
 
   class Uuid_128 < IControl::Base::Struct; end
+  class FilterActionSequence < IControl::Base::Sequence ; end
+  class FlowControlTypeSequence < IControl::Base::Sequence ; end
+  class LearningModeSequence < IControl::Base::Sequence ; end
+  class MediaStatusSequence < IControl::Base::Sequence ; end
+  class MemberTagTypeSequence < IControl::Base::Sequence ; end
+  class MemberTypeSequence < IControl::Base::Sequence ; end
+  class PhyMasterSlaveModeSequence < IControl::Base::Sequence ; end
+  class RouteEntryTypeSequence < IControl::Base::Sequence ; end
+  class STPLinkTypeSequence < IControl::Base::Sequence ; end
+  class STPModeTypeSequence < IControl::Base::Sequence ; end
+  class STPRoleTypeSequence < IControl::Base::Sequence ; end
+  class STPStateTypeSequence < IControl::Base::Sequence ; end
+  class Uuid_128Sequence < IControl::Base::Sequence ; end
   class ARP < IControl::Base; end
   class AdminIP < IControl::Base; end
   class Interfaces < IControl::Base; end
@@ -40,9 +53,16 @@ module IControl::Networking
   class PhyMasterSlaveMode < IControl::Base::Enumeration; end
   # A list of route entry types.
   class RouteEntryType < IControl::Base::Enumeration; end
-  # A list of Spanning Tree Protocol link types. The spanning tree algorithms include important optimizations that can only be used on point-to-point links, that is, on links which connect just two bridges. If these optimizations are used on shared links, incorrect or unstable behavior may result. By default, the implementation assumes that full-duplex links are point-to-point and that half-duplex links are shared.
+  # A list of Spanning Tree Protocol link types. The spanning tree algorithms include
+  # important optimizations that can only be used on point-to-point links, that is, on
+  # links which connect just two bridges. If these optimizations are used on shared links,
+  # incorrect or unstable behavior may result. By default, the implementation assumes
+  # that full-duplex links are point-to-point and that half-duplex links are shared.
   class STPLinkType < IControl::Base::Enumeration; end
-  # A list of Spanning Tree Protocol modes. The difference between STP_MODE_TYPE_DISABLED and STP_MODE_TYPE_PASSTHROUGH is that the pass-through mode forwards spanning tree bridge protocol data units (BPDUs) received on any interface to all other interfaces, whereas the disabled mode discards them.
+  # A list of Spanning Tree Protocol modes. The difference between STP_MODE_TYPE_DISABLED
+  # and STP_MODE_TYPE_PASSTHROUGH is that the pass-through mode forwards spanning tree
+  # bridge protocol data units (BPDUs) received on any interface to all other interfaces,
+  # whereas the disabled mode discards them.
   class STPModeType < IControl::Base::Enumeration; end
   # A list of Spanning Tree Protocol role types.
   class STPRoleType < IControl::Base::Enumeration; end
@@ -196,7 +216,11 @@ module IControl::Networking
   end
 
 
-  # A list of Spanning Tree Protocol link types. The spanning tree algorithms include important optimizations that can only be used on point-to-point links, that is, on links which connect just two bridges. If these optimizations are used on shared links, incorrect or unstable behavior may result. By default, the implementation assumes that full-duplex links are point-to-point and that half-duplex links are shared.
+  # A list of Spanning Tree Protocol link types. The spanning tree algorithms include
+  # important optimizations that can only be used on point-to-point links, that is, on
+  # links which connect just two bridges. If these optimizations are used on shared links,
+  # incorrect or unstable behavior may result. By default, the implementation assumes
+  # that full-duplex links are point-to-point and that half-duplex links are shared.
   class STPLinkType < IControl::Base::Enumeration
     # Point-To-Point links.
     STP_LINK_TYPE_P2P = :STP_LINK_TYPE_P2P
@@ -207,7 +231,10 @@ module IControl::Networking
   end
 
 
-  # A list of Spanning Tree Protocol modes. The difference between STP_MODE_TYPE_DISABLED and STP_MODE_TYPE_PASSTHROUGH is that the pass-through mode forwards spanning tree bridge protocol data units (BPDUs) received on any interface to all other interfaces, whereas the disabled mode discards them.
+  # A list of Spanning Tree Protocol modes. The difference between STP_MODE_TYPE_DISABLED
+  # and STP_MODE_TYPE_PASSTHROUGH is that the pass-through mode forwards spanning tree
+  # bridge protocol data units (BPDUs) received on any interface to all other interfaces,
+  # whereas the disabled mode discards them.
   class STPModeType < IControl::Base::Enumeration
     # Disables Spanning Tree Protocol entirely.
     STP_MODE_TYPE_DISABLED = :STP_MODE_TYPE_DISABLED

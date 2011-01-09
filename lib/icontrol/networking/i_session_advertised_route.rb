@@ -1,16 +1,21 @@
 module IControl::Networking
   ##
-  # The iSession AdvertisedRoute interface enables you to work with the definitions and attributes contained in a device's optimized endpoint subnets.
+  # The iSession AdvertisedRoute interface enables you to work with the definitions and
+  # attributes contained in a device's optimized endpoint subnets.
   class ISessionAdvertisedRoute < IControl::Base
 
     set_id_name "subnets"
 
     class SubnetOptKey < IControl::Base::Struct; end
-    class ISessionAdvertisedRouteStruct < IControl::Base::Struct; end    ##
+    class ISessionAdvertisedRouteStruct < IControl::Base::Struct; end
+    class SubnetOptKeySequence < IControl::Base::Sequence ; end
+    class SubnetOptKeySequenceSequence < IControl::Base::SequenceSequence ; end
+    class ISessionAdvertisedRouteStructSequence < IControl::Base::Sequence ; end    ##
     # Creates a specified subnet object with all its attributes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::iSessionAdvertisedRouteStruct] :subnet The subnet struct to create.
     def create(opts)
@@ -20,64 +25,71 @@ module IControl::Networking
 
     ##
     # Deletes all exisiting subnet objects.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_subnets
       super
     end
 
     ##
     # Deletes this subnet via its IP address and netmask.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_subnets
       super
     end
 
     ##
     # Gets the enabled flag on the target subnet.
+    # @rspec_example
     # @return [EnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def enabled_state
       super
     end
 
     ##
     # Gets the label string on the target subnet.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def label
       super
     end
 
     ##
     # Get a list of all subnet interfaces and their netmasks.
+    # @rspec_example
     # @return [SubnetOptKey]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
     # Gets the metric with which this subnet IPs are associated.
+    # @rspec_example
     # @return [long]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def metric
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -85,9 +97,10 @@ module IControl::Networking
 
     ##
     # Sets/Resets the enabled flag on the target subnet.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::SubnetOptKey] :ip The subnet IP.
     # @option opts [IControl::Common::EnabledState] :included The new included setting.
@@ -98,9 +111,10 @@ module IControl::Networking
 
     ##
     # Sets/Resets the label string on the target subnet.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::SubnetOptKey] :ip The subnet IP.
     # @option opts [String] :labels The new subnet labels
@@ -111,9 +125,10 @@ module IControl::Networking
 
     ##
     # Sets the metric with which this subnet IPs are associated.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::SubnetOptKey] :subnet The subnet IPs .
     # @option opts [long] :metric value.

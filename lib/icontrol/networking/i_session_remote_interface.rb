@@ -1,18 +1,22 @@
 module IControl::Networking
   ##
-  # The iSession RemoteInterface interface enables you to work with the definitions and attributes contained in a device's peer iSession Remote Endpoint objects.
+  # The iSession RemoteInterface interface enables you to work with the definitions and
+  # attributes contained in a device's peer iSession Remote Endpoint objects.
   class ISessionRemoteInterface < IControl::Base
 
     set_id_name "peers"
 
+    class NatSourceAddressSequence < IControl::Base::Sequence ; end
+    class OriginStateSequence < IControl::Base::Sequence ; end
     # An enumeration of nat address states.
     class NatSourceAddress < IControl::Base::Enumeration; end
     # An enumeration of origin states.
     class OriginState < IControl::Base::Enumeration; end    ##
     # Create a peer Remote Endpoint object.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :peer_names The peer names.
     # @option opts [String] :serverssls The serverssl identifiers.
@@ -25,154 +29,170 @@ module IControl::Networking
 
     ##
     # Deletes all peer remote endpoint objects.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_peers
       super
     end
 
     ##
     # Delete the peer Remote Endpoint object.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_peer
       super
     end
 
     ##
     # Get UUID
+    # @rspec_example
     # @return [Uuid_128]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def UUID
       super
     end
 
     ##
     # Get the nat attribute from the peer WOC object.
+    # @rspec_example
     # @return [EnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def behind_nat
       super
     end
 
     ##
     # Get dedup_cache
+    # @rspec_example
     # @return [long]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def dedup_cache
       super
     end
 
     ##
     # Get a list of the current iSession peer objects.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
     # Get Management address
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def management_address
       super
     end
 
     ##
     # Get config_status
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def nat_config_status
       super
     end
 
     ##
     # Get the nat address attribute in the peer WOC object.
+    # @rspec_example
     # @return [NatSourceAddress]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def nat_source_address
       super
     end
 
     ##
     # Get origin
+    # @rspec_example
     # @return [OriginState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def origin
       super
     end
 
     ##
     # Get enable setting in the peer object.
+    # @rspec_example
     # @return [EnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def peer_enabled_state
       super
     end
 
     ##
     # Get a list of the current iSession peer object ips.
+    # @rspec_example
     # @return [String[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def peer_ip_list
       super
     end
 
     ##
     # Get enabled flag in the peer routing attribute.
+    # @rspec_example
     # @return [EnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def peer_routing_state
       super
     end
 
     ##
     # Get serverssl
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def profile_serverssl
       super
     end
 
     ##
     # Get tunnel_port
+    # @rspec_example
     # @return [short]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def tunnel_port
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -180,9 +200,10 @@ module IControl::Networking
 
     ##
     # Set the nat attribute in the peer WOC object.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :nat_states The new nat states.
     def set_behind_nat(opts)
@@ -192,9 +213,10 @@ module IControl::Networking
 
     ##
     # Set Management address
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :ips The new mgmt addresses to use.
     def set_management_address(opts)
@@ -204,9 +226,10 @@ module IControl::Networking
 
     ##
     # Set config_status
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :nat_configs The new nat configs.
     def set_nat_config_status(opts)
@@ -216,9 +239,10 @@ module IControl::Networking
 
     ##
     # Set the nat address attribute in the peer WOC object.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionRemoteInterface::NatSourceAddress] :nat_states The new nat states.
     def set_nat_source_address(opts)
@@ -228,9 +252,10 @@ module IControl::Networking
 
     ##
     # Set origin
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionRemoteInterface::OriginState] :origins The new peer origin states.
     def set_origin(opts)
@@ -240,9 +265,10 @@ module IControl::Networking
 
     ##
     # Set enable in the peer object.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :enabled The enabled flag.
     def set_peer_enabled_state(opts)
@@ -252,9 +278,10 @@ module IControl::Networking
 
     ##
     # Set enabled flag in the peer routing attribute.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :routing
     def set_peer_routing_state(opts)
@@ -264,9 +291,10 @@ module IControl::Networking
 
     ##
     # Set serverssl
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :serverssl The server ssl name.
     def set_profile_serverssl(opts)
@@ -276,9 +304,10 @@ module IControl::Networking
 
     ##
     # Set tunnel_port
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [short] :tunnel_ports The tunnel port number.
     def set_tunnel_port(opts)

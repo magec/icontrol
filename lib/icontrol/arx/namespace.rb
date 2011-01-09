@@ -7,6 +7,7 @@ module IControl::ARX
 
     ##
     # Returns a list of namespace definitions for this namespace.
+    # @rspec_example
     # @return [NamespaceDefinition]
     def definition
       super
@@ -14,6 +15,7 @@ module IControl::ARX
 
     ##
     # Returns the list of configured namespace.
+    # @rspec_example
     # @return [String]
     def list
       super

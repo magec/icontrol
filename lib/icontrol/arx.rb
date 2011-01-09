@@ -19,6 +19,34 @@ module IControl::ARX
   class VirtualServiceDefinition < IControl::Base::Struct; end
   class VirtualServiceStats < IControl::Base::Struct; end
   class VolumeDefinition < IControl::Base::Struct; end
+  class ARXStatusTypeSequence < IControl::Base::Sequence ; end
+  class ExportDefinitionSequence < IControl::Base::Sequence ; end
+  class FileChangeDefinitionSequence < IControl::Base::Sequence ; end
+  class FileChangeResponseSequence < IControl::Base::Sequence ; end
+  class FileChangeTypeSequence < IControl::Base::Sequence ; end
+  class FileServerDefinitionSequence < IControl::Base::Sequence ; end
+  class FileServerTypeSequence < IControl::Base::Sequence ; end
+  class HARoleTypeSequence < IControl::Base::Sequence ; end
+  class HAStatusSequence < IControl::Base::Sequence ; end
+  class HealthDefinitionSequence < IControl::Base::Sequence ; end
+  class NamespaceDefinitionSequence < IControl::Base::Sequence ; end
+  class NetworkDefinitionSequence < IControl::Base::Sequence ; end
+  class NetworkStatsSequence < IControl::Base::Sequence ; end
+  class PolicyDefinitionSequence < IControl::Base::Sequence ; end
+  class PolicyScheduleIntervalTypeSequence < IControl::Base::Sequence ; end
+  class PolicyScheduleSequence < IControl::Base::Sequence ; end
+  class PolicyTypeSequence < IControl::Base::Sequence ; end
+  class ProcessorStatsSequence < IControl::Base::Sequence ; end
+  class ProtocolDefinitionSequence < IControl::Base::Sequence ; end
+  class ProtocolTypeSequence < IControl::Base::Sequence ; end
+  class ProtocolVersionSequence < IControl::Base::Sequence ; end
+  class ShareDefinitionSequence < IControl::Base::Sequence ; end
+  class SnapshotDefinitionSequence < IControl::Base::Sequence ; end
+  class StorageStatusSequence < IControl::Base::Sequence ; end
+  class VirtualServiceDefinitionSequence < IControl::Base::Sequence ; end
+  class VirtualServiceStatsSequence < IControl::Base::Sequence ; end
+  class VolumeDefinitionSequence < IControl::Base::Sequence ; end
+  class VolumeTypeSequence < IControl::Base::Sequence ; end
   class Api < IControl::Base; end
   class Chassis < IControl::Base; end
   class Export < IControl::Base; end
@@ -30,7 +58,8 @@ module IControl::ARX
   class Share < IControl::Base; end
   class VirtualService < IControl::Base; end
   class Volume < IControl::Base; end
-  # The ARXStatusType class defines the status types that can be returned by methods that return the status of an object or module.
+  # The ARXStatusType class defines the status types that can be returned by methods
+  # that return the status of an object or module.
   class ARXStatusType < IControl::Base::Enumeration; end
   # Possible File Change Types.
   class FileChangeType < IControl::Base::Enumeration; end
@@ -89,7 +118,7 @@ module IControl::ARX
   # @attr [String] change_idx The change index is used as a placeholder while retrieving batches of file changes. This value is provided to get_notifications in order to get the next set of file changes.
   # @attr [String] src_root Parent directory path of all file sources returned in this response.
   # @attr [String] dst_root Parent directory path of all file destinations returned in this response. This field is empty if it is the same as FileChangeResponse ::src_root. In this case, the caller must use the source root to reconstruct the file destination's full path.
-  # @attr [IControl::ARX::FileChangeDefinition] changes A list of file change details.
+  # @attr [IControl::ARX::FileChangeDefinitionSequence] changes A list of file change details.
   class FileChangeResponse < IControl::Base::Struct
     icontrol_attribute :count, Numeric
     icontrol_attribute :more, Object
@@ -97,7 +126,7 @@ module IControl::ARX
     icontrol_attribute :change_idx, String
     icontrol_attribute :src_root, String
     icontrol_attribute :dst_root, String
-    icontrol_attribute :changes, IControl::ARX::FileChangeDefinition
+    icontrol_attribute :changes, IControl::ARX::FileChangeDefinitionSequence
   end
 
   ##
@@ -150,12 +179,12 @@ module IControl::ARX
   # @attr [String] name The namespace's name.
   # @attr [String] description A description of the namespace.
   # @attr [IControl::ARX::ARXStatusType] status The namespace's status.
-  # @attr [IControl::ARX::ProtocolDefinition] protocols A list of protocols configured for this namespace.
+  # @attr [IControl::ARX::ProtocolDefinitionSequence] protocols A list of protocols configured for this namespace.
   class NamespaceDefinition < IControl::Base::Struct
     icontrol_attribute :name, String
     icontrol_attribute :description, String
     icontrol_attribute :status, IControl::ARX::ARXStatusType
-    icontrol_attribute :protocols, IControl::ARX::ProtocolDefinition
+    icontrol_attribute :protocols, IControl::ARX::ProtocolDefinitionSequence
   end
 
   ##
@@ -312,12 +341,12 @@ module IControl::ARX
   # @attr [String] name The name of the snapshot.
   # @attr [Numeric] create_time The creation time of the snapshot.
   # @attr [String] volume_path The snapshot path relative to the root of the virtual volume in NFS format: {@literal //}
-  # @attr [String] backend_paths A list of paths to the physical snapshots that compose this virtual snapshot for all of the included shares in the virtual volume in NFS format: {@literal :///}
+  # @attr [StringSequence] backend_paths A list of paths to the physical snapshots that compose this virtual snapshot for all of the included shares in the virtual volume in NFS format: {@literal :///}
   class SnapshotDefinition < IControl::Base::Struct
     icontrol_attribute :name, String
     icontrol_attribute :create_time, Numeric
     icontrol_attribute :volume_path, String
-    icontrol_attribute :backend_paths, String
+    icontrol_attribute :backend_paths, StringSequence
   end
 
   ##
@@ -503,7 +532,8 @@ module IControl::ARX
   ## A sequence of VolumeType values.
   class VolumeTypeSequence < IControl::Base::Sequence ; end
 
-  # The ARXStatusType class defines the status types that can be returned by methods that return the status of an object or module.
+  # The ARXStatusType class defines the status types that can be returned by methods
+  # that return the status of an object or module.
   class ARXStatusType < IControl::Base::Enumeration
     # The status cannot be determined.
     ARX_UNKNOWN = :ARX_UNKNOWN

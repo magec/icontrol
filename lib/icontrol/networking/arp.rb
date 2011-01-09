@@ -10,58 +10,68 @@ module IControl::Networking
     class NDPEntry < IControl::Base::Struct; end
     class NDPStatistics < IControl::Base::Struct; end
     class StaticEntry < IControl::Base::Struct; end
+    class ARPEntrySequence < IControl::Base::Sequence ; end
+    class NDPEntrySequence < IControl::Base::Sequence ; end
+    class NDPStateSequence < IControl::Base::Sequence ; end
+    class StaticEntrySequence < IControl::Base::Sequence ; end
     # A list of NDP (Neighbor Discovery Protocol) states.
     class NDPState < IControl::Base::Enumeration; end    ##
     # Creates/adds this static ARP/NDP entrie to the ARP/NDP table.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def add_static_entry
       super
     end
 
     ##
     # Deletes all dynamic ARP entrie from the ARP table.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_dynamic_arps
       super
     end
 
     ##
     # Deletes all dynamic NDP entrie from the NDP table.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_dynamic_ndps
       super
     end
 
     ##
     # Deletes all static ARP/NDP entrie from the ARP/NDP table.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_static_entries
       super
     end
 
     ##
     # Deletes this static ARP/NDP entrie from the ARP/NDP table.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_static_entry
       super
     end
 
     ##
     # Gets the dynamic ARP statistics for this ARP addresses.
+    # @rspec_example
     # @return [ARPStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :arp_addresses The ARP IP addresses.
     def dynamic_arp(opts)
@@ -71,10 +81,11 @@ module IControl::Networking
 
     ##
     # Gets the dynamic NDP statistics for this NDP addresses.
+    # @rspec_example
     # @return [NDPStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :ndp_addresses The NDP IP addresses.
     def dynamic_ndp(opts)
@@ -84,16 +95,18 @@ module IControl::Networking
 
     ##
     # Gets a list of all static ARP/NDP entrie.
+    # @rspec_example
     # @return [StaticEntry]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def static_entry
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -122,10 +135,10 @@ module IControl::Networking
 
     ##
     # A struct that describes ARP statistics and timestamp.
-    # @attr [IControl::Networking::ARP::ARPEntry] statistics The statistics for a sequence of ARP entries.
+    # @attr [IControl::Networking::ARP::ARPEntrySequence] statistics The statistics for a sequence of ARP entries.
     # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
     class ARPStatistics < IControl::Base::Struct
-      icontrol_attribute :statistics, IControl::Networking::ARP::ARPEntry
+      icontrol_attribute :statistics, IControl::Networking::ARP::ARPEntrySequence
       icontrol_attribute :time_stamp, IControl::Common::TimeStamp
     end
 
@@ -148,10 +161,10 @@ module IControl::Networking
 
     ##
     # A struct that describes NDP statistics and timestamp.
-    # @attr [IControl::Networking::ARP::NDPEntry] statistics The statistics for a sequence of NDP entries.
+    # @attr [IControl::Networking::ARP::NDPEntrySequence] statistics The statistics for a sequence of NDP entries.
     # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
     class NDPStatistics < IControl::Base::Struct
-      icontrol_attribute :statistics, IControl::Networking::ARP::NDPEntry
+      icontrol_attribute :statistics, IControl::Networking::ARP::NDPEntrySequence
       icontrol_attribute :time_stamp, IControl::Common::TimeStamp
     end
 

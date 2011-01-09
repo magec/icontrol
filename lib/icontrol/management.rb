@@ -20,6 +20,48 @@ module IControl::Management
   class ViewInfo < IControl::Base::Struct; end
   class ViewZone < IControl::Base::Struct; end
   class ZoneInfo < IControl::Base::Struct; end
+  class A6RecordSequence < IControl::Base::Sequence ; end
+  class A6RecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class AAAARecordSequence < IControl::Base::Sequence ; end
+  class AAAARecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class ARecordSequence < IControl::Base::Sequence ; end
+  class ARecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class CNAMERecordSequence < IControl::Base::Sequence ; end
+  class CNAMERecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class DNAMERecordSequence < IControl::Base::Sequence ; end
+  class DNAMERecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class HINFORecordSequence < IControl::Base::Sequence ; end
+  class HINFORecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class KEYRecordSequence < IControl::Base::Sequence ; end
+  class KEYRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class LDAPPasswordEncodingOptionSequence < IControl::Base::Sequence ; end
+  class LDAPSSLOptionSequence < IControl::Base::Sequence ; end
+  class LDAPSearchMethodSequence < IControl::Base::Sequence ; end
+  class LDAPSearchScopeSequence < IControl::Base::Sequence ; end
+  class MXRecordSequence < IControl::Base::Sequence ; end
+  class MXRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class NSRecordSequence < IControl::Base::Sequence ; end
+  class NSRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class NXTRecordSequence < IControl::Base::Sequence ; end
+  class NXTRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class OCSPDigestMethodSequence < IControl::Base::Sequence ; end
+  class PTRRecordSequence < IControl::Base::Sequence ; end
+  class PTRRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class RRListSequence < IControl::Base::Sequence ; end
+  class SIGRecordSequence < IControl::Base::Sequence ; end
+  class SIGRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class SOARecordSequence < IControl::Base::Sequence ; end
+  class SOARecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class SRVRecordSequence < IControl::Base::Sequence ; end
+  class SRVRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class StatementDefinitionSequence < IControl::Base::Sequence ; end
+  class TXTRecordSequence < IControl::Base::Sequence ; end
+  class TXTRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class ViewInfoSequence < IControl::Base::Sequence ; end
+  class ViewInfoSequenceSequence < IControl::Base::SequenceSequence ; end
+  class ViewZoneSequence < IControl::Base::Sequence ; end
+  class ZoneInfoSequence < IControl::Base::Sequence ; end
+  class ZoneInfoSequenceSequence < IControl::Base::SequenceSequence ; end
   class CCLDAPConfiguration < IControl::Base; end
   class CRLDPConfiguration < IControl::Base; end
   class CRLDPServer < IControl::Base; end
@@ -197,37 +239,37 @@ module IControl::Management
 
   ##
   # struct that contains sequences for all possible RRtypes in a zone
-  # @attr [IControl::Management::ARecord] a_list - contains all A records
-  # @attr [IControl::Management::NSRecord] ns_list - contains all NS records
-  # @attr [IControl::Management::CNAMERecord] cname_list - contains all CNAME records
-  # @attr [IControl::Management::SOARecord] soa_list - contains all SOA records
-  # @attr [IControl::Management::PTRRecord] ptr_list - contains all PTR records
-  # @attr [IControl::Management::HINFORecord] hinfo_list - contains all HINFO records
-  # @attr [IControl::Management::MXRecord] mx_list - contains all MX records
-  # @attr [IControl::Management::TXTRecord] txt_list - contains all TXT records
-  # @attr [IControl::Management::SRVRecord] srv_list - contains all SRV records
-  # @attr [IControl::Management::KEYRecord] key_list - contains all KEY records
-  # @attr [IControl::Management::SIGRecord] sig_list - contains all SIG records
-  # @attr [IControl::Management::NXTRecord] nxt_list - contains all NXT records
-  # @attr [IControl::Management::AAAARecord] aaaa_list - contains all AAAA records
-  # @attr [IControl::Management::A6Record] a6_list - contains all A6 records
-  # @attr [IControl::Management::DNAMERecord] dname_list - contains all DNAME records
+  # @attr [IControl::Management::ARecordSequence] a_list - contains all A records
+  # @attr [IControl::Management::NSRecordSequence] ns_list - contains all NS records
+  # @attr [IControl::Management::CNAMERecordSequence] cname_list - contains all CNAME records
+  # @attr [IControl::Management::SOARecordSequence] soa_list - contains all SOA records
+  # @attr [IControl::Management::PTRRecordSequence] ptr_list - contains all PTR records
+  # @attr [IControl::Management::HINFORecordSequence] hinfo_list - contains all HINFO records
+  # @attr [IControl::Management::MXRecordSequence] mx_list - contains all MX records
+  # @attr [IControl::Management::TXTRecordSequence] txt_list - contains all TXT records
+  # @attr [IControl::Management::SRVRecordSequence] srv_list - contains all SRV records
+  # @attr [IControl::Management::KEYRecordSequence] key_list - contains all KEY records
+  # @attr [IControl::Management::SIGRecordSequence] sig_list - contains all SIG records
+  # @attr [IControl::Management::NXTRecordSequence] nxt_list - contains all NXT records
+  # @attr [IControl::Management::AAAARecordSequence] aaaa_list - contains all AAAA records
+  # @attr [IControl::Management::A6RecordSequence] a6_list - contains all A6 records
+  # @attr [IControl::Management::DNAMERecordSequence] dname_list - contains all DNAME records
   class RRList < IControl::Base::Struct
-    icontrol_attribute :a_list, IControl::Management::ARecord
-    icontrol_attribute :ns_list, IControl::Management::NSRecord
-    icontrol_attribute :cname_list, IControl::Management::CNAMERecord
-    icontrol_attribute :soa_list, IControl::Management::SOARecord
-    icontrol_attribute :ptr_list, IControl::Management::PTRRecord
-    icontrol_attribute :hinfo_list, IControl::Management::HINFORecord
-    icontrol_attribute :mx_list, IControl::Management::MXRecord
-    icontrol_attribute :txt_list, IControl::Management::TXTRecord
-    icontrol_attribute :srv_list, IControl::Management::SRVRecord
-    icontrol_attribute :key_list, IControl::Management::KEYRecord
-    icontrol_attribute :sig_list, IControl::Management::SIGRecord
-    icontrol_attribute :nxt_list, IControl::Management::NXTRecord
-    icontrol_attribute :aaaa_list, IControl::Management::AAAARecord
-    icontrol_attribute :a6_list, IControl::Management::A6Record
-    icontrol_attribute :dname_list, IControl::Management::DNAMERecord
+    icontrol_attribute :a_list, IControl::Management::ARecordSequence
+    icontrol_attribute :ns_list, IControl::Management::NSRecordSequence
+    icontrol_attribute :cname_list, IControl::Management::CNAMERecordSequence
+    icontrol_attribute :soa_list, IControl::Management::SOARecordSequence
+    icontrol_attribute :ptr_list, IControl::Management::PTRRecordSequence
+    icontrol_attribute :hinfo_list, IControl::Management::HINFORecordSequence
+    icontrol_attribute :mx_list, IControl::Management::MXRecordSequence
+    icontrol_attribute :txt_list, IControl::Management::TXTRecordSequence
+    icontrol_attribute :srv_list, IControl::Management::SRVRecordSequence
+    icontrol_attribute :key_list, IControl::Management::KEYRecordSequence
+    icontrol_attribute :sig_list, IControl::Management::SIGRecordSequence
+    icontrol_attribute :nxt_list, IControl::Management::NXTRecordSequence
+    icontrol_attribute :aaaa_list, IControl::Management::AAAARecordSequence
+    icontrol_attribute :a6_list, IControl::Management::A6RecordSequence
+    icontrol_attribute :dname_list, IControl::Management::DNAMERecordSequence
   end
 
   ##
@@ -300,10 +342,10 @@ module IControl::Management
   ##
   # A struct that describes a statement
   # @attr [String] statement_id The name of the statement. If empty, then either there's only one		 statement of its kind in the configuration file (i.e. "controls"...),		 or statement id is not applicable (i.e. "include")
-  # @attr [String] sub_strings A sequence of substrings that make up a statement.
+  # @attr [StringSequence] sub_strings A sequence of substrings that make up a statement.
   class StatementDefinition < IControl::Base::Struct
     icontrol_attribute :statement_id, String
-    icontrol_attribute :sub_strings, String
+    icontrol_attribute :sub_strings, StringSequence
   end
 
   ##
@@ -321,13 +363,13 @@ module IControl::Management
   # a struct that describes a view
   # @attr [String] view_name The name of the view
   # @attr [Numeric] view_order The order of the view within the named.conf file		 0 = first in zone		 0xffffffff on a change means to move the view to last		 any other number will move the view to that position,		 and bump up any view(s) 1 if necessary
-  # @attr [String] option_seq a sequence of options for the view
-  # @attr [String] zone_names a sequence of zones in this view
+  # @attr [StringSequence] option_seq a sequence of options for the view
+  # @attr [StringSequence] zone_names a sequence of zones in this view
   class ViewInfo < IControl::Base::Struct
     icontrol_attribute :view_name, String
     icontrol_attribute :view_order, Numeric
-    icontrol_attribute :option_seq, String
-    icontrol_attribute :zone_names, String
+    icontrol_attribute :option_seq, StringSequence
+    icontrol_attribute :zone_names, StringSequence
   end
 
   ##
@@ -345,13 +387,13 @@ module IControl::Management
   # @attr [String] zone_name The name of the zone
   # @attr [IControl::Management::ZoneType] zone_type one of the types of ZoneType enum
   # @attr [String] zone_file The name of the file for the zone data
-  # @attr [String] option_seq A sequence of options for the zone
+  # @attr [StringSequence] option_seq A sequence of options for the zone
   class ZoneInfo < IControl::Base::Struct
     icontrol_attribute :view_name, String
     icontrol_attribute :zone_name, String
     icontrol_attribute :zone_type, IControl::Management::ZoneType
     icontrol_attribute :zone_file, String
-    icontrol_attribute :option_seq, String
+    icontrol_attribute :option_seq, StringSequence
   end
 
 

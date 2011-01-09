@@ -1,6 +1,7 @@
 module IControl::LocalLB
   ##
-  # The ProfileUserStatistic interface enables you to manage user-defined statistics in a profile. The user can define up to 32 user-defined statistics in each profile.
+  # The ProfileUserStatistic interface enables you to manage user-defined statistics
+  # in a profile. The user can define up to 32 user-defined statistics in each profile.
   class ProfileUserStatistic < IControl::Base
 
     set_id_name "profile_names"
@@ -9,70 +10,88 @@ module IControl::LocalLB
     class ProfileUserStatisticStatistics < IControl::Base::Struct; end
     class UserStatistic < IControl::Base::Struct; end
     class UserStatisticName < IControl::Base::Struct; end
+    class ProfileUserStatisticStatisticEntrySequence < IControl::Base::Sequence ; end
+    class UserStatisticKeySequence < IControl::Base::Sequence ; end
+    class UserStatisticKeySequenceSequence < IControl::Base::SequenceSequence ; end
+    class UserStatisticNameSequence < IControl::Base::Sequence ; end
+    class UserStatisticNameSequenceSequence < IControl::Base::SequenceSequence ; end
+    class UserStatisticSequence < IControl::Base::Sequence ; end
     # A list of user statistic fields in the profile.
     class UserStatisticKey < IControl::Base::Enumeration; end    ##
     # Creates this user-defined statistic profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def create
       super
     end
 
     ##
     # Deletes all user-defined statistic profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_profiles
       super
     end
 
     ##
     # Deletes this user-defined statistic profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_profile
       super
     end
 
     ##
-    # Gets the statistics for all the user-defined statistic profile. Only the statistic values of the user-defined statistics will be returned, i.e. even though there are up to 32 custom statistics in any given profile, but if only 3 of those custom statistics have been defined by the user, then only the values of those 3 statistics will be returned.
+    # Gets the statistics for all the user-defined statistic profile. Only the statistic
+    # values of the user-defined statistics will be returned, i.e. even though there are
+    # up to 32 custom statistics in any given profile, but if only 3 of those custom statistics
+    # have been defined by the user, then only the values of those 3 statistics will be
+    # returned.
+    # @rspec_example
     # @return [ProfileUserStatisticStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def all_statistics
       super
     end
 
     ##
-    # Gets the names of the default profile from which this profile will derive default values for its attributes.
+    # Gets the names of the default profile from which this profile will derive default
+    # values for its attributes.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def default_profile
       super
     end
 
     ##
     # Gets a list of all user-defined statistic profile.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
     # Gets the user-defined statistic names in this profile.
+    # @rspec_example
     # @return [UserStatisticName[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileUserStatistic::UserStatisticKey[]] :statistic_keys The statistic keys used to index the statistic names.			Each "inner" sequence of statistic keys corresponds to a profile			specified in profile_names.
     def statistic_name(opts)
@@ -81,46 +100,57 @@ module IControl::LocalLB
     end
 
     ##
-    # Gets the statistics for this user-defined statistic profile. Only the statistic values of the user-defined statistics will be returned, i.e. even though there are up to 32 custom statistics in any given profile, but if only 3 of those custom statistics have been defined by the user, then only the values of those 3 statistics will be returned.
+    # Gets the statistics for this user-defined statistic profile. Only the statistic values
+    # of the user-defined statistics will be returned, i.e. even though there are up to
+    # 32 custom statistics in any given profile, but if only 3 of those custom statistics
+    # have been defined by the user, then only the values of those 3 statistics will be
+    # returned.
+    # @rspec_example
     # @return [ProfileUserStatisticStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def statistics
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
     end
 
     ##
-    # Determines whether this profile are base/pre-configured profile, or user-defined profile.
+    # Determines whether this profile are base/pre-configured profile, or user-defined
+    # profile.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def is_base_profile
       super
     end
 
     ##
     # Resets the statistics for this user-defined statistic profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def reset_statistics
       super
     end
 
     ##
-    # Sets the names of the default profile from which this profile will derive default values for its attributes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the names of the default profile from which this profile will derive default
+    # values for its attributes.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
@@ -130,9 +160,10 @@ module IControl::LocalLB
 
     ##
     # Sets the user-defined statistic names in this profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileUserStatistic::UserStatisticName[]] :statistic_names The user-defined statistic names in the specified profiles.			 Each "inner" sequence of statistic names corresponds to a profile			 specified in profile_names.
     def set_statistic_name(opts)
@@ -143,18 +174,18 @@ module IControl::LocalLB
     ##
     # A struct that describes statistics for a particular user-defined statistic profile.
     # @attr [String] profile_name The profile name.
-    # @attr [IControl::LocalLB::ProfileUserStatistic::UserStatistic] statistics The statistics for the profile.
+    # @attr [IControl::LocalLB::ProfileUserStatistic::UserStatisticSequence] statistics The statistics for the profile.
     class ProfileUserStatisticStatisticEntry < IControl::Base::Struct
       icontrol_attribute :profile_name, String
-      icontrol_attribute :statistics, IControl::LocalLB::ProfileUserStatistic::UserStatistic
+      icontrol_attribute :statistics, IControl::LocalLB::ProfileUserStatistic::UserStatisticSequence
     end
 
     ##
     # A struct that describes profile statistics and timestamp.
-    # @attr [IControl::LocalLB::ProfileUserStatistic::ProfileUserStatisticStatisticEntry] statistics The statistics for a sequence of profiles.
+    # @attr [IControl::LocalLB::ProfileUserStatistic::ProfileUserStatisticStatisticEntrySequence] statistics The statistics for a sequence of profiles.
     # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
     class ProfileUserStatisticStatistics < IControl::Base::Struct
-      icontrol_attribute :statistics, IControl::LocalLB::ProfileUserStatistic::ProfileUserStatisticStatisticEntry
+      icontrol_attribute :statistics, IControl::LocalLB::ProfileUserStatistic::ProfileUserStatisticStatisticEntrySequence
       icontrol_attribute :time_stamp, IControl::Common::TimeStamp
     end
 

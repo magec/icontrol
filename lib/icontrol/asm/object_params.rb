@@ -7,13 +7,17 @@ module IControl::ASM
 
     class AttackSignatureDefinition < IControl::Base::Struct; end
     class MetacharDefinition < IControl::Base::Struct; end
+    class AttackSignatureDefinitionSequence < IControl::Base::Sequence ; end
+    class MetacharDefinitionSequence < IControl::Base::Sequence ; end
+    class ObjectParamCategorySequence < IControl::Base::Sequence ; end
     # An enumeration for different states of URL parameter
     class ObjectParamCategory < IControl::Base::Enumeration; end    ##
     # Adds (if doesn't exists) or updates (if exists) URL parameter in a polic.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :uri
     # @option opts [String] :param_name The name of the URL parameter.
@@ -25,6 +29,7 @@ module IControl::ASM
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -32,10 +37,11 @@ module IControl::ASM
 
     ##
     # Set or unset staging for URL parameter in a polic.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :uri
     # @option opts [String] :param_name The name of the URL parameter.

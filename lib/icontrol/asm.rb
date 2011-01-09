@@ -9,6 +9,19 @@ module IControl::ASM
   class ViolationSeverity < IControl::Base::Struct; end
   class WebApplicationGroupDefinition < IControl::Base::Struct; end
   class WebObjectType < IControl::Base::Struct; end
+  class ApplyLearningSequence < IControl::Base::Sequence ; end
+  class DynamicSessionsInUrlSequence < IControl::Base::Sequence ; end
+  class ObjectTypeTypeSequence < IControl::Base::Sequence ; end
+  class ObjectTypeTypeSequenceSequence < IControl::Base::SequenceSequence ; end
+  class PolicyTemplateSequence < IControl::Base::Sequence ; end
+  class PolicyTemplateSequenceSequence < IControl::Base::SequenceSequence ; end
+  class ViolationSequence < IControl::Base::Sequence ; end
+  class ViolationSequenceSequence < IControl::Base::SequenceSequence ; end
+  class ViolationSeveritySequence < IControl::Base::Sequence ; end
+  class WebApplicationGroupDefinitionSequence < IControl::Base::Sequence ; end
+  class WebApplicationLanguageSequence < IControl::Base::Sequence ; end
+  class WebObjectTypeSequence < IControl::Base::Sequence ; end
+  class WebObjectTypeSequenceSequence < IControl::Base::SequenceSequence ; end
   class ObjectParams < IControl::Base; end
   class Policy < IControl::Base; end
   class SystemConfiguration < IControl::Base; end
@@ -51,10 +64,10 @@ module IControl::ASM
 
   ##
   # A struct that describes a file transfer context.
-  # @attr [String] file_data The actual file content for the transfer operation.
+  # @attr [StringSequence] file_data The actual file content for the transfer operation.
   # @attr [IControl::Common::FileChainType] chain_type The flag used to indicate whether this is FIRST, MIDDLE, or LAST chunk of the file data.
   class FileTransferContext < IControl::Base::Struct
-    icontrol_attribute :file_data, String
+    icontrol_attribute :file_data, StringSequence
     icontrol_attribute :chain_type, IControl::Common::FileChainType
   end
 
@@ -103,7 +116,9 @@ module IControl::ASM
   end
 
   ##
-  # A struct that represents a web application group. This is only used in contexts in which the &amp;quot;ungrouped" special group is relevant. Otherwise, the group is represented by its name.
+  # A struct that represents a web application group. This is only used in contexts in
+  # which the &amp;quot;ungrouped" special group is relevant. Otherwise, the group is
+  # represented by its name.
   # @attr [String] value The name of the web application group.
   # @attr [Object] ungrouped_flag The flag that indicates how the value should be interpreted.		 If the ungrouped_flag is false, then the value represents the actual		 web application group name.		 If the ungrouped_flag is true, then the value is ignored/meaningless,		 and represents the special group of "ungrouped" web applications.
   class WebApplicationGroupDefinition < IControl::Base::Struct

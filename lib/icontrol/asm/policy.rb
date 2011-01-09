@@ -7,10 +7,11 @@ module IControl::ASM
 
     ##
     # Add predictable resource location
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :policy_name The polciy's name.
     # @option opts [String] :uris List or URIs to block. The URI is full, e.g.: http://foo.com/bar.php
@@ -21,9 +22,10 @@ module IControl::ASM
 
     ##
     # Associates the WA web applictions to the ASM policy.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :wa_webapp_names List of WA web applcations.
     def associate_wa_webapp(opts)
@@ -33,9 +35,10 @@ module IControl::ASM
 
     ##
     # Create policies for this web applications.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :webapp_names The web application names.
     def create(opts)
@@ -45,9 +48,10 @@ module IControl::ASM
 
     ##
     # Create policies from template for this web applications.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :webapp_names The web application names.
     # @option opts [IControl::ASM::PolicyTemplate[]] :policy_templates The policy templates.
@@ -58,18 +62,20 @@ module IControl::ASM
 
     ##
     # Deletes a policy.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_policy
       super
     end
 
     ##
     # Detaches the WA web applictions from the ASM policy.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :wa_webapp_names List of WA web applcations.
     def detach_wa_webapp(opts)
@@ -78,11 +84,18 @@ module IControl::ASM
     end
 
     ##
-    # Downloads the policy from the device. The download_policy is typically called after having called to export_policy. The parameter policy_name must be the same as used during export_policy. The file is downloaded in chunks. Each chunk should be concatenated to the previous one on the client side. The return value has two fields: - file_data: The relevant part of the content of the file - chunk_type: Indicates the current chunk whether it is the first, middle, last chunk		or the current call includes the entire file.
+    # Downloads the policy from the device. The download_policy is typically called after
+    # having called to export_policy. The parameter policy_name must be the same as used
+    # during export_policy. The file is downloaded in chunks. Each chunk should be concatenated
+    # to the previous one on the client side. The return value has two fields: - file_data:
+    # The relevant part of the content of the file - chunk_type: Indicates the current
+    # chunk whether it is the first, middle, last chunk		or the current call includes the
+    # entire file.
+    # @rspec_example
     # @return [FileTransferContext]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :policy_name The relative filename under /var/tmp into which export_policy previously exported the policy.
     # @option opts [long] :chunk_size The chunk/block size of the file data to read from the device.
@@ -93,10 +106,13 @@ module IControl::ASM
     end
 
     ##
-    # Export Policy The export_policy method exports the policy specified in parameter policy_name and writes the file to the device's local disk. This method is typically followed by a call to download_policy which gets this full path filename as a parameter.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Export Policy The export_policy method exports the policy specified in parameter
+    # policy_name and writes the file to the device's local disk. This method is typically
+    # followed by a call to download_policy which gets this full path filename as a parameter.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :policy_name The name of the policy.
     # @option opts [String] :filename The filename to which the policy will be exported under /var/tmp.
@@ -107,56 +123,62 @@ module IControl::ASM
 
     ##
     # Get the max cookie length.
+    # @rspec_example
     # @return [long]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def cookie_length
       super
     end
 
     ##
     # Get blocking flag.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def disable_blocking_flag
       super
     end
 
     ##
     # Get the &amp;quot;dynamic sessions in URL" for this policies.
+    # @rspec_example
     # @return [DynamicSessionsInUrl]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def dynamic_sessions_in_url
       super
     end
 
     ##
     # Get max http header length.
+    # @rspec_example
     # @return [long]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def http_header_length
       super
     end
 
     ##
     # Get the list of policies.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -164,19 +186,22 @@ module IControl::ASM
 
     ##
     # Gets violation blocking flag.
+    # @rspec_example
     # @return [Violation[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def violation_flags
       super
     end
 
     ##
-    # Import Policy Before calling import_policy, upload_policy should be done. Once the policy is completely uploaded, you can import it.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Import Policy Before calling import_policy, upload_policy should be done. Once the
+    # policy is completely uploaded, you can import it.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :webapp_name The target web application into which the policy will be imported.
     # @option opts [String] :filename The server-side full path where the policy		 was previously uploaded during upload_policy.		 This is: "/var/tmp/" concatenated with the parameter policy_name from		 the import_policy call.
@@ -187,9 +212,10 @@ module IControl::ASM
 
     ##
     # Updates max cookie length.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :cookie_lengths The maximum length of a cookie.
     def set_cookie_length(opts)
@@ -199,9 +225,10 @@ module IControl::ASM
 
     ##
     # Updates blocking flag.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [boolean] :blocking_flags The flags of blocking enabled / disabled for each policy
     def set_disable_blocking_flag(opts)
@@ -211,9 +238,10 @@ module IControl::ASM
 
     ##
     # Set the &amp;quot;dynamic sessions in URL" for this policies.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::ASM::DynamicSessionsInUrl] :settings The "dynamic sessions in URL" settings for the policies
     def set_dynamic_sessions_in_url(opts)
@@ -223,9 +251,10 @@ module IControl::ASM
 
     ##
     # Updates max http header length.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :http_header_lengths The maximum length of http header.
     def set_http_header_length(opts)
@@ -235,10 +264,11 @@ module IControl::ASM
 
     ##
     # Set HTTP response splitting
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :policy_name The polciy's name.
     def set_http_response_splitting(opts)
@@ -248,10 +278,11 @@ module IControl::ASM
 
     ##
     # Set path traversal
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :policy_name The polciy's name.
     def set_path_traversal(opts)
@@ -261,9 +292,10 @@ module IControl::ASM
 
     ##
     # Updates prerequisite expiration period flag.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :expiration_periods The expiration period of login pages in seconds
     def set_prerequisite_expiration_period(opts)
@@ -273,9 +305,10 @@ module IControl::ASM
 
     ##
     # Updates violation blocking flag.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::ASM::Violation[]] :violations The violations for each policy.
     def set_violation_flags(opts)
@@ -284,10 +317,15 @@ module IControl::ASM
     end
 
     ##
-    # Uploads the policy to the device. In order to import a policy two things have to be done in this order - call upload_policy - call import_policy upload_policy uploads the policy to the device to /var/tmp/ directory. The filename is the name of the policy given in policy_name. If the policy is big, it should be uploaded in chunks using a loop on the client side.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Uploads the policy to the device. In order to import a policy two things have to
+    # be done in this order - call upload_policy - call import_policy upload_policy uploads
+    # the policy to the device to /var/tmp/ directory. The filename is the name of the
+    # policy given in policy_name. If the policy is big, it should be uploaded in chunks
+    # using a loop on the client side.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :policy_name The name of the policy.		 The filename will be the name of the policy in the /var/tmp directory.
     # @option opts [IControl::ASM::FileTransferContext] :file_context The context of the transfer operation. It has two parts:		 - file_data: The relevant part of the content of the file		 - chunk_type: Indicates the current chunk whether it is the first, middle, last chunk				 or the current call includes the entire file.
@@ -298,9 +336,10 @@ module IControl::ASM
 
     ##
     # Uploads the the wsdl and attaches it to a specific xml profile of a policy.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :policy_name The name of the policy.
     # @option opts [String] :profile_name The name of the XML profile.

@@ -6,6 +6,24 @@ module IControl::GlobalLB
   class MonitorInstanceState < IControl::Base::Struct; end
   class MonitorRule < IControl::Base::Struct; end
   class VirtualServerDefinition < IControl::Base::Struct; end
+  class AddressTypeSequence < IControl::Base::Sequence ; end
+  class AutoConfigurationStateSequence < IControl::Base::Sequence ; end
+  class AvailabilityDependencySequence < IControl::Base::Sequence ; end
+  class LBMethodSequence < IControl::Base::Sequence ; end
+  class LDNSProbeProtocolSequence < IControl::Base::Sequence ; end
+  class LinkWeightTypeSequence < IControl::Base::Sequence ; end
+  class MetricLimitSequence < IControl::Base::Sequence ; end
+  class MonitorIPPortSequence < IControl::Base::Sequence ; end
+  class MonitorInstanceSequence < IControl::Base::Sequence ; end
+  class MonitorInstanceStateSequence < IControl::Base::Sequence ; end
+  class MonitorInstanceStateSequenceSequence < IControl::Base::SequenceSequence ; end
+  class MonitorInstanceStateTypeSequence < IControl::Base::Sequence ; end
+  class MonitorRuleSequence < IControl::Base::Sequence ; end
+  class RegionDBTypeSequence < IControl::Base::Sequence ; end
+  class RegionTypeSequence < IControl::Base::Sequence ; end
+  class ServerTypeSequence < IControl::Base::Sequence ; end
+  class VirtualServerSequence < IControl::Base::Sequence ; end
+  class VirtualServerSequenceSequence < IControl::Base::SequenceSequence ; end
   class Application < IControl::Base; end
   class DNSSECKey < IControl::Base; end
   class DNSSECZone < IControl::Base; end
@@ -56,7 +74,8 @@ module IControl::GlobalLB
   end
 
   ##
-  # A struct that describes a monitored member definition, used in the destination address:port of the monitor template.
+  # A struct that describes a monitored member definition, used in the destination address:port
+  # of the monitor template.
   # @attr [IControl::GlobalLB::AddressType] address_type The address type of the IP:port specified in ipport.
   # @attr [IControl::Common::IPPortDefinition] ipport The IP:port definition.
   class MonitorIPPort < IControl::Base::Struct
@@ -88,11 +107,11 @@ module IControl::GlobalLB
   # An struct that specifies a monitor rule.
   # @attr [IControl::GlobalLB::MonitorRuleType] type An indicator of how to deal/interpret with the list of monitors in monitor_templates.
   # @attr [Numeric] quorum A value to be used when type is MONITOR_RULE_TYPE_M_OF_N, i.e. this value is the M in M of N.		 This value is ignored for other rule types.
-  # @attr [String] monitor_templates The list of monitors that constitute this monitor rule.
+  # @attr [StringSequence] monitor_templates The list of monitors that constitute this monitor rule.
   class MonitorRule < IControl::Base::Struct
     icontrol_attribute :type, IControl::GlobalLB::MonitorRuleType
     icontrol_attribute :quorum, Numeric
-    icontrol_attribute :monitor_templates, String
+    icontrol_attribute :monitor_templates, StringSequence
   end
 
   ##

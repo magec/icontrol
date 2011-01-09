@@ -1,61 +1,71 @@
 module IControl::System
   ##
-  # The Connections interface enables you to get information about a device's connections. For example, use Connection interface to get a list of all active connections or to get a list of all active connections for a specific client.
+  # The Connections interface enables you to get information about a device's connections.
+  # For example, use Connection interface to get a list of all active connections or
+  # to get a list of all active connections for a specific client.
   class Connections < IControl::Base
 
     set_id_name "connections"
 
     class ActiveConnection < IControl::Base::Struct; end
-    class ConnectionID < IControl::Base::Struct; end    ##
+    class ConnectionID < IControl::Base::Struct; end
+    class ActiveConnectionSequence < IControl::Base::Sequence ; end
+    class ConnectionIDSequence < IControl::Base::Sequence ; end    ##
     # Deletes this connection from the connection table.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_active_connection
       super
     end
 
     ##
     # Deletes all active connection from the connection table.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_active_connections
       super
     end
 
     ##
     # Gets the active connection in details for this connection.
+    # @rspec_example
     # @return [ActiveConnection]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def active_connection
       super
     end
 
     ##
     # Gets all active connection in details on the local load balancer.
+    # @rspec_example
     # @return [ActiveConnection]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def all_active_connections
       super
     end
 
     ##
     # Gets the list of active connection.
+    # @rspec_example
     # @return [ConnectionID]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super

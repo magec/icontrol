@@ -1,91 +1,109 @@
 module IControl::Networking
   ##
-  # The ProfileWCCPGRE interface allows you to manipulate a WCCP-GRE tunnel profile to configure the General Routing Encapsulation (GRE - RFC2784) tunnel protocol in conjunction with the Web-Cache Communication Protocol (WCCP). See the Networking/ProfileGRE interface for additional information.
+  # The ProfileWCCPGRE interface allows you to manipulate a WCCP-GRE tunnel profile to
+  # configure the General Routing Encapsulation (GRE - RFC2784) tunnel protocol in conjunction
+  # with the Web-Cache Communication Protocol (WCCP). See the Networking/ProfileGRE interface
+  # for additional information.
   class ProfileWCCPGRE < IControl::Base
 
     set_id_name "profile_names"
 
     class ProfileWCCPGREForwarding < IControl::Base::Struct; end
+    class ProfileWCCPGREForwardingSequence < IControl::Base::Sequence ; end
+    class WCCPGREForwardingSequence < IControl::Base::Sequence ; end
     # Forwarding options for packets leaving a WCCP-GRE tunnel
     class WCCPGREForwarding < IControl::Base::Enumeration; end    ##
     # Creates a set of WCCP-GRE tunnel profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def create
       super
     end
 
     ##
     # Deletes all non-system WCCP-GRE tunnel profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_profiles
       super
     end
 
     ##
     # Deletes a set of WCCP-GRE tunnel profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_profile
       super
     end
 
     ##
-    # Gets the existing WCCP-GRE tunnel profile from which this set of WCCP-GRE profile inherits its unspecified attribute values.
+    # Gets the existing WCCP-GRE tunnel profile from which this set of WCCP-GRE profile
+    # inherits its unspecified attribute values.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def default_profile
       super
     end
 
     ##
-    # Gets the forwarding specification for packets leaving a WCCP-GRE tunnel for a set of WCCP-GRE tunnel profile.
+    # Gets the forwarding specification for packets leaving a WCCP-GRE tunnel for a set
+    # of WCCP-GRE tunnel profile.
+    # @rspec_example
     # @return [ProfileWCCPGREForwarding]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def egress_forwarding
       super
     end
 
     ##
-    # Gets whether the checksum should be included in the transmitted packets for a set of WCCP-GRE tunnel profile.
+    # Gets whether the checksum should be included in the transmitted packets for a set
+    # of WCCP-GRE tunnel profile.
+    # @rspec_example
     # @return [ProfileEnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def include_checksum_state
       super
     end
 
     ##
     # Gets the names for all WCCP-GRE tunnel profile.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
-    # Gets whether the checksum should be validated on the received packets for a set of WCCP-GRE tunnel profile.
+    # Gets whether the checksum should be validated on the received packets for a set of
+    # WCCP-GRE tunnel profile.
+    # @rspec_example
     # @return [ProfileEnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def validate_checksum_state
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -93,29 +111,34 @@ module IControl::Networking
 
     ##
     # Gets the WCCP version currently in use for a set of WCCP-GRE tunnel profile.
+    # @rspec_example
     # @return [ProfileULong]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def wccp_version
       super
     end
 
     ##
-    # Determines whether a set of WCCP-GRE tunnel profile are base/pre-configured (vs user-defined) profile.
+    # Determines whether a set of WCCP-GRE tunnel profile are base/pre-configured (vs user-defined)
+    # profile.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def is_base_profile
       super
     end
 
     ##
-    # Sets the existing WCCP-GRE tunnel profile from which this set of WCCP-GRE tunnel profile inherits their unspecified attribute values.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the existing WCCP-GRE tunnel profile from which this set of WCCP-GRE tunnel
+    # profile inherits their unspecified attribute values.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :defaults WCCP-GRE tunnel profile from which each specified WCCP-GRE tunnel profile inherits its unspecified attribute values (default: wccpgre)
     def set_default_profile(opts)
@@ -124,10 +147,12 @@ module IControl::Networking
     end
 
     ##
-    # Sets the forwarding specification for packets leaving a WCCP-GRE tunnel for a set of WCCP-GRE tunnel profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the forwarding specification for packets leaving a WCCP-GRE tunnel for a set
+    # of WCCP-GRE tunnel profile.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Networking::ProfileWCCPGRE::ProfileWCCPGREForwarding] :modes Forwarding specification for packets leaving a WCCP-GRE tunnel for each specified WCCP-GRE tunnel profile (default: WCCP_GRE_FORWARD_NORMAL)
     def set_egress_forwarding(opts)
@@ -136,10 +161,12 @@ module IControl::Networking
     end
 
     ##
-    # Sets whether the checksum should be included in the transmitted packets for a set of WCCP-GRE tunnel profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets whether the checksum should be included in the transmitted packets for a set
+    # of WCCP-GRE tunnel profile.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileEnabledState] :states Enabled state for including the checksum in the transmitted packets for each specified WCCP-GRE tunnel profile (default: disabled)
     def set_include_checksum_state(opts)
@@ -148,10 +175,12 @@ module IControl::Networking
     end
 
     ##
-    # Sets whether the checksum should be validated on the received packets for a set of WCCP-GRE tunnel profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets whether the checksum should be validated on the received packets for a set of
+    # WCCP-GRE tunnel profile.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileEnabledState] :states Enabled state for validating the checksum on the received packets for each specified WCCP-GRE tunnel profile
     def set_validate_checksum_state(opts)
@@ -161,9 +190,10 @@ module IControl::Networking
 
     ##
     # Sets the WCCP version currently in use for a set of WCCP-GRE tunnel profile.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileULong] :versions WCCP version currently in use for each specified WCCP-GRE tunnel profiles
     def set_wccp_version(opts)

@@ -6,7 +6,9 @@ module IControl::ARX
     set_id_name "virtual_service"
 
     ##
-    # Returns the list of export definitions for a list of exports from this virtual servic and protocol.
+    # Returns the list of export definitions for a list of exports from this virtual servic
+    # and protocol.
+    # @rspec_example
     # @return [ExportDefinition]
     # @param [Hash] opts
     # @option opts [IControl::ARX::ProtocolType] :protocol Protocol type.
@@ -18,6 +20,7 @@ module IControl::ARX
 
     ##
     # Returns the list of exports for this virtual servic and protocol.
+    # @rspec_example
     # @return [String]
     # @param [Hash] opts
     # @option opts [IControl::ARX::ProtocolType] :protocol The protocol type.

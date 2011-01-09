@@ -1,6 +1,7 @@
 module IControl::LocalLB
   ##
-  # The Class interface enables you to manipulate a local load balancer's Class attributes. There are 3 different Class types: Address, String, and Value.
+  # The Class interface enables you to manipulate a local load balancer's Class attributes.
+  # There are 3 different Class types: Address, String, and Value.
   class Klass < IControl::Base
 
     set_id_name "class_members"
@@ -10,6 +11,15 @@ module IControl::LocalLB
     class MetaInformation < IControl::Base::Struct; end
     class StringClass < IControl::Base::Struct; end
     class ValueClass < IControl::Base::Struct; end
+    class AddressClassSequence < IControl::Base::Sequence ; end
+    class AddressEntrySequence < IControl::Base::Sequence ; end
+    class AddressEntrySequenceSequence < IControl::Base::SequenceSequence ; end
+    class ClassTypeSequence < IControl::Base::Sequence ; end
+    class FileFormatTypeSequence < IControl::Base::Sequence ; end
+    class FileModeTypeSequence < IControl::Base::Sequence ; end
+    class MetaInformationSequence < IControl::Base::Sequence ; end
+    class StringClassSequence < IControl::Base::Sequence ; end
+    class ValueClassSequence < IControl::Base::Sequence ; end
     # A list of different class types.
     class ClassType < IControl::Base::Enumeration; end
     # A list of different file format types.
@@ -17,36 +27,40 @@ module IControl::LocalLB
     # A list of different file mode types.
     class FileModeType < IControl::Base::Enumeration; end    ##
     # Incrementally adds address class member.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def add_address_class_member
       super
     end
 
     ##
     # Incrementally adds string class member.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def add_string_class_member
       super
     end
 
     ##
     # Incrementally adds value class member.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def add_value_class_member
       super
     end
 
     ##
     # Creates address classes. The specified classes must not already exist.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::AddressClass] :classes The class names and the class members.
     def create_address_class(opts)
@@ -55,10 +69,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Creates external classes. Note: As of v9.6.0, the validation on the file_name field in external_classes was improved to ensure the class file exists on pain of Common::OperationFailed exception.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Creates external classes. Note: As of v9.6.0, the validation on the file_name field
+    # in external_classes was improved to ensure the class file exists on pain of Common::OperationFailed
+    # exception.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::MetaInformation] :external_classes The sequence of external classes to create.
     def create_external_class(opts)
@@ -68,9 +85,10 @@ module IControl::LocalLB
 
     ##
     # Creates string classes. The specified classes must not already exist.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::StringClass] :classes The class names and the class members.
     def create_string_class(opts)
@@ -80,9 +98,10 @@ module IControl::LocalLB
 
     ##
     # Creates value classes. The specified classes must not already exist.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::ValueClass] :classes The class names and the class members.
     def create_value_class(opts)
@@ -92,45 +111,51 @@ module IControl::LocalLB
 
     ##
     # Incrementally deletes address class member.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_address_class_member
       super
     end
 
     ##
     # Deletes all address classes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_address_classes
       super
     end
 
     ##
     # Deletes all string classes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_string_classes
       super
     end
 
     ##
     # Deletes all value classes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_value_classes
       super
     end
 
     ##
-    # Deletes this classes. The specified classes can be of any class type, even external classes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Deletes this classes. The specified classes can be of any class type, even external
+    # classes.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :classes The classes to delete.
     def delete_class(opts)
@@ -140,58 +165,64 @@ module IControl::LocalLB
 
     ##
     # Incrementally deletes string class member.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_string_class_member
       super
     end
 
     ##
     # Incrementally deletes value class member.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_value_class_member
       super
     end
 
     ##
     # Checks to see if this class member are in this class names.
+    # @rspec_example
     # @return [boolean[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def find_address_class_member
       super
     end
 
     ##
     # Checks to see if this class member are in this class names.
+    # @rspec_example
     # @return [boolean[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def find_string_class_member
       super
     end
 
     ##
     # Checks to see if this class member are in this class names.
+    # @rspec_example
     # @return [boolean[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def find_value_class_member
       super
     end
 
     ##
     # Gets this address classes.
+    # @rspec_example
     # @return [AddressClass]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names.
     def address_class(opts)
@@ -201,30 +232,36 @@ module IControl::LocalLB
 
     ##
     # Gets the list of available address classes.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def address_class_list
       super
     end
 
     ##
-    # Gets the data values associated with a set of address class member. This method is effectively the lookup method for using the class as a value map.
+    # Gets the data values associated with a set of address class member. This method is
+    # effectively the lookup method for using the class as a value map.
+    # @rspec_example
     # @return [String[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def address_class_member_data_value
       super
     end
 
     ##
-    # Gets the meta data information for this classes. For external classes, the meta information will indicate the external file and other relevant information. For non-external classes, only applicable information such as class name/type will be of importance.
+    # Gets the meta data information for this classes. For external classes, the meta information
+    # will indicate the external file and other relevant information. For non-external
+    # classes, only applicable information such as class name/type will be of importance.
+    # @rspec_example
     # @return [MetaInformation]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve class meta information from.
     def class_meta_information(opts)
@@ -234,10 +271,11 @@ module IControl::LocalLB
 
     ##
     # Gets the class types for this classes.
+    # @rspec_example
     # @return [ClassType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve class types.
     def class_type(opts)
@@ -246,11 +284,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Gets the strings used to separate a class member value from its optional associated data value for a set of classes.
+    # Gets the strings used to separate a class member value from its optional associated
+    # data value for a set of classes.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names Names of the requested classes
     def data_separator(opts)
@@ -259,11 +299,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Gets the file format for this classes. This should only be called for external classes, since it does not make sense for non-external classes.
+    # Gets the file format for this classes. This should only be called for external classes,
+    # since it does not make sense for non-external classes.
+    # @rspec_example
     # @return [FileFormatType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve file formats.
     def external_class_file_format(opts)
@@ -272,11 +314,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Gets the file modes for this classes. This should only be called for external classes, since it does not make sense for non-external classes.
+    # Gets the file modes for this classes. This should only be called for external classes,
+    # since it does not make sense for non-external classes.
+    # @rspec_example
     # @return [FileModeType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve file modes.
     def external_class_file_mode(opts)
@@ -285,11 +329,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Gets the file names for this classes. This should only be called for external classes, since it does not make sense for non-external classes.
+    # Gets the file names for this classes. This should only be called for external classes,
+    # since it does not make sense for non-external classes.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve file names.
     def external_class_file_name(opts)
@@ -299,20 +345,22 @@ module IControl::LocalLB
 
     ##
     # Gets the list of all available external classes.
+    # @rspec_example
     # @return [MetaInformation]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def external_class_list
       super
     end
 
     ##
     # Gets this string classes.
+    # @rspec_example
     # @return [StringClass]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names.
     def string_class(opts)
@@ -322,30 +370,34 @@ module IControl::LocalLB
 
     ##
     # Gets the list of available string classes.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def string_class_list
       super
     end
 
     ##
-    # Gets the data values associated with a set of string class member. This method is effectively the lookup method for using the class as a value map.
+    # Gets the data values associated with a set of string class member. This method is
+    # effectively the lookup method for using the class as a value map.
+    # @rspec_example
     # @return [String[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def string_class_member_data_value
       super
     end
 
     ##
     # Gets this value classes.
+    # @rspec_example
     # @return [ValueClass]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names.
     def value_class(opts)
@@ -355,26 +407,30 @@ module IControl::LocalLB
 
     ##
     # Gets the list of available value classes.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def value_class_list
       super
     end
 
     ##
-    # Gets the data values associated with a set of value class member. This method is effectively the lookup method for using the class as a value map.
+    # Gets the data values associated with a set of value class member. This method is
+    # effectively the lookup method for using the class as a value map.
+    # @rspec_example
     # @return [String[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def value_class_member_data_value
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -382,9 +438,10 @@ module IControl::LocalLB
 
     ##
     # Modifies address classes. The specified classes must already exist.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::AddressClass] :classes The class names and the class members.		 The result is that the class now has the members specified in		 the class_members, regardless of what the class has before.
     def modify_address_class(opts)
@@ -394,9 +451,10 @@ module IControl::LocalLB
 
     ##
     # Modifies string classes. The specified classes must already exist.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::StringClass] :classes The class names and the class members.		 The result is that the class now has the members specified in		 the class_members, regardless of what the class has before.
     def modify_string_class(opts)
@@ -406,9 +464,10 @@ module IControl::LocalLB
 
     ##
     # Modifies value classes. The specified classes must already exist.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::ValueClass] :classes The class names and the class members.		 The result is that the class now has the members specified in		 the class_members, regardless of what the class has before.
     def modify_value_class(opts)
@@ -417,10 +476,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the data values associated with a set of address class member. This data value is an optional arbitrary string, which can be retrieved given the class member information, allowing the class to be used as a value map.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the data values associated with a set of address class member. This data value
+    # is an optional arbitrary string, which can be retrieved given the class member information,
+    # allowing the class to be used as a value map.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String[]] :values Data values to associate with each class			 member, organized in the same manner as			 the class member IP addresses			 (default: "" (i.e., no value))
     def set_address_class_member_data_value(opts)
@@ -429,10 +491,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the strings used to separate a class member value from its optional associated data value for a set of classes. This is used for listing and storing both external and internal classes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the strings used to separate a class member value from its optional associated
+    # data value for a set of classes. This is used for listing and storing both external
+    # and internal classes.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names Names of the requested classes
     # @option opts [String] :separators String separator for each class			 (default: ":=")
@@ -442,10 +507,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the file format for this classes. This should only be called for external classes, since it does not make sense for non-external classes. If called for non-external classes, it will silently accept it, but nothing will be done.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the file format for this classes. This should only be called for external classes,
+    # since it does not make sense for non-external classes. If called for non-external
+    # classes, it will silently accept it, but nothing will be done.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to set the file formats.
     # @option opts [IControl::LocalLB::Class::FileFormatType] :file_formats A list of file formats to set for the specified classes.
@@ -455,10 +523,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the file mode for this classes. This should only be called for external classes, since it does not make sense for non-external classes. If called for non-external classes, it will silently accept it, but nothing will be done.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the file mode for this classes. This should only be called for external classes,
+    # since it does not make sense for non-external classes. If called for non-external
+    # classes, it will silently accept it, but nothing will be done.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to set the file modes.
     # @option opts [IControl::LocalLB::Class::FileModeType] :file_modes A list of file modes to set for the specified classes.
@@ -468,10 +539,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the file names for this external classes. This should only be called for external classes, since it does not make sense for non-external classes. If called for non-external classes, it will silently accept it, but nothing will be done.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the file names for this external classes. This should only be called for external
+    # classes, since it does not make sense for non-external classes. If called for non-external
+    # classes, it will silently accept it, but nothing will be done.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to set the file names.
     # @option opts [String] :file_names A list of file names to set for the specified classes.
@@ -481,10 +555,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the data values associated with a set of string class member. This data value is an optional arbitrary string, which can be retrieved given the class member information, allowing the class to be used as a value map.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the data values associated with a set of string class member. This data value
+    # is an optional arbitrary string, which can be retrieved given the class member information,
+    # allowing the class to be used as a value map.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String[]] :values Data values to associate with each class			 member, organized in the same manner as			 the class member string values			 (default: "" (i.e., no value))
     def set_string_class_member_data_value(opts)
@@ -493,10 +570,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the data values associated with a set of value class member. This data value is an arbitrary optional string, which can be retrieved given the class member information, allowing the class to be used as a value map.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the data values associated with a set of value class member. This data value
+    # is an arbitrary optional string, which can be retrieved given the class member information,
+    # allowing the class to be used as a value map.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String[]] :values Data values to associate with each class			 member, organized in the same manner as			 the class member integer values			 (default: "" (i.e., no value))
     def set_value_class_member_data_value(opts)
@@ -507,10 +587,10 @@ module IControl::LocalLB
     ##
     # A struct that describes an Address class.
     # @attr [String] name The Address class name.
-    # @attr [IControl::LocalLB::Klass::AddressEntry] members The Address class member list.
+    # @attr [IControl::LocalLB::Klass::AddressEntrySequence] members The Address class member list.
     class AddressClass < IControl::Base::Struct
       icontrol_attribute :name, String
-      icontrol_attribute :members, IControl::LocalLB::Klass::AddressEntry
+      icontrol_attribute :members, IControl::LocalLB::Klass::AddressEntrySequence
     end
 
     ##
@@ -540,19 +620,19 @@ module IControl::LocalLB
     ##
     # A struct that describes a String class.
     # @attr [String] name The String class name.
-    # @attr [String] members The String class member list.
+    # @attr [StringSequence] members The String class member list.
     class StringClass < IControl::Base::Struct
       icontrol_attribute :name, String
-      icontrol_attribute :members, String
+      icontrol_attribute :members, StringSequence
     end
 
     ##
     # A struct that describes a Value class.
     # @attr [String] name The Value class name.
-    # @attr [Numeric] members The Value class member list.
+    # @attr [LongSequence] members The Value class member list.
     class ValueClass < IControl::Base::Struct
       icontrol_attribute :name, String
-      icontrol_attribute :members, Numeric
+      icontrol_attribute :members, LongSequence
     end
 
 

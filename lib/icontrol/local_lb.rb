@@ -34,6 +34,74 @@ module IControl::LocalLB
   class ProfileULong < IControl::Base::Struct; end
   class ProfileUShort < IControl::Base::Struct; end
   class ProfileUncleanShutdownMode < IControl::Base::Struct; end
+  class AddressTypeSequence < IControl::Base::Sequence ; end
+  class AuthenticationMethodSequence < IControl::Base::Sequence ; end
+  class AvailabilityStatusSequence < IControl::Base::Sequence ; end
+  class ClientSSLCertificateModeSequence < IControl::Base::Sequence ; end
+  class ClonePoolTypeSequence < IControl::Base::Sequence ; end
+  class CompressionMethodSequence < IControl::Base::Sequence ; end
+  class CookiePersistenceMethodSequence < IControl::Base::Sequence ; end
+  class CredentialSourceSequence < IControl::Base::Sequence ; end
+  class EnabledStatusSequence < IControl::Base::Sequence ; end
+  class HardwareAccelerationModeSequence < IControl::Base::Sequence ; end
+  class HttpChunkModeSequence < IControl::Base::Sequence ; end
+  class HttpCompressionModeSequence < IControl::Base::Sequence ; end
+  class HttpRedirectRewriteModeSequence < IControl::Base::Sequence ; end
+  class LBMethodSequence < IControl::Base::Sequence ; end
+  class MatchPatternStringSequence < IControl::Base::Sequence ; end
+  class MatchPatternStringSequenceSequence < IControl::Base::SequenceSequence ; end
+  class MonitorIPPortSequence < IControl::Base::Sequence ; end
+  class MonitorIPSequence < IControl::Base::Sequence ; end
+  class MonitorInstanceSequence < IControl::Base::Sequence ; end
+  class MonitorInstanceStateSequence < IControl::Base::Sequence ; end
+  class MonitorInstanceStateSequenceSequence < IControl::Base::SequenceSequence ; end
+  class MonitorInstanceStateTypeSequence < IControl::Base::Sequence ; end
+  class MonitorRuleSequence < IControl::Base::Sequence ; end
+  class MonitorStatusSequence < IControl::Base::Sequence ; end
+  class ObjectStatusSequence < IControl::Base::Sequence ; end
+  class PersistenceModeSequence < IControl::Base::Sequence ; end
+  class PersistenceRecordSequence < IControl::Base::Sequence ; end
+  class PersistenceRecordSequenceSequence < IControl::Base::SequenceSequence ; end
+  class ProfileAuthenticationMethodSequence < IControl::Base::Sequence ; end
+  class ProfileClientSSLCertificateModeSequence < IControl::Base::Sequence ; end
+  class ProfileCompressionMethodSequence < IControl::Base::Sequence ; end
+  class ProfileContextTypeSequence < IControl::Base::Sequence ; end
+  class ProfileCookiePersistenceMethodSequence < IControl::Base::Sequence ; end
+  class ProfileCredentialSourceSequence < IControl::Base::Sequence ; end
+  class ProfileEnabledStateSequence < IControl::Base::Sequence ; end
+  class ProfileHardwareAccelerationModeSequence < IControl::Base::Sequence ; end
+  class ProfileHttpChunkModeSequence < IControl::Base::Sequence ; end
+  class ProfileHttpCompressionModeSequence < IControl::Base::Sequence ; end
+  class ProfileHttpRedirectRewriteModeSequence < IControl::Base::Sequence ; end
+  class ProfileIPAddressSequence < IControl::Base::Sequence ; end
+  class ProfileMatchPatternStringArraySequence < IControl::Base::Sequence ; end
+  class ProfilePersistenceModeSequence < IControl::Base::Sequence ; end
+  class ProfilePortNumberSequence < IControl::Base::Sequence ; end
+  class ProfileProfileModeSequence < IControl::Base::Sequence ; end
+  class ProfileRamCacheCacheControlModeSequence < IControl::Base::Sequence ; end
+  class ProfileRtspProxyTypeSequence < IControl::Base::Sequence ; end
+  class ProfileSSLOptionSequence < IControl::Base::Sequence ; end
+  class ProfileServerSSLCertificateModeSequence < IControl::Base::Sequence ; end
+  class ProfileStringArraySequence < IControl::Base::Sequence ; end
+  class ProfileStringSequence < IControl::Base::Sequence ; end
+  class ProfileTCPCongestionControlModeSequence < IControl::Base::Sequence ; end
+  class ProfileTCPOptionModeSequence < IControl::Base::Sequence ; end
+  class ProfileTypeSequence < IControl::Base::Sequence ; end
+  class ProfileULongSequence < IControl::Base::Sequence ; end
+  class ProfileUShortSequence < IControl::Base::Sequence ; end
+  class ProfileUncleanShutdownModeSequence < IControl::Base::Sequence ; end
+  class RamCacheCacheControlModeSequence < IControl::Base::Sequence ; end
+  class RtspProxyTypeSequence < IControl::Base::Sequence ; end
+  class SSLOptionSequence < IControl::Base::Sequence ; end
+  class SSLOptionSequenceSequence < IControl::Base::SequenceSequence ; end
+  class ServerSSLCertificateModeSequence < IControl::Base::Sequence ; end
+  class ServiceDownActionSequence < IControl::Base::Sequence ; end
+  class SessionStatusSequence < IControl::Base::Sequence ; end
+  class SnatTypeSequence < IControl::Base::Sequence ; end
+  class TCPCongestionControlModeSequence < IControl::Base::Sequence ; end
+  class TCPOptionModeSequence < IControl::Base::Sequence ; end
+  class UncleanShutdownModeSequence < IControl::Base::Sequence ; end
+  class VirtualAddressStatusDependencySequence < IControl::Base::Sequence ; end
   class Klass < IControl::Base; end
   class Monitor < IControl::Base; end
   class NAT < IControl::Base; end
@@ -135,7 +203,8 @@ module IControl::LocalLB
   class TCPOptionMode < IControl::Base::Enumeration; end
   # A list of profile's unclean shutdown modes.
   class UncleanShutdownMode < IControl::Base::Enumeration; end
-  # An enumeration of virtual address status dependency types. This indicates how status of the related virtual servers affects status of the virtual address.
+  # An enumeration of virtual address status dependency types. This indicates how status
+  # of the related virtual servers affects status of the virtual address.
   class VirtualAddressStatusDependency < IControl::Base::Enumeration; end##
   # A struct that describes a pattern, represented either as a glob or a regular expression.
   # @attr [String] pattern The match pattern string.
@@ -155,7 +224,8 @@ module IControl::LocalLB
   end
 
   ##
-  # A struct that describes monitored node server definition, used in the destination address:port of the monitor template.
+  # A struct that describes monitored node server definition, used in the destination
+  # address:port of the monitor template.
   # @attr [IControl::LocalLB::AddressType] address_type The address type of the IP:port specified in ipport.
   # @attr [IControl::Common::IPPortDefinition] ipport The IP:port definition.
   class MonitorIPPort < IControl::Base::Struct
@@ -187,7 +257,7 @@ module IControl::LocalLB
   # An struct that specifies a monitor rule.
   # @attr [IControl::LocalLB::MonitorRuleType] type An indicator of how to deal/interpret with the list of monitors in monitor_templates.
   # @attr [Numeric] quorum A value to be used when type is MONITOR_RULE_TYPE_M_OF_N, i.e. this value is the M in M of N.		 This value is ignored for other rule types.
-  # @attr [String] monitor_templates The list of monitors that constitutes this monitor rule.
+  # @attr [StringSequence] monitor_templates The list of monitors that constitutes this monitor rule.
   class MonitorRule < IControl::Base::Struct
     icontrol_attribute :type, IControl::LocalLB::MonitorRuleType
     icontrol_attribute :quorum, Numeric
@@ -325,10 +395,10 @@ module IControl::LocalLB
 
   ##
   # A structure that specifies a sequence of match pattern strings used in profile attributes.
-  # @attr [IControl::LocalLB::MatchPatternString] values The attribute match pattern strings.
+  # @attr [IControl::LocalLB::MatchPatternStringSequence] values The attribute match pattern strings.
   # @attr [Object] default_flag The flag that indicates how the value should be interpreted.			On queries, if default_flag is true, that means the requested			value is the parent profile's default value. If false, that means		 the requested value has been explicitly set by the user.			On creations/modifications, if default_flag is true, that means		 the parent profile's default value should be restored for this		 attribute value, hence the passed-in value is ignored. If false,		 that means the user wants to set the attribute value using the		 passed-in value.
   class ProfileMatchPatternStringArray < IControl::Base::Struct
-    icontrol_attribute :values, IControl::LocalLB::MatchPatternString
+    icontrol_attribute :values, IControl::LocalLB::MatchPatternStringSequence
     icontrol_attribute :default_flag, Object
   end
 
@@ -379,10 +449,10 @@ module IControl::LocalLB
 
   ##
   # A structure that specifies a profile's SSL options.
-  # @attr [IControl::LocalLB::SSLOption] values The SSL options.
+  # @attr [IControl::LocalLB::SSLOptionSequence] values The SSL options.
   # @attr [Object] default_flag The flag that indicates how the value should be interpreted.			On queries, if default_flag is true, that means the requested			value is the parent profile's default value. If false, that means		 the requested value has been explicitly set by the user.			On creations/modifications, if default_flag is true, that means		 the parent profile's default value should be restored for this		 attribute value, hence the passed-in value is ignored. If false,		 that means the user wants to set the attribute value using the		 passed-in value.
   class ProfileSSLOption < IControl::Base::Struct
-    icontrol_attribute :values, IControl::LocalLB::SSLOption
+    icontrol_attribute :values, IControl::LocalLB::SSLOptionSequence
     icontrol_attribute :default_flag, Object
   end
 
@@ -406,10 +476,10 @@ module IControl::LocalLB
 
   ##
   # A structure that specifies a sequence of strings used in profile attributes.
-  # @attr [String] values The attribute strings.
+  # @attr [StringSequence] values The attribute strings.
   # @attr [Object] default_flag The flag that indicates how the value should be interpreted.			On queries, if default_flag is true, that means the requested			value is the parent profile's default value. If false, that means		 the requested value has been explicitly set by the user.			On creations/modifications, if default_flag is true, that means		 the parent profile's default value should be restored for this		 attribute value, hence the passed-in value is ignored. If false,		 that means the user wants to set the attribute value using the		 passed-in value.
   class ProfileStringArray < IControl::Base::Struct
-    icontrol_attribute :values, String
+    icontrol_attribute :values, StringSequence
     icontrol_attribute :default_flag, Object
   end
 
@@ -1185,7 +1255,8 @@ module IControl::LocalLB
   end
 
 
-  # An enumeration of virtual address status dependency types. This indicates how status of the related virtual servers affects status of the virtual address.
+  # An enumeration of virtual address status dependency types. This indicates how status
+  # of the related virtual servers affects status of the virtual address.
   class VirtualAddressStatusDependency < IControl::Base::Enumeration
     # Virtual address is always green regardless of						 virtual servers' status.
     VIRTUAL_ADDRESS_STATUS_DEPENDENCY_NONE = :VIRTUAL_ADDRESS_STATUS_DEPENDENCY_NONE

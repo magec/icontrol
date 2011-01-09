@@ -7,6 +7,7 @@ module IControl::ARX
 
     ##
     # Returns a list of share definitions for this shares.
+    # @rspec_example
     # @return [ShareDefinition]
     # @param [Hash] opts
     # @option opts [String] :volume The volume name.
@@ -18,6 +19,7 @@ module IControl::ARX
 
     ##
     # Returns the list of shares.
+    # @rspec_example
     # @return [String]
     # @param [Hash] opts
     # @option opts [String] :volume The volume name.

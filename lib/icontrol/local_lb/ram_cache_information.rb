@@ -1,6 +1,7 @@
 module IControl::LocalLB
   ##
-  # The RAMCacheInformation interface enables you to query for RAM cache entries/statistics, as well as evicting RAM cache entries.
+  # The RAMCacheInformation interface enables you to query for RAM cache entries/statistics,
+  # as well as evicting RAM cache entries.
   class RAMCacheInformation < IControl::Base
 
     set_id_name "keys"
@@ -8,30 +9,42 @@ module IControl::LocalLB
     class RAMCacheEntry < IControl::Base::Struct; end
     class RAMCacheEntryExactMatch < IControl::Base::Struct; end
     class RAMCacheKey < IControl::Base::Struct; end
+    class RAMCacheEntryExactMatchSequence < IControl::Base::Sequence ; end
+    class RAMCacheEntryExactMatchSequenceSequence < IControl::Base::SequenceSequence ; end
+    class RAMCacheEntrySequence < IControl::Base::Sequence ; end
+    class RAMCacheEntrySequenceSequence < IControl::Base::SequenceSequence ; end
+    class RAMCacheKeySequence < IControl::Base::Sequence ; end
+    class RAMCacheVaryTypeSequence < IControl::Base::Sequence ; end
     # A list of types that indicate what type of content is cached.
     class RAMCacheVaryType < IControl::Base::Enumeration; end    ##
     # Resets/evicts all cache entries.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def evict_all_ramcache_entries
       super
     end
 
     ##
-    # Note: This function has been deprecated. Please use evict_ramcache_entry_v2. Resets/evicts the cache entries associated with this key. Note: The &amp;quot;max_responses" field in each RAMCacheKey key is ignored in this method.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Note: This function has been deprecated. Please use evict_ramcache_entry_v2. Resets/evicts
+    # the cache entries associated with this key. Note: The &amp;quot;max_responses" field
+    # in each RAMCacheKey key is ignored in this method.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def evict_ramcache_entry
       super
     end
 
     ##
-    # Resets/evicts the cache entries associated with this key. Note: The &amp;quot;max_responses" field in each RAMCacheKey key is ignored in this method.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Resets/evicts the cache entries associated with this key. Note: The &amp;quot;max_responses"
+    # field in each RAMCacheKey key is ignored in this method.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [boolean] :exact_match Whether to look for an exact match for host and uri. If exact, you must specify host and uri in the key. If non-exact, host and uri can be a subset of the text in a matched entry during the search.
     def evict_ramcache_entry_v2(opts)
@@ -40,27 +53,37 @@ module IControl::LocalLB
     end
 
     ##
-    # Gets the RAM cache entries associated with this key. The &amp;quot;profile_name" in the key is required, however, other fields in each key are optionally specified. &amp;quot;max_response" is recommended to be set to avoid possible large amount of entries.
+    # Gets the RAM cache entries associated with this key. The &amp;quot;profile_name"
+    # in the key is required, however, other fields in each key are optionally specified.
+    # &amp;quot;max_response" is recommended to be set to avoid possible large amount of
+    # entries.
+    # @rspec_example
     # @return [RAMCacheEntry[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def ramcache_entry
       super
     end
 
     ##
-    # Gets the RAM cache entries associated with this key. Each field in the key must be provided, and together the key is used to extract a specific entry. However, since each entry with the same profile/hostname/URI can still vary based on the User-Agent or Accept-Encoding headers, a separate entry will be returned for each variation, with also the specific header string that causes the variation.
+    # Gets the RAM cache entries associated with this key. Each field in the key must be
+    # provided, and together the key is used to extract a specific entry. However, since
+    # each entry with the same profile/hostname/URI can still vary based on the User-Agent
+    # or Accept-Encoding headers, a separate entry will be returned for each variation,
+    # with also the specific header string that causes the variation.
+    # @rspec_example
     # @return [RAMCacheEntryExactMatch[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def ramcache_entry_exact_match
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super

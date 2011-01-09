@@ -1,6 +1,7 @@
 module IControl::GlobalLB
   ##
-  # The PoolMember interface enables you to work with the pool members and their settings, and statistics.
+  # The PoolMember interface enables you to work with the pool members and their settings,
+  # and statistics.
   class PoolMember < IControl::Base
 
     set_id_name "pool_names"
@@ -14,11 +15,30 @@ module IControl::GlobalLB
     class MemberOrder < IControl::Base::Struct; end
     class MemberRatio < IControl::Base::Struct; end
     class MemberStatisticEntry < IControl::Base::Struct; end
-    class MemberStatistics < IControl::Base::Struct; end    ##
+    class MemberStatistics < IControl::Base::Struct; end
+    class MemberDependencySequence < IControl::Base::Sequence ; end
+    class MemberDependencySequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberEnabledStateSequence < IControl::Base::Sequence ; end
+    class MemberEnabledStateSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMetricLimitSequence < IControl::Base::Sequence ; end
+    class MemberMetricLimitSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMonitorAssociationRemovalSequence < IControl::Base::Sequence ; end
+    class MemberMonitorAssociationRemovalSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMonitorAssociationSequence < IControl::Base::Sequence ; end
+    class MemberMonitorAssociationSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberObjectStatusSequence < IControl::Base::Sequence ; end
+    class MemberObjectStatusSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberOrderSequence < IControl::Base::Sequence ; end
+    class MemberOrderSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberRatioSequence < IControl::Base::Sequence ; end
+    class MemberRatioSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberStatisticEntrySequence < IControl::Base::Sequence ; end
+    class MemberStatisticsSequence < IControl::Base::Sequence ; end    ##
     # Adds the virtual servers to the dependency list that this pool members depend on.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberDependency[]] :dependencies The dependency list of VSes that the specified pool members depend on.
     def add_dependency(opts)
@@ -28,20 +48,22 @@ module IControl::GlobalLB
 
     ##
     # Gets the statistics for all pool members of this pool.
+    # @rspec_example
     # @return [MemberStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def all_statistics
       super
     end
 
     ##
     # Gets the list of virtual servers that this pool members depend on.
+    # @rspec_example
     # @return [MemberDependency[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def dependency(opts)
@@ -51,10 +73,11 @@ module IControl::GlobalLB
 
     ##
     # Gets the enabled states for this members in this pool.
+    # @rspec_example
     # @return [MemberEnabledState[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def enabled_state(opts)
@@ -64,10 +87,11 @@ module IControl::GlobalLB
 
     ##
     # Gets the metric limits for this members of this pool.
+    # @rspec_example
     # @return [MemberMetricLimit[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def limit(opts)
@@ -76,21 +100,24 @@ module IControl::GlobalLB
     end
 
     ##
-    # Gets the monitor associations used by this pool members, i.e. the monitor rules used by the pool members.
+    # Gets the monitor associations used by this pool members, i.e. the monitor rules used
+    # by the pool members.
+    # @rspec_example
     # @return [MemberMonitorAssociation[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def monitor_association
       super
     end
 
     ##
     # Gets the statuses for this members in this pool.
+    # @rspec_example
     # @return [MemberObjectStatus[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def object_status(opts)
@@ -100,10 +127,11 @@ module IControl::GlobalLB
 
     ##
     # Gets the orders for this members in this pool.
+    # @rspec_example
     # @return [MemberOrder[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def order(opts)
@@ -113,10 +141,11 @@ module IControl::GlobalLB
 
     ##
     # Gets the ratios for this members in this pool.
+    # @rspec_example
     # @return [MemberRatio[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def ratio(opts)
@@ -126,10 +155,11 @@ module IControl::GlobalLB
 
     ##
     # Gets the statistics for this set of pool members.
+    # @rspec_example
     # @return [MemberStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def statistics(opts)
@@ -139,6 +169,7 @@ module IControl::GlobalLB
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -146,9 +177,10 @@ module IControl::GlobalLB
 
     ##
     # Removes any and all dependencies of this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members to remove the dependencies from.		 These pool members will no longer have any dependency on any other		 virtual servers.
     def remove_all_dependencies(opts)
@@ -157,10 +189,12 @@ module IControl::GlobalLB
     end
 
     ##
-    # Removes the virtual servers from the dependency list that this pool members depend on.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Removes the virtual servers from the dependency list that this pool members depend
+    # on.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberDependency[]] :dependencies The dependency list of VSes that the specified pool members depend on.
     def remove_dependency(opts)
@@ -169,10 +203,16 @@ module IControl::GlobalLB
     end
 
     ##
-    # Removes the monitor associations for this pool members. Depending on the monitor association removal rule specified, this basically deletes any explicit monitor associations between a pool member and a monitor rule and thus causing the pool member to use the default monitor association of its parent pool, or this will delete any monitor association for the pool members altogether, i.e. this pool members will no longer be monitored.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Removes the monitor associations for this pool members. Depending on the monitor
+    # association removal rule specified, this basically deletes any explicit monitor associations
+    # between a pool member and a monitor rule and thus causing the pool member to use
+    # the default monitor association of its parent pool, or this will delete any monitor
+    # association for the pool members altogether, i.e. this pool members will no longer
+    # be monitored.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberMonitorAssociationRemoval[]] :monitor_associations The monitor association removal rules that will be used to remove the monitor associations			 for the specified pool members.
     def remove_monitor_association(opts)
@@ -182,9 +222,10 @@ module IControl::GlobalLB
 
     ##
     # Resets the statistics for this set of pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def reset_statistics(opts)
@@ -194,9 +235,10 @@ module IControl::GlobalLB
 
     ##
     # Sets the enabled states for this pool members in this pool.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberEnabledState[]] :states The members and the states to be set.
     def set_enabled_state(opts)
@@ -206,9 +248,10 @@ module IControl::GlobalLB
 
     ##
     # Sets the metric limits for this members of this pool.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberMetricLimit[]] :limits The pool members' metric limits.
     def set_limit(opts)
@@ -217,10 +260,12 @@ module IControl::GlobalLB
     end
 
     ##
-    # Sets/creates the monitor associations for this pool members. This basically creates the monitor associations between a pool member and a monitor rule.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets/creates the monitor associations for this pool members. This basically creates
+    # the monitor associations between a pool member and a monitor rule.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberMonitorAssociation[]] :monitor_associations The monitor associations that will be used to evaluate the specified pool members.
     def set_monitor_association(opts)
@@ -230,9 +275,10 @@ module IControl::GlobalLB
 
     ##
     # Sets the orders for this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberOrder[]] :orders The members and the orders to be set.
     def set_order(opts)
@@ -242,9 +288,10 @@ module IControl::GlobalLB
 
     ##
     # Sets the ratios for this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberRatio[]] :ratios The members and the ratios to be set.
     def set_ratio(opts)
@@ -255,10 +302,10 @@ module IControl::GlobalLB
     ##
     # A struct that describes a pool member's dependencies on other virtual servers.
     # @attr [IControl::Common::IPPortDefinition] member The IP address and port of the pool member.
-    # @attr [IControl::GlobalLB::VirtualServerDefinition] dependencies The list of virtual servers that this member depends on.
+    # @attr [IControl::GlobalLB::VirtualServerDefinitionSequence] dependencies The list of virtual servers that this member depends on.
     class MemberDependency < IControl::Base::Struct
       icontrol_attribute :member, IControl::Common::IPPortDefinition
-      icontrol_attribute :dependencies, IControl::GlobalLB::VirtualServerDefinition
+      icontrol_attribute :dependencies, IControl::GlobalLB::VirtualServerDefinitionSequence
     end
 
     ##
@@ -273,10 +320,10 @@ module IControl::GlobalLB
     ##
     # A struct that contains metric limits for a pool member.
     # @attr [IControl::Common::IPPortDefinition] member The IP address and port of the pool member.
-    # @attr [IControl::GlobalLB::MetricLimit] metric_limits Metric limits of the pool.
+    # @attr [IControl::GlobalLB::MetricLimitSequence] metric_limits Metric limits of the pool.
     class MemberMetricLimit < IControl::Base::Struct
       icontrol_attribute :member, IControl::Common::IPPortDefinition
-      icontrol_attribute :metric_limits, IControl::GlobalLB::MetricLimit
+      icontrol_attribute :metric_limits, IControl::GlobalLB::MetricLimitSequence
     end
 
     ##
@@ -327,18 +374,18 @@ module IControl::GlobalLB
     ##
     # A struct that describes statistics for a particular pool member.
     # @attr [IControl::Common::IPPortDefinition] member The pool member definition.
-    # @attr [IControl::Common::Statistic] statistics The statistics for the pool member.
+    # @attr [IControl::Common::StatisticSequence] statistics The statistics for the pool member.
     class MemberStatisticEntry < IControl::Base::Struct
       icontrol_attribute :member, IControl::Common::IPPortDefinition
-      icontrol_attribute :statistics, IControl::Common::Statistic
+      icontrol_attribute :statistics, IControl::Common::StatisticSequence
     end
 
     ##
     # A struct that describes pool member statistics and timestamp.
-    # @attr [IControl::GlobalLB::PoolMember::MemberStatisticEntry] statistics The statistics for a sequence of pool members.
+    # @attr [IControl::GlobalLB::PoolMember::MemberStatisticEntrySequence] statistics The statistics for a sequence of pool members.
     # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
     class MemberStatistics < IControl::Base::Struct
-      icontrol_attribute :statistics, IControl::GlobalLB::PoolMember::MemberStatisticEntry
+      icontrol_attribute :statistics, IControl::GlobalLB::PoolMember::MemberStatisticEntrySequence
       icontrol_attribute :time_stamp, IControl::Common::TimeStamp
     end
 

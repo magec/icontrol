@@ -1,6 +1,9 @@
 module IControl::LocalLB
   ##
-  # The Monitor interface enables you to manipulate a local load balancer's monitor templates and instances. For example, use the Monitor interface to enable or disable a monitor instance, or to create a monitor template, or to get and set different attributes of a monitor template.
+  # The Monitor interface enables you to manipulate a local load balancer's monitor templates
+  # and instances. For example, use the Monitor interface to enable or disable a monitor
+  # instance, or to create a monitor template, or to get and set different attributes
+  # of a monitor template.
   class Monitor < IControl::Base
 
     set_id_name "template_names"
@@ -10,16 +13,31 @@ module IControl::LocalLB
     class MonitorTemplate < IControl::Base::Struct; end
     class StringValue < IControl::Base::Struct; end
     class UserDefinedStringValue < IControl::Base::Struct; end
+    class CommonAttributesSequence < IControl::Base::Sequence ; end
+    class IntPropertyTypeSequence < IControl::Base::Sequence ; end
+    class IntegerValueSequence < IControl::Base::Sequence ; end
+    class MonitorTemplateSequence < IControl::Base::Sequence ; end
+    class StrPropertyTypeSequence < IControl::Base::Sequence ; end
+    class StringValueSequence < IControl::Base::Sequence ; end
+    class TemplateTypeSequence < IControl::Base::Sequence ; end
+    class UserDefinedStringValueSequence < IControl::Base::Sequence ; end
     # A list of monitor template's integer property types.
     class IntPropertyType < IControl::Base::Enumeration; end
     # A list of monitor template's string property types.
     class StrPropertyType < IControl::Base::Enumeration; end
     # A list of template types.
     class TemplateType < IControl::Base::Enumeration; end    ##
-    # Creates monitor template with some basic attributes. If the &amp;quot;parent_template" attribute in &amp;quot;template_attributes" is empty, then the new template is based on the template type field given in &amp;quot;template". If the &amp;quot;parent_template" attribute in &amp;quot;template_attributes" is specified, then the new template is derived from the &amp;quot;parent_template", and template type field in &amp;quot;template" is ignored. If &amp;quot;parent_template" is empty, and the template type field in &amp;quot;template" is not specified, then the new template is a root template.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Creates monitor template with some basic attributes. If the &amp;quot;parent_template"
+    # attribute in &amp;quot;template_attributes" is empty, then the new template is based
+    # on the template type field given in &amp;quot;template". If the &amp;quot;parent_template"
+    # attribute in &amp;quot;template_attributes" is specified, then the new template is
+    # derived from the &amp;quot;parent_template", and template type field in &amp;quot;template"
+    # is ignored. If &amp;quot;parent_template" is empty, and the template type field in
+    # &amp;quot;template" is not specified, then the new template is a root template.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Monitor::MonitorTemplate] :templates The names and types of the new monitor templates to create.
     # @option opts [IControl::LocalLB::Monitor::CommonAttributes] :template_attributes The basic template attributes used to create the new template.
@@ -30,28 +48,31 @@ module IControl::LocalLB
 
     ##
     # Deletes all user-defined (non-root) monitor template.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_all_templates
       super
     end
 
     ##
     # Deletes this monitor template.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def delete_template
       super
     end
 
     ##
     # Gets the enabled/disabled states of the monitor instances.
+    # @rspec_example
     # @return [MonitorInstanceState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MonitorInstance] :instances The monitor instances to get enable/disable states.
     def instance_state(opts)
@@ -60,51 +81,61 @@ module IControl::LocalLB
     end
 
     ##
-    # Gets the monitor template' manual resume states. When enabled and a monitor has marked an object down, that object will not be marked up by the monitor, i.e. the object will be manually marked up.
+    # Gets the monitor template' manual resume states. When enabled and a monitor has marked
+    # an object down, that object will not be marked up by the monitor, i.e. the object
+    # will be manually marked up.
+    # @rspec_example
     # @return [EnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def manual_resume_state
       super
     end
 
     ##
-    # Gets the parent monitor template from which this monitor template are derived. A user-defined monitor template will get its defaults from its parent monitor template.
+    # Gets the parent monitor template from which this monitor template are derived. A
+    # user-defined monitor template will get its defaults from its parent monitor template.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def parent_template
       super
     end
 
     ##
-    # Gets the destination address types of the monitor template. This allows the user to determine what node IP:port can be associated with this monitor when creating a monitor instance.
+    # Gets the destination address types of the monitor template. This allows the user
+    # to determine what node IP:port can be associated with this monitor when creating
+    # a monitor instance.
+    # @rspec_example
     # @return [AddressType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def template_address_type
       super
     end
 
     ##
     # Gets the destination IP:port values of this monitor template.
+    # @rspec_example
     # @return [MonitorIPPort]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def template_destination
       super
     end
 
     ##
     # Gets the integer property values of this monitor template.
+    # @rspec_example
     # @return [IntegerValue]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Monitor::IntPropertyType] :property_types The property types from which to get values for the monitor templates.
     def template_integer_property(opts)
@@ -114,40 +145,44 @@ module IControl::LocalLB
 
     ##
     # Gets the list of monitor template.
+    # @rspec_example
     # @return [MonitorTemplate]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def template_list
       super
     end
 
     ##
     # Gets the reverse mode states of this monitor template.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def template_reverse_mode
       super
     end
 
     ##
     # Gets the enabled/disabled states of this monitor template.
+    # @rspec_example
     # @return [EnabledState]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def template_state
       super
     end
 
     ##
     # Gets a string property values of this monitor template.
+    # @rspec_example
     # @return [StringValue]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Monitor::StrPropertyType] :property_types The property types from which to get values for the monitor templates.
     def template_string_property(opts)
@@ -157,30 +192,33 @@ module IControl::LocalLB
 
     ##
     # Gets the transparent mode states of this monitor template.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def template_transparent_mode
       super
     end
 
     ##
     # Gets the template types of this monitor template.
+    # @rspec_example
     # @return [TemplateType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def template_type
       super
     end
 
     ##
     # Gets the string property values of this monitor template.
+    # @rspec_example
     # @return [UserDefinedStringValue]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :property_names The user-defined string property names from which to get values for the monitor templates.
     def template_user_defined_string_property(opts)
@@ -190,46 +228,53 @@ module IControl::LocalLB
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
     end
 
     ##
-    # Determines if this monitor template can be used directly, or a user-defined monitor based on each monitor must be created first before it can be used.
+    # Determines if this monitor template can be used directly, or a user-defined monitor
+    # based on each monitor must be created first before it can be used.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def is_template_directly_usable
       super
     end
 
     ##
-    # Determines if this monitor template are read-only. The user can only modify properties for read/write monitor template.
+    # Determines if this monitor template are read-only. The user can only modify properties
+    # for read/write monitor template.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def is_template_read_only
       super
     end
 
     ##
     # Determines if this monitor template are of the base monitor template.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def is_template_root
       super
     end
 
     ##
     # Sets the enabled/disabled states of the monitor instances.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MonitorInstanceState] :instance_states The monitor instances and their enabled/disabled states.
     def set_instance_state(opts)
@@ -238,10 +283,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the monitor template' manual resume states. When enabled and a monitor has marked an object down, that object will not be marked up by the monitor, i.e. the object will be manually marked up.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the monitor template' manual resume states. When enabled and a monitor has marked
+    # an object down, that object will not be marked up by the monitor, i.e. the object
+    # will be manually marked up.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The manual resume states of the monitor templates.
     def set_manual_resume_state(opts)
@@ -250,10 +298,13 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the destination IP:port values for this template. NOTE: This should only be done when the monitor template in &amp;quot;template_names" have NOT been associated to any node addresses or pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the destination IP:port values for this template. NOTE: This should only be
+    # done when the monitor template in &amp;quot;template_names" have NOT been associated
+    # to any node addresses or pool members.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MonitorIPPort] :destinations The destinations to set for the specified monitor templates.
     def set_template_destination(opts)
@@ -263,9 +314,10 @@ module IControl::LocalLB
 
     ##
     # Sets an integer property values of this monitor template.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Monitor::IntegerValue] :values The property types and values to set for the monitor templates.
     def set_template_integer_property(opts)
@@ -274,10 +326,12 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the reverse mode states of this monitor template. When in reverse mode, a successful test marks the node down instead of up.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the reverse mode states of this monitor template. When in reverse mode, a successful
+    # test marks the node down instead of up.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [boolean] :reverse_modes The reverse mode states of the monitor templates.
     def set_template_reverse_mode(opts)
@@ -286,10 +340,14 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the monitor template' enabled/disabled states. This will enable/disable all instances that use this template. This serves as a quick and convenient method to enable/disable all instances, but if you want only to enable/disable a specific instance, use set_instance_enabled.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the monitor template' enabled/disabled states. This will enable/disable all
+    # instances that use this template. This serves as a quick and convenient method to
+    # enable/disable all instances, but if you want only to enable/disable a specific instance,
+    # use set_instance_enabled.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The enabled/disabled states of the monitor templates.
     def set_template_state(opts)
@@ -299,9 +357,10 @@ module IControl::LocalLB
 
     ##
     # Sets a string property values of this monitor template.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Monitor::StringValue] :values The property types and values to set for the monitor templates.
     def set_template_string_property(opts)
@@ -310,10 +369,12 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the transparent mode states of this monitor template. Transparent mode is used when a user has to go through a firewall to do monitoring.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the transparent mode states of this monitor template. Transparent mode is used
+    # when a user has to go through a firewall to do monitoring.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [boolean] :transparent_modes The transparent mode states of the monitor templates.
     def set_template_transparent_mode(opts)
@@ -323,9 +384,10 @@ module IControl::LocalLB
 
     ##
     # Sets the user-defined string property values of this monitor template.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Monitor::UserDefinedStringValue] :values The string property names and values to set for the monitor templates.
     def set_template_user_defined_string_property(opts)

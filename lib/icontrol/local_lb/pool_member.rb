@@ -1,6 +1,7 @@
 module IControl::LocalLB
   ##
-  # The PoolMember interface enables you to work with the pool members and their settings, and statistics.
+  # The PoolMember interface enables you to work with the pool members and their settings,
+  # and statistics.
   class PoolMember < IControl::Base
 
     set_id_name "pool_names"
@@ -18,122 +19,162 @@ module IControl::LocalLB
     class MemberSessionState < IControl::Base::Struct; end
     class MemberSessionStatus < IControl::Base::Struct; end
     class MemberStatisticEntry < IControl::Base::Struct; end
-    class MemberStatistics < IControl::Base::Struct; end    ##
+    class MemberStatistics < IControl::Base::Struct; end
+    class MemberConnectionLimitSequence < IControl::Base::Sequence ; end
+    class MemberConnectionLimitSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberDynamicRatioSequence < IControl::Base::Sequence ; end
+    class MemberDynamicRatioSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMonitorAssociationRemovalSequence < IControl::Base::Sequence ; end
+    class MemberMonitorAssociationRemovalSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMonitorAssociationSequence < IControl::Base::Sequence ; end
+    class MemberMonitorAssociationSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMonitorInstanceStateSequence < IControl::Base::Sequence ; end
+    class MemberMonitorInstanceStateSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMonitorStateSequence < IControl::Base::Sequence ; end
+    class MemberMonitorStateSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberMonitorStatusSequence < IControl::Base::Sequence ; end
+    class MemberMonitorStatusSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberObjectStatusSequence < IControl::Base::Sequence ; end
+    class MemberObjectStatusSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberPrioritySequence < IControl::Base::Sequence ; end
+    class MemberPrioritySequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberRatioSequence < IControl::Base::Sequence ; end
+    class MemberRatioSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberSessionStateSequence < IControl::Base::Sequence ; end
+    class MemberSessionStateSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberSessionStatusSequence < IControl::Base::Sequence ; end
+    class MemberSessionStatusSequenceSequence < IControl::Base::SequenceSequence ; end
+    class MemberStatisticEntrySequence < IControl::Base::Sequence ; end
+    class MemberStatisticsSequence < IControl::Base::Sequence ; end    ##
     # Gets the statistics for all pool members of this pool.
+    # @rspec_example
     # @return [MemberStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def all_statistics
       super
     end
 
     ##
     # Gets the connection limits for all members in this pool.
+    # @rspec_example
     # @return [MemberConnectionLimit[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def connection_limit
       super
     end
 
     ##
     # Gets the dynamic ratios for all members of this pool.
+    # @rspec_example
     # @return [MemberDynamicRatio[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def dynamic_ratio
       super
     end
 
     ##
-    # Gets the monitor associations used by this pool members, i.e. the monitor rules used by the pool members.
+    # Gets the monitor associations used by this pool members, i.e. the monitor rules used
+    # by the pool members.
+    # @rspec_example
     # @return [MemberMonitorAssociation[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def monitor_association
       super
     end
 
     ##
     # Gets the monitor instance information for the pool members in this pool.
+    # @rspec_example
     # @return [MemberMonitorInstanceState[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def monitor_instance
       super
     end
 
     ##
     # Gets the monitor/availability status for all members of this pool.
+    # @rspec_example
     # @return [MemberMonitorStatus[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def monitor_status
       super
     end
 
     ##
     # Gets the object statuses for all members of this pool.
+    # @rspec_example
     # @return [MemberObjectStatus[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def object_status
       super
     end
 
     ##
     # Gets the priorities for all members in this pool.
+    # @rspec_example
     # @return [MemberPriority[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def priority
       super
     end
 
     ##
     # Gets the ratios for all members in this pool.
+    # @rspec_example
     # @return [MemberRatio[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def ratio
       super
     end
 
     ##
-    # Note: This function has been deprecated. Please use get_session_status. Gets the session states for all members of this pool.
+    # Note: This function has been deprecated. Please use get_session_status. Gets the
+    # session states for all members of this pool.
+    # @rspec_example
     # @return [MemberSessionState[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def session_enabled_state
       super
     end
 
     ##
     # Gets the session status for all members of this pool.
+    # @rspec_example
     # @return [MemberSessionStatus[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def session_status
       super
     end
 
     ##
     # Gets the statistics for this set of pool members.
+    # @rspec_example
     # @return [MemberStatistics]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def statistics(opts)
@@ -143,16 +184,23 @@ module IControl::LocalLB
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
     end
 
     ##
-    # Removes the monitor associations for this pool members. Depending on the monitor association removal rule specified, this basically deletes any explicit monitor associations between a pool member and a monitor rule and thus causing the pool member to use the default monitor association of its parent pool, or this will delete any monitor association for the pool members altogether, i.e. this pool members will no longer be monitored.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Removes the monitor associations for this pool members. Depending on the monitor
+    # association removal rule specified, this basically deletes any explicit monitor associations
+    # between a pool member and a monitor rule and thus causing the pool member to use
+    # the default monitor association of its parent pool, or this will delete any monitor
+    # association for the pool members altogether, i.e. this pool members will no longer
+    # be monitored.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberMonitorAssociationRemoval[]] :monitor_associations The monitor association removal rules that will be used to remove the monitor associations			 for the specified pool members.
     def remove_monitor_association(opts)
@@ -162,9 +210,10 @@ module IControl::LocalLB
 
     ##
     # Resets the statistics for this set of pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def reset_statistics(opts)
@@ -174,9 +223,10 @@ module IControl::LocalLB
 
     ##
     # Sets the connection limits for this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberConnectionLimit[]] :limits The members and the connection limits to be set.
     def set_connection_limit(opts)
@@ -186,9 +236,10 @@ module IControl::LocalLB
 
     ##
     # Sets the dynamic ratios for this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberDynamicRatio[]] :dynamic_ratios The members and the dynamic ratios to be set.
     def set_dynamic_ratio(opts)
@@ -197,10 +248,12 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets/creates the monitor associations for this pool members. This basically creates the monitor associations between a pool member and a monitor rule.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets/creates the monitor associations for this pool members. This basically creates
+    # the monitor associations between a pool member and a monitor rule.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberMonitorAssociation[]] :monitor_associations The monitor associations that will be used to evaluate the specified pool members.
     def set_monitor_association(opts)
@@ -210,9 +263,10 @@ module IControl::LocalLB
 
     ##
     # Sets the monitor/availability states for this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberMonitorState[]] :monitor_states The members and the monitor/availability states to be set.
     def set_monitor_state(opts)
@@ -222,9 +276,10 @@ module IControl::LocalLB
 
     ##
     # Sets the priorities for this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberPriority[]] :priorities The members and the priorities to be set.
     def set_priority(opts)
@@ -234,9 +289,10 @@ module IControl::LocalLB
 
     ##
     # Sets the ratios for this pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberRatio[]] :ratios The members and the ratios to be set.
     def set_ratio(opts)
@@ -245,10 +301,12 @@ module IControl::LocalLB
     end
 
     ##
-    # Sets the session states for this pool members. If session state is enabled or true, this means that new sessions will be allowed to be established with the pool members.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the session states for this pool members. If session state is enabled or true,
+    # this means that new sessions will be allowed to be established with the pool members.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberSessionState[]] :session_states The members and the session states to be set.
     def set_session_enabled_state(opts)
@@ -295,10 +353,10 @@ module IControl::LocalLB
     ##
     # A struct that describes a member's monitor instances.
     # @attr [IControl::Common::IPPortDefinition] member The IP address and port for the pool member.
-    # @attr [IControl::LocalLB::MonitorInstanceState] monitor_instances The monitor instances of the specified pool member.
+    # @attr [IControl::LocalLB::MonitorInstanceStateSequence] monitor_instances The monitor instances of the specified pool member.
     class MemberMonitorInstanceState < IControl::Base::Struct
       icontrol_attribute :member, IControl::Common::IPPortDefinition
-      icontrol_attribute :monitor_instances, IControl::LocalLB::MonitorInstanceState
+      icontrol_attribute :monitor_instances, IControl::LocalLB::MonitorInstanceStateSequence
     end
 
     ##
@@ -367,18 +425,18 @@ module IControl::LocalLB
     ##
     # A struct that describes statistics for a particular pool member.
     # @attr [IControl::Common::IPPortDefinition] member The pool member definition.
-    # @attr [IControl::Common::Statistic] statistics The statistics for the pool member.
+    # @attr [IControl::Common::StatisticSequence] statistics The statistics for the pool member.
     class MemberStatisticEntry < IControl::Base::Struct
       icontrol_attribute :member, IControl::Common::IPPortDefinition
-      icontrol_attribute :statistics, IControl::Common::Statistic
+      icontrol_attribute :statistics, IControl::Common::StatisticSequence
     end
 
     ##
     # A struct that describes pool member statistics and timestamp.
-    # @attr [IControl::LocalLB::PoolMember::MemberStatisticEntry] statistics The statistics for a sequence of pool members.
+    # @attr [IControl::LocalLB::PoolMember::MemberStatisticEntrySequence] statistics The statistics for a sequence of pool members.
     # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
     class MemberStatistics < IControl::Base::Struct
-      icontrol_attribute :statistics, IControl::LocalLB::PoolMember::MemberStatisticEntry
+      icontrol_attribute :statistics, IControl::LocalLB::PoolMember::MemberStatisticEntrySequence
       icontrol_attribute :time_stamp, IControl::Common::TimeStamp
     end
 

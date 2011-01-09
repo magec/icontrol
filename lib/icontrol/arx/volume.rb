@@ -7,6 +7,7 @@ module IControl::ARX
 
     ##
     # Returns the volume definitions for this volumes.
+    # @rspec_example
     # @return [VolumeDefinition]
     # @param [Hash] opts
     # @option opts [String] :volumes A list of volume names.
@@ -17,6 +18,7 @@ module IControl::ARX
 
     ##
     # Returns the list of volumes for this namespac.
+    # @rspec_example
     # @return [String]
     def list
       super

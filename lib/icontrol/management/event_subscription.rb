@@ -1,6 +1,7 @@
 module IControl::Management
   ##
-  # The EventSubscription interface is to be used to register for system configuration change events. Events are sent using the EventNotification interface.
+  # The EventSubscription interface is to be used to register for system configuration
+  # change events. Events are sent using the EventNotification interface.
   class EventSubscription < IControl::Base
 
     set_id_name "id_list"
@@ -10,19 +11,31 @@ module IControl::Management
     class SubscriptionStatistics < IControl::Base::Struct; end
     class SubscriptionStatus < IControl::Base::Struct; end
     class UserCredential < IControl::Base::Struct; end
+    class AuthenticationModeSequence < IControl::Base::Sequence ; end
+    class EventTypeSequence < IControl::Base::Sequence ; end
+    class ObjectTypeSequence < IControl::Base::Sequence ; end
+    class SubscriptionDefinitionSequence < IControl::Base::Sequence ; end
+    class SubscriptionDetailsSequence < IControl::Base::Sequence ; end
+    class SubscriptionStatisticsSequence < IControl::Base::Sequence ; end
+    class SubscriptionStatusCodeSequence < IControl::Base::Sequence ; end
+    class SubscriptionStatusSequence < IControl::Base::Sequence ; end
+    class UserCredentialSequence < IControl::Base::Sequence ; end
     # The authentication modes used for http(s) based communications.
     class AuthenticationMode < IControl::Base::Enumeration; end
-    # The category event that a given subscription is listening on. when the subscription sees an event occur that fits one of these flags, a notification is triggered.
+    # The category event that a given subscription is listening on. when the subscription
+    # sees an event occur that fits one of these flags, a notification is triggered.
     class EventType < IControl::Base::Enumeration; end
     # The object types that are included in a event notification event.
     class ObjectType < IControl::Base::Enumeration; end
     # Status codes specific to the EventSubscription interface.
     class SubscriptionStatusCode < IControl::Base::Enumeration; end    ##
-    # Create a new subscription. This takes an an input a list of subscription details, one for each subscription requested.
+    # Create a new subscription. This takes an an input a list of subscription details,
+    # one for each subscription requested.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionDetails] :sub_detail_list A list of subscription details with the configuration of the requested subscription.
     def create(opts)
@@ -32,30 +45,34 @@ module IControl::Management
 
     ##
     # Retrieve a list of event types available on this system.
+    # @rspec_example
     # @return [EventType]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def available_event_types
       super
     end
 
     ##
     # Retrieve the list of configured subscription identifiers.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def list
       super
     end
 
     ##
-    # Get the maximum timeslice (in seconds) between event notifications for the list of subscription identifiers.
+    # Get the maximum timeslice (in seconds) between event notifications for the list of
+    # subscription identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :max_timeslice_list A list of maximum timeslice values corresponding to the given list of subscriptions identifiers.
     def max_timeslice(opts)
@@ -65,10 +82,11 @@ module IControl::Management
 
     ##
     # Get the minimum number of events needed to trigger a notification message.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :min_events_list A list of minimum event values corresponding to the given list of subscription identifiers.
     def min_events_per_timeslice(opts)
@@ -78,10 +96,11 @@ module IControl::Management
 
     ##
     # Get the enabled state of a list of subscription identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state_list The enabled states corresponding to the input list of subscription identifiers.
     def state(opts)
@@ -91,10 +110,11 @@ module IControl::Management
 
     ##
     # Get the statistics for the given list of subscription identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionStatistics] :statistics_list A list of statistics associated with the given list of subscription identifiers.
     def statistics(opts)
@@ -104,10 +124,11 @@ module IControl::Management
 
     ##
     # Get the time to live (ttl) in seconds for the list of subscription identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :ttl_list A list of ttl values associated with the given subscription identifiers.
     def ttl(opts)
@@ -117,10 +138,11 @@ module IControl::Management
 
     ##
     # Get the url endpoint that implements the EventNotification interface.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :url_list The list of url's corresponding to the input list of subscription identifiers.
     def url(opts)
@@ -130,17 +152,20 @@ module IControl::Management
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
     end
 
     ##
-    # Modify a list of subscriptions. This takes a list of subscription definitions representing the subscriptions that are to be modified.
+    # Modify a list of subscriptions. This takes a list of subscription definitions representing
+    # the subscriptions that are to be modified.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionDefinition] :sub_def_list A list of subscription definitions that are to be modified.
     def modify(opts)
@@ -150,20 +175,22 @@ module IControl::Management
 
     ##
     # A lightweight ping to determine the event notification service's health.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def ping
       super
     end
 
     ##
     # Retrieve the subscription definitions for a list of subscription identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionDefinition] :sub_def_list The output results for the list of subscription identifiers.
     def query(opts)
@@ -172,31 +199,37 @@ module IControl::Management
     end
 
     ##
-    # Remove a list of subscriptions. This takes as input a list of subscription id's and returns a list of status structures with the associated status code for each item in the id_list.
+    # Remove a list of subscriptions. This takes as input a list of subscription id's and
+    # returns a list of status structures with the associated status code for each item
+    # in the id_list.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def remove
       super
     end
 
     ##
     # Reset the statistics for the given list of subscription identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def reset_statistics
       super
     end
 
     ##
-    # Set the credentials for the url's associated with the given list of subscription identifiers.
+    # Set the credentials for the url's associated with the given list of subscription
+    # identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::UserCredential] :credential_list The list of credentials to associate with the url's of the given list of subscription identifiers.
     def set_authentication(opts)
@@ -205,11 +238,14 @@ module IControl::Management
     end
 
     ##
-    # Set the maximum timeslice (in seconds) between event notifications. This value is used to ensure that notifications are sent despite the minimum event attribute not reaching its threashold.
+    # Set the maximum timeslice (in seconds) between event notifications. This value is
+    # used to ensure that notifications are sent despite the minimum event attribute not
+    # reaching its threashold.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :max_timeslice_list A list of maximum timeslice (in seconds) to be applied to the given subscription identifier.
     def set_max_timeslice(opts)
@@ -218,11 +254,14 @@ module IControl::Management
     end
 
     ##
-    # Set the minimum number of events needed to trigger a notification message. This value is used to force a notification message to occur even if the max timeslice attribute is not reached yet.
+    # Set the minimum number of events needed to trigger a notification message. This value
+    # is used to force a notification message to occur even if the max timeslice attribute
+    # is not reached yet.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :min_events_list A list of minimum event values to be applied to the given subscription identifiers.
     def set_min_events_per_timeslice(opts)
@@ -232,10 +271,11 @@ module IControl::Management
 
     ##
     # Set the enabled state of a list of subscriptions identifiers
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state_list The enabled states to set the list of subscription ids. These must match the id_list array.
     def set_state(opts)
@@ -245,10 +285,11 @@ module IControl::Management
 
     ##
     # Set the time to live (ttl) in seconds for the list of subscription identifiers.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [long] :ttl_list A list of ttl values for the given subscription identifiers. A value of -1 indicates an infinite lifetime.
     def set_ttl(opts)
@@ -258,10 +299,11 @@ module IControl::Management
 
     ##
     # Set the url endpoint that implements the EventNotification interface.
+    # @rspec_example
     # @return [SubscriptionStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :url_list The list of url's corresponding to the input list of subscription identifiers.
     def set_url(opts)
@@ -270,7 +312,8 @@ module IControl::Management
     end
 
     ##
-    # A subscription definition. This includes a subscription identifier and the subscription details.
+    # A subscription definition. This includes a subscription identifier and the subscription
+    # details.
     # @attr [String] id A unique identifier for the subscription in the form of a GUID.
     # @attr [IControl::Management::EventSubscription::SubscriptionDetails] details The configuration details of the given subscription id.
     class SubscriptionDefinition < IControl::Base::Struct
@@ -279,9 +322,12 @@ module IControl::Management
     end
 
     ##
-    # The configuration of a specific Event Subscription. This includes the name, registered events, the enabled state, and delivery configuration values. Event messages will be queued up and sent in a bulk manner as described by the min_events_per_timeslice and max_timeslice variables.
+    # The configuration of a specific Event Subscription. This includes the name, registered
+    # events, the enabled state, and delivery configuration values. Event messages will
+    # be queued up and sent in a bulk manner as described by the min_events_per_timeslice
+    # and max_timeslice variables.
     # @attr [String] name A user friendly name for the subscription.
-    # @attr [IControl::Management::EventSubscription::EventType] event_type_list A list of event types to be notified of.
+    # @attr [IControl::Management::EventSubscription::EventTypeSequence] event_type_list A list of event types to be notified of.
     # @attr [String] url The url endpoint for the EventNotification inteface to receive event notifications.
     # @attr [IControl::Management::EventSubscription::UserCredential] url_credentials The credenials for the url endpoint.
     # @attr [Numeric] ttl The time to live (in seconds) for this subscription. After the ttl is reached, the subscription will be removed from the system. A value of -1 indicates an infinite life time.
@@ -290,7 +336,7 @@ module IControl::Management
     # @attr [IControl::Common::EnabledState] enabled_state Whether the subscription is enabled or disabled.
     class SubscriptionDetails < IControl::Base::Struct
       icontrol_attribute :name, String
-      icontrol_attribute :event_type_list, IControl::Management::EventSubscription::EventType
+      icontrol_attribute :event_type_list, IControl::Management::EventSubscription::EventTypeSequence
       icontrol_attribute :url, String
       icontrol_attribute :url_credentials, IControl::Management::EventSubscription::UserCredential
       icontrol_attribute :ttl, Numeric
@@ -364,7 +410,8 @@ module IControl::Management
     end
 
 
-    # The category event that a given subscription is listening on. when the subscription sees an event occur that fits one of these flags, a notification is triggered.
+    # The category event that a given subscription is listening on. when the subscription
+    # sees an event occur that fits one of these flags, a notification is triggered.
     class EventType < IControl::Base::Enumeration
       # Non event based message.
       EVENTTYPE_NONE = :EVENTTYPE_NONE

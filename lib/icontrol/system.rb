@@ -24,6 +24,23 @@ module IControl::System
   class SystemInformation < IControl::Base::Struct; end
   class TemperatureMetric < IControl::Base::Struct; end
   class VersionInformation < IControl::Base::Struct; end
+  class BladeTemperatureSequence < IControl::Base::Sequence ; end
+  class CPUMetricSequence < IControl::Base::Sequence ; end
+  class CPUUsageExtendedSequence < IControl::Base::Sequence ; end
+  class CPUUsageSequence < IControl::Base::Sequence ; end
+  class DiskUsageSequence < IControl::Base::Sequence ; end
+  class FanMetricSequence < IControl::Base::Sequence ; end
+  class HardwareInformationSequence < IControl::Base::Sequence ; end
+  class HardwareTypeSequence < IControl::Base::Sequence ; end
+  class LockStatusSequence < IControl::Base::Sequence ; end
+  class PSMetricSequence < IControl::Base::Sequence ; end
+  class PlatformCPUSequence < IControl::Base::Sequence ; end
+  class PlatformFanSequence < IControl::Base::Sequence ; end
+  class PlatformPSSequence < IControl::Base::Sequence ; end
+  class PlatformTemperatureSequence < IControl::Base::Sequence ; end
+  class SubsystemMemoryUsageSequence < IControl::Base::Sequence ; end
+  class TemperatureMetricSequence < IControl::Base::Sequence ; end
+  class VersionInformationSequence < IControl::Base::Sequence ; end
   class Cluster < IControl::Base; end
   class ConfigSync < IControl::Base; end
   class Connections < IControl::Base; end
@@ -46,7 +63,8 @@ module IControl::System
   class PSMetricType < IControl::Base::Enumeration; end
   # An enumeration for different types of chassis temperature metrics.
   class TemperatureMetricType < IControl::Base::Enumeration; end##
-  # Blade temperature information structure The blades hold a number of temperature sensors, keyed by their slot (i.e., blade) and sensor identifiers.
+  # Blade temperature information structure The blades hold a number of temperature sensors,
+  # keyed by their slot (i.e., blade) and sensor identifiers.
   # @attr [Numeric] slot Slot/blade identifier
   # @attr [Numeric] sensor
   # @attr [String] location Sensor location
@@ -68,7 +86,8 @@ module IControl::System
   end
 
   ##
-  # This structure has been deprecated; use CPUUsageExtendedInformation and related structures instead. A struct that contains the CPU usage for each CPU.
+  # This structure has been deprecated; use CPUUsageExtendedInformation and related structures
+  # instead. A struct that contains the CPU usage for each CPU.
   # @attr [Numeric] cpu_id The numeric ID of the processor, i.e. 1, 2, 3, 4 ....
   # @attr [IControl::Common::ULong64] user The time spent by the processor in user context.
   # @attr [IControl::Common::ULong64] niced The time spent by the processor running niced processes.
@@ -89,34 +108,45 @@ module IControl::System
   end
 
   ##
-  # A struct that contains extended CPU usage, per CPU, for a host. The extended CPU usage goes beyond the basic material available in CPUUsage. This structure represents the extended CPU usage as a sequence of sequences of statistics. For a host, there is a sequence of statistics per CPU, and the statistics for a CPU are a sequence.
+  # A struct that contains extended CPU usage, per CPU, for a host. The extended CPU
+  # usage goes beyond the basic material available in CPUUsage. This structure represents
+  # the extended CPU usage as a sequence of sequences of statistics. For a host, there
+  # is a sequence of statistics per CPU, and the statistics for a CPU are a sequence.
   # @attr [String] host_id The host id.
-  # @attr [IControl::Common::StatisticSequence] statistics The statistics for the host (one sequence for each CPU).
+  # @attr [IControl::Common::StatisticSequenceSequence] statistics The statistics for the host (one sequence for each CPU).
   class CPUUsageExtended < IControl::Base::Struct
     icontrol_attribute :host_id, String
-    icontrol_attribute :statistics, IControl::Common::StatisticSequence
+    icontrol_attribute :statistics, IControl::Common::StatisticSequenceSequence
   end
 
   ##
   # A struct that contains the extended CPU usage information for a sequence of hosts.
-  # @attr [IControl::System::CPUUsageExtended] hosts The statistics for a sequence of hosts.
+  # @attr [IControl::System::CPUUsageExtendedSequence] hosts The statistics for a sequence of hosts.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
   class CPUUsageExtendedInformation < IControl::Base::Struct
-    icontrol_attribute :hosts, IControl::System::CPUUsageExtended
+    icontrol_attribute :hosts, IControl::System::CPUUsageExtendedSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
   ##
-  # This structure has been deprecated; use CPUUsageExtendedInformation and related structures instead. A struct that contains the CPU usage information.
-  # @attr [IControl::System::CPUUsage] usages The list of CPU usage patterns.
+  # This structure has been deprecated; use CPUUsageExtendedInformation and related structures
+  # instead. A struct that contains the CPU usage information.
+  # @attr [IControl::System::CPUUsageSequence] usages The list of CPU usage patterns.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at which the statistics are gathered.
   class CPUUsageInformation < IControl::Base::Struct
-    icontrol_attribute :usages, IControl::System::CPUUsage
+    icontrol_attribute :usages, IControl::System::CPUUsageSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
   ##
-  # Connection information for the system. This contains the local and remote addresses used to connect to the system when using a method that returns this structure. Normally a client would know the &amp;quot;local" address on which it connected to the system, but if network translation changes the destination address of the system, this method can inform the client of the translation without the client having to code the mapping. This is designed to address the scenario in which the system is behind a virtual address or similar and the client needs to learn, for example, whether an address matches the cluster address.
+  # Connection information for the system. This contains the local and remote addresses
+  # used to connect to the system when using a method that returns this structure. Normally
+  # a client would know the &amp;quot;local" address on which it connected to the system,
+  # but if network translation changes the destination address of the system, this method
+  # can inform the client of the translation without the client having to code the mapping.
+  # This is designed to address the scenario in which the system is behind a virtual
+  # address or similar and the client needs to learn, for example, whether an address
+  # matches the cluster address.
   # @attr [IControl::Common::IPPortDefinition] local The address and port on which the system was contacted.
   # @attr [IControl::Common::IPPortDefinition] remote The address and port of the client.
   class ConnectionInformation < IControl::Base::Struct
@@ -143,10 +173,10 @@ module IControl::System
 
   ##
   # A struct that contains the disk usage information.
-  # @attr [IControl::System::DiskUsage] usages The list of disk usage patterns.
+  # @attr [IControl::System::DiskUsageSequence] usages The list of disk usage patterns.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at which the statistics are gathered.
   class DiskUsageInformation < IControl::Base::Struct
-    icontrol_attribute :usages, IControl::System::DiskUsage
+    icontrol_attribute :usages, IControl::System::DiskUsageSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
@@ -160,11 +190,12 @@ module IControl::System
   end
 
   ##
-  # A struct that contains the global CPU usage information. This is one set of combined ("rolled up") statistics for all hosts.
-  # @attr [IControl::Common::Statistic] statistics The global CPU usage statistics.
+  # A struct that contains the global CPU usage information. This is one set of combined
+  # ("rolled up") statistics for all hosts.
+  # @attr [IControl::Common::StatisticSequence] statistics The global CPU usage statistics.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at the time the statistics are gathered.
   class GlobalCPUUsageExtendedInformation < IControl::Base::Struct
-    icontrol_attribute :statistics, IControl::Common::Statistic
+    icontrol_attribute :statistics, IControl::Common::StatisticSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
@@ -174,13 +205,13 @@ module IControl::System
   # @attr [IControl::System::HardwareType] type General hardware type
   # @attr [Numeric] slot Identifier for the blade holding the hardware (zero for non-blade systems)
   # @attr [String] model Model information
-  # @attr [IControl::System::VersionInformation] versions Miscellaneous information - an array of name/value pairs holding specific nuggets
+  # @attr [IControl::System::VersionInformationSequence] versions Miscellaneous information - an array of name/value pairs holding specific nuggets
   class HardwareInformation < IControl::Base::Struct
     icontrol_attribute :name, String
     icontrol_attribute :type, IControl::System::HardwareType
     icontrol_attribute :slot, Numeric
     icontrol_attribute :model, String
-    icontrol_attribute :versions, IControl::System::VersionInformation
+    icontrol_attribute :versions, IControl::System::VersionInformationSequence
   end
 
   ##
@@ -195,15 +226,18 @@ module IControl::System
   end
 
   ##
-  # This structure has been deprecated; use get_host_statistics and related methods and data instead. (As of 9.4.0, the system supports retrieving the overall memory attributes by host; retrieving the detailed subsystem attributes by host is not supported). A struct that contains the memory usage information.
+  # This structure has been deprecated; use get_host_statistics and related methods and
+  # data instead. (As of 9.4.0, the system supports retrieving the overall memory attributes
+  # by host; retrieving the detailed subsystem attributes by host is not supported).
+  # A struct that contains the memory usage information.
   # @attr [IControl::Common::ULong64] total_memory The total amount of physical memory (bytes) in the host system.
   # @attr [IControl::Common::ULong64] used_memory The total amount of memory currently in use (bytes) by the host system.
-  # @attr [IControl::System::SubsystemMemoryUsage] usages The list of subsystem memory usage patterns.
+  # @attr [IControl::System::SubsystemMemoryUsageSequence] usages The list of subsystem memory usage patterns.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at which the statistics are gathered.
   class MemoryUsageInformation < IControl::Base::Struct
     icontrol_attribute :total_memory, IControl::Common::ULong64
     icontrol_attribute :used_memory, IControl::Common::ULong64
-    icontrol_attribute :usages, IControl::System::SubsystemMemoryUsage
+    icontrol_attribute :usages, IControl::System::SubsystemMemoryUsageSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
@@ -218,37 +252,37 @@ module IControl::System
 
   ##
   # A structure that contains the platform CPU information and timestamp.
-  # @attr [IControl::System::CPUMetricSequence] cpus The platform CPU information.
+  # @attr [IControl::System::CPUMetricSequenceSequence] cpus The platform CPU information.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at which the statistics are gathered.
   class PlatformCPUs < IControl::Base::Struct
-    icontrol_attribute :cpus, IControl::System::CPUMetricSequence
+    icontrol_attribute :cpus, IControl::System::CPUMetricSequenceSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
   ##
   # A structure that contains the platform fan information and timestamp.
-  # @attr [IControl::System::FanMetricSequence] fans The platform fan information.
+  # @attr [IControl::System::FanMetricSequenceSequence] fans The platform fan information.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at which the statistics are gathered.
   class PlatformFans < IControl::Base::Struct
-    icontrol_attribute :fans, IControl::System::FanMetricSequence
+    icontrol_attribute :fans, IControl::System::FanMetricSequenceSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
   ##
   # A structure that contains the platform power supply information and timestamp.
-  # @attr [IControl::System::PSMetricSequence] power_supplies The platform power supply information.
+  # @attr [IControl::System::PSMetricSequenceSequence] power_supplies The platform power supply information.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at which the statistics are gathered.
   class PlatformPowerSupplies < IControl::Base::Struct
-    icontrol_attribute :power_supplies, IControl::System::PSMetricSequence
+    icontrol_attribute :power_supplies, IControl::System::PSMetricSequenceSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
   ##
   # A structure that contains the platform temperatures and timestamp.
-  # @attr [IControl::System::TemperatureMetricSequence] temperatures The platform temperatures.
+  # @attr [IControl::System::TemperatureMetricSequenceSequence] temperatures The platform temperatures.
   # @attr [IControl::Common::TimeStamp] time_stamp The time stamp at which the statistics are gathered.
   class PlatformTemperatures < IControl::Base::Struct
-    icontrol_attribute :temperatures, IControl::System::TemperatureMetricSequence
+    icontrol_attribute :temperatures, IControl::System::TemperatureMetricSequenceSequence
     icontrol_attribute :time_stamp, IControl::Common::TimeStamp
   end
 
@@ -258,17 +292,18 @@ module IControl::System
   # @attr [String] product_version The version of the installed product.
   # @attr [String] package_version The package version of the installed product.
   # @attr [String] package_edition The package edition of the installed product.
-  # @attr [String] product_features A list of feature names available in the installed product.
+  # @attr [StringSequence] product_features A list of feature names available in the installed product.
   class ProductInformation < IControl::Base::Struct
     icontrol_attribute :product_code, String
     icontrol_attribute :product_version, String
     icontrol_attribute :package_version, String
     icontrol_attribute :package_edition, String
-    icontrol_attribute :product_features, String
+    icontrol_attribute :product_features, StringSequence
   end
 
   ##
-  # This structure has been deprecated; use get_host_statistics and related methods and data instead. A struct that contains the memory usage for each subsystem.
+  # This structure has been deprecated; use get_host_statistics and related methods and
+  # data instead. A struct that contains the memory usage for each subsystem.
   # @attr [String] subsystem_name The name of the subsystem using this memory.
   # @attr [IControl::Common::ULong64] current_allocated The number of bytes currently allocated for this subsystem.
   # @attr [IControl::Common::ULong64] maximum_allocated The maximum number of bytes allocated for this subsystem.
@@ -323,7 +358,9 @@ module IControl::System
   end
 
   ##
-  # This structure holds a name/value pair describing a characteristic of a piece of hardware, especially items specific to the hardware. Examples include version information and CPU speed.
+  # This structure holds a name/value pair describing a characteristic of a piece of
+  # hardware, especially items specific to the hardware. Examples include version information
+  # and CPU speed.
   # @attr [String] name Name of the characteristic
   # @attr [String] value Value of the characteristic
   class VersionInformation < IControl::Base::Struct

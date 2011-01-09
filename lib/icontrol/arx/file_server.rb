@@ -7,6 +7,7 @@ module IControl::ARX
 
     ##
     # Returns a list of file server definitions for this file servers.
+    # @rspec_example
     # @return [FileServerDefinition]
     def definition
       super
@@ -14,6 +15,7 @@ module IControl::ARX
 
     ##
     # Returns the list of file server names.
+    # @rspec_example
     # @return [String]
     def list
       super

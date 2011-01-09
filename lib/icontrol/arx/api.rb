@@ -7,6 +7,7 @@ module IControl::ARX
 
     ##
     # Returns the ARX running release version.
+    # @rspec_example
     # @return [String]
     def version
       super

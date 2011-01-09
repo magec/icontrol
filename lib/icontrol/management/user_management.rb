@@ -1,6 +1,7 @@
 module IControl::Management
   ##
-  # The UserManagement interface deals with adding/deleting and modifying users and user permission.
+  # The UserManagement interface deals with adding/deleting and modifying users and user
+  # permission.
   class UserManagement < IControl::Base
 
     set_id_name "user_names"
@@ -11,12 +12,22 @@ module IControl::Management
     class UserInfo2 < IControl::Base::Struct; end
     class UserInfo3 < IControl::Base::Struct; end
     class UserPermission < IControl::Base::Struct; end
-    # An enumerated type that contains the possible roles a user may have. Refer to the product manual for a complete list of what each role means.
+    class PasswordInfoSequence < IControl::Base::Sequence ; end
+    class UserIDSequence < IControl::Base::Sequence ; end
+    class UserInfo2Sequence < IControl::Base::Sequence ; end
+    class UserInfo3Sequence < IControl::Base::Sequence ; end
+    class UserInfoSequence < IControl::Base::Sequence ; end
+    class UserPermissionSequence < IControl::Base::Sequence ; end
+    class UserPermissionSequenceSequence < IControl::Base::SequenceSequence ; end
+    class UserRoleSequence < IControl::Base::Sequence ; end
+    # An enumerated type that contains the possible roles a user may have. Refer to the
+    # product manual for a complete list of what each role means.
     class UserRole < IControl::Base::Enumeration; end    ##
     # Change the password of the user making the request.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::PasswordInfo] :password The new password.
     def change_my_password(opts)
@@ -26,9 +37,10 @@ module IControl::Management
 
     ##
     # Change the user's password.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [String] :passwords The new clear-text passwords.
     def change_password(opts)
@@ -38,9 +50,10 @@ module IControl::Management
 
     ##
     # Change the user's password.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::PasswordInfo] :passwords The new passwords.
     def change_password_2(opts)
@@ -49,10 +62,15 @@ module IControl::Management
     end
 
     ##
-    # Note: this method is deprecated; please use create_user_3 and associated data. (home directory, user id, and group id are now computed by the system, and there is now a choice of whether the password is encrypted) Create this new user. Note: as of v10.1.0, this method will silently ignore any of user id, group id, and home directory passed in.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # Note: this method is deprecated; please use create_user_3 and associated data. (home
+    # directory, user id, and group id are now computed by the system, and there is now
+    # a choice of whether the password is encrypted) Create this new user. Note: as of
+    # v10.1.0, this method will silently ignore any of user id, group id, and home directory
+    # passed in.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserInfo] :users The user's information.
     def create_user(opts)
@@ -61,10 +79,14 @@ module IControl::Management
     end
 
     ##
-    # Note: this method is deprecated; please use create_user_3 and associated data. (home directory, user id, and group id are now computed by the system) Create this new user. Note: as of v10.1.0, this method will silently ignore any of user id, group id, and home directory passed in.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # Note: this method is deprecated; please use create_user_3 and associated data. (home
+    # directory, user id, and group id are now computed by the system) Create this new
+    # user. Note: as of v10.1.0, this method will silently ignore any of user id, group
+    # id, and home directory passed in.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserInfo2] :users The user's information.
     def create_user_2(opts)
@@ -74,9 +96,10 @@ module IControl::Management
 
     ##
     # Create this new user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserInfo3] :users The user's information.
     def create_user_3(opts)
@@ -86,184 +109,211 @@ module IControl::Management
 
     ##
     # Delete this user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def delete_user
       super
     end
 
     ##
     # Get the authentication method that the system will use to authenticate user.
+    # @rspec_example
     # @return [AuthenticationMethod]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def authentication_method
       super
     end
 
     ##
     # Get the default user partition for the device.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def default_partition
       super
     end
 
     ##
     # Get the default user role for the device.
+    # @rspec_example
     # @return [UserRole]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def default_role
       super
     end
 
     ##
     # Gets the encrypted passwords of this user.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def encrypted_password
       super
     end
 
     ##
     # Get the full names for the given user.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def fullname
       super
     end
 
     ##
     # Get the Group IDs for the given usernames.
+    # @rspec_example
     # @return [long]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def group_id
       super
     end
 
     ##
     # Get the default home directories for the given usernames.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def home_directory
       super
     end
 
     ##
     # List all user.
+    # @rspec_example
     # @return [UserID]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def list
       super
     end
 
     ##
     # Get the login shells for the given usernames.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def login_shell
       super
     end
 
     ##
-    # Gets the credentials of the user making the request. This is useful in getting your own permission information (regardless of which partitions you may otherwise read). The results indicate what role you have on a what partitions.
+    # Gets the credentials of the user making the request. This is useful in getting your
+    # own permission information (regardless of which partitions you may otherwise read).
+    # The results indicate what role you have on a what partitions.
+    # @rspec_example
     # @return [UserPermission]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument]
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument]
     def my_permission
       super
     end
 
     ##
     # Get the user remote console access for the device.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def remote_console_access
       super
     end
 
     ##
-    # This method is now deprecated. Please use get_user_permission in its stead, which uses a larger concept of user roles. Gets the roles of this user.
+    # This method is now deprecated. Please use get_user_permission in its stead, which
+    # uses a larger concept of user roles. Gets the roles of this user.
+    # @rspec_example
     # @return [UserRole]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def role
       super
     end
 
     ##
     # Get the User IDs for the given usernames.
+    # @rspec_example
     # @return [long]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def user_id
       super
     end
 
     ##
-    # Gets the permissions of this user. The permission basically indicates what role a user has on a given partition. A user could have one role on a partition, and a different role on another partition, hence the return list is a sequence of sequence.
+    # Gets the permissions of this user. The permission basically indicates what role a
+    # user has on a given partition. A user could have one role on a partition, and a different
+    # role on another partition, hence the return list is a sequence of sequence.
+    # @rspec_example
     # @return [UserPermission[]]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def user_permission
       super
     end
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
     end
 
     ##
-    # Checks to see if a user is locked out due to exceeding the maximum number of allowed login failures. Return whether the user is locked out.
+    # Checks to see if a user is locked out due to exceeding the maximum number of allowed
+    # login failures. Return whether the user is locked out.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def is_locked_out
       super
     end
 
     ##
-    # Resets the lockout status of a user that has exceeded the maximum number of allowed login failures. Unlocks all user provided in user_names unless an error occurs where it may unlock up to that user that caused the error.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # Resets the lockout status of a user that has exceeded the maximum number of allowed
+    # login failures. Unlocks all user provided in user_names unless an error occurs where
+    # it may unlock up to that user that caused the error.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     def reset_locked_out
       super
     end
 
     ##
     # Sets the authentication method that the system will use to authenticate user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Common::AuthenticationMethod] :auth_method The system authentication method to set.
     def set_authentication_method(opts)
@@ -272,10 +322,12 @@ module IControl::Management
     end
 
     ##
-    # Sets the default user partition for the device if the user does not have an explicit partition.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # Sets the default user partition for the device if the user does not have an explicit
+    # partition.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [String] :partition The default partition for system users.
     def set_default_partition(opts)
@@ -285,9 +337,10 @@ module IControl::Management
 
     ##
     # Sets the default user role for the device if the user does not have an explicit role.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserRole] :role The default role for system users.
     def set_default_role(opts)
@@ -297,9 +350,10 @@ module IControl::Management
 
     ##
     # Sets the full names for this user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [String] :fullnames The users' full names.
     def set_fullname(opts)
@@ -308,10 +362,12 @@ module IControl::Management
     end
 
     ##
-    # This method is deprecated, as the operation is not allowed (and will return an error). Sets the Group IDs for this user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # This method is deprecated, as the operation is not allowed (and will return an error).
+    # Sets the Group IDs for this user.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [long] :gids The users' Group IDs .
     def set_group_id(opts)
@@ -320,10 +376,12 @@ module IControl::Management
     end
 
     ##
-    # This method is deprecated, as the operation is not allowed (and will return an error). Sets the home directories for this user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # This method is deprecated, as the operation is not allowed (and will return an error).
+    # Sets the home directories for this user.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [String] :directories The home directories.
     def set_home_directory(opts)
@@ -333,9 +391,10 @@ module IControl::Management
 
     ##
     # Sets the login shells for this user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [String] :shells The users' login shells.
     def set_login_shell(opts)
@@ -344,10 +403,12 @@ module IControl::Management
     end
 
     ##
-    # Sets the user remote console access for the device if the user does not have an explicit remote console access.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # Sets the user remote console access for the device if the user does not have an explicit
+    # remote console access.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [boolean] :enabled The remote console access for system users.
     def set_remote_console_access(opts)
@@ -356,10 +417,12 @@ module IControl::Management
     end
 
     ##
-    # This method is now deprecated. Please use set_user_permission in its stead, which uses a larger concept of user roles. Change the user's role.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # This method is now deprecated. Please use set_user_permission in its stead, which
+    # uses a larger concept of user roles. Change the user's role.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserRole] :roles The new roles.
     def set_role(opts)
@@ -368,10 +431,12 @@ module IControl::Management
     end
 
     ##
-    # This method is deprecated, as the operation is not allowed (and will return an error). Sets the User IDs for this user.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # This method is deprecated, as the operation is not allowed (and will return an error).
+    # Sets the User IDs for this user.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [long] :uids The users' User IDs .
     def set_user_id(opts)
@@ -380,10 +445,13 @@ module IControl::Management
     end
 
     ##
-    # Sets the permissions of this user. The permission basically indicates what role a user has on a given partition. A user could have one role on a partition, and a different role on another partition, hence the permission list is a sequence of sequence.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # Sets the permissions of this user. The permission basically indicates what role a
+    # user has on a given partition. A user could have one role on a partition, and a different
+    # role on another partition, hence the permission list is a sequence of sequence.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserPermission[]] :permissions The user permissions.
     def set_user_permission(opts)
@@ -410,7 +478,9 @@ module IControl::Management
     end
 
     ##
-    # Note: this type is deprecated; please use UserInfo3 and associated methods. (home directory, user id, and group id are now computed by the system) UserInfo is used to store user information.
+    # Note: this type is deprecated; please use UserInfo3 and associated methods. (home
+    # directory, user id, and group id are now computed by the system) UserInfo is used
+    # to store user information.
     # @attr [IControl::Management::UserManagement::UserID] user The user's account information, i.e. name, full name.
     # @attr [IControl::Management::UserManagement::UserRole] role The user's role.
     # @attr [String] password The user's clear-text password.
@@ -429,7 +499,9 @@ module IControl::Management
     end
 
     ##
-    # Note: this type is deprecated; please use UserInfo3 and associated methods. (home directory, user id, and group id are now computed by the system) UserInfo2 is used to store user information.
+    # Note: this type is deprecated; please use UserInfo3 and associated methods. (home
+    # directory, user id, and group id are now computed by the system) UserInfo2 is used
+    # to store user information.
     # @attr [IControl::Management::UserManagement::UserID] user The user's account information, i.e. name, full name.
     # @attr [IControl::Management::UserManagement::UserRole] role The user's role.
     # @attr [IControl::Management::UserManagement::PasswordInfo] password The user's password information, either clear-text or encrypted with crypt(3).
@@ -451,17 +523,18 @@ module IControl::Management
     # UserInfo3 is used to store user information.
     # @attr [IControl::Management::UserManagement::UserID] user The user's account information, i.e. name, full name.
     # @attr [IControl::Management::UserManagement::PasswordInfo] password The user's password information, either clear-text or encrypted with crypt(3).
-    # @attr [IControl::Management::UserManagement::UserPermission] permissions The user's permissions, i.e., what role a user has on a given partition; a user could have one role on a partition, and a different role on another partition, hence the permission list is a sequence for each user. "Common" is one choice for the partition part of UserPermission if you don't know what to set it to. "[All]" means the role is active in all partitions.
+    # @attr [IControl::Management::UserManagement::UserPermissionSequence] permissions The user's permissions, i.e., what role a user has on a given partition; a user could have one role on a partition, and a different role on another partition, hence the permission list is a sequence for each user. "Common" is one choice for the partition part of UserPermission if you don't know what to set it to. "[All]" means the role is active in all partitions.
     # @attr [String] login_shell The user's login shell.
     class UserInfo3 < IControl::Base::Struct
       icontrol_attribute :user, IControl::Management::UserManagement::UserID
       icontrol_attribute :password, IControl::Management::UserManagement::PasswordInfo
-      icontrol_attribute :permissions, IControl::Management::UserManagement::UserPermission
+      icontrol_attribute :permissions, IControl::Management::UserManagement::UserPermissionSequence
       icontrol_attribute :login_shell, String
     end
 
     ##
-    # A struct that describes a user permission. This indicates what role a user has on a given partition.
+    # A struct that describes a user permission. This indicates what role a user has on
+    # a given partition.
     # @attr [IControl::Management::UserManagement::UserRole] role The user's role for the given partition.
     # @attr [String] partition The partition that the user has access to.
     class UserPermission < IControl::Base::Struct
@@ -486,7 +559,8 @@ module IControl::Management
     class UserPermissionSequenceSequence < IControl::Base::SequenceSequence ; end
     ## An alias for a sequence of UserRole
     class UserRoleSequence < IControl::Base::Sequence ; end
-    # An enumerated type that contains the possible roles a user may have. Refer to the product manual for a complete list of what each role means.
+    # An enumerated type that contains the possible roles a user may have. Refer to the
+    # product manual for a complete list of what each role means.
     class UserRole < IControl::Base::Enumeration
       # A user role that can do anything on the box, including full access				 to all objects in all partitions.
       USER_ROLE_ADMINISTRATOR = :USER_ROLE_ADMINISTRATOR

@@ -1,6 +1,7 @@
 module IControl::System
   ##
-  # The SoftwareManagement interface enables you to manage the software installed on the system.
+  # The SoftwareManagement interface enables you to manage the software installed on
+  # the system.
   class SoftwareManagement < IControl::Base
 
     set_id_name "imageIDs"
@@ -10,30 +11,39 @@ module IControl::System
     class SoftwareStatus < IControl::Base::Struct; end
     class RepositoryImageID < IControl::Base::Struct; end
     class SoftwareRepositoryHotfix < IControl::Base::Struct; end
-    class SoftwareRepositoryImage < IControl::Base::Struct; end    ##
+    class SoftwareRepositoryImage < IControl::Base::Struct; end
+    class HotFixInformationSequence < IControl::Base::Sequence ; end
+    class InstallationIDSequence < IControl::Base::Sequence ; end
+    class SoftwareStatusSequence < IControl::Base::Sequence ; end
+    class RepositoryImageIDSequence < IControl::Base::Sequence ; end
+    class SoftwareRepositoryHotfixSequence < IControl::Base::Sequence ; end
+    class SoftwareRepositoryImageSequence < IControl::Base::Sequence ; end    ##
     # Cleanup the ramfs mounted at HF_MNT_LOCATION
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument]
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument]
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def cleanup_ramfs
       super
     end
 
     ##
     # Create a RAM disk and return its path to the caller.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument]
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument]
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def create_ramfs
       super
     end
 
     ##
     # Deletes software images from the repository.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :image_filenames are the images you want to delete.
     def delete_software_image(opts)
@@ -42,21 +52,28 @@ module IControl::System
     end
 
     ##
-    # Gets the software status for all installation ids. This provides a complete picture of software status, for all ids.
+    # Gets the software status for all installation ids. This provides a complete picture
+    # of software status, for all ids.
+    # @rspec_example
     # @return [SoftwareStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def all_software_status
       super
     end
 
     ##
-    # Gets text which contains boot image information, in the form of &amp;quot;name=value" pairs. The text includes information about what's installed in each of the boot locations in the device. While this method is not officially deprecated, it is preferred to use get_software_status, as that method is a newer method which yields much the same information in a more rigorous and controlled manner.
+    # Gets text which contains boot image information, in the form of &amp;quot;name=value"
+    # pairs. The text includes information about what's installed in each of the boot locations
+    # in the device. While this method is not officially deprecated, it is preferred to
+    # use get_software_status, as that method is a newer method which yields much the same
+    # information in a more rigorous and controlled manner.
+    # @rspec_example
     # @return [char]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [boolean] :save_active_config The boolean indicating whether we should backup the			 configuration on the active boot location for the installer.
     def boot_image_information(opts)
@@ -65,41 +82,51 @@ module IControl::System
     end
 
     ##
-    # Gets the configured default boot location, which will be the location that boots after the system reboots.
+    # Gets the configured default boot location, which will be the location that boots
+    # after the system reboots.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def boot_location
       super
     end
 
     ##
-    # Gets the cluster boot location, which will be the location set in the software desired table.
+    # Gets the cluster boot location, which will be the location set in the software desired
+    # table.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def cluster_boot_location
       super
     end
 
     ##
-    # Gets information on any hotfixes applied to the system. There may not be any hotfix installed, in which case the returned sequence is empty.
+    # Gets information on any hotfixes applied to the system. There may not be any hotfix
+    # installed, in which case the returned sequence is empty.
+    # @rspec_example
     # @return [HotFixInformation]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def hotfix_information
       super
     end
 
     ##
-    # Gets the percent complete of the current live install processes. Note: You may wish to use get_software_status instead of this method as it returns more information, such as the product, version, and build, along with the &amp;quot;percent complete"/status field.
+    # Gets the percent complete of the current live install processes. Note: You may wish
+    # to use get_software_status instead of this method as it returns more information,
+    # such as the product, version, and build, along with the &amp;quot;percent complete"/status
+    # field.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::System::SoftwareManagement::InstallationID] :installation_ids What locations do you want percent complete.
     def live_install_completion(opts)
@@ -109,60 +136,67 @@ module IControl::System
 
     ##
     # Gets the RPM packages installed on the device.
+    # @rspec_example
     # @return [String]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def rpm_package_information
       super
     end
 
     ##
     # Gets a list of hotfix information about specific hotfix image in the reporitory.
+    # @rspec_example
     # @return [softwareRepositoryHotfix]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def software_hotfix
       super
     end
 
     ##
     # Gets a list of hotfix images available in the repository.
+    # @rspec_example
     # @return [repositoryImageID]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def software_hotfix_list
       super
     end
 
     ##
     # Gets a list of image information about specific image in the reporitory.
+    # @rspec_example
     # @return [softwareRepositoryImage]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def software_image
       super
     end
 
     ##
     # Gets a list of software images available in the repository.
+    # @rspec_example
     # @return [repositoryImageID]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def software_image_list
       super
     end
 
     ##
-    # Gets the software status for given installation ids. This provides a complete picture of software status, per id.
+    # Gets the software status for given installation ids. This provides a complete picture
+    # of software status, per id.
+    # @rspec_example
     # @return [SoftwareStatus]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [IControl::System::SoftwareManagement::InstallationID] :installation_ids Locations for which you want software status.
     def software_status(opts)
@@ -172,6 +206,7 @@ module IControl::System
 
     ##
     # Gets the version information for this interface.
+    # @rspec_example
     # @return [String]
     def version
       super
@@ -179,19 +214,21 @@ module IControl::System
 
     ##
     # Checks to see whether the system disks are managed with logical volumes.
+    # @rspec_example
     # @return [boolean]
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     def has_logical_volume_management
       super
     end
 
     ##
     # Installs this hotfixes.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :hotfix_files The names of the hotfix files to be installed. These hotfix files		 must already exist on the system.
     # @option opts [boolean] :reboot_system The flag to indicate whether to reboot the system after the			hotfixes have been installed.
@@ -201,10 +238,12 @@ module IControl::System
     end
 
     ##
-    # Calls bigstart stop and installs this hotfixes. Upon completion, if reboot_system is set to false, bigstart start is called to bring daemons back up.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Calls bigstart stop and installs this hotfixes. Upon completion, if reboot_system
+    # is set to false, bigstart start is called to bring daemons back up.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :hotfix_files The names of the hotfix files to be installed. These hotfix files		 must already exist on the system.
     # @option opts [boolean] :reboot_system The flag to indicate whether to reboot the system after the			hotfixes have been installed.
@@ -215,9 +254,10 @@ module IControl::System
 
     ##
     # Initiates an install of SW images on all blades installed on one chassis.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :install_volume installation slot (HD slot) to install to. This will be the same on all blades.
     # @option opts [String] :product The product you are installing (ex: BIGIP)
@@ -229,10 +269,12 @@ module IControl::System
     end
 
     ##
-    # Sets the boot image information and automatically initiates installation based on the boot image information.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the boot image information and automatically initiates installation based on
+    # the boot image information.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [char] :boot_image_information The boot image information file data.
     def set_boot_image_information(opts)
@@ -241,10 +283,12 @@ module IControl::System
     end
 
     ##
-    # Sets the default boot location, which will be the boot location that boots after the next system reboot. This version will not work on a clustered system.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs.
+    # Sets the default boot location, which will be the boot location that boots after
+    # the next system reboot. This version will not work on a clustered system.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs.
     # @param [Hash] opts
     # @option opts [String] :location The boot location name. Short-form names such as CF1 .1, HD1 .1, HD1 .2
     def set_boot_location(opts)
@@ -253,10 +297,13 @@ module IControl::System
     end
 
     ##
-    # Sets the cluster wide boot location, which will be the boot location after the next system reboot. Starting with BIG-IP version 9.6.0, clustered systems will reboot immediately.
-    # @raise [IControl::Common::AccessDenied] raised if the client credentials are not valid.
-    # @raise [IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
-    # @raise [IControl::Common::OperationFailed] raised if an operation error occurs, or if attemped on a non clustered system.
+    # Sets the cluster wide boot location, which will be the boot location after the next
+    # system reboot. Starting with BIG-IP version 9.6.0, clustered systems will reboot
+    # immediately.
+    # @rspec_example
+    # @raise [IControl::IControl::Common::AccessDenied] raised if the client credentials are not valid.
+    # @raise [IControl::IControl::Common::InvalidArgument] raised if one of the arguments is invalid.
+    # @raise [IControl::IControl::Common::OperationFailed] raised if an operation error occurs, or if attemped on a non clustered system.
     # @param [Hash] opts
     # @option opts [String] :location The boot location name. Short-form names such as CF1 .1, HD1 .1, HD1 .2
     def set_cluster_boot_location(opts)
@@ -265,18 +312,19 @@ module IControl::System
     end
 
     ##
-    # A structure that contains the information on hotfixes that have been applied to the system.
+    # A structure that contains the information on hotfixes that have been applied to the
+    # system.
     # @attr [String] description The description of the software fix contained in this hotfix, if available.
     # @attr [String] product The product name for which this hotfix is applied.
     # @attr [String] id The unique identifier for this hotfix, i.e. a related CR or subcase ID.
     # @attr [String] version_resolved The dot-separated major, minor, and maintenance release level			 in which the same issue was resolved; i.e. the product version			 in which the original problem no longer occurs. Note that			 this value is only available when appropriate, due to the fact			 that at the time the hotfix was created, there might not be exact			 knowledge of what release the final fix will be in.
-    # @attr [String] packages The list of the software packages affected and updated by this hotfix.
+    # @attr [StringSequence] packages The list of the software packages affected and updated by this hotfix.
     class HotFixInformation < IControl::Base::Struct
       icontrol_attribute :description, String
       icontrol_attribute :product, String
       icontrol_attribute :id, String
       icontrol_attribute :version_resolved, String
-      icontrol_attribute :packages, String
+      icontrol_attribute :packages, StringSequence
     end
 
     ##
@@ -289,7 +337,8 @@ module IControl::System
     end
 
     ##
-    # A structure that contains information on software status. This includes items like product, version, build, and (live install) completion status.
+    # A structure that contains information on software status. This includes items like
+    # product, version, build, and (live install) completion status.
     # @attr [IControl::System::SoftwareManagement::InstallationID] installation_id The location for the status.
     # @attr [String] product The product you are installing (ex: BIGIP) (or, product which is installed).
     # @attr [String] version The version of product (ex: 9.6.0).
