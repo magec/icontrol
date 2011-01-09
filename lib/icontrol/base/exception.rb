@@ -17,6 +17,7 @@ module IControl
     class ExceptionFactory
       def self.raise_from_xml(xml)
         aux = {}
+	raise xml unless Savon::SOAP::XML.to_hash(xml)[:fault]
         faultstring = Savon::SOAP::XML.to_hash(xml)[:fault][:faultstring]
         exception_type = "IControl::#{$1}" if faultstring  =~ /Exception:\ (.*)$/        
         aux[:primary_error_code] = $1.to_i if faultstring  =~ /primary_error_code\ +:\ (\d+)\ .*$/        
