@@ -10,6 +10,7 @@ class ModuleDeclaration < ASTNode
       return 
     end
     
+    
     if dir_name != "icontrol" 
       FileUtils.remove_dir(dir_name,true) 
       Dir.mkdir(dir_name)

@@ -50,11 +50,13 @@ class ClassDeclaration < ASTNode
     else
       spec_file_name = "#{normalized_file_name}_spec.rb"
 
-      spec_file_name = ((full_class_name + "Spec").decamelize + ".rb").split("/")
-      levels = full_class_name.split("::").map { |i| ".." }
-      
-      FileUtils.mkdir_p File.join(levels + ["spec"] + spec_file_name[0..-2])
-      spec_file = File.join(levels + ["spec"] + spec_file_name)
+      dir_name = full_class_name.split("::")[0..-2].map { |i| i.decamelize }
+
+      spec_dir = File.dirname(__FILE__) + "/../../spec/"
+      file_dir = spec_dir.split("/") + dir_name
+
+      spec_file = File.join(file_dir + [spec_file_name])
+      FileUtils.mkdir_p File.join( file_dir )
       unless File.exists?(spec_file)
         File.open(spec_file,"w+") do |file|
           render_spec(file)
