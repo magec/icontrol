@@ -484,21 +484,25 @@ describe IControl::LocalLB::ProfileHttpClass do
 
   describe "#set_redirect_location" do
     it "Sets the string (which may include a TCL expression) to indicates where to redirect the original HTTP request once a match occurs. For example, to redirect requests to https://myserver.com to http://myotherserver.com." do
-      pending
+      @profile_http_class.redirect_location.value.should_not == "http://test.test.com"
+      @profile_http_class.set_redirect_location(:redirect_location => {:default_flag => false, :value => "http://test.test.com"})
+      @profile_http_class.redirect_location.value.should == "http://test.test.com"
     end
 
     it "works this way" do
-      pending
+      @profile_http_class.set_redirect_location(:redirect_location => {:default_flag => false, :value => "http://test.test.com"})
     end
   end
 
   describe "#set_rewrite_url" do
     it "Sets the strings (which may include a TCL expression) with which to rewrite the URLs." do
-      pending
+      @profile_http_class.rewrite_url.value.should_not == "http://test.test.com"
+      @profile_http_class.set_rewrite_url(:url => {:default_flag => false, :value => "http://test.test.com"})
+      @profile_http_class.rewrite_url.value.should == "http://test.test.com"
     end
 
     it "works this way" do
-      pending
+      @profile_http_class.set_rewrite_url(:url => {:default_flag => false, :value => "http://test.test.com"})
     end
   end
 
