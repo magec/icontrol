@@ -1,0 +1,4 @@
+--no-private
+--plugin examples-from-rspec
+lib/**/*rb
+spec/**/*.rb
