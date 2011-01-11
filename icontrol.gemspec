@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{icontrol}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jose Fernandez (magec)"]
-  s.date = %q{2011-01-05}
+  s.date = %q{2011-01-11}
   s.description = %q{This gem allows you to Connect to a F5 appliance by means of its web services}
   s.email = %q{jfernandezperez@gmail.com}
   s.extra_rdoc_files = [
@@ -40,6 +40,8 @@ Gem::Specification.new do |s|
     "lib/icontrol/base/attributable.rb",
     "lib/icontrol/base/enumeration.rb",
     "lib/icontrol/base/exception.rb",
+    "lib/icontrol/base/icontrol/local_lb/pool.rb",
+    "lib/icontrol/base/icontrol_overlay.rb",
     "lib/icontrol/base/mappings.rb",
     "lib/icontrol/base/predeclarations.rb",
     "lib/icontrol/base/sequence.rb",
@@ -175,7 +177,9 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A ruby client to the BigIP F5}
   s.test_files = [
+    "spec/icontrol/local_lb/pool_member_spec.rb",
     "spec/icontrol/local_lb/pool_spec.rb",
+    "spec/icontrol/local_lb/profile_http_class_spec.rb",
     "spec/spec_helper.rb"
   ]
 
