@@ -17,6 +17,7 @@ module IControl # :nodoc:
         return String if type == "y:string"
         return LongSequence if type == "y:longSequence"
         return StringSequence if type == "y:stringSequence"
+        return BooleanSequence if type == "y:booleanSequence"
 
         splitted = type.split(":")
         temp_name = [splitted.shift,*splitted.shift.split(".")]
