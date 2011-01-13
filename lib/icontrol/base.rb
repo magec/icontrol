@@ -79,8 +79,49 @@ module IControl
         return @client
       end
 
+      def symbolize(data)
+        if data.is_a? Hash
+          out = data.inject({}) do |hash,(key,value)|
+            value = case value
+                    when ::Hash then value["xsi:nil"] ? nil : symbolize(value)
+                    when ::Array then value.map { |val| symbolize(val) rescue val }
+                    when ::String then value
+                    end
+
+            new_key = if Savon.strip_namespaces?
+                        key.strip_namespace.snakecase.to_sym
+                      else
+                        key.snakecase
+                      end
+            if hash[new_key] # key already exists, value should be added as an Array
+              hash[new_key] = [hash[new_key], value].flatten
+              result = hash
+            else
+              result = hash.merge new_key => value
+            end
+            result
+          end
+          if data.respond_to?(:empty_node?)
+            out.instance_eval{ @_empty_node = data.empty_node? }
+          end
+          return out
+        else
+          return data
+        end
+      end
+
+
       # Generic type mapping
       def map_response(response)
+
+        response = Crack::XML.parse(response).to_hash
+
+        envelope = response[response.keys.first] || {}
+        body_key = envelope.keys.find { |key| /.+:Body/ =~ key } rescue nil
+        response = body_key ? envelope[body_key] : {}
+        
+        response = symbolize(response)
+
         response_key = response.keys.first
         if response_key
           if response[response_key].has_key? :return
@@ -175,7 +216,7 @@ module IControl
               block.call(soap) if block
               request = soap.to_xml
             end
-            return self.map_response(response.to_hash)
+            return self.map_response(response.to_xml)
           rescue Savon::HTTP::Error, Savon::SOAP::Fault => error
             IControl::Base::ExceptionFactory.raise_from_xml(error.http.body)
           end

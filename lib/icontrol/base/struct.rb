@@ -30,7 +30,11 @@ module IControl # :nodoc:
               if v == Numeric
                 aux[k] = xml[k].to_i
               else
-                aux[k] = xml[k]
+                if xml[k].empty_node?
+                  aux[k] = nil
+                else
+                  aux[k] = xml[k]
+                end
               end
             end
           end if xml
