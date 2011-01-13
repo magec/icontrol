@@ -31,6 +31,14 @@ class LongSequence < BasicSequence
   set_conversion_method :to_i
 end
 
+class BooleanSequence
+  def self.from_soap(xml)
+    object = [*xml[:item]].map { |i| i == "true" }
+    return object.length == 1 ? object.first : object
+  end
+end
+
+
 # @private DoubleSequence
 class DoubleSequence < BasicSequence
   set_conversion_method :to_f
