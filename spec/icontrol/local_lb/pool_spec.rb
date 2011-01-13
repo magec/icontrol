@@ -161,7 +161,7 @@ describe IControl::LocalLB::Pool do
       all_statistics.statistics      
       # => [<IControl::Common::Statistic:0x..... ] An array with every statistic
 
-      all_statistics.time_stamp.inspect
+      all_statistics.time_stamp
       # => #<IControl::Common::TimeStamp:0x9ddcf6c @attributes={:year=>"2011", :month=>"1", :day=>"4", :hour=>"10", :minute=>"59", :second=>"29", :id=>nil}>
 
 
@@ -284,7 +284,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "works this way" do
-      @pool.lb_method.inspect
+      @pool.lb_method
       # => :LB_METHOD_DYNAMIC_RATIO
     end
 
@@ -334,7 +334,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "works this way" do
-      puts @pool.minimum_active_member.inspect
+      @pool.minimum_active_member
       # => 0
     end
 
@@ -353,7 +353,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "works this way" do
-      @pool.minimum_up_member.inspect
+      @pool.minimum_up_member
       # => 0
     end
 
@@ -567,7 +567,7 @@ describe IControl::LocalLB::Pool do
 
     it "works this way" do
       statistics = @pool.statistics
-      statistics.time_stamp.inspect
+      statistics.time_stamp
       # => #<IControl::Common::TimeStamp:0x7f4bdea1f5c8 @attributes={:month=>"1", :year=>"2011", :second=>"46", :hour=>"14", :day=>"4", :id=>nil, :minute=>"33"}>
       statistics.statistics.statistics.first.type
       # => :STATISTIC_SERVER_SIDE_BYTES_IN
@@ -590,7 +590,7 @@ describe IControl::LocalLB::Pool do
     end
 
     it "works this way" do
-      @pool.version.inspect
+      @pool.version
       # => "BIG-IP_v10.0.1"
     end
 
@@ -629,7 +629,7 @@ describe IControl::LocalLB::Pool do
                                                           :type => IControl::LocalLB::MonitorRuleType::MONITOR_RULE_TYPE_SINGLE,
                                                           :monitor_templates => ["http"],
                                                           :quorum => 0}
-                                                      }).inspect
+                                                      })
       # Note that this does not add a new monitor association but replaces the one currently set
     end
   end
