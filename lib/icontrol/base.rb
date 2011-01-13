@@ -51,6 +51,11 @@ module IControl
     include IControl::Base::Attributable
         
     class << self
+
+      attr_accessor :id_name
+      def set_id_name(name)
+        @id_name = name
+      end
       
       def class_name
         name.split("::").last
@@ -225,6 +230,13 @@ module IControl
         end 
       end
       
+    end
+
+    def initialize(attributes)     
+      @attributes = {}
+      id = attributes.delete(self.class.id_name) if attributes && attributes[self.class.id_name]
+      @attributes[:id] ||= id       
+      super(attributes)
     end
 
     def default_body
