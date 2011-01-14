@@ -28,6 +28,10 @@ if you want to do it in every virtual server then you do something like this.
   IControl::LocalLB::VirtualServer.find(:all).each { |vs| vs.set_default_pool_name(:default_pool => "the default pool name") }
 I think you get the point. Note that now the parameter name is :default_pool and not :default_pools, because of the semantics change.
 
+== Documentation
+
+The documentation can be found in http://magec.es/icontrol
+
 == Virtual Servers
 
 You can retreive, create, delete and modify virtual servers, for more information see IControl::LocalLB::VirtualServer. As an example of you what you can do:
