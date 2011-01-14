@@ -202,6 +202,8 @@ module IControl
 
 
       def pluralize(string)
+        string = string.to_s.gsub(/ss$/,"sse")
+        return string if string[-1..-1] == "s"
         return "#{string}s"
       end
 
