@@ -6,6 +6,7 @@ class BasicSequence
     end
     def from_soap(xml)
       object = [*xml[:item]].map { |i| i.send(@conversion_method) }
+      return nil if object.empty?
       return object.length == 1 ? object.first : object
     end
   end
