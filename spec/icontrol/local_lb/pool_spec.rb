@@ -4,10 +4,9 @@ describe IControl::LocalLB::Pool do
 
   use_vcr_cassette "IControl::LocalLB::Pool", :record => :all, :match_requests_on => [:uri, :method, :body] # Change :record => :new_episodes when done
 
-  TEST_POOL_NAME="test_pool"
-
   before(:each) do
-    IControl::LocalLB::Pool.create(:pool_name => TEST_POOL_NAME,
+    @test_pool_name="test_pool"
+    IControl::LocalLB::Pool.create(:pool_name => @test_pool_name,
                                    :lb_method => IControl::LocalLB::LBMethod::LB_METHOD_ROUND_ROBIN,
                                    :members => [{:address => "192.168.50.1",:port => "80"},
                                                 {:address => "192.168.50.2",:port => "80"},
@@ -16,7 +15,7 @@ describe IControl::LocalLB::Pool do
                                                 {:address => "192.168.50.5",:port => "80"},
                                                 {:address => "192.168.50.6",:port => "80"}
                                                ])
-    @pool = IControl::LocalLB::Pool.find(TEST_POOL_NAME)
+    @pool = IControl::LocalLB::Pool.find(@test_pool_name)
   end
 
   after(:each) do
@@ -165,8 +164,8 @@ describe IControl::LocalLB::Pool do
       # => #<IControl::Common::TimeStamp:0x9ddcf6c @attributes={:year=>"2011", :month=>"1", :day=>"4", :hour=>"10", :minute=>"59", :second=>"29", :id=>nil}>
 
 
-      test_pool_statistics = all_statistics.statistics.find { |i| i.pool_name == TEST_POOL_NAME }
-      # => #<IControl::LocalLB::Pool::PoolStatisticEntry:0xa492f8c @attributes={:pool_name=>TEST_POOL_NAME, :statistics=>["<.....   The statistics for a given pool
+      test_pool_statistics = all_statistics.statistics.find { |i| i.pool_name == @test_pool_name }
+      # => #<IControl::LocalLB::Pool::PoolStatisticEntry:0xa492f8c @attributes={:pool_name=>@test_pool_name, :statistics=>["<.....   The statistics for a given pool
       test_pool_statistics.statistics
       # => [#<IControl::Common::Statistic:0xa497d34 @attributes={:type=>:STATISTIC_SERVER_SIDE_BYTES_IN, :value=>#<IControl::Common::ULong64:0xa497d98 @attributes={:high=>"0", :low=>"0", :id=>nil}>, :time_stamp=>"0", :id=>nil}>, #<IControl::Common::Statistic:0xa497780.... The actual values    
 
@@ -421,7 +420,7 @@ describe IControl::LocalLB::Pool do
   describe "#monitor_instance" do
 
     before(:each) do
-      IControl::LocalLB::Pool.set_monitor_association(:monitor_association => {:pool_name => TEST_POOL_NAME,:monitor_rule => {:type => IControl::LocalLB::MonitorRuleType::MONITOR_RULE_TYPE_SINGLE,:monitor_templates => ["tcp"],:quorum => 0} })
+      IControl::LocalLB::Pool.set_monitor_association(:monitor_association => {:pool_name => @test_pool_name,:monitor_rule => {:type => IControl::LocalLB::MonitorRuleType::MONITOR_RULE_TYPE_SINGLE,:monitor_templates => ["tcp"],:quorum => 0} })
     end
     
     it "should return without raising any exception" do
@@ -619,12 +618,12 @@ describe IControl::LocalLB::Pool do
 
   describe "#set_monitor_association" do
     it "Sets/creates the monitor associations for the specified pools. This basically creates the monitor associations between a pool and a monitor rule." do
-      lambda { IControl::LocalLB::Pool.set_monitor_association(:monitor_association => {:pool_name => TEST_POOL_NAME,:monitor_rule => {:type => IControl::LocalLB::MonitorRuleType::MONITOR_RULE_TYPE_SINGLE,:monitor_templates => ["tcp"],:quorum => 0} })}.should_not raise_exception
+      lambda { IControl::LocalLB::Pool.set_monitor_association(:monitor_association => {:pool_name => @test_pool_name,:monitor_rule => {:type => IControl::LocalLB::MonitorRuleType::MONITOR_RULE_TYPE_SINGLE,:monitor_templates => ["tcp"],:quorum => 0} })}.should_not raise_exception
     end
     
     it "works this way" do
       IControl::LocalLB::Pool.set_monitor_association(:monitor_association => 
-                                                      {:pool_name => TEST_POOL_NAME,
+                                                      {:pool_name => @test_pool_name,
                                                         :monitor_rule => {
                                                           :type => IControl::LocalLB::MonitorRuleType::MONITOR_RULE_TYPE_SINGLE,
                                                           :monitor_templates => ["http"],

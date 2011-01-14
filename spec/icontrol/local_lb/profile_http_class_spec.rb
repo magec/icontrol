@@ -5,7 +5,7 @@ describe IControl::LocalLB::ProfileHttpClass do
   use_vcr_cassette "IControl::LocalLB::ProfileHttpClass", :record => :all, :match_requests_on => [:uri, :method, :body] # Change :record => :new_episodes when done
 
   before(:each) do
-    IControl::LocalLB::ProfileHttpClass.create(:profile_name => "test_profile_http_class") unless IControl::LocalLB::ProfileHttpClass.find("test_profile_http_class")
+    IControl::LocalLB::ProfileHttpClass.create(:profile_name => "test_profile_http_class")
     @profile_http_class = IControl::LocalLB::ProfileHttpClass.find("test_profile_http_class")
   end
 
