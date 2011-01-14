@@ -17,19 +17,35 @@ In order to configure you just have to set up the username, password and the ser
 
 = Using the library
 
+Bassically the library is the same as the one documented in the f5 devcentral but using ruby docs (http://devcentral.f5.com/wiki/default.aspx/iControl/APIReference.html). The main difference is that while the icontrol api does allow the bulk operation over a number of elements at the same time, in this case we limit it to just one at a time. So, for example, if you one to set the default pool for a virtual server, in the f5 doc, it says you have to pass 2 parameters
+    set_default_pool_name(
+      in String [] virtual_servers,
+      in String [] default_pools
+   );
+So you can change several default pools at a time. On the contrary this library adopts a more object oriented design and only allows to work with one object at a time, i. e. and talking ruby, you don't have a set_default_pool_name class method but an instance one, so you have to first retreive the virtual server and later set its default pool. Something like this
+  IControl::LocalLB::VirtualServer.find("my_virtual_server).set_default_pool_name(:default_pool => "the default pool name")
+if you want to do it in every virtual server then you do something like this.
+  IControl::LocalLB::VirtualServer.find(:all).each { |vs| vs.set_default_pool_name(:default_pool => "the default pool name") }
+I think you get the point. Note that now the parameter name is :default_pool and not :default_pools, because of the semantics change.
+
 == Virtual Servers
 
 You can retreive, create, delete and modify virtual servers, for more information see IControl::LocalLB::VirtualServer. As an example of you what you can do:
 
 === Creating a virtual Server
- new_virtual_server = IControl::LocalLB::VirtualServer.create(:name => "foo_virtual_server",
-                                  :address => "192.168.1.1",
-                                  :port => "80",
-                                  :protocol => IControl::Common::ProtocolType::PROTOCOL_TCP,
-                                  :wildmask => "255.255.255.255",
-                         	  :type => IControl::LocalLB::VirtualServer::Type::RESOURCE_TYPE_POOL,
-                                  :default_pool =>  foo_pool,
-                                  :profiles => [])
+  IControl::LocalLB::VirtualServer.create(:definition => {
+                                            :address => "192.168.99.99",
+                                            :name => "test_virtual_server",
+                                            :port => "4",
+                                            :protocol => IControl::Common::ProtocolType::PROTOCOL_TCP
+                                          },
+                                          :wildmask => "255.255.255.255",
+                                          :resource => {
+                                            :type => IControl::LocalLB::VirtualServer::VirtualServerType::RESOURCE_TYPE_POOL,
+                                            :default_pool_name => ""
+                                          },
+                                          :profiles => [])
+
 
 === Obtaining an instance of a virtual server
 
@@ -39,7 +55,7 @@ You can retreive, create, delete and modify virtual servers, for more informatio
 
 === Changing its default pool
 
- my_virtual_server.default_pool = IControl::LocalLB::Pool.find("my_new_default_pool")
+ my_virtual_server.set_default_pool_name(:default_pool => "my_pool_name")
 
 === Destroying it
 
@@ -56,5 +72,5 @@ You can retreive, create, delete and modify virtual servers, for more informatio
 * Send me a pull request. Bonus points for topic branches.
 
 == Copyright
-
+This documentation is based on the original documentation procided by F5 Networks, Inc., Seattle, Washington
 Copyright (c) 2010 Jose Fernandez (magec). See LICENSE for details.

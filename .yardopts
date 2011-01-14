@@ -1,4 +1,9 @@
 --no-private
 --plugin examples-from-rspec
+-m rdoc
 lib/**/*rb
 spec/**/*.rb
+-
+README.rdoc
+LICENSE
+
