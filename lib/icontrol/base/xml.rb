@@ -1,4 +1,4 @@
-require 'rexml/parsers/streamparser'
+B1;2400;0crequire 'rexml/parsers/streamparser'
 require 'rexml/parsers/baseparser'
 require 'rexml/light/node'
 require 'rexml/text'
@@ -12,6 +12,7 @@ require 'bigdecimal'
 # It's mainly just adding vowels, as I ht cd wth n vwls :)
 # This represents the hard part of the work, all I did was change the
 # underlying parser.
+# @private REXMLUtilityNode
 class REXMLUtilityNode #:nodoc:
   attr_accessor :name, :attributes, :children, :type, :empty_node
 
@@ -195,6 +196,7 @@ class REXMLUtilityNode #:nodoc:
   end
 end
 
+# @private Crack
 module Crack
   class XML
     def self.parse(xml)
