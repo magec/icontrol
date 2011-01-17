@@ -566,8 +566,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [boolean] :v6 A boolean indicating which CIDR mask to get, the mask used for protocol IPv4 or IPv6 .
     def static_persistence_cidr_mask(opts)
-      check_params(opts,[:v6])
-      super
+      opts = check_params(opts,[:v6])
+      super(opts)
     end
 
     ##
@@ -740,8 +740,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_aol_aware_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -754,8 +754,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_auto_configure_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -768,8 +768,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_auto_sync_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -781,8 +781,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_cache_ldns_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -795,8 +795,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_check_dynamic_dependency_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -808,8 +808,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_check_static_dependency_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -821,8 +821,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LBMethod] :lb_method The LB method to set.
     def set_default_alternate_lb_method(opts)
-      check_params(opts,[:lb_method])
-      super
+      opts = check_params(opts,[:lb_method])
+      super(opts)
     end
 
     ##
@@ -834,8 +834,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LBMethod] :lb_method The LB method to set.
     def set_default_fallback_lb_method(opts)
-      check_params(opts,[:lb_method])
-      super
+      opts = check_params(opts,[:lb_method])
+      super(opts)
     end
 
     ##
@@ -884,8 +884,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_drain_request_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -897,8 +897,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_dump_topology_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -910,8 +910,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_fb_respect_acl_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -924,8 +924,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_fb_respect_dependency_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -950,8 +950,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LDNSProbeProtocol] :protocols The probe protocols to set.
     def set_ldns_probe_protocols(opts)
-      check_params(opts,[:protocols])
-      super
+      opts = check_params(opts,[:protocols])
+      super(opts)
     end
 
     ##
@@ -967,8 +967,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_link_compensate_inbound_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -984,8 +984,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_link_compensate_outbound_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1120,8 +1120,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_paths_never_die_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1144,8 +1144,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_probe_disabled_object_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1267,8 +1267,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_reset_ripeness_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1310,8 +1310,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [boolean] :v6 A boolean indicating which CIDR mask to affect, the mask used for protocol IPv4 or IPv6 .
     def set_static_persistence_cidr_mask(opts)
-      check_params(opts,[:v6])
-      super
+      opts = check_params(opts,[:v6])
+      super(opts)
     end
 
     ##
@@ -1323,8 +1323,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :sync_group_name The sync group name to set.
     def set_sync_group_name(opts)
-      check_params(opts,[:sync_group_name])
-      super
+      opts = check_params(opts,[:sync_group_name])
+      super(opts)
     end
 
     ##
@@ -1337,8 +1337,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_sync_named_configuration_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1427,8 +1427,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_topology_longest_match_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1461,8 +1461,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The state to set.
     def set_use_recursion_bit_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
 

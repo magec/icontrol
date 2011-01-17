@@ -40,8 +40,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :partition_names The names of the AuthZ partitions to delete.
     def delete_partition(opts)
-      check_params(opts,[:partition_names])
-      super
+      opts = check_params(opts,[:partition_names])
+      super(opts)
     end
 
     ##
@@ -89,8 +89,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :active_partition The active partition to set.
     def set_active_partition(opts)
-      check_params(opts,[:active_partition])
-      super
+      opts = check_params(opts,[:active_partition])
+      super(opts)
     end
 
     ##

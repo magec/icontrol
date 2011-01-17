@@ -19,8 +19,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PersistenceMode] :modes The persistence modes for the specified profiles.
     def create(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -378,8 +378,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Persistence profiles.
     def set_across_pool_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -392,8 +392,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Persistence profiles.
     def set_across_service_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -406,8 +406,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Persistence profiles.
     def set_across_virtual_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -420,8 +420,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :expirations The cookie expirations for the specified Persistence profiles.
     def set_cookie_expiration(opts)
-      check_params(opts,[:expirations])
-      super
+      opts = check_params(opts,[:expirations])
+      super(opts)
     end
 
     ##
@@ -434,8 +434,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :lengths The cookie hash lengths for the specified Persistence profiles.
     def set_cookie_hash_length(opts)
-      check_params(opts,[:lengths])
-      super
+      opts = check_params(opts,[:lengths])
+      super(opts)
     end
 
     ##
@@ -448,8 +448,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :offsets The cookie hash offsets for the specified Persistence profiles.
     def set_cookie_hash_offset(opts)
-      check_params(opts,[:offsets])
-      super
+      opts = check_params(opts,[:offsets])
+      super(opts)
     end
 
     ##
@@ -462,8 +462,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :cookie_names The cookie names for the specified Persistence profiles.
     def set_cookie_name(opts)
-      check_params(opts,[:cookie_names])
-      super
+      opts = check_params(opts,[:cookie_names])
+      super(opts)
     end
 
     ##
@@ -476,8 +476,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileCookiePersistenceMethod] :methods The cookie persistence methods for the specified Persistence profiles.
     def set_cookie_persistence_method(opts)
-      check_params(opts,[:methods])
-      super
+      opts = check_params(opts,[:methods])
+      super(opts)
     end
 
     ##
@@ -490,8 +490,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -507,8 +507,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :patterns
     def set_ending_hash_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -524,8 +524,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :lengths Hashed payload data length (bytes) for each specified persistence profile (default: 0). If zero, the hashed payload data is not specified by an offset and length.
     def set_hash_length(opts)
-      check_params(opts,[:lengths])
-      super
+      opts = check_params(opts,[:lengths])
+      super(opts)
     end
 
     ##
@@ -539,8 +539,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfilePersistence::ProfilePersistenceHashMethod] :methods Persistence method for each specified profile (default: PERSISTENCE_HASH_DEFAULT)
     def set_hash_method(opts)
-      check_params(opts,[:methods])
-      super
+      opts = check_params(opts,[:methods])
+      super(opts)
     end
 
     ##
@@ -554,8 +554,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states Enabled state for more hashing for each specified persistence profile (default: disabled)
     def set_hash_more_data_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -570,8 +570,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :offsets Payload data offset (bytes) to the start of the hashed data for each specified persistence profile (default: 0)
     def set_hash_offset(opts)
-      check_params(opts,[:offsets])
-      super
+      opts = check_params(opts,[:offsets])
+      super(opts)
     end
 
     ##
@@ -584,8 +584,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Persistence profiles.
     def set_map_proxy_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -597,8 +597,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileIPAddress] :masks The masks for the specified Persistence profiles.
     def set_mask(opts)
-      check_params(opts,[:masks])
-      super
+      opts = check_params(opts,[:masks])
+      super(opts)
     end
 
     ##
@@ -613,8 +613,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes Maximum hashed data buffer size (bytes) for each specified persistence profile (default: 0)
     def set_maximum_hash_buffer_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -626,8 +626,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states indicating whether to mirror persistence records.
     def set_mirror_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -640,8 +640,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Persistence profiles.
     def set_msrdp_without_session_directory_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -653,8 +653,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfilePersistenceMode] :modes The persistence modes for the specified profiles.
     def set_persistence_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -667,8 +667,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :rules The UIE rules for the specified Persistence profiles.
     def set_rule(opts)
-      check_params(opts,[:rules])
-      super
+      opts = check_params(opts,[:rules])
+      super(opts)
     end
 
     ##
@@ -681,8 +681,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :sip_info_headers The sip_info headers for the specified Persistence profiles. Possible values are: 'Call-ID', 'To', 'From', 'SIP-ETag', 'Subject'.
     def set_sip_info(opts)
-      check_params(opts,[:sip_info_headers])
-      super
+      opts = check_params(opts,[:sip_info_headers])
+      super(opts)
     end
 
     ##
@@ -697,8 +697,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :patterns
     def set_starting_hash_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -711,8 +711,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeouts for the specified Persistence profiles.
     def set_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##

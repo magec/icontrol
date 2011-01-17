@@ -277,8 +277,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_check_source_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -291,8 +291,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -305,8 +305,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeouts.
     def set_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -320,8 +320,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The maximum header sizes.
     def set_maximum_header_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -335,8 +335,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The maximum queued data sizes.
     def set_maximum_queued_data_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -350,8 +350,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_multicast_redirect_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -365,8 +365,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :headers The proxy header names for the specified profiles.
     def set_proxy_header(opts)
-      check_params(opts,[:headers])
-      super
+      opts = check_params(opts,[:headers])
+      super(opts)
     end
 
     ##
@@ -378,8 +378,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileRtspProxyType] :types The proxy types to set.
     def set_proxy_type(opts)
-      check_params(opts,[:types])
-      super
+      opts = check_params(opts,[:types])
+      super(opts)
     end
 
     ##
@@ -391,8 +391,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfilePortNumber] :ports The RTCP ports for the specified RTSP profiles.
     def set_rtcp_port(opts)
-      check_params(opts,[:ports])
-      super
+      opts = check_params(opts,[:ports])
+      super(opts)
     end
 
     ##
@@ -404,8 +404,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfilePortNumber] :ports The RTP ports for the specified RTSP profiles.
     def set_rtp_port(opts)
-      check_params(opts,[:ports])
-      super
+      opts = check_params(opts,[:ports])
+      super(opts)
     end
 
     ##
@@ -419,8 +419,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_rtsp_over_http_persistence_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -434,8 +434,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_session_reconnect_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -449,8 +449,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_unicast_redirect_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

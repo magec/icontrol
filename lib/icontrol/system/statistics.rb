@@ -245,8 +245,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :addresses The iQueries to get the statistics from.
     def gtm_iquery_statistics(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -281,8 +281,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Statistics::GtmPathStatisticObjectID] :object_names The link or DC names to get the statistics from.
     def gtm_path_statistics(opts)
-      check_params(opts,[:object_names])
-      super
+      opts = check_params(opts,[:object_names])
+      super(opts)
     end
 
     ##
@@ -296,8 +296,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :host_ids The host ids for which to get statistics.
     def host_statistics(opts)
-      check_params(opts,[:host_ids])
-      super
+      opts = check_params(opts,[:host_ids])
+      super(opts)
     end
 
     ##
@@ -423,8 +423,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Statistics::PerformanceStatisticQuery] :objects The list of graphs or tables to get the statistics for.
     def performance_graph_csv_statistics(opts)
-      check_params(opts,[:objects])
-      super
+      opts = check_params(opts,[:objects])
+      super(opts)
     end
 
     ##
@@ -459,8 +459,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Statistics::PerformanceStatisticQuery] :tables The list of tables to get the statistics for.
     def performance_table_statistics(opts)
-      check_params(opts,[:tables])
-      super
+      opts = check_params(opts,[:tables])
+      super(opts)
     end
 
     ##
@@ -473,8 +473,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :pva_ids The PVA ids for which to get statistics.
     def pva_statistics(opts)
-      check_params(opts,[:pva_ids])
-      super
+      opts = check_params(opts,[:pva_ids])
+      super(opts)
     end
 
     ##
@@ -559,8 +559,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :tmm_ids The TMOS processing agent ids for which to get statistics.
     def tmm_statistics(opts)
-      check_params(opts,[:tmm_ids])
-      super
+      opts = check_params(opts,[:tmm_ids])
+      super(opts)
     end
 
     ##
@@ -593,8 +593,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :device_names The virtual compression devices to get the statistics from.
     def virtual_compression_statistics(opts)
-      check_params(opts,[:device_names])
-      super
+      opts = check_params(opts,[:device_names])
+      super(opts)
     end
 
     ##
@@ -719,8 +719,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :addresses The iQueries indicated by their addresses. If "addresses" list		 if empty, then all iQuery statistics regardless of address		 will be reset..
     def reset_gtm_iquery_statistics(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -742,8 +742,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Statistics::GtmPathStatisticObjectID] :object_names The link or DC names to reset the statistics.		 If "object_names" is empty, then statistics for all paths under		 "ldns_ips" will be reset. Note that if "ldns_ips" and "object_names"		 are both empty, then all path statistics will be reset.
     def reset_gtm_path_statistics(opts)
-      check_params(opts,[:object_names])
-      super
+      opts = check_params(opts,[:object_names])
+      super(opts)
     end
 
     ##
@@ -895,8 +895,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :device_names The names of the virtual compression devices. If devices_names list		 if empty, then all virtual compression statistics regardless of device		 will be reset.
     def reset_virtual_compression_statistics(opts)
-      check_params(opts,[:device_names])
-      super
+      opts = check_params(opts,[:device_names])
+      super(opts)
     end
 
     ##

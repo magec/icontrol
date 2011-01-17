@@ -39,8 +39,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionDetails] :sub_detail_list A list of subscription details with the configuration of the requested subscription.
     def create(opts)
-      check_params(opts,[:sub_detail_list])
-      super
+      opts = check_params(opts,[:sub_detail_list])
+      super(opts)
     end
 
     ##
@@ -76,8 +76,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :max_timeslice_list A list of maximum timeslice values corresponding to the given list of subscriptions identifiers.
     def max_timeslice(opts)
-      check_params(opts,[:max_timeslice_list])
-      super
+      opts = check_params(opts,[:max_timeslice_list])
+      super(opts)
     end
 
     ##
@@ -90,8 +90,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :min_events_list A list of minimum event values corresponding to the given list of subscription identifiers.
     def min_events_per_timeslice(opts)
-      check_params(opts,[:min_events_list])
-      super
+      opts = check_params(opts,[:min_events_list])
+      super(opts)
     end
 
     ##
@@ -104,8 +104,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state_list The enabled states corresponding to the input list of subscription identifiers.
     def state(opts)
-      check_params(opts,[:state_list])
-      super
+      opts = check_params(opts,[:state_list])
+      super(opts)
     end
 
     ##
@@ -118,8 +118,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionStatistics] :statistics_list A list of statistics associated with the given list of subscription identifiers.
     def statistics(opts)
-      check_params(opts,[:statistics_list])
-      super
+      opts = check_params(opts,[:statistics_list])
+      super(opts)
     end
 
     ##
@@ -132,8 +132,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ttl_list A list of ttl values associated with the given subscription identifiers.
     def ttl(opts)
-      check_params(opts,[:ttl_list])
-      super
+      opts = check_params(opts,[:ttl_list])
+      super(opts)
     end
 
     ##
@@ -146,8 +146,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :url_list The list of url's corresponding to the input list of subscription identifiers.
     def url(opts)
-      check_params(opts,[:url_list])
-      super
+      opts = check_params(opts,[:url_list])
+      super(opts)
     end
 
     ##
@@ -169,8 +169,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionDefinition] :sub_def_list A list of subscription definitions that are to be modified.
     def modify(opts)
-      check_params(opts,[:sub_def_list])
-      super
+      opts = check_params(opts,[:sub_def_list])
+      super(opts)
     end
 
     ##
@@ -194,8 +194,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::SubscriptionDefinition] :sub_def_list The output results for the list of subscription identifiers.
     def query(opts)
-      check_params(opts,[:sub_def_list])
-      super
+      opts = check_params(opts,[:sub_def_list])
+      super(opts)
     end
 
     ##
@@ -233,8 +233,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::EventSubscription::UserCredential] :credential_list The list of credentials to associate with the url's of the given list of subscription identifiers.
     def set_authentication(opts)
-      check_params(opts,[:credential_list])
-      super
+      opts = check_params(opts,[:credential_list])
+      super(opts)
     end
 
     ##
@@ -249,8 +249,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :max_timeslice_list A list of maximum timeslice (in seconds) to be applied to the given subscription identifier.
     def set_max_timeslice(opts)
-      check_params(opts,[:max_timeslice_list])
-      super
+      opts = check_params(opts,[:max_timeslice_list])
+      super(opts)
     end
 
     ##
@@ -265,8 +265,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :min_events_list A list of minimum event values to be applied to the given subscription identifiers.
     def set_min_events_per_timeslice(opts)
-      check_params(opts,[:min_events_list])
-      super
+      opts = check_params(opts,[:min_events_list])
+      super(opts)
     end
 
     ##
@@ -279,8 +279,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state_list The enabled states to set the list of subscription ids. These must match the id_list array.
     def set_state(opts)
-      check_params(opts,[:state_list])
-      super
+      opts = check_params(opts,[:state_list])
+      super(opts)
     end
 
     ##
@@ -293,8 +293,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ttl_list A list of ttl values for the given subscription identifiers. A value of -1 indicates an infinite lifetime.
     def set_ttl(opts)
-      check_params(opts,[:ttl_list])
-      super
+      opts = check_params(opts,[:ttl_list])
+      super(opts)
     end
 
     ##
@@ -307,8 +307,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :url_list The list of url's corresponding to the input list of subscription identifiers.
     def set_url(opts)
-      check_params(opts,[:url_list])
-      super
+      opts = check_params(opts,[:url_list])
+      super(opts)
     end
 
     ##

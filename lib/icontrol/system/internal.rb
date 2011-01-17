@@ -36,8 +36,8 @@ module IControl::System
     # @option opts [String] :addresses Addresses to test
     # @option opts [long] :ports Ports to test
     def test_connection(opts)
-      check_params(opts,[:addresses,:ports])
-      super
+      opts = check_params(opts,[:addresses,:ports])
+      super(opts)
     end
 
     ##

@@ -14,8 +14,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :servers The servers to add to the LDAP configurations.
     def add_server(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -28,8 +28,8 @@ module IControl::Management
     # @option opts [String] :search_base_dns The distinguished names of the search bases used by the configurations.
     # @option opts [String[]] :servers The list of servers to be assigned to each of the configurations.
     def create(opts)
-      check_params(opts,[:search_base_dns,:servers])
-      super
+      opts = check_params(opts,[:search_base_dns,:servers])
+      super(opts)
     end
 
     ##
@@ -42,8 +42,8 @@ module IControl::Management
     # @option opts [String] :search_base_dn The distinguished name of the search base used by the configuration.
     # @option opts [String] :servers The list of servers to be assigned to the configuration.
     def create_default_authentication_ad_configuration(opts)
-      check_params(opts,[:search_base_dn,:servers])
-      super
+      opts = check_params(opts,[:search_base_dn,:servers])
+      super(opts)
     end
 
     ##
@@ -56,8 +56,8 @@ module IControl::Management
     # @option opts [String] :search_base_dn The distinguished name of the search base used by the configuration.
     # @option opts [String] :servers The list of servers to be assigned to the configuration.
     def create_default_authentication_ldap_configuration(opts)
-      check_params(opts,[:search_base_dn,:servers])
-      super
+      opts = check_params(opts,[:search_base_dn,:servers])
+      super(opts)
     end
 
     ##
@@ -389,8 +389,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :servers The servers to remove from the LDAP configurations.
     def remove_server(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -402,8 +402,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :bind_dns The distinguished names used to bind to the servers.
     def set_bind_distinguished_name(opts)
-      check_params(opts,[:bind_dns])
-      super
+      opts = check_params(opts,[:bind_dns])
+      super(opts)
     end
 
     ##
@@ -415,8 +415,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :bind_passwords The credentials used to bind to the servers.
     def set_bind_password(opts)
-      check_params(opts,[:bind_passwords])
-      super
+      opts = check_params(opts,[:bind_passwords])
+      super(opts)
     end
 
     ##
@@ -428,8 +428,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :time_limits The bind time limits in seconds.
     def set_bind_time_limit(opts)
-      check_params(opts,[:time_limits])
-      super
+      opts = check_params(opts,[:time_limits])
+      super(opts)
     end
 
     ##
@@ -444,8 +444,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified configurations.
     def set_check_host_attribute_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -457,8 +457,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The syslog debugging states of the specified configurations.
     def set_debug_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -470,8 +470,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :filters The filter strings.
     def set_filter(opts)
-      check_params(opts,[:filters])
-      super
+      opts = check_params(opts,[:filters])
+      super(opts)
     end
 
     ##
@@ -483,8 +483,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :group_dns The group distinguished names.
     def set_group_distinguished_name(opts)
-      check_params(opts,[:group_dns])
-      super
+      opts = check_params(opts,[:group_dns])
+      super(opts)
     end
 
     ##
@@ -496,8 +496,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :member_attrs The group member attributes.
     def set_group_member_attribute(opts)
-      check_params(opts,[:member_attrs])
-      super
+      opts = check_params(opts,[:member_attrs])
+      super(opts)
     end
 
     ##
@@ -510,8 +510,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :time_limits The idle time limits in seconds.
     def set_idle_time_limit(opts)
-      check_params(opts,[:time_limits])
-      super
+      opts = check_params(opts,[:time_limits])
+      super(opts)
     end
 
     ##
@@ -524,8 +524,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified configurations.
     def set_ignore_unavailable_authentication_information_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -537,8 +537,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::LDAPSSLOption] :options The LDAP SSL options used by the configurations.
     def set_ldap_ssl_option(opts)
-      check_params(opts,[:options])
-      super
+      opts = check_params(opts,[:options])
+      super(opts)
     end
 
     ##
@@ -550,8 +550,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :versions The LDAP versions to use by the LDAP configurations.
     def set_ldap_version(opts)
-      check_params(opts,[:versions])
-      super
+      opts = check_params(opts,[:versions])
+      super(opts)
     end
 
     ##
@@ -563,8 +563,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :login_attributes The login attributes.
     def set_login_attribute(opts)
-      check_params(opts,[:login_attributes])
-      super
+      opts = check_params(opts,[:login_attributes])
+      super(opts)
     end
 
     ##
@@ -576,8 +576,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ports The ports used by the LDAP servers in the configurations.
     def set_port(opts)
-      check_params(opts,[:ports])
-      super
+      opts = check_params(opts,[:ports])
+      super(opts)
     end
 
     ##
@@ -589,8 +589,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :search_base_dns The distinguished names of the search bases used by the LDAP configurations.
     def set_search_base_distinguished_name(opts)
-      check_params(opts,[:search_base_dns])
-      super
+      opts = check_params(opts,[:search_base_dns])
+      super(opts)
     end
 
     ##
@@ -602,8 +602,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::LDAPSearchScope] :search_scopes The search scopes used by the LDAP configurations.
     def set_search_scope(opts)
-      check_params(opts,[:search_scopes])
-      super
+      opts = check_params(opts,[:search_scopes])
+      super(opts)
     end
 
     ##
@@ -616,8 +616,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :time_limits The search time limits in seconds.
     def set_search_time_limit(opts)
-      check_params(opts,[:time_limits])
-      super
+      opts = check_params(opts,[:time_limits])
+      super(opts)
     end
 
     ##
@@ -629,8 +629,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :ca_cert_files The CA certificates used in server certificate verification.
     def set_ssl_ca_certificate_file(opts)
-      check_params(opts,[:ca_cert_files])
-      super
+      opts = check_params(opts,[:ca_cert_files])
+      super(opts)
     end
 
     ##
@@ -642,8 +642,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified configurations.
     def set_ssl_check_peer_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -655,8 +655,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :ciphers The SSL cipher suite used by the LDAP configurations.
     def set_ssl_cipher(opts)
-      check_params(opts,[:ciphers])
-      super
+      opts = check_params(opts,[:ciphers])
+      super(opts)
     end
 
     ##
@@ -668,8 +668,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :certificates The client certificates used by the LDAP configurations.
     def set_ssl_client_certificate(opts)
-      check_params(opts,[:certificates])
-      super
+      opts = check_params(opts,[:certificates])
+      super(opts)
     end
 
     ##
@@ -681,8 +681,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :keys The client keys used by the LDAP configurations.
     def set_ssl_client_key(opts)
-      check_params(opts,[:keys])
-      super
+      opts = check_params(opts,[:keys])
+      super(opts)
     end
 
     ##
@@ -694,8 +694,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :templates The user templates.
     def set_user_template(opts)
-      check_params(opts,[:templates])
-      super
+      opts = check_params(opts,[:templates])
+      super(opts)
     end
 
     ##
@@ -707,8 +707,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified configurations.
     def set_warning_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
 

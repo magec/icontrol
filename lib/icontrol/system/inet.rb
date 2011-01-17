@@ -70,8 +70,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :ip_addresses The list of IP addresses to translate into hostnames.
     def ip_to_hostname(opts)
-      check_params(opts,[:ip_addresses])
-      super
+      opts = check_params(opts,[:ip_addresses])
+      super(opts)
     end
 
     ##
@@ -86,8 +86,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :service_names The list of hostnames to translate into IP addresses
     def service_name_to_service_number(opts)
-      check_params(opts,[:service_names])
-      super
+      opts = check_params(opts,[:service_names])
+      super(opts)
     end
 
     ##
@@ -102,8 +102,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long] :services The list of service numbers to translate into service names.
     def service_number_to_service_name(opts)
-      check_params(opts,[:services])
-      super
+      opts = check_params(opts,[:services])
+      super(opts)
     end
 
     ##
@@ -115,8 +115,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :hostname The new hostname to set.
     def set_hostname(opts)
-      check_params(opts,[:hostname])
-      super
+      opts = check_params(opts,[:hostname])
+      super(opts)
     end
 
     ##
@@ -128,8 +128,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :ntp_addresses The IP addresses/host names of valid NTP servers.
     def set_ntp_server_address(opts)
-      check_params(opts,[:ntp_addresses])
-      super
+      opts = check_params(opts,[:ntp_addresses])
+      super(opts)
     end
 
 

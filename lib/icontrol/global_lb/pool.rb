@@ -23,8 +23,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Pool::PoolMemberDefinition[]] :members The members to add to the pools.
     def add_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -37,8 +37,8 @@ module IControl::GlobalLB
     # @option opts [IControl::GlobalLB::LBMethod] :lb_methods The load balancing methods to use for the pools.
     # @option opts [IControl::GlobalLB::Pool::PoolMemberDefinition[]] :members The lists of initial members of the pools.
     def create(opts)
-      check_params(opts,[:lb_methods,:members])
-      super
+      opts = check_params(opts,[:lb_methods,:members])
+      super(opts)
     end
 
     ##
@@ -396,8 +396,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to delete from the pools.
     def remove_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -431,8 +431,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LBMethod] :lb_methods The alternate load balancing methods to use for the pools.
     def set_alternate_lb_method(opts)
-      check_params(opts,[:lb_methods])
-      super
+      opts = check_params(opts,[:lb_methods])
+      super(opts)
     end
 
     ##
@@ -444,8 +444,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :answers The Round Robin LDNS limits to set for the pools.
     def set_answers_to_return(opts)
-      check_params(opts,[:answers])
-      super
+      opts = check_params(opts,[:answers])
+      super(opts)
     end
 
     ##
@@ -457,8 +457,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :cnames The CNAMEs for the specified pools.
     def set_cname(opts)
-      check_params(opts,[:cnames])
-      super
+      opts = check_params(opts,[:cnames])
+      super(opts)
     end
 
     ##
@@ -471,8 +471,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the pools.
     def set_dynamic_ratio_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -484,8 +484,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The enabled states to set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -497,8 +497,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :ips The fallback IP addresses for the specified pools.
     def set_fallback_ip(opts)
-      check_params(opts,[:ips])
-      super
+      opts = check_params(opts,[:ips])
+      super(opts)
     end
 
     ##
@@ -510,8 +510,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LBMethod] :lb_methods The fallback load balancing methods to use for the pools.
     def set_fallback_lb_method(opts)
-      check_params(opts,[:lb_methods])
-      super
+      opts = check_params(opts,[:lb_methods])
+      super(opts)
     end
 
     ##
@@ -523,8 +523,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Pool::PoolMetricLimit] :limits The pools' metric limits.
     def set_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -537,8 +537,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the pools.
     def set_manual_resume_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -551,8 +551,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Pool::MonitorAssociation] :monitor_associations The monitor associations that will be used to evaluate the specified pools.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -564,8 +564,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LBMethod] :lb_methods The preferred load balancing methods to use for the pools.
     def set_preferred_lb_method(opts)
-      check_params(opts,[:lb_methods])
-      super
+      opts = check_params(opts,[:lb_methods])
+      super(opts)
     end
 
     ##
@@ -578,8 +578,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The bits per second QoS coefficients of the specified pools.
     def set_qos_coefficient_bps(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -592,8 +592,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The connection rate QoS coefficients of the specified pools.
     def set_qos_coefficient_connection_rate(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -606,8 +606,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The ping packet completion rate QoS coefficients of the specified pools.
     def set_qos_coefficient_hit_ratio(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -619,8 +619,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The hops QoS coefficients of the specified pools.
     def set_qos_coefficient_hops(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -633,8 +633,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The link capacity QoS coefficients of the specified pools.
     def set_qos_coefficient_lcs(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -646,8 +646,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The packet rate QoS coefficients of the specified pools.
     def set_qos_coefficient_packet_rate(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -660,8 +660,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The RTT QoS coefficients of the specified pools.
     def set_qos_coefficient_rtt(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -673,8 +673,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The topology QoS coefficients of the specified pools.
     def set_qos_coefficient_topology(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -687,8 +687,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The virtual server capacity QoS coefficients of the specified pools.
     def set_qos_coefficient_vs_capacity(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -701,8 +701,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The VS score QoS coefficients of the specified pools.
     def set_qos_coefficient_vs_score(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -714,8 +714,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The TTLs of the specified pools.
     def set_ttl(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -728,8 +728,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the pools.
     def set_verify_member_availability_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

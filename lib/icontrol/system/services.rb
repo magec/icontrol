@@ -93,8 +93,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long] :seconds_to_reboot The number of seconds before the reboot takes place.
     def reboot_system(opts)
-      check_params(opts,[:seconds_to_reboot])
-      super
+      opts = check_params(opts,[:seconds_to_reboot])
+      super(opts)
     end
 
     ##
@@ -109,8 +109,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Services::ServiceAction] :service_action The action for the services to take.
     def set_all_services(opts)
-      check_params(opts,[:service_action])
-      super
+      opts = check_params(opts,[:service_action])
+      super(opts)
     end
 
     ##
@@ -123,8 +123,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Services::ServiceAction] :service_action The action for the services to take.
     def set_service(opts)
-      check_params(opts,[:service_action])
-      super
+      opts = check_params(opts,[:service_action])
+      super(opts)
     end
 
     ##
@@ -137,8 +137,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Services::SSHAccess] :access Access structure indicating enable/disable state of the		SSH service and an address range allowed to access		the device via ssh.
     def set_ssh_access(opts)
-      check_params(opts,[:access])
-      super
+      opts = check_params(opts,[:access])
+      super(opts)
     end
 
     ##
@@ -150,8 +150,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Services::SSHAccess_v2] :access Access structure indicating enable/disable state of the		SSH service and an address range allowed to access		the device via ssh.
     def set_ssh_access_v2(opts)
-      check_params(opts,[:access])
-      super
+      opts = check_params(opts,[:access])
+      super(opts)
     end
 
     ##

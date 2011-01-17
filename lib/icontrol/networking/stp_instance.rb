@@ -34,8 +34,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :vlan_names The VLAN names to add to the spanning tree instances.
     def add_vlan(opts)
-      check_params(opts,[:vlan_names])
-      super
+      opts = check_params(opts,[:vlan_names])
+      super(opts)
     end
 
     ##
@@ -48,8 +48,8 @@ module IControl::Networking
     # @option opts [long] :priorities The per-instance bridge priorities.
     # @option opts [String[]] :vlan_names The VLAN members that are under the control of the STP instances.
     def create(opts)
-      check_params(opts,[:priorities,:vlan_names])
-      super
+      opts = check_params(opts,[:priorities,:vlan_names])
+      super(opts)
     end
 
     ##
@@ -101,8 +101,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The interfaces/trunks from which to get the active states.
     def interface_active_state(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -130,8 +130,8 @@ module IControl::Networking
     # @option opts [String[]] :interfaces The interfaces from which to get the interface path costs.
     # @option opts [IControl::Networking::STPInstance::PathCostType[]] :path_cost_types The types of path costs (internal/external) to query.
     def interface_path_cost(opts)
-      check_params(opts,[:interfaces,:path_cost_types])
-      super
+      opts = check_params(opts,[:interfaces,:path_cost_types])
+      super(opts)
     end
 
     ##
@@ -151,8 +151,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The interfaces from which to get the interface priorities.
     def interface_priority(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -165,8 +165,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The interfaces/trunks from which to get the active states.
     def interface_requested_state(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -179,8 +179,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The interfaces/trunks from which to get the active states.
     def interface_role(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -260,8 +260,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :vlan_names The VLAN names to remove from the spanning tree instances.
     def remove_vlan(opts)
-      check_params(opts,[:vlan_names])
-      super
+      opts = check_params(opts,[:vlan_names])
+      super(opts)
     end
 
     ##
@@ -281,8 +281,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :priorities The bridge priorities of the specified spanning tree instances.
     def set_bridge_priority(opts)
-      check_params(opts,[:priorities])
-      super
+      opts = check_params(opts,[:priorities])
+      super(opts)
     end
 
     ##
@@ -308,8 +308,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::STPInstance::InterfacePathCost[]] :path_costs The interface path costs of the specified interfaces in the spanning tree instances.
     def set_interface_path_cost(opts)
-      check_params(opts,[:path_costs])
-      super
+      opts = check_params(opts,[:path_costs])
+      super(opts)
     end
 
     ##
@@ -328,8 +328,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::STPInstance::InterfacePriority[]] :priorities The interface priorities of the specified interfaces in the spanning tree instances.
     def set_interface_priority(opts)
-      check_params(opts,[:priorities])
-      super
+      opts = check_params(opts,[:priorities])
+      super(opts)
     end
 
     ##

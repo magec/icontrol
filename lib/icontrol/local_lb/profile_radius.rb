@@ -18,8 +18,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :clients The lists of clients.
     def add_client(opts)
-      check_params(opts,[:clients])
-      super
+      opts = check_params(opts,[:clients])
+      super(opts)
     end
 
     ##
@@ -152,8 +152,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :clients The lists of clients.
     def remove_client(opts)
-      check_params(opts,[:clients])
-      super
+      opts = check_params(opts,[:clients])
+      super(opts)
     end
 
     ##
@@ -186,8 +186,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -204,8 +204,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :avps The attribute value pair on which to persist for the specified profiles.
     def set_persist_avp(opts)
-      check_params(opts,[:avps])
-      super
+      opts = check_params(opts,[:avps])
+      super(opts)
     end
 
     ##

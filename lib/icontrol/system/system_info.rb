@@ -18,8 +18,8 @@ module IControl::System
     # @option opts [long] :duration_sec Time for how long the system should keep the lock. The lock will be automatically released when duration time is over.
     # @option opts [String] :comment Additional user oriented information about this lock.
     def acquire_lock(opts)
-      check_params(opts,[:duration_sec,:comment])
-      super
+      opts = check_params(opts,[:duration_sec,:comment])
+      super(opts)
     end
 
     ##
@@ -87,8 +87,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :host_ids A list of host ids for which to get CPU usage extended information.
     def cpu_usage_extended_information(opts)
-      check_params(opts,[:host_ids])
-      super
+      opts = check_params(opts,[:host_ids])
+      super(opts)
     end
 
     ##
@@ -195,8 +195,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :lock_names sequence of lock names.
     def lock_status(opts)
-      check_params(opts,[:lock_names])
-      super
+      opts = check_params(opts,[:lock_names])
+      super(opts)
     end
 
     ##
@@ -351,8 +351,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :group_id The group identifier.
     def set_group_id(opts)
-      check_params(opts,[:group_id])
-      super
+      opts = check_params(opts,[:group_id])
+      super(opts)
     end
 
 

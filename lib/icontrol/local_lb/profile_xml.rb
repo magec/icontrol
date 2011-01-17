@@ -24,8 +24,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileXML::NamespaceMapping[]] :namespace_mappings The lists of namespace mappings to be added to the namespace mappings list for each of the XML profiles respectively.
     def add_namespace_mappings(opts)
-      check_params(opts,[:namespace_mappings])
-      super
+      opts = check_params(opts,[:namespace_mappings])
+      super(opts)
     end
 
     ##
@@ -40,8 +40,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :xpath_queries The lists of XPath queries to be added to the XPath queries list of each XML profile respectively.
     def add_xpath_queries(opts)
-      check_params(opts,[:xpath_queries])
-      super
+      opts = check_params(opts,[:xpath_queries])
+      super(opts)
     end
 
     ##
@@ -212,8 +212,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileXML::NamespaceMapping[]] :namespace_mappings The lists of namespace mappings to be removed from each of the XML profiles respectively.
     def remove_namespace_mappings(opts)
-      check_params(opts,[:namespace_mappings])
-      super
+      opts = check_params(opts,[:namespace_mappings])
+      super(opts)
     end
 
     ##
@@ -225,8 +225,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :xpath_queries The lists of XPath queries to be removed from the XPath queries list of each XML profile respectively.
     def remove_xpath_queries(opts)
-      check_params(opts,[:xpath_queries])
-      super
+      opts = check_params(opts,[:xpath_queries])
+      super(opts)
     end
 
     ##
@@ -248,8 +248,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified profiles.
     def set_abort_on_error_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -262,8 +262,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -275,8 +275,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The maximum buffer sizes.
     def set_maximum_buffer_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##

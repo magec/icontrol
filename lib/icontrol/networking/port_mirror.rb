@@ -15,8 +15,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The lists of mirrored-from interfaces.
     def add_interface(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -29,8 +29,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The lists of interfaces from which mirroring will take place.
     def create(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -103,8 +103,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The lists of mirrored-from interfaces.
     def remove_interface(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
 

@@ -47,8 +47,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :image_filenames are the images you want to delete.
     def delete_software_image(opts)
-      check_params(opts,[:image_filenames])
-      super
+      opts = check_params(opts,[:image_filenames])
+      super(opts)
     end
 
     ##
@@ -77,8 +77,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [boolean] :save_active_config The boolean indicating whether we should backup the			 configuration on the active boot location for the installer.
     def boot_image_information(opts)
-      check_params(opts,[:save_active_config])
-      super
+      opts = check_params(opts,[:save_active_config])
+      super(opts)
     end
 
     ##
@@ -130,8 +130,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::SoftwareManagement::InstallationID] :installation_ids What locations do you want percent complete.
     def live_install_completion(opts)
-      check_params(opts,[:installation_ids])
-      super
+      opts = check_params(opts,[:installation_ids])
+      super(opts)
     end
 
     ##
@@ -200,8 +200,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::SoftwareManagement::InstallationID] :installation_ids Locations for which you want software status.
     def software_status(opts)
-      check_params(opts,[:installation_ids])
-      super
+      opts = check_params(opts,[:installation_ids])
+      super(opts)
     end
 
     ##
@@ -233,8 +233,8 @@ module IControl::System
     # @option opts [String] :hotfix_files The names of the hotfix files to be installed. These hotfix files		 must already exist on the system.
     # @option opts [boolean] :reboot_system The flag to indicate whether to reboot the system after the			hotfixes have been installed.
     def install_hotfix(opts)
-      check_params(opts,[:hotfix_files,:reboot_system])
-      super
+      opts = check_params(opts,[:hotfix_files,:reboot_system])
+      super(opts)
     end
 
     ##
@@ -248,8 +248,8 @@ module IControl::System
     # @option opts [String] :hotfix_files The names of the hotfix files to be installed. These hotfix files		 must already exist on the system.
     # @option opts [boolean] :reboot_system The flag to indicate whether to reboot the system after the			hotfixes have been installed.
     def install_hotfix_no_daemons(opts)
-      check_params(opts,[:hotfix_files,:reboot_system])
-      super
+      opts = check_params(opts,[:hotfix_files,:reboot_system])
+      super(opts)
     end
 
     ##
@@ -264,8 +264,8 @@ module IControl::System
     # @option opts [String] :version The version of product (ex: 10.0.0)
     # @option opts [String] :build
     def install_software_image(opts)
-      check_params(opts,[:install_volume,:product,:version,:build])
-      super
+      opts = check_params(opts,[:install_volume,:product,:version,:build])
+      super(opts)
     end
 
     ##
@@ -278,8 +278,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [char] :boot_image_information The boot image information file data.
     def set_boot_image_information(opts)
-      check_params(opts,[:boot_image_information])
-      super
+      opts = check_params(opts,[:boot_image_information])
+      super(opts)
     end
 
     ##
@@ -292,8 +292,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :location The boot location name. Short-form names such as CF1 .1, HD1 .1, HD1 .2
     def set_boot_location(opts)
-      check_params(opts,[:location])
-      super
+      opts = check_params(opts,[:location])
+      super(opts)
     end
 
     ##
@@ -307,8 +307,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :location The boot location name. Short-form names such as CF1 .1, HD1 .1, HD1 .2
     def set_cluster_boot_location(opts)
-      check_params(opts,[:location])
-      super
+      opts = check_params(opts,[:location])
+      super(opts)
     end
 
     ##

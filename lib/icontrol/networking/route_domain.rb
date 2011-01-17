@@ -20,8 +20,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :vlans The lists of child VLANs .
     def add_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##
@@ -33,8 +33,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :vlans The lists of VLANs .
     def create(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##
@@ -139,8 +139,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :vlans The lists of child VLANs .
     def remove_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##
@@ -152,8 +152,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :descriptions The descriptions to set for the specified route domains.
     def set_description(opts)
-      check_params(opts,[:descriptions])
-      super
+      opts = check_params(opts,[:descriptions])
+      super(opts)
     end
 
     ##
@@ -165,8 +165,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :parent_ids The route domain parent ids.
     def set_parent_id(opts)
-      check_params(opts,[:parent_ids])
-      super
+      opts = check_params(opts,[:parent_ids])
+      super(opts)
     end
 
     ##
@@ -183,8 +183,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states State to enforce cross-domain routing restrictions for each specified route domain (default: enabled)
     def set_strict_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
 

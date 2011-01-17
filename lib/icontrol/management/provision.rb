@@ -105,8 +105,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ratios CPU ratios (arbitrary units from 0 to 255) for the		 requested modules, where zero is equivalent to		 the "minimum" level (default: 0)
     def set_custom_cpu_ratio(opts)
-      check_params(opts,[:ratios])
-      super
+      opts = check_params(opts,[:ratios])
+      super(opts)
     end
 
     ##
@@ -119,8 +119,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ratios Disk space ratios (arbitrary units from 0 to 255)		 for the requested modules, where zero is		 equivalent to the "minimum" level (default: 0)
     def set_custom_disk_ratio(opts)
-      check_params(opts,[:ratios])
-      super
+      opts = check_params(opts,[:ratios])
+      super(opts)
     end
 
     ##
@@ -133,8 +133,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ratios System memory ratios (arbitrary units from 0 to		 255) for the requested modules, where zero is		 equivalent to the "minimum" level (default: 0)
     def set_custom_memory_ratio(opts)
-      check_params(opts,[:ratios])
-      super
+      opts = check_params(opts,[:ratios])
+      super(opts)
     end
 
     ##
@@ -151,8 +151,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::Provision::ProvisionLevel] :levels Provisioning levels for the requested modules
     def set_level(opts)
-      check_params(opts,[:levels])
-      super
+      opts = check_params(opts,[:levels])
+      super(opts)
     end
 
 

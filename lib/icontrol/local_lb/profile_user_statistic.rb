@@ -95,8 +95,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileUserStatistic::UserStatisticKey[]] :statistic_keys The statistic keys used to index the statistic names.			Each "inner" sequence of statistic keys corresponds to a profile			specified in profile_names.
     def statistic_name(opts)
-      check_params(opts,[:statistic_keys])
-      super
+      opts = check_params(opts,[:statistic_keys])
+      super(opts)
     end
 
     ##
@@ -154,8 +154,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -167,8 +167,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileUserStatistic::UserStatisticName[]] :statistic_names The user-defined statistic names in the specified profiles.			 Each "inner" sequence of statistic names corresponds to a profile			 specified in profile_names.
     def set_statistic_name(opts)
-      check_params(opts,[:statistic_names])
-      super
+      opts = check_params(opts,[:statistic_names])
+      super(opts)
     end
 
     ##

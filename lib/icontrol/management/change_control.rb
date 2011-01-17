@@ -46,8 +46,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :filter The filter to apply to the class names
     def class_info(opts)
-      check_params(opts,[:filter])
-      super
+      opts = check_params(opts,[:filter])
+      super(opts)
     end
 
     ##
@@ -61,8 +61,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :filter The filter to apply to the class names
     def deprecated_class_info(opts)
-      check_params(opts,[:filter])
-      super
+      opts = check_params(opts,[:filter])
+      super(opts)
     end
 
     ##
@@ -75,8 +75,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::InstanceFormatType] :instance_format The format of contents
     def instance(opts)
-      check_params(opts,[:instance_format])
-      super
+      opts = check_params(opts,[:instance_format])
+      super(opts)
     end
 
     ##
@@ -89,8 +89,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :depth Limits the depth of search. Zero indicates no limit.
     def instance_dependency(opts)
-      check_params(opts,[:depth])
-      super
+      opts = check_params(opts,[:depth])
+      super(opts)
     end
 
     ##
@@ -103,8 +103,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::ClassTransactionInfo] :classes Class names and transaction information (tx = 0 indicates all instances)
     def instance_info(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -117,8 +117,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::InstanceVariableType] :instance_variable The format of contents
     def instance_variable(opts)
-      check_params(opts,[:instance_variable])
-      super
+      opts = check_params(opts,[:instance_variable])
+      super(opts)
     end
 
     ##
@@ -142,8 +142,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :filter The filter to apply to the module names
     def module_info(opts)
-      check_params(opts,[:filter])
-      super
+      opts = check_params(opts,[:filter])
+      super(opts)
     end
 
     ##
@@ -164,8 +164,8 @@ module IControl::Management
     # @option opts [IControl::Management::ChangeControl::InstanceFormatType] :instance_format The instance format used in the data (same for all instances)
     # @option opts [String] :data Formatted configuration (collection of instance data)
     def put_config(opts)
-      check_params(opts,[:instance_format,:data])
-      super
+      opts = check_params(opts,[:instance_format,:data])
+      super(opts)
     end
 
     ##
@@ -177,8 +177,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::Instance] :instances The instances to put (transaction_id discarded)
     def put_instance(opts)
-      check_params(opts,[:instances])
-      super
+      opts = check_params(opts,[:instances])
+      super(opts)
     end
 
     ##
@@ -191,8 +191,8 @@ module IControl::Management
     # @option opts [IControl::Management::ChangeControl::InstanceFormatType] :instance_format The instance format used in the data (same for all instances)
     # @option opts [String] :data Formatted configuration (collection of instance data)
     def verify_config(opts)
-      check_params(opts,[:instance_format,:data])
-      super
+      opts = check_params(opts,[:instance_format,:data])
+      super(opts)
     end
 
     ##
@@ -204,8 +204,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ChangeControl::Instance] :instances The instances to verify (transaction_id discarded)
     def verify_instance(opts)
-      check_params(opts,[:instances])
-      super
+      opts = check_params(opts,[:instances])
+      super(opts)
     end
 
     ##

@@ -20,8 +20,8 @@ module IControl::Networking
     # @option opts [IControl::Common::EnabledState] :enabled The enabled flag.
     # @option opts [String] :serverssl The serverssl name.
     def create(opts)
-      check_params(opts,[:woc_instance,:local_ips,:enabled,:serverssl])
-      super
+      opts = check_params(opts,[:woc_instance,:local_ips,:enabled,:serverssl])
+      super(opts)
     end
 
     ##
@@ -150,8 +150,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :nat_states The new nat states.
     def set_allow_nat(opts)
-      check_params(opts,[:nat_states])
-      super
+      opts = check_params(opts,[:nat_states])
+      super(opts)
     end
 
     ##
@@ -163,8 +163,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :enabled_states The new enabled state flags.
     def set_enabled_state(opts)
-      check_params(opts,[:enabled_states])
-      super
+      opts = check_params(opts,[:enabled_states])
+      super(opts)
     end
 
     ##
@@ -176,8 +176,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :ips The local ip addresses.
     def set_management_address(opts)
-      check_params(opts,[:ips])
-      super
+      opts = check_params(opts,[:ips])
+      super(opts)
     end
 
     ##
@@ -189,8 +189,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionLocalInterface::NatSourceAddress] :nat_states The new nat states.
     def set_nat_source_address(opts)
-      check_params(opts,[:nat_states])
-      super
+      opts = check_params(opts,[:nat_states])
+      super(opts)
     end
 
     ##
@@ -202,8 +202,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :serverssls The serverssl strings to be used.
     def set_serverssl(opts)
-      check_params(opts,[:serverssls])
-      super
+      opts = check_params(opts,[:serverssls])
+      super(opts)
     end
 
     ##
@@ -215,8 +215,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :ports The new local port numbers.
     def set_tunnel_port(opts)
-      check_params(opts,[:ports])
-      super
+      opts = check_params(opts,[:ports])
+      super(opts)
     end
 
 

@@ -31,8 +31,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::PasswordInfo] :password The new password.
     def change_my_password(opts)
-      check_params(opts,[:password])
-      super
+      opts = check_params(opts,[:password])
+      super(opts)
     end
 
     ##
@@ -44,8 +44,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :passwords The new clear-text passwords.
     def change_password(opts)
-      check_params(opts,[:passwords])
-      super
+      opts = check_params(opts,[:passwords])
+      super(opts)
     end
 
     ##
@@ -57,8 +57,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::PasswordInfo] :passwords The new passwords.
     def change_password_2(opts)
-      check_params(opts,[:passwords])
-      super
+      opts = check_params(opts,[:passwords])
+      super(opts)
     end
 
     ##
@@ -74,8 +74,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserInfo] :users The user's information.
     def create_user(opts)
-      check_params(opts,[:users])
-      super
+      opts = check_params(opts,[:users])
+      super(opts)
     end
 
     ##
@@ -90,8 +90,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserInfo2] :users The user's information.
     def create_user_2(opts)
-      check_params(opts,[:users])
-      super
+      opts = check_params(opts,[:users])
+      super(opts)
     end
 
     ##
@@ -103,8 +103,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserInfo3] :users The user's information.
     def create_user_3(opts)
-      check_params(opts,[:users])
-      super
+      opts = check_params(opts,[:users])
+      super(opts)
     end
 
     ##
@@ -317,8 +317,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::AuthenticationMethod] :auth_method The system authentication method to set.
     def set_authentication_method(opts)
-      check_params(opts,[:auth_method])
-      super
+      opts = check_params(opts,[:auth_method])
+      super(opts)
     end
 
     ##
@@ -331,8 +331,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :partition The default partition for system users.
     def set_default_partition(opts)
-      check_params(opts,[:partition])
-      super
+      opts = check_params(opts,[:partition])
+      super(opts)
     end
 
     ##
@@ -344,8 +344,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserRole] :role The default role for system users.
     def set_default_role(opts)
-      check_params(opts,[:role])
-      super
+      opts = check_params(opts,[:role])
+      super(opts)
     end
 
     ##
@@ -357,8 +357,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :fullnames The users' full names.
     def set_fullname(opts)
-      check_params(opts,[:fullnames])
-      super
+      opts = check_params(opts,[:fullnames])
+      super(opts)
     end
 
     ##
@@ -371,8 +371,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :gids The users' Group IDs .
     def set_group_id(opts)
-      check_params(opts,[:gids])
-      super
+      opts = check_params(opts,[:gids])
+      super(opts)
     end
 
     ##
@@ -385,8 +385,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :directories The home directories.
     def set_home_directory(opts)
-      check_params(opts,[:directories])
-      super
+      opts = check_params(opts,[:directories])
+      super(opts)
     end
 
     ##
@@ -398,8 +398,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :shells The users' login shells.
     def set_login_shell(opts)
-      check_params(opts,[:shells])
-      super
+      opts = check_params(opts,[:shells])
+      super(opts)
     end
 
     ##
@@ -412,8 +412,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [boolean] :enabled The remote console access for system users.
     def set_remote_console_access(opts)
-      check_params(opts,[:enabled])
-      super
+      opts = check_params(opts,[:enabled])
+      super(opts)
     end
 
     ##
@@ -426,8 +426,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserRole] :roles The new roles.
     def set_role(opts)
-      check_params(opts,[:roles])
-      super
+      opts = check_params(opts,[:roles])
+      super(opts)
     end
 
     ##
@@ -440,8 +440,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :uids The users' User IDs .
     def set_user_id(opts)
-      check_params(opts,[:uids])
-      super
+      opts = check_params(opts,[:uids])
+      super(opts)
     end
 
     ##
@@ -455,8 +455,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::UserManagement::UserPermission[]] :permissions The user permissions.
     def set_user_permission(opts)
-      check_params(opts,[:permissions])
-      super
+      opts = check_params(opts,[:permissions])
+      super(opts)
     end
 
     ##

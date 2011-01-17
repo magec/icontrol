@@ -37,8 +37,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::RateClass::RateUnit] :base_rates The base rates at which the maximum throughput to allot to traffic handled		 by the Rate Classes. Packets in excess of the posted rate will be dropped.
     def create(opts)
-      check_params(opts,[:base_rates])
-      super
+      opts = check_params(opts,[:base_rates])
+      super(opts)
     end
 
     ##
@@ -54,8 +54,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to create
     # @option opts [IControl::LocalLB::RateClass::DropPolicyType] :types Type for each created drop policy
     def create_drop_policy(opts)
-      check_params(opts,[:drop_policies,:types])
-      super
+      opts = check_params(opts,[:drop_policies,:types])
+      super(opts)
     end
 
     ##
@@ -68,8 +68,8 @@ module IControl::LocalLB
     # @option opts [String] :queues Names of the queueing methods to create
     # @option opts [IControl::LocalLB::RateClass::QueueType] :types Type for each created queueing method
     def create_queueing_method(opts)
-      check_params(opts,[:queues,:types])
-      super
+      opts = check_params(opts,[:queues,:types])
+      super(opts)
     end
 
     ##
@@ -81,8 +81,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Names of the shaping policies to create
     def create_shaping_policy(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -134,8 +134,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to delete
     def delete_drop_policy(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -147,8 +147,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :queues Names of the queueing methods to delete
     def delete_queueing_method(opts)
-      check_params(opts,[:queues])
-      super
+      opts = check_params(opts,[:queues])
+      super(opts)
     end
 
     ##
@@ -170,8 +170,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Names of the shaping policies to delete
     def delete_shaping_policy(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -272,8 +272,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_average_packet_size(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -286,8 +286,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_drop_limit_factor(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -312,8 +312,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_maximum_active_connections(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -328,8 +328,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_maximum_probability(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -342,8 +342,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_maximum_queue_size(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -358,8 +358,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_maximum_queue_threshold(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -374,8 +374,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_minimum_queue_threshold(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -388,8 +388,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_no_drop_limit_factor(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -402,8 +402,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_type(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -417,8 +417,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :drop_policies Names of the drop policies to query
     def drop_policy_weight(opts)
-      check_params(opts,[:drop_policies])
-      super
+      opts = check_params(opts,[:drop_policies])
+      super(opts)
     end
 
     ##
@@ -505,8 +505,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :queues Names of the queueing methods to query
     def queueing_method_bucket_count(opts)
-      check_params(opts,[:queues])
-      super
+      opts = check_params(opts,[:queues])
+      super(opts)
     end
 
     ##
@@ -520,8 +520,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :queues Names of the queueing methods to query
     def queueing_method_bucket_size(opts)
-      check_params(opts,[:queues])
-      super
+      opts = check_params(opts,[:queues])
+      super(opts)
     end
 
     ##
@@ -545,8 +545,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :queues Names of the queueing methods to query
     def queueing_method_maximum_queue_size(opts)
-      check_params(opts,[:queues])
-      super
+      opts = check_params(opts,[:queues])
+      super(opts)
     end
 
     ##
@@ -559,8 +559,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :queues Names of the queueing methods to query
     def queueing_method_minimum_queue_size(opts)
-      check_params(opts,[:queues])
-      super
+      opts = check_params(opts,[:queues])
+      super(opts)
     end
 
     ##
@@ -574,8 +574,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :queues Names of the queueing methods to query
     def queueing_method_perturbation_interval(opts)
-      check_params(opts,[:queues])
-      super
+      opts = check_params(opts,[:queues])
+      super(opts)
     end
 
     ##
@@ -589,8 +589,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :queues Names of the queueing methods to query
     def queueing_method_type(opts)
-      check_params(opts,[:queues])
-      super
+      opts = check_params(opts,[:queues])
+      super(opts)
     end
 
     ##
@@ -616,8 +616,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Names of the shaping policies to query
     def shaping_policy_burst_size(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -631,8 +631,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Names of the shaping policies to query
     def shaping_policy_drop_policy(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -657,8 +657,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Names of the shaping policies to query
     def shaping_policy_percent_of_parent_base_rate(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -672,8 +672,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Names of the shaping policies to query
     def shaping_policy_percent_of_parent_ceiling_rate(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -688,8 +688,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Names of the shaping policies to query
     def shaping_policy_queueing_method(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -732,8 +732,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::RateClass::RateUnit] :rates The base rates to set for the rate classes.
     def set_base_rate(opts)
-      check_params(opts,[:rates])
-      super
+      opts = check_params(opts,[:rates])
+      super(opts)
     end
 
     ##
@@ -746,8 +746,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :burst_sizes The burst sizes to set for the rate classes.
     def set_burst_size(opts)
-      check_params(opts,[:burst_sizes])
-      super
+      opts = check_params(opts,[:burst_sizes])
+      super(opts)
     end
 
     ##
@@ -764,8 +764,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::RateClass::RateUnit] :rates The ceiling rates to set for the rate classes.
     def set_ceiling_rate(opts)
-      check_params(opts,[:rates])
-      super
+      opts = check_params(opts,[:rates])
+      super(opts)
     end
 
     ##
@@ -778,8 +778,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::RateClass::DirectionType] :direction_types The direction types to set for the rate classes.
     def set_direction(opts)
-      check_params(opts,[:direction_types])
-      super
+      opts = check_params(opts,[:direction_types])
+      super(opts)
     end
 
     ##
@@ -792,8 +792,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :vlans Name of the egress VLAN for each specified rate filter class (default: none, i.e., this must be specified)
     def set_direction_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##
@@ -811,8 +811,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Name of the drop policy for each specified rate filter class (default: "tail")
     def set_drop_policy(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -826,8 +826,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :mtus Average packet (MTU) size for each specified drop policy (maximum: 10000 default: zero)
     def set_drop_policy_average_packet_size(opts)
-      check_params(opts,[:drop_policies,:mtus])
-      super
+      opts = check_params(opts,[:drop_policies,:mtus])
+      super(opts)
     end
 
     ##
@@ -841,8 +841,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :factors Drop limit factor for each specified drop policy (arbitrary units 0-400, default: zero)
     def set_drop_policy_drop_limit_factor(opts)
-      check_params(opts,[:drop_policies,:factors])
-      super
+      opts = check_params(opts,[:drop_policies,:factors])
+      super(opts)
     end
 
     ##
@@ -856,8 +856,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :max_conns Maximum number of connections for each specified drop policy (maximum: 10000. default: zero (disables the active connection limitation))
     def set_drop_policy_maximum_active_connections(opts)
-      check_params(opts,[:drop_policies,:max_conns])
-      super
+      opts = check_params(opts,[:drop_policies,:max_conns])
+      super(opts)
     end
 
     ##
@@ -872,8 +872,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :probabilities Maximum probability (percent) for each specified drop policy (default: zero)
     def set_drop_policy_maximum_probability(opts)
-      check_params(opts,[:drop_policies,:probabilities])
-      super
+      opts = check_params(opts,[:drop_policies,:probabilities])
+      super(opts)
     end
 
     ##
@@ -888,8 +888,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :max_sizes Maximum queue size for each specified drop policy (bytes) (default: zero)
     def set_drop_policy_maximum_queue_size(opts)
-      check_params(opts,[:drop_policies,:max_sizes])
-      super
+      opts = check_params(opts,[:drop_policies,:max_sizes])
+      super(opts)
     end
 
     ##
@@ -904,8 +904,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :thresholds Queue length above which packets are dropped for each specified drop policy (default: zero)
     def set_drop_policy_maximum_queue_threshold(opts)
-      check_params(opts,[:drop_policies,:thresholds])
-      super
+      opts = check_params(opts,[:drop_policies,:thresholds])
+      super(opts)
     end
 
     ##
@@ -920,8 +920,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :thresholds Queue length below which packets are not dropped for each specified drop policy (default: zero)
     def set_drop_policy_minimum_queue_threshold(opts)
-      check_params(opts,[:drop_policies,:thresholds])
-      super
+      opts = check_params(opts,[:drop_policies,:thresholds])
+      super(opts)
     end
 
     ##
@@ -935,8 +935,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :factors No-drop limit factor for each specified drop policy (arbitrary units 0-100, default: zero)
     def set_drop_policy_no_drop_limit_factor(opts)
-      check_params(opts,[:drop_policies,:factors])
-      super
+      opts = check_params(opts,[:drop_policies,:factors])
+      super(opts)
     end
 
     ##
@@ -950,8 +950,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [IControl::LocalLB::RateClass::DropPolicyType] :types Drop policy type for each specified drop policy (default: DROP_TAIL)
     def set_drop_policy_type(opts)
-      check_params(opts,[:drop_policies,:types])
-      super
+      opts = check_params(opts,[:drop_policies,:types])
+      super(opts)
     end
 
     ##
@@ -965,8 +965,8 @@ module IControl::LocalLB
     # @option opts [String] :drop_policies Names of the drop policies to modify
     # @option opts [long] :weights Weight used to calculate the average queue length for each specified drop policy (valid: 0, 64, 128, 256, 512. default: zero).
     def set_drop_policy_weight(opts)
-      check_params(opts,[:drop_policies,:weights])
-      super
+      opts = check_params(opts,[:drop_policies,:weights])
+      super(opts)
     end
 
     ##
@@ -981,8 +981,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :parents The parent rate class names.
     def set_parent(opts)
-      check_params(opts,[:parents])
-      super
+      opts = check_params(opts,[:parents])
+      super(opts)
     end
 
     ##
@@ -995,8 +995,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :percents Percent of the parent's base rate for each specified rate filter class (default: zero, i.e., the base rate is specified as bandwidth (see set_base_rate))
     def set_percent_of_parent_base_rate(opts)
-      check_params(opts,[:percents])
-      super
+      opts = check_params(opts,[:percents])
+      super(opts)
     end
 
     ##
@@ -1010,8 +1010,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :percents Percent of the parent's ceiling rate for each specified rate filter class (default: zero, i.e., the ceiling rate is specified as bandwidth (see set_ceiling_rate)
     def set_percent_of_parent_ceiling_rate(opts)
-      check_params(opts,[:percents])
-      super
+      opts = check_params(opts,[:percents])
+      super(opts)
     end
 
     ##
@@ -1024,8 +1024,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::RateClass::QueueType] :queue_types The queue types to set for the rate classes.
     def set_queue_type(opts)
-      check_params(opts,[:queue_types])
-      super
+      opts = check_params(opts,[:queue_types])
+      super(opts)
     end
 
     ##
@@ -1043,8 +1043,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :methods Name of the queueing method object for each specified rate filter class (default: "sfq")
     def set_queueing_method(opts)
-      check_params(opts,[:methods])
-      super
+      opts = check_params(opts,[:methods])
+      super(opts)
     end
 
     ##
@@ -1058,8 +1058,8 @@ module IControl::LocalLB
     # @option opts [String] :queues Names of the queueing methods to modify
     # @option opts [long] :bucket_counts Number of buckets for each specified queueing method (valid: 0, 16, 32, 64, 128, 256, 512, 1024 default: zero)
     def set_queueing_method_bucket_count(opts)
-      check_params(opts,[:queues,:bucket_counts])
-      super
+      opts = check_params(opts,[:queues,:bucket_counts])
+      super(opts)
     end
 
     ##
@@ -1073,8 +1073,8 @@ module IControl::LocalLB
     # @option opts [String] :queues Names of the queueing methods to modify
     # @option opts [long] :bucket_sizes Bucket size (bytes) for each specified queueing method (default: zero)
     def set_queueing_method_bucket_size(opts)
-      check_params(opts,[:queues,:bucket_sizes])
-      super
+      opts = check_params(opts,[:queues,:bucket_sizes])
+      super(opts)
     end
 
     ##
@@ -1087,8 +1087,8 @@ module IControl::LocalLB
     # @option opts [String] :queues Names of the queueing methods to modify
     # @option opts [long] :max_sizes Maximum queue size (bytes) for each specified queueing method (default: zero)
     def set_queueing_method_maximum_queue_size(opts)
-      check_params(opts,[:queues,:max_sizes])
-      super
+      opts = check_params(opts,[:queues,:max_sizes])
+      super(opts)
     end
 
     ##
@@ -1101,8 +1101,8 @@ module IControl::LocalLB
     # @option opts [String] :queues Names of the queueing methods to modify
     # @option opts [long] :min_sizes Minimum queue size (bytes) for each specified queueing method (default: zero)
     def set_queueing_method_minimum_queue_size(opts)
-      check_params(opts,[:queues,:min_sizes])
-      super
+      opts = check_params(opts,[:queues,:min_sizes])
+      super(opts)
     end
 
     ##
@@ -1116,8 +1116,8 @@ module IControl::LocalLB
     # @option opts [String] :queues Names of the queueing methods to modify
     # @option opts [long] :intervals Perturbation interval (seconds) for each specified queueing method (default: 10sec)
     def set_queueing_method_perturbation_interval(opts)
-      check_params(opts,[:queues,:intervals])
-      super
+      opts = check_params(opts,[:queues,:intervals])
+      super(opts)
     end
 
     ##
@@ -1131,8 +1131,8 @@ module IControl::LocalLB
     # @option opts [String] :queues Names of the queueing methods to modify
     # @option opts [IControl::LocalLB::RateClass::QueueType] :types Queueing method type for each specified queueing method (default: none, i.e., this must be specified)
     def set_queueing_method_type(opts)
-      check_params(opts,[:queues,:types])
-      super
+      opts = check_params(opts,[:queues,:types])
+      super(opts)
     end
 
     ##
@@ -1149,8 +1149,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :policies Name of the shaping policy object for each specified rate filter class (default: none)
     def set_shaping_policy(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -1164,8 +1164,8 @@ module IControl::LocalLB
     # @option opts [String] :policies Names of the shaping policies to modify
     # @option opts [long] :burst_sizes Burst size (bytes) for each specified shaping policy
     def set_shaping_policy_burst_size(opts)
-      check_params(opts,[:policies,:burst_sizes])
-      super
+      opts = check_params(opts,[:policies,:burst_sizes])
+      super(opts)
     end
 
     ##
@@ -1182,8 +1182,8 @@ module IControl::LocalLB
     # @option opts [String] :policies Names of the shaping policies to modify
     # @option opts [String] :drop_policies Name of the drop policy for each specified shaping policy (default: "tail")
     def set_shaping_policy_drop_policy(opts)
-      check_params(opts,[:policies,:drop_policies])
-      super
+      opts = check_params(opts,[:policies,:drop_policies])
+      super(opts)
     end
 
     ##
@@ -1198,8 +1198,8 @@ module IControl::LocalLB
     # @option opts [String] :policies Names of the shaping policies to modify
     # @option opts [long] :percents Percent of parent base rates for each specified shaping policy (default: zero)
     def set_shaping_policy_percent_of_parent_base_rate(opts)
-      check_params(opts,[:policies,:percents])
-      super
+      opts = check_params(opts,[:policies,:percents])
+      super(opts)
     end
 
     ##
@@ -1214,8 +1214,8 @@ module IControl::LocalLB
     # @option opts [String] :policies Names of the shaping policies to modify
     # @option opts [long] :percents Percent of parent base rates (default: zero) for each specified shaping policy
     def set_shaping_policy_percent_of_parent_ceiling_rate(opts)
-      check_params(opts,[:policies,:percents])
-      super
+      opts = check_params(opts,[:policies,:percents])
+      super(opts)
     end
 
     ##
@@ -1233,8 +1233,8 @@ module IControl::LocalLB
     # @option opts [String] :policies Names of the shaping policies to modify
     # @option opts [String] :methods Name of the queueing method object for each shaping policy (default: "sfq")
     def set_shaping_policy_queueing_method(opts)
-      check_params(opts,[:policies,:methods])
-      super
+      opts = check_params(opts,[:policies,:methods])
+      super(opts)
     end
 
     ##

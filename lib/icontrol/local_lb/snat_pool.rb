@@ -18,8 +18,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :members The members to add to the specified SNAT pools.
     def add_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -31,8 +31,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :translation_addresses The translation addresses associated with the SNAT pools. If the referenced			 SNAT translation addresses do not exist, they are created automatically using			 the global SNAT defaults.
     def create(opts)
-      check_params(opts,[:translation_addresses])
-      super
+      opts = check_params(opts,[:translation_addresses])
+      super(opts)
     end
 
     ##
@@ -126,8 +126,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :members The members to remove from the specified SNAT pools.
     def remove_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##

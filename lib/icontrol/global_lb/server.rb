@@ -24,8 +24,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Server::ServerIPDefinition] :ips The IP addresses to add to the servers.
     def add_ip(opts)
-      check_params(opts,[:ips])
-      super
+      opts = check_params(opts,[:ips])
+      super(opts)
     end
 
     ##
@@ -38,8 +38,8 @@ module IControl::GlobalLB
     # @option opts [IControl::GlobalLB::ServerType] :types The server types.
     # @option opts [String] :data_centers The data centers associated with the servers.
     def create(opts)
-      check_params(opts,[:types,:data_centers])
-      super
+      opts = check_params(opts,[:types,:data_centers])
+      super(opts)
     end
 
     ##
@@ -198,8 +198,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :server_names The names of the servers.
     def monitor_association(opts)
-      check_params(opts,[:server_names])
-      super
+      opts = check_params(opts,[:server_names])
+      super(opts)
     end
 
     ##
@@ -245,8 +245,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :server_names The names of the servers.
     def statistics(opts)
-      check_params(opts,[:server_names])
-      super
+      opts = check_params(opts,[:server_names])
+      super(opts)
     end
 
     ##
@@ -266,8 +266,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Server::ServerIPDefinition] :ips The IP addresses to remove from the servers.
     def remove_ip(opts)
-      check_params(opts,[:ips])
-      super
+      opts = check_params(opts,[:ips])
+      super(opts)
     end
 
     ##
@@ -281,8 +281,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :server_names The names of the servers.
     def remove_monitor_association(opts)
-      check_params(opts,[:server_names])
-      super
+      opts = check_params(opts,[:server_names])
+      super(opts)
     end
 
     ##
@@ -294,8 +294,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :server_names The names of the servers.
     def reset_statistics(opts)
-      check_params(opts,[:server_names])
-      super
+      opts = check_params(opts,[:server_names])
+      super(opts)
     end
 
     ##
@@ -308,8 +308,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_allow_path_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -321,8 +321,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_allow_service_check_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -335,8 +335,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_allow_snmp_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -349,8 +349,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::AutoConfigurationState] :states The states to set.
     def set_auto_configuration_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -362,8 +362,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :data_centers The names of the new data centers.
     def set_data_center(opts)
-      check_params(opts,[:data_centers])
-      super
+      opts = check_params(opts,[:data_centers])
+      super(opts)
     end
 
     ##
@@ -375,8 +375,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -388,8 +388,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Server::ServerMetricLimit] :limits The servers' metric limits.
     def set_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -402,8 +402,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::AutoConfigurationState] :states The states to set.
     def set_link_auto_configuration_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -416,8 +416,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Server::MonitorAssociation] :monitor_associations The monitor associations that will be used to evaluate the specified servers.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -429,8 +429,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :addresses The prober addresses
     def set_prober_address(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -442,8 +442,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::ServerType] :types The server types to set.
     def set_server_type(opts)
-      check_params(opts,[:types])
-      super
+      opts = check_params(opts,[:types])
+      super(opts)
     end
 
     ##

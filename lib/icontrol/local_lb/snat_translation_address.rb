@@ -18,8 +18,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :unit_ids The unit IDs associated with the translation addresses. If the unit ID of a		 translation address is not active on a BIG-IP, the BIG-IP does not respond to		 ARP requests or send gratuitous ARPs for that translation address.
     def create(opts)
-      check_params(opts,[:unit_ids])
-      super
+      opts = check_params(opts,[:unit_ids])
+      super(opts)
     end
 
     ##
@@ -179,8 +179,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The ARP states to set.
     def set_arp_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -192,8 +192,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64] :limits The connection limits to set.
     def set_connection_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -205,8 +205,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states Enable or disable the specified SNAT translation addresses.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -218,8 +218,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :timeouts The IP timeouts to set.
     def set_ip_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -231,8 +231,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :timeouts The TCP timeouts to set.
     def set_tcp_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -244,8 +244,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :timeouts The UDP timeouts to set.
     def set_udp_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -257,8 +257,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :unit_ids The unit IDs to set.
     def set_unit_id(opts)
-      check_params(opts,[:unit_ids])
-      super
+      opts = check_params(opts,[:unit_ids])
+      super(opts)
     end
 
     ##

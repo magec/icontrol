@@ -75,8 +75,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :arp_addresses The ARP IP addresses.
     def dynamic_arp(opts)
-      check_params(opts,[:arp_addresses])
-      super
+      opts = check_params(opts,[:arp_addresses])
+      super(opts)
     end
 
     ##
@@ -89,8 +89,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :ndp_addresses The NDP IP addresses.
     def dynamic_ndp(opts)
-      check_params(opts,[:ndp_addresses])
-      super
+      opts = check_params(opts,[:ndp_addresses])
+      super(opts)
     end
 
     ##

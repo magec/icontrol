@@ -16,8 +16,8 @@ module IControl::ASM
     # @option opts [String] :policy_name The polciy's name.
     # @option opts [String] :uris List or URIs to block. The URI is full, e.g.: http://foo.com/bar.php
     def add_predictable_resource_location(opts)
-      check_params(opts,[:policy_name,:uris])
-      super
+      opts = check_params(opts,[:policy_name,:uris])
+      super(opts)
     end
 
     ##
@@ -29,8 +29,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String] :wa_webapp_names List of WA web applcations.
     def associate_wa_webapp(opts)
-      check_params(opts,[:wa_webapp_names])
-      super
+      opts = check_params(opts,[:wa_webapp_names])
+      super(opts)
     end
 
     ##
@@ -42,8 +42,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String] :webapp_names The web application names.
     def create(opts)
-      check_params(opts,[:webapp_names])
-      super
+      opts = check_params(opts,[:webapp_names])
+      super(opts)
     end
 
     ##
@@ -56,8 +56,8 @@ module IControl::ASM
     # @option opts [String] :webapp_names The web application names.
     # @option opts [IControl::ASM::PolicyTemplate[]] :policy_templates The policy templates.
     def create_from_template(opts)
-      check_params(opts,[:webapp_names,:policy_templates])
-      super
+      opts = check_params(opts,[:webapp_names,:policy_templates])
+      super(opts)
     end
 
     ##
@@ -79,8 +79,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String] :wa_webapp_names List of WA web applcations.
     def detach_wa_webapp(opts)
-      check_params(opts,[:wa_webapp_names])
-      super
+      opts = check_params(opts,[:wa_webapp_names])
+      super(opts)
     end
 
     ##
@@ -101,8 +101,8 @@ module IControl::ASM
     # @option opts [long] :chunk_size The chunk/block size of the file data to read from the device.
     # @option opts [long] :file_offset The file offset that indicates where to read the next chunk of file data from.
     def download_policy(opts)
-      check_params(opts,[:policy_name,:chunk_size,:file_offset])
-      super
+      opts = check_params(opts,[:policy_name,:chunk_size,:file_offset])
+      super(opts)
     end
 
     ##
@@ -117,8 +117,8 @@ module IControl::ASM
     # @option opts [String] :policy_name The name of the policy.
     # @option opts [String] :filename The filename to which the policy will be exported under /var/tmp.
     def export_policy(opts)
-      check_params(opts,[:policy_name,:filename])
-      super
+      opts = check_params(opts,[:policy_name,:filename])
+      super(opts)
     end
 
     ##
@@ -206,8 +206,8 @@ module IControl::ASM
     # @option opts [String] :webapp_name The target web application into which the policy will be imported.
     # @option opts [String] :filename The server-side full path where the policy		 was previously uploaded during upload_policy.		 This is: "/var/tmp/" concatenated with the parameter policy_name from		 the import_policy call.
     def import_policy(opts)
-      check_params(opts,[:webapp_name,:filename])
-      super
+      opts = check_params(opts,[:webapp_name,:filename])
+      super(opts)
     end
 
     ##
@@ -219,8 +219,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [long] :cookie_lengths The maximum length of a cookie.
     def set_cookie_length(opts)
-      check_params(opts,[:cookie_lengths])
-      super
+      opts = check_params(opts,[:cookie_lengths])
+      super(opts)
     end
 
     ##
@@ -232,8 +232,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [boolean] :blocking_flags The flags of blocking enabled / disabled for each policy
     def set_disable_blocking_flag(opts)
-      check_params(opts,[:blocking_flags])
-      super
+      opts = check_params(opts,[:blocking_flags])
+      super(opts)
     end
 
     ##
@@ -245,8 +245,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [IControl::ASM::DynamicSessionsInUrl] :settings The "dynamic sessions in URL" settings for the policies
     def set_dynamic_sessions_in_url(opts)
-      check_params(opts,[:settings])
-      super
+      opts = check_params(opts,[:settings])
+      super(opts)
     end
 
     ##
@@ -258,8 +258,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [long] :http_header_lengths The maximum length of http header.
     def set_http_header_length(opts)
-      check_params(opts,[:http_header_lengths])
-      super
+      opts = check_params(opts,[:http_header_lengths])
+      super(opts)
     end
 
     ##
@@ -272,8 +272,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String] :policy_name The polciy's name.
     def set_http_response_splitting(opts)
-      check_params(opts,[:policy_name])
-      super
+      opts = check_params(opts,[:policy_name])
+      super(opts)
     end
 
     ##
@@ -286,8 +286,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String] :policy_name The polciy's name.
     def set_path_traversal(opts)
-      check_params(opts,[:policy_name])
-      super
+      opts = check_params(opts,[:policy_name])
+      super(opts)
     end
 
     ##
@@ -299,8 +299,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [long] :expiration_periods The expiration period of login pages in seconds
     def set_prerequisite_expiration_period(opts)
-      check_params(opts,[:expiration_periods])
-      super
+      opts = check_params(opts,[:expiration_periods])
+      super(opts)
     end
 
     ##
@@ -312,8 +312,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [IControl::ASM::Violation[]] :violations The violations for each policy.
     def set_violation_flags(opts)
-      check_params(opts,[:violations])
-      super
+      opts = check_params(opts,[:violations])
+      super(opts)
     end
 
     ##
@@ -330,8 +330,8 @@ module IControl::ASM
     # @option opts [String] :policy_name The name of the policy.		 The filename will be the name of the policy in the /var/tmp directory.
     # @option opts [IControl::ASM::FileTransferContext] :file_context The context of the transfer operation. It has two parts:		 - file_data: The relevant part of the content of the file		 - chunk_type: Indicates the current chunk whether it is the first, middle, last chunk				 or the current call includes the entire file.
     def upload_policy(opts)
-      check_params(opts,[:policy_name,:file_context])
-      super
+      opts = check_params(opts,[:policy_name,:file_context])
+      super(opts)
     end
 
     ##
@@ -346,8 +346,8 @@ module IControl::ASM
     # @option opts [String] :wsdl_filename The WSDL filename which will be attached to the XML profile.
     # @option opts [String] :wsdl_text
     def upload_xml_profile_wsdl(opts)
-      check_params(opts,[:policy_name,:profile_name,:wsdl_filename,:wsdl_text])
-      super
+      opts = check_params(opts,[:policy_name,:profile_name,:wsdl_filename,:wsdl_text])
+      super(opts)
     end
 
 

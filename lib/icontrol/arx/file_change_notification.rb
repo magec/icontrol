@@ -15,8 +15,8 @@ module IControl::ARX
     # @param [Hash] opts
     # @option opts [String] :session_id File change notification session identifier returned by FileChangeNotification ::start_notifications.
     def finish_notifications(opts)
-      check_params(opts,[:session_id])
-      super
+      opts = check_params(opts,[:session_id])
+      super(opts)
     end
 
     ##
@@ -33,8 +33,8 @@ module IControl::ARX
     # @option opts [long] :count Maximum number of file changes to be returned. (Min: 25 Max: 100)
     # @option opts [String] :change_idx Index from which to start request. It must be empty if this is the first call in a new session. Otherwise, it is the change_idx returned by last call.
     def notifications(opts)
-      check_params(opts,[:session_id,:count,:change_idx])
-      super
+      opts = check_params(opts,[:session_id,:count,:change_idx])
+      super(opts)
     end
 
     ##
@@ -46,8 +46,8 @@ module IControl::ARX
     # @option opts [String] :rule The notification rule name.
     # @option opts [String] :snapshots The list of snapshots.
     def snapshot_definition(opts)
-      check_params(opts,[:volume,:rule,:snapshots])
-      super
+      opts = check_params(opts,[:volume,:rule,:snapshots])
+      super(opts)
     end
 
     ##
@@ -58,8 +58,8 @@ module IControl::ARX
     # @option opts [String] :volume The volume name.
     # @option opts [String] :rule The notification rule name.
     def snapshots(opts)
-      check_params(opts,[:volume,:rule])
-      super
+      opts = check_params(opts,[:volume,:rule])
+      super(opts)
     end
 
     ##
@@ -81,8 +81,8 @@ module IControl::ARX
     # @option opts [long] :to_snapshot Timestamp of destination snapshot. It must be the creation time of the next consecutive snapshot after from_snapshot.
     # @option opts [boolean] :all_files File changes to be returned, and should be set to true.
     def start_notifications(opts)
-      check_params(opts,[:volume,:rule,:from_snapshot,:to_snapshot,:all_files])
-      super
+      opts = check_params(opts,[:volume,:rule,:from_snapshot,:to_snapshot,:all_files])
+      super(opts)
     end
 
 

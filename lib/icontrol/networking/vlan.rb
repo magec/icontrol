@@ -20,8 +20,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::VLAN::MemberEntry[]] :members The lists of member interfaces/trunks to put on the specified VLANs .
     def add_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -33,8 +33,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::VLAN::ForwardingTableEntry[]] :forwarding_entries The static forwarding entries to add to the specified VLANs .
     def add_static_forwarding(opts)
-      check_params(opts,[:forwarding_entries])
-      super
+      opts = check_params(opts,[:forwarding_entries])
+      super(opts)
     end
 
     ##
@@ -50,8 +50,8 @@ module IControl::Networking
     # @option opts [long] :timeouts The failsafe timeouts.
     # @option opts [String] :mac_masquerade_addresses The MAC masquerade addresses.
     def create(opts)
-      check_params(opts,[:vlan_ids,:members,:failsafe_states,:timeouts,:mac_masquerade_addresses])
-      super
+      opts = check_params(opts,[:vlan_ids,:members,:failsafe_states,:timeouts,:mac_masquerade_addresses])
+      super(opts)
     end
 
     ##
@@ -266,8 +266,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::VLAN::MemberEntry[]] :members The lists of member interfaces/trunks to remove from the specified VLANs .
     def remove_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -279,8 +279,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::VLAN::ForwardingTableEntry[]] :forwarding_entries The static forwarding entries to remove from the specified VLANs .
     def remove_static_forwarding(opts)
-      check_params(opts,[:forwarding_entries])
-      super
+      opts = check_params(opts,[:forwarding_entries])
+      super(opts)
     end
 
     ##
@@ -292,8 +292,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::HAAction] :actions The failsafe actions to set for the specified VLAN names.
     def set_failsafe_action(opts)
-      check_params(opts,[:actions])
-      super
+      opts = check_params(opts,[:actions])
+      super(opts)
     end
 
     ##
@@ -305,8 +305,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The failsafe states to set for the specified VLAN names.
     def set_failsafe_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -318,8 +318,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :timeouts The failsafe timeouts to set for the specified VLAN names.
     def set_failsafe_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -331,8 +331,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::LearningMode] :modes The learning modes to set for the specified VLANs .
     def set_learning_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -344,8 +344,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :mac_masquerade_addresses The MAC masquerade addresses to set for the specified VLAN names.
     def set_mac_masquerade_address(opts)
-      check_params(opts,[:mac_masquerade_addresses])
-      super
+      opts = check_params(opts,[:mac_masquerade_addresses])
+      super(opts)
     end
 
     ##
@@ -357,8 +357,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :mtus The MTUs to set for the specified VLAN names.
     def set_mtu(opts)
-      check_params(opts,[:mtus])
-      super
+      opts = check_params(opts,[:mtus])
+      super(opts)
     end
 
     ##
@@ -372,8 +372,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The source checking states to set for the specified VLAN names.
     def set_source_check_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -386,8 +386,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :vlan_ids The VLAN ID/tag numbers (valid range is 1-4095).
     def set_vlan_id(opts)
-      check_params(opts,[:vlan_ids])
-      super
+      opts = check_params(opts,[:vlan_ids])
+      super(opts)
     end
 
     ##

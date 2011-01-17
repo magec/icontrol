@@ -17,8 +17,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be added to the cookie match pattern list.
     def add_cookie_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -30,8 +30,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be added to the host match pattern list.
     def add_header_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -43,8 +43,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be added to the host match pattern list.
     def add_host_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -56,8 +56,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be added to the URI path match pattern list.
     def add_path_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -266,8 +266,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be removed from the cookie match pattern list.
     def remove_cookie_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -279,8 +279,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be added to the host match pattern list.
     def remove_header_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -292,8 +292,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be removed from the host match pattern list.
     def remove_host_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -305,8 +305,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MatchPatternString[]] :patterns The lists of patterns (regular expressions or globs) to be removed from the URI path match pattern list.
     def remove_path_match_pattern(opts)
-      check_params(opts,[:patterns])
-      super
+      opts = check_params(opts,[:patterns])
+      super(opts)
     end
 
     ##
@@ -329,8 +329,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_application_security_module_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -383,8 +383,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -396,8 +396,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :pool_names The pool names.
     def set_pool_name(opts)
-      check_params(opts,[:pool_names])
-      super
+      opts = check_params(opts,[:pool_names])
+      super(opts)
     end
 
     ##
@@ -411,8 +411,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :redirect_locations The new locations to redirect to.
     def set_redirect_location(opts)
-      check_params(opts,[:redirect_locations])
-      super
+      opts = check_params(opts,[:redirect_locations])
+      super(opts)
     end
 
     ##
@@ -424,8 +424,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :urls The URLs to rewrite.
     def set_rewrite_url(opts)
-      check_params(opts,[:urls])
-      super
+      opts = check_params(opts,[:urls])
+      super(opts)
     end
 
     ##
@@ -437,8 +437,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_web_accelerator_module_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

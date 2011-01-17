@@ -12,8 +12,8 @@ module IControl::ARX
     # @param [Hash] opts
     # @option opts [String] :volumes A list of volume names.
     def definition(opts)
-      check_params(opts,[:volumes])
-      super
+      opts = check_params(opts,[:volumes])
+      super(opts)
     end
 
     ##

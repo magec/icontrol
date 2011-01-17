@@ -56,8 +56,8 @@ module IControl::Management
     # @option opts [String] :cert_ids The existing certificate bundles to which additional certificates will be added.
     # @option opts [String] :certificate_files The file names of the certificates to add to the bundles.
     def certificate_add_file_to_bundle(opts)
-      check_params(opts,[:cert_ids,:certificate_files])
-      super
+      opts = check_params(opts,[:cert_ids,:certificate_files])
+      super(opts)
     end
 
     ##
@@ -73,8 +73,8 @@ module IControl::Management
     # @option opts [String] :cert_ids The existing certificate bundles to which additional certificates will be added.
     # @option opts [String] :pem_data The PEM formatted data of the certificates to add to the bundles.
     def certificate_add_pem_to_bundle(opts)
-      check_params(opts,[:cert_ids,:pem_data])
-      super
+      opts = check_params(opts,[:cert_ids,:pem_data])
+      super(opts)
     end
 
     ##
@@ -87,8 +87,8 @@ module IControl::Management
     # @option opts [String] :cert_ids The string identifications of the certificates.
     # @option opts [String] :key_ids The string identifications of the keys
     def certificate_bind(opts)
-      check_params(opts,[:cert_ids,:key_ids])
-      super
+      opts = check_params(opts,[:cert_ids,:key_ids])
+      super(opts)
     end
 
     ##
@@ -102,8 +102,8 @@ module IControl::Management
     # @option opts [String] :cert_ids The string identifications of the certificates to check for validity.
     # @option opts [long] :watermark_days The watermarks in number of days to use in checking the validity.
     def certificate_check_validity(opts)
-      check_params(opts,[:cert_ids,:watermark_days])
-      super
+      opts = check_params(opts,[:cert_ids,:watermark_days])
+      super(opts)
     end
 
     ##
@@ -115,8 +115,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to delete/uninstall.
     def certificate_delete(opts)
-      check_params(opts,[:cert_ids])
-      super
+      opts = check_params(opts,[:cert_ids])
+      super(opts)
     end
 
     ##
@@ -131,8 +131,8 @@ module IControl::Management
     # @option opts [String] :cert_ids The existing certificate bundles from which certificates will be removed.
     # @option opts [IControl::Management::KeyCertificate::X509Data] :x509_data The X509 data of the subjects of the certificates to be deleted from the bundle.
     def certificate_delete_from_bundle(opts)
-      check_params(opts,[:cert_ids,:x509_data])
-      super
+      opts = check_params(opts,[:cert_ids,:x509_data])
+      super(opts)
     end
 
     ##
@@ -146,8 +146,8 @@ module IControl::Management
     # @option opts [String] :file_names The files associated with the specified certificates to export to.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the certificate files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_export_to_file(opts)
-      check_params(opts,[:cert_ids,:file_names,:overwrite])
-      super
+      opts = check_params(opts,[:cert_ids,:file_names,:overwrite])
+      super(opts)
     end
 
     ##
@@ -160,8 +160,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :cert_ids The string identifications of the certificates to export.
     def certificate_export_to_pem(opts)
-      check_params(opts,[:cert_ids])
-      super
+      opts = check_params(opts,[:cert_ids])
+      super(opts)
     end
 
     ##
@@ -177,8 +177,8 @@ module IControl::Management
     # @option opts [long] :lifetime_days The number of days the certificates will be valid.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the certificate files		 on disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_generate(opts)
-      check_params(opts,[:certs,:x509_data,:lifetime_days,:overwrite])
-      super
+      opts = check_params(opts,[:certs,:x509_data,:lifetime_days,:overwrite])
+      super(opts)
     end
 
     ##
@@ -192,8 +192,8 @@ module IControl::Management
     # @option opts [String] :file_names The certificate files associated with the specified certificates from which to import.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the certificate files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_import_from_file(opts)
-      check_params(opts,[:cert_ids,:file_names,:overwrite])
-      super
+      opts = check_params(opts,[:cert_ids,:file_names,:overwrite])
+      super(opts)
     end
 
     ##
@@ -207,8 +207,8 @@ module IControl::Management
     # @option opts [String] :pem_data The PEM-formatted data associated with the specified certificates.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the certificate files		 on disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_import_from_pem(opts)
-      check_params(opts,[:cert_ids,:pem_data,:overwrite])
-      super
+      opts = check_params(opts,[:cert_ids,:pem_data,:overwrite])
+      super(opts)
     end
 
     ##
@@ -220,8 +220,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :csr_ids The certificate requests to delete.
     def certificate_request_delete(opts)
-      check_params(opts,[:csr_ids])
-      super
+      opts = check_params(opts,[:csr_ids])
+      super(opts)
     end
 
     ##
@@ -235,8 +235,8 @@ module IControl::Management
     # @option opts [String] :file_names The files associated with the specified certificates to export to.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the certificate files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_request_export_to_file(opts)
-      check_params(opts,[:csr_ids,:file_names,:overwrite])
-      super
+      opts = check_params(opts,[:csr_ids,:file_names,:overwrite])
+      super(opts)
     end
 
     ##
@@ -249,8 +249,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :csr_ids The string identifications of the certificate requests to export.
     def certificate_request_export_to_pem(opts)
-      check_params(opts,[:csr_ids])
-      super
+      opts = check_params(opts,[:csr_ids])
+      super(opts)
     end
 
     ##
@@ -266,8 +266,8 @@ module IControl::Management
     # @option opts [IControl::Management::KeyCertificate::X509Data] :x509_data The x509 data associated with the specified certificate requests.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the CSR files		 on disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_request_generate(opts)
-      check_params(opts,[:csrs,:x509_data,:overwrite])
-      super
+      opts = check_params(opts,[:csrs,:x509_data,:overwrite])
+      super(opts)
     end
 
     ##
@@ -281,8 +281,8 @@ module IControl::Management
     # @option opts [String] :file_names The files associated with the specified certificate requests from which to import.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the certificate files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_request_import_from_file(opts)
-      check_params(opts,[:csr_ids,:file_names,:overwrite])
-      super
+      opts = check_params(opts,[:csr_ids,:file_names,:overwrite])
+      super(opts)
     end
 
     ##
@@ -296,8 +296,8 @@ module IControl::Management
     # @option opts [String] :pem_data The PEM-formatted data associated with the specified certificates.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the certificate request files		 on disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def certificate_request_import_from_pem(opts)
-      check_params(opts,[:csr_ids,:pem_data,:overwrite])
-      super
+      opts = check_params(opts,[:csr_ids,:pem_data,:overwrite])
+      super(opts)
     end
 
     ##
@@ -311,8 +311,8 @@ module IControl::Management
     # @option opts [String] :archive_location The location of the archive file.
     # @option opts [String] :archive_name The archive file name.
     def export_all_to_archive_file(opts)
-      check_params(opts,[:archive_location,:archive_name])
-      super
+      opts = check_params(opts,[:archive_location,:archive_name])
+      super(opts)
     end
 
     ##
@@ -341,8 +341,8 @@ module IControl::Management
     # @option opts [String] :keys The string identifications of the keys to be exported.
     # @option opts [String] :certs The string identifications of the certificates to be exported.
     def export_to_archive_file(opts)
-      check_params(opts,[:archive_location,:archive_name,:keys,:certs])
-      super
+      opts = check_params(opts,[:archive_location,:archive_name,:keys,:certs])
+      super(opts)
     end
 
     ##
@@ -358,8 +358,8 @@ module IControl::Management
     # @option opts [String] :keys The string identifications of the keys to be exported.
     # @option opts [String] :certs The string identifications of the certificates to be exported.
     def export_to_archive_stream(opts)
-      check_params(opts,[:keys,:certs])
-      super
+      opts = check_params(opts,[:keys,:certs])
+      super(opts)
     end
 
     ##
@@ -375,8 +375,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :file_names The file names of the certificate bundles.
     def certificate_bundle(opts)
-      check_params(opts,[:file_names])
-      super
+      opts = check_params(opts,[:file_names])
+      super(opts)
     end
 
     ##
@@ -433,8 +433,8 @@ module IControl::Management
     # @option opts [String] :archive_location The location of the archive file.
     # @option opts [String] :archive_name The archive file name.
     def import_all_from_archive_file(opts)
-      check_params(opts,[:archive_location,:archive_name])
-      super
+      opts = check_params(opts,[:archive_location,:archive_name])
+      super(opts)
     end
 
     ##
@@ -447,8 +447,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [char] :archive_stream The archive stream from which to import keys and certificates.
     def import_all_from_archive_stream(opts)
-      check_params(opts,[:archive_stream])
-      super
+      opts = check_params(opts,[:archive_stream])
+      super(opts)
     end
 
     ##
@@ -465,8 +465,8 @@ module IControl::Management
     # @option opts [String] :keys The string identifications of the keys to be imported/installed.
     # @option opts [String] :certs The string identifications of the certificates to be imported/installed.
     def import_from_archive_file(opts)
-      check_params(opts,[:archive_location,:archive_name,:keys,:certs])
-      super
+      opts = check_params(opts,[:archive_location,:archive_name,:keys,:certs])
+      super(opts)
     end
 
     ##
@@ -482,8 +482,8 @@ module IControl::Management
     # @option opts [String] :keys The string identifications of the keys to be imported/installed.
     # @option opts [String] :certs The string identifications of the certificates to be imported/installed.
     def import_from_archive_stream(opts)
-      check_params(opts,[:archive_stream,:keys,:certs])
-      super
+      opts = check_params(opts,[:archive_stream,:keys,:certs])
+      super(opts)
     end
 
     ##
@@ -506,8 +506,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to delete/uninstall.
     def key_delete(opts)
-      check_params(opts,[:key_ids])
-      super
+      opts = check_params(opts,[:key_ids])
+      super(opts)
     end
 
     ##
@@ -521,8 +521,8 @@ module IControl::Management
     # @option opts [String] :file_names The files associated with the specified keys to export to.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the key files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def key_export_to_file(opts)
-      check_params(opts,[:key_ids,:file_names,:overwrite])
-      super
+      opts = check_params(opts,[:key_ids,:file_names,:overwrite])
+      super(opts)
     end
 
     ##
@@ -535,8 +535,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to export.
     def key_export_to_pem(opts)
-      check_params(opts,[:key_ids])
-      super
+      opts = check_params(opts,[:key_ids])
+      super(opts)
     end
 
     ##
@@ -551,8 +551,8 @@ module IControl::Management
     # @option opts [boolean] :create_optional_cert_csr The boolean indicating whether we should optionally create				 the associated certificate and certificate request (CSR).
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the key files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def key_generate(opts)
-      check_params(opts,[:keys,:x509_data,:create_optional_cert_csr,:overwrite])
-      super
+      opts = check_params(opts,[:keys,:x509_data,:create_optional_cert_csr,:overwrite])
+      super(opts)
     end
 
     ##
@@ -566,8 +566,8 @@ module IControl::Management
     # @option opts [String] :file_names The key files associated with the specified keys from which to import.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the key files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def key_import_from_file(opts)
-      check_params(opts,[:key_ids,:file_names,:overwrite])
-      super
+      opts = check_params(opts,[:key_ids,:file_names,:overwrite])
+      super(opts)
     end
 
     ##
@@ -581,8 +581,8 @@ module IControl::Management
     # @option opts [String] :pem_data The PEM-formatted data associated with the specified keys.
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the key files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def key_import_from_pem(opts)
-      check_params(opts,[:key_ids,:pem_data,:overwrite])
-      super
+      opts = check_params(opts,[:key_ids,:pem_data,:overwrite])
+      super(opts)
     end
 
     ##
@@ -594,8 +594,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :key_ids The string identifications of the keys to convert.
     def key_to_fips(opts)
-      check_params(opts,[:key_ids])
-      super
+      opts = check_params(opts,[:key_ids])
+      super(opts)
     end
 
     ##
@@ -612,8 +612,8 @@ module IControl::Management
     # @option opts [String] :passwords The passwords associated with the specified files (empty string means no password).
     # @option opts [boolean] :overwrite The boolean indicating whether we should overwrite the key & certificate files on		 disk if they existed. If this parameter is false, and the files already		 exist, then a "Would overwrite" exception will be generated.
     def pkcs12_import_from_file(opts)
-      check_params(opts,[:ids,:file_names,:passwords,:overwrite])
-      super
+      opts = check_params(opts,[:ids,:file_names,:passwords,:overwrite])
+      super(opts)
     end
 
     ##

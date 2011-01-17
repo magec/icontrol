@@ -18,8 +18,8 @@ module IControl::Management
     # @option opts [String] :src_file_names The files containing the zone's resource records.
     # @option opts [boolean] :sync_ptrs A list containing sequences of states indicating whether PTR records should		 automatically be generated.
     def add_zone_file(opts)
-      check_params(opts,[:zone_records,:src_file_names,:sync_ptrs])
-      super
+      opts = check_params(opts,[:zone_records,:src_file_names,:sync_ptrs])
+      super(opts)
     end
 
     ##
@@ -44,8 +44,8 @@ module IControl::Management
     # @option opts [String[]] :text The list of sequence of strings containing the resource records to create	 in the zones (SOA, NS, etc)
     # @option opts [boolean] :sync_ptrs A list containing sequences of states indicating whether PTR records should		 automatically be generated.
     def add_zone_text(opts)
-      check_params(opts,[:zone_records,:text,:sync_ptrs])
-      super
+      opts = check_params(opts,[:zone_records,:text,:sync_ptrs])
+      super(opts)
     end
 
     ##
@@ -57,8 +57,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ViewZone] :view_zones The view/zone information.
     def delete_zone(opts)
-      check_params(opts,[:view_zones])
-      super
+      opts = check_params(opts,[:view_zones])
+      super(opts)
     end
 
     ##
@@ -89,8 +89,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ViewZone] :view_zones The view/zone information.
     def zone(opts)
-      check_params(opts,[:view_zones])
-      super
+      opts = check_params(opts,[:view_zones])
+      super(opts)
     end
 
     ##
@@ -103,8 +103,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :view_names The names of the views.
     def zone_name(opts)
-      check_params(opts,[:view_names])
-      super
+      opts = check_params(opts,[:view_names])
+      super(opts)
     end
 
     ##
@@ -130,8 +130,8 @@ module IControl::Management
     # @option opts [String] :dst_view_names The names of the views to add the zones to.
     # @option opts [IControl::Management::ZoneInfo] :zone_records The ZoneInfo structs containing information about the zones to be added.
     def transfer_zone(opts)
-      check_params(opts,[:server_names,:src_zone_names,:dst_view_names,:zone_records])
-      super
+      opts = check_params(opts,[:server_names,:src_zone_names,:dst_view_names,:zone_records])
+      super(opts)
     end
 
     ##
@@ -144,8 +144,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ViewZone] :view_zones The view/zone information.
     def zone_exist(opts)
-      check_params(opts,[:view_zones])
-      super
+      opts = check_params(opts,[:view_zones])
+      super(opts)
     end
 
 

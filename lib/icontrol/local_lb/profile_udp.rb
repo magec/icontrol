@@ -190,8 +190,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified UDP profiles.
     def set_allow_no_payload_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -203,8 +203,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified UDP profiles.
     def set_datagram_lb_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -217,8 +217,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -230,8 +230,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeout for the specified UDP profiles.
     def set_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -243,8 +243,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :values The client-side IP TOS values.
     def set_ip_tos_to_client(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -256,8 +256,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :values The client-side link QoS values.
     def set_link_qos_to_client(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -270,8 +270,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified UDP profiles.
     def set_no_checksum_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

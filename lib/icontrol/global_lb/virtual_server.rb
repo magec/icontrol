@@ -21,8 +21,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::VirtualServerDefinition[]] :dependencies The dependency list of VSes that the specified virtual servers depend on.
     def add_dependency(opts)
-      check_params(opts,[:dependencies])
-      super
+      opts = check_params(opts,[:dependencies])
+      super(opts)
     end
 
     ##
@@ -34,8 +34,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :servers The servers that the virtual servers belong to.
     def create(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -208,8 +208,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::VirtualServerDefinition[]] :dependencies The dependency list of VSes that the specified virtual servers depend on.
     def remove_dependency(opts)
-      check_params(opts,[:dependencies])
-      super
+      opts = check_params(opts,[:dependencies])
+      super(opts)
     end
 
     ##
@@ -243,8 +243,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -256,8 +256,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::VirtualServer::VirtualServerMetricLimit] :limits The virtual servers' metric limits.
     def set_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -270,8 +270,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::VirtualServer::MonitorAssociation] :monitor_associations The monitor associations that will be used to evaluate the specified virtual servers.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -283,8 +283,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :servers The servers that the virtual servers belong to.
     def set_server(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -296,8 +296,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition] :translations The translation IP addresses and ports.
     def set_translation(opts)
-      check_params(opts,[:translations])
-      super
+      opts = check_params(opts,[:translations])
+      super(opts)
     end
 
     ##

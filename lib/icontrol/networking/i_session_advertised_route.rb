@@ -19,8 +19,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::iSessionAdvertisedRouteStruct] :subnet The subnet struct to create.
     def create(opts)
-      check_params(opts,[:subnet])
-      super
+      opts = check_params(opts,[:subnet])
+      super(opts)
     end
 
     ##
@@ -105,8 +105,8 @@ module IControl::Networking
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::SubnetOptKey] :ip The subnet IP.
     # @option opts [IControl::Common::EnabledState] :included The new included setting.
     def set_enabled_state(opts)
-      check_params(opts,[:ip,:included])
-      super
+      opts = check_params(opts,[:ip,:included])
+      super(opts)
     end
 
     ##
@@ -119,8 +119,8 @@ module IControl::Networking
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::SubnetOptKey] :ip The subnet IP.
     # @option opts [String] :labels The new subnet labels
     def set_label(opts)
-      check_params(opts,[:ip,:labels])
-      super
+      opts = check_params(opts,[:ip,:labels])
+      super(opts)
     end
 
     ##
@@ -133,8 +133,8 @@ module IControl::Networking
     # @option opts [IControl::Networking::iSessionAdvertisedRoute::SubnetOptKey] :subnet The subnet IPs .
     # @option opts [long] :metric value.
     def set_metric(opts)
-      check_params(opts,[:subnet,:metric])
-      super
+      opts = check_params(opts,[:subnet,:metric])
+      super(opts)
     end
 
     ##

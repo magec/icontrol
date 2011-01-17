@@ -25,8 +25,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String[]] :aliases The aliases to add to the wide IPs .
     def add_alias(opts)
-      check_params(opts,[:aliases])
-      super
+      opts = check_params(opts,[:aliases])
+      super(opts)
     end
 
     ##
@@ -38,8 +38,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::WideIP::WideIPPool[]] :wideip_pools The wide IP pools to add to the wide IPs .
     def add_wideip_pool(opts)
-      check_params(opts,[:wideip_pools])
-      super
+      opts = check_params(opts,[:wideip_pools])
+      super(opts)
     end
 
     ##
@@ -51,8 +51,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::WideIP::WideIPRule[]] :wideip_rules The wide IP rules to add to the wide IPs .
     def add_wideip_rule(opts)
-      check_params(opts,[:wideip_rules])
-      super
+      opts = check_params(opts,[:wideip_rules])
+      super(opts)
     end
 
     ##
@@ -66,8 +66,8 @@ module IControl::GlobalLB
     # @option opts [IControl::GlobalLB::WideIP::WideIPPool[]] :wideip_pools The list of wide IP pools.
     # @option opts [IControl::GlobalLB::WideIP::WideIPRule[]] :wideip_rules The list of wide IP rules.
     def create(opts)
-      check_params(opts,[:lb_methods,:wideip_pools,:wideip_rules])
-      super
+      opts = check_params(opts,[:lb_methods,:wideip_pools,:wideip_rules])
+      super(opts)
     end
 
     ##
@@ -233,8 +233,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :aliases The list of aliases.
     def wideip(opts)
-      check_params(opts,[:aliases])
-      super
+      opts = check_params(opts,[:aliases])
+      super(opts)
     end
 
     ##
@@ -268,8 +268,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String[]] :aliases The aliases to remove from the wide IPs .
     def remove_alias(opts)
-      check_params(opts,[:aliases])
-      super
+      opts = check_params(opts,[:aliases])
+      super(opts)
     end
 
     ##
@@ -311,8 +311,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::WideIP::WideIPPool[]] :wideip_pools The wide IP pools to remove from the wide IPs .
     def remove_wideip_pool(opts)
-      check_params(opts,[:wideip_pools])
-      super
+      opts = check_params(opts,[:wideip_pools])
+      super(opts)
     end
 
     ##
@@ -324,8 +324,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::WideIP::WideIPRule[]] :wideip_rules The wide IP rules to remove from the wide IPs .
     def remove_wideip_rule(opts)
-      check_params(opts,[:wideip_rules])
-      super
+      opts = check_params(opts,[:wideip_rules])
+      super(opts)
     end
 
     ##
@@ -358,8 +358,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :applications The names of the applications for the specified wide IPs .
     def set_application(opts)
-      check_params(opts,[:applications])
-      super
+      opts = check_params(opts,[:applications])
+      super(opts)
     end
 
     ##
@@ -371,8 +371,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the wide IPs .
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -384,8 +384,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :pool_names The names of the last resort pools for the specified wide IPs .
     def set_last_resort_pool(opts)
-      check_params(opts,[:pool_names])
-      super
+      opts = check_params(opts,[:pool_names])
+      super(opts)
     end
 
     ##
@@ -398,8 +398,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LBMethod] :lb_methods The load balancing methods to use for the wide IPs .
     def set_lb_method(opts)
-      check_params(opts,[:lb_methods])
-      super
+      opts = check_params(opts,[:lb_methods])
+      super(opts)
     end
 
     ##
@@ -412,8 +412,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the wide IPs .
     def set_persistence_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -426,8 +426,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The persistence TTLs of the specified wide IPs .
     def set_persistence_ttl(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##

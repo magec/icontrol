@@ -51,8 +51,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerAuthentication[]] :profiles The authentication profiles to add to the virtual servers.
     def add_authentication_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -64,8 +64,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerClonePool[]] :clone_pools The clone pools to add to the virtual servers.
     def add_clone_pool(opts)
-      check_params(opts,[:clone_pools])
-      super
+      opts = check_params(opts,[:clone_pools])
+      super(opts)
     end
 
     ##
@@ -77,8 +77,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerHttpClass[]] :profiles The HTTP class profiles to add to the virtual servers.
     def add_httpclass_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -90,8 +90,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerPersistence[]] :profiles The persistence profiles to add to the virtual servers.
     def add_persistence_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -103,8 +103,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerProfile[]] :profiles The profiles to add to the virtual servers.
     def add_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -116,8 +116,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerRule[]] :rules The rules to add to the virtual servers.
     def add_rule(opts)
-      check_params(opts,[:rules])
-      super
+      opts = check_params(opts,[:rules])
+      super(opts)
     end
 
     ##
@@ -133,8 +133,8 @@ module IControl::LocalLB
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerResource] :resources The resources associated with the virtual servers.
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerProfile[]] :profiles The profiles to associate with the virtual servers.
     def create(opts)
-      check_params(opts,[:definitions,:wildmasks,:resources,:profiles])
-      super
+      opts = check_params(opts,[:definitions,:wildmasks,:resources,:profiles])
+      super(opts)
     end
 
     ##
@@ -156,8 +156,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PersistenceMode] :persistence_modes The persistence modes from which we delete the persistence records.			 If the specified persistence mode is PERSIST_MODE_NONE, then all persistence			 records regardless of persistence mode will be deleted for that virtual server.
     def delete_persistence_record(opts)
-      check_params(opts,[:persistence_modes])
-      super
+      opts = check_params(opts,[:persistence_modes])
+      super(opts)
     end
 
     ##
@@ -395,8 +395,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PersistenceMode] :persistence_modes The persistence modes from which we retrieve the persistence records.			 If the specified persistence mode is PERSIST_MODE_NONE, then all persistence			 records regardless of persistence mode will be returned for that virtual server.
     def persistence_record(opts)
-      check_params(opts,[:persistence_modes])
-      super
+      opts = check_params(opts,[:persistence_modes])
+      super(opts)
     end
 
     ##
@@ -623,8 +623,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerAuthentication[]] :profiles The authentication profiles to remove from the virtual servers.
     def remove_authentication_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -636,8 +636,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerClonePool[]] :clone_pools The clone pools to remove from the virtual servers.
     def remove_clone_pool(opts)
-      check_params(opts,[:clone_pools])
-      super
+      opts = check_params(opts,[:clone_pools])
+      super(opts)
     end
 
     ##
@@ -649,8 +649,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerHttpClass[]] :profiles The HTTP class profiles to remove from the virtual servers.
     def remove_httpclass_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -662,8 +662,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerPersistence[]] :profiles The persistence profiles to remove from the virtual servers.
     def remove_persistence_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -675,8 +675,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerProfile[]] :profiles The profiles to remove from the virtual servers.
     def remove_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -688,8 +688,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerRule[]] :rules The rules to remove from the virtual servers.
     def remove_rule(opts)
-      check_params(opts,[:rules])
-      super
+      opts = check_params(opts,[:rules])
+      super(opts)
     end
 
     ##
@@ -713,8 +713,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The CMP enabled states to apply.
     def set_cmp_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -726,8 +726,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64] :limits The connection limits to set.
     def set_connection_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -739,8 +739,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The mirror connection states for the specified virtual servers.
     def set_connection_mirror_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -752,8 +752,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :default_pools The default pool names for the specified virtual servers.
     def set_default_pool_name(opts)
-      check_params(opts,[:default_pools])
-      super
+      opts = check_params(opts,[:default_pools])
+      super(opts)
     end
 
     ##
@@ -765,8 +765,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition] :destinations The destinations to set.
     def set_destination(opts)
-      check_params(opts,[:destinations])
-      super
+      opts = check_params(opts,[:destinations])
+      super(opts)
     end
 
     ##
@@ -778,8 +778,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The enabled states to set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -791,8 +791,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :profile_names The persistence profiles to use for fallback persistence for the specified virtual servers.
     def set_fallback_persistence_profile(opts)
-      check_params(opts,[:profile_names])
-      super
+      opts = check_params(opts,[:profile_names])
+      super(opts)
     end
 
     ##
@@ -804,8 +804,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64] :scores The GTM score value to set
     def set_gtm_score(opts)
-      check_params(opts,[:scores])
-      super
+      opts = check_params(opts,[:scores])
+      super(opts)
     end
 
     ##
@@ -817,8 +817,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :last_hop_pools The last hop pools of the specified virtual servers. Empty strings remove the last hop pools from the specified virtual servers.
     def set_last_hop_pool(opts)
-      check_params(opts,[:last_hop_pools])
-      super
+      opts = check_params(opts,[:last_hop_pools])
+      super(opts)
     end
 
     ##
@@ -830,8 +830,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ProtocolType] :protocols The protocols to set.
     def set_protocol(opts)
-      check_params(opts,[:protocols])
-      super
+      opts = check_params(opts,[:protocols])
+      super(opts)
     end
 
     ##
@@ -843,8 +843,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :rate_classes The rate classes used to rate limit the traffic.
     def set_rate_class(opts)
-      check_params(opts,[:rate_classes])
-      super
+      opts = check_params(opts,[:rate_classes])
+      super(opts)
     end
 
     ##
@@ -876,8 +876,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :snatpools The SNAT pools of the specified virtual servers.
     def set_snat_pool(opts)
-      check_params(opts,[:snatpools])
-      super
+      opts = check_params(opts,[:snatpools])
+      super(opts)
     end
 
     ##
@@ -889,8 +889,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::SourcePortBehavior] :source_port_behaviors The source port behaviors to set.
     def set_source_port_behavior(opts)
-      check_params(opts,[:source_port_behaviors])
-      super
+      opts = check_params(opts,[:source_port_behaviors])
+      super(opts)
     end
 
     ##
@@ -903,8 +903,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The address translation states to apply.
     def set_translate_address_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -917,8 +917,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The port translation states to apply.
     def set_translate_port_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -930,8 +930,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualServer::VirtualServerType] :types The types to set.
     def set_type(opts)
-      check_params(opts,[:types])
-      super
+      opts = check_params(opts,[:types])
+      super(opts)
     end
 
     ##
@@ -943,8 +943,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::VLANFilterList] :vlans The VLAN names to add to the list of enabled/disabled VLANs .
     def set_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##
@@ -956,8 +956,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :wildmasks The wildmasks for the specified virtual servers.
     def set_wildmask(opts)
-      check_params(opts,[:wildmasks])
-      super
+      opts = check_params(opts,[:wildmasks])
+      super(opts)
     end
 
     ##

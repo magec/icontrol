@@ -25,8 +25,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::LinkCostSegment[]] :cost_segments The cost segments.
     def add_cost_segment(opts)
-      check_params(opts,[:cost_segments])
-      super
+      opts = check_params(opts,[:cost_segments])
+      super(opts)
     end
 
     ##
@@ -38,8 +38,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::LinkIPDefinition] :ips The IP addresses to add to the links.
     def add_ip(opts)
-      check_params(opts,[:ips])
-      super
+      opts = check_params(opts,[:ips])
+      super(opts)
     end
 
     ##
@@ -51,8 +51,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :data_centers The data centers associated with the links.
     def create(opts)
-      check_params(opts,[:data_centers])
-      super
+      opts = check_params(opts,[:data_centers])
+      super(opts)
     end
 
     ##
@@ -300,8 +300,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::LinkCostSegment[]] :cost_segments The cost segments.
     def remove_cost_segment(opts)
-      check_params(opts,[:cost_segments])
-      super
+      opts = check_params(opts,[:cost_segments])
+      super(opts)
     end
 
     ##
@@ -313,8 +313,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::LinkIPDefinition] :ips The IP addresses to remove from the links.
     def remove_ip(opts)
-      check_params(opts,[:ips])
-      super
+      opts = check_params(opts,[:ips])
+      super(opts)
     end
 
     ##
@@ -348,8 +348,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :data_centers The names of the new data centers.
     def set_data_center(opts)
-      check_params(opts,[:data_centers])
-      super
+      opts = check_params(opts,[:data_centers])
+      super(opts)
     end
 
     ##
@@ -361,8 +361,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_duplex_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -374,8 +374,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The enabled states to set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -387,8 +387,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::LinkMetricLimit] :limits The links' metric limits.
     def set_inbound_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -400,8 +400,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :isp_names The ISP names.
     def set_isp_name(opts)
-      check_params(opts,[:isp_names])
-      super
+      opts = check_params(opts,[:isp_names])
+      super(opts)
     end
 
     ##
@@ -414,8 +414,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::MonitorAssociation] :monitor_associations The monitor associations that will be used to evaluate the specified links.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -427,8 +427,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::LinkMetricLimit] :limits The links' metric limits.
     def set_outbound_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -440,8 +440,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64] :prepaids The prepaid traffic bandwidths.
     def set_prepaid_traffic(opts)
-      check_params(opts,[:prepaids])
-      super
+      opts = check_params(opts,[:prepaids])
+      super(opts)
     end
 
     ##
@@ -453,8 +453,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :ratios The ratios to set.
     def set_ratio(opts)
-      check_params(opts,[:ratios])
-      super
+      opts = check_params(opts,[:ratios])
+      super(opts)
     end
 
     ##
@@ -466,8 +466,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Link::LinkMetricLimit] :limits The links' metric limits.
     def set_total_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -479,8 +479,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :uplinks The uplink addresses.
     def set_uplink_address(opts)
-      check_params(opts,[:uplinks])
-      super
+      opts = check_params(opts,[:uplinks])
+      super(opts)
     end
 
     ##
@@ -492,8 +492,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::LinkWeightType] :weight_types The weight types to set.
     def set_weight_type(opts)
-      check_params(opts,[:weight_types])
-      super
+      opts = check_params(opts,[:weight_types])
+      super(opts)
     end
 
     ##

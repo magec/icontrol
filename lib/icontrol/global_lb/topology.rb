@@ -20,8 +20,8 @@ module IControl::GlobalLB
     # @option opts [long] :weights The weights for the records.
     # @option opts [long] :orders The sort orders for the records. These sort orders are used when		longest match sorting is not available.
     def create(opts)
-      check_params(opts,[:weights,:orders])
-      super
+      opts = check_params(opts,[:weights,:orders])
+      super(opts)
     end
 
     ##
@@ -95,8 +95,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :orders The sort orders to set.
     def set_order(opts)
-      check_params(opts,[:orders])
-      super
+      opts = check_params(opts,[:orders])
+      super(opts)
     end
 
     ##
@@ -108,8 +108,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :weights The weights to set.
     def set_weight(opts)
-      check_params(opts,[:weights])
-      super
+      opts = check_params(opts,[:weights])
+      super(opts)
     end
 
     ##

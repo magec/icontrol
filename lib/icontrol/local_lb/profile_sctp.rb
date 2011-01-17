@@ -346,8 +346,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :retries The maximum number of retries.
     def set_connect_maximum_retry(opts)
-      check_params(opts,[:retries])
-      super
+      opts = check_params(opts,[:retries])
+      super(opts)
     end
 
     ##
@@ -359,8 +359,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :durations The valid cookie durations.
     def set_cookie_expiration(opts)
-      check_params(opts,[:durations])
-      super
+      opts = check_params(opts,[:durations])
+      super(opts)
     end
 
     ##
@@ -373,8 +373,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -386,8 +386,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified profiles.
     def set_emulate_tcp_shutdown_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -399,8 +399,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :intervals The heartbeat intervals.
     def set_heartbeat_interval(opts)
-      check_params(opts,[:intervals])
-      super
+      opts = check_params(opts,[:intervals])
+      super(opts)
     end
 
     ##
@@ -413,8 +413,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeouts.
     def set_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -426,8 +426,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :streams The number of streams.
     def set_inbound_stream(opts)
-      check_params(opts,[:streams])
-      super
+      opts = check_params(opts,[:streams])
+      super(opts)
     end
 
     ##
@@ -439,8 +439,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :values The IP ToS values.
     def set_ip_tos_to_peer(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -452,8 +452,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :values The link QoS values.
     def set_link_qos_to_peer(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -466,8 +466,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified profiles.
     def set_order_receive_message_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -479,8 +479,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :streams The number of streams.
     def set_outbound_stream(opts)
-      check_params(opts,[:streams])
-      super
+      opts = check_params(opts,[:streams])
+      super(opts)
     end
 
     ##
@@ -493,8 +493,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :levels The high proxy buffer levels.
     def set_proxy_buffer_high(opts)
-      check_params(opts,[:levels])
-      super
+      opts = check_params(opts,[:levels])
+      super(opts)
     end
 
     ##
@@ -506,8 +506,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :levels The low proxy buffer levels.
     def set_proxy_buffer_low(opts)
-      check_params(opts,[:levels])
-      super
+      opts = check_params(opts,[:levels])
+      super(opts)
     end
 
     ##
@@ -519,8 +519,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :buffers The number of buffers.
     def set_receive_chunk_buffer(opts)
-      check_params(opts,[:buffers])
-      super
+      opts = check_params(opts,[:buffers])
+      super(opts)
     end
 
     ##
@@ -532,8 +532,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The receive window sizes.
     def set_receive_window_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -545,8 +545,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified profiles.
     def set_reset_on_timeout_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -558,8 +558,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :secrets The secret string values.
     def set_secret(opts)
-      check_params(opts,[:secrets])
-      super
+      opts = check_params(opts,[:secrets])
+      super(opts)
     end
 
     ##
@@ -571,8 +571,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The send buffer sizes.
     def set_send_buffer_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -584,8 +584,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :retries The maximum number of retries.
     def set_send_maximum_retry(opts)
-      check_params(opts,[:retries])
-      super
+      opts = check_params(opts,[:retries])
+      super(opts)
     end
 
     ##
@@ -598,8 +598,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified profiles.
     def set_send_partial_data_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -611,8 +611,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :buffers The number of buffers.
     def set_transmit_chunk_buffer(opts)
-      check_params(opts,[:buffers])
-      super
+      opts = check_params(opts,[:buffers])
+      super(opts)
     end
 
     ##

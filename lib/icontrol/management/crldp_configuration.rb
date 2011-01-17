@@ -14,8 +14,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :servers The servers to add to the CRLDP configurations.
     def add_server(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -27,8 +27,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :servers The list of servers to be assigned to each of the configurations.
     def create(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -146,8 +146,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :servers The servers to remove from the CRLDP configurations.
     def remove_server(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -160,8 +160,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :timeouts The timeouts used by the configurations.
     def set_cache_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -174,8 +174,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :timeouts The connection timeouts used by the configurations.
     def set_connection_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -187,8 +187,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :intervals The update intervals used by the configurations.
     def set_update_interval(opts)
-      check_params(opts,[:intervals])
-      super
+      opts = check_params(opts,[:intervals])
+      super(opts)
     end
 
     ##
@@ -200,8 +200,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified configurations.
     def set_use_issuer_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
 

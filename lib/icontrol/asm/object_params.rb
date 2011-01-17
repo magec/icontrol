@@ -23,8 +23,8 @@ module IControl::ASM
     # @option opts [String] :param_name The name of the URL parameter.
     # @option opts [IControl::ASM::ObjectParams::ObjectParamCategory] :setting_categories The ObjectParamCategory
     def add_or_update_object_param_with_characteristics(opts)
-      check_params(opts,[:uri,:param_name,:setting_categories])
-      super
+      opts = check_params(opts,[:uri,:param_name,:setting_categories])
+      super(opts)
     end
 
     ##
@@ -47,8 +47,8 @@ module IControl::ASM
     # @option opts [String] :param_name The name of the URL parameter.
     # @option opts [boolean] :flg_is_staging Whether to move the parameter to staging, or pull it out from staging
     def set_parameter_staging_flag(opts)
-      check_params(opts,[:uri,:param_name,:flg_is_staging])
-      super
+      opts = check_params(opts,[:uri,:param_name,:flg_is_staging])
+      super(opts)
     end
 
     ##

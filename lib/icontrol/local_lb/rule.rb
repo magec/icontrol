@@ -20,8 +20,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Rule::RuleDefinition] :rules The rules to create.
     def create(opts)
-      check_params(opts,[:rules])
-      super
+      opts = check_params(opts,[:rules])
+      super(opts)
     end
 
     ##
@@ -95,8 +95,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Rule::RuleDefinition] :rules The rules to modify.
     def modify_rule(opts)
-      check_params(opts,[:rules])
-      super
+      opts = check_params(opts,[:rules])
+      super(opts)
     end
 
     ##

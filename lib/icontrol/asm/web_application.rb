@@ -141,8 +141,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String] :policy_names The names of the policies to set active for the specified web applications.
     def set_active_policy(opts)
-      check_params(opts,[:policy_names])
-      super
+      opts = check_params(opts,[:policy_names])
+      super(opts)
     end
 
     ##
@@ -154,8 +154,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [IControl::ASM::ApplyLearning] :settings The "apply learning" settings for the web applications.
     def set_apply_learning(opts)
-      check_params(opts,[:settings])
-      super
+      opts = check_params(opts,[:settings])
+      super(opts)
     end
 
     ##
@@ -168,8 +168,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [IControl::ASM::WebApplicationLanguage] :languages The languages.
     def set_language(opts)
-      check_params(opts,[:languages])
-      super
+      opts = check_params(opts,[:languages])
+      super(opts)
     end
 
     ##
@@ -186,8 +186,8 @@ module IControl::ASM
     # @option opts [IControl::ASM::PolicyTemplate] :policy_template_names The policy template names.
     # @option opts [long] :timeout The timeout period in which the ASM web-applications should be created prior to set its language
     def set_language_extended(opts)
-      check_params(opts,[:languages,:policy_names,:policy_template_names,:timeout])
-      super
+      opts = check_params(opts,[:languages,:policy_names,:policy_template_names,:timeout])
+      super(opts)
     end
 
     ##
@@ -199,8 +199,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String] :logprof_names The names of the logging profiles for the specified web applications.
     def set_logging_profile(opts)
-      check_params(opts,[:logprof_names])
-      super
+      opts = check_params(opts,[:logprof_names])
+      super(opts)
     end
 
 

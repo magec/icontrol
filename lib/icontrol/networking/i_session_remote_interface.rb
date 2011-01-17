@@ -23,8 +23,8 @@ module IControl::Networking
     # @option opts [String] :peer_ips The peer mgmt ips.
     # @option opts [IControl::Common::EnabledState] :enabled_states The is enable states settings.
     def create(opts)
-      check_params(opts,[:peer_names,:serverssls,:peer_ips,:enabled_states])
-      super
+      opts = check_params(opts,[:peer_names,:serverssls,:peer_ips,:enabled_states])
+      super(opts)
     end
 
     ##
@@ -207,8 +207,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :nat_states The new nat states.
     def set_behind_nat(opts)
-      check_params(opts,[:nat_states])
-      super
+      opts = check_params(opts,[:nat_states])
+      super(opts)
     end
 
     ##
@@ -220,8 +220,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :ips The new mgmt addresses to use.
     def set_management_address(opts)
-      check_params(opts,[:ips])
-      super
+      opts = check_params(opts,[:ips])
+      super(opts)
     end
 
     ##
@@ -233,8 +233,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :nat_configs The new nat configs.
     def set_nat_config_status(opts)
-      check_params(opts,[:nat_configs])
-      super
+      opts = check_params(opts,[:nat_configs])
+      super(opts)
     end
 
     ##
@@ -246,8 +246,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionRemoteInterface::NatSourceAddress] :nat_states The new nat states.
     def set_nat_source_address(opts)
-      check_params(opts,[:nat_states])
-      super
+      opts = check_params(opts,[:nat_states])
+      super(opts)
     end
 
     ##
@@ -259,8 +259,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionRemoteInterface::OriginState] :origins The new peer origin states.
     def set_origin(opts)
-      check_params(opts,[:origins])
-      super
+      opts = check_params(opts,[:origins])
+      super(opts)
     end
 
     ##
@@ -272,8 +272,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :enabled The enabled flag.
     def set_peer_enabled_state(opts)
-      check_params(opts,[:enabled])
-      super
+      opts = check_params(opts,[:enabled])
+      super(opts)
     end
 
     ##
@@ -285,8 +285,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :routing
     def set_peer_routing_state(opts)
-      check_params(opts,[:routing])
-      super
+      opts = check_params(opts,[:routing])
+      super(opts)
     end
 
     ##
@@ -298,8 +298,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :serverssl The server ssl name.
     def set_profile_serverssl(opts)
-      check_params(opts,[:serverssl])
-      super
+      opts = check_params(opts,[:serverssl])
+      super(opts)
     end
 
     ##
@@ -311,8 +311,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [short] :tunnel_ports The tunnel port number.
     def set_tunnel_port(opts)
-      check_params(opts,[:tunnel_ports])
-      super
+      opts = check_params(opts,[:tunnel_ports])
+      super(opts)
     end
 
 

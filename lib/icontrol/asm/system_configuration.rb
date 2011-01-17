@@ -56,8 +56,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [IControl::ASM::ViolationSeverity] :violation_severities The violation severities.
     def set_violation_severities(opts)
-      check_params(opts,[:violation_severities])
-      super
+      opts = check_params(opts,[:violation_severities])
+      super(opts)
     end
 
     ##
@@ -73,8 +73,8 @@ module IControl::ASM
     # @option opts [String] :user_name Deprecated.
     # @option opts [boolean] :check_interval Deprecated. Should be 'false'.
     def update_signature_file_automatic(opts)
-      check_params(opts,[:do_set_active,:force,:user_name,:check_interval])
-      super
+      opts = check_params(opts,[:do_set_active,:force,:user_name,:check_interval])
+      super(opts)
     end
 
     ##
@@ -91,8 +91,8 @@ module IControl::ASM
     # @option opts [String] :user_name Deprecated.
     # @option opts [boolean] :check_interval Deprecated. Should be 'false'.
     def update_signature_file_manual(opts)
-      check_params(opts,[:file_context,:do_set_active,:force,:user_name,:check_interval])
-      super
+      opts = check_params(opts,[:file_context,:do_set_active,:force,:user_name,:check_interval])
+      super(opts)
     end
 
 

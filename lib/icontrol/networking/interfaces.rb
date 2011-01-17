@@ -352,8 +352,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the specified interfaces.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -365,8 +365,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::LearningMode] :modes The learning modes to set for the specified interfaces.
     def set_learning_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -380,8 +380,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::Interfaces::MediaType] :media_types The media types to set for the specified interfaces (e.g. auto, 100baseTX, 10baseT).
     def set_media(opts)
-      check_params(opts,[:media_types])
-      super
+      opts = check_params(opts,[:media_types])
+      super(opts)
     end
 
     ##
@@ -399,8 +399,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::Interfaces::MediaType] :media_types The media types to set for the specified interfaces (e.g. auto, 100baseTX, 10baseT).
     def set_media_fixed_or_sfp(opts)
-      check_params(opts,[:media_types])
-      super
+      opts = check_params(opts,[:media_types])
+      super(opts)
     end
 
     ##
@@ -412,8 +412,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::Interfaces::MediaType] :media_types The SFP media types to set for the specified interfaces (e.g. auto, 100baseTX, 10baseT).
     def set_media_sfp(opts)
-      check_params(opts,[:media_types])
-      super
+      opts = check_params(opts,[:media_types])
+      super(opts)
     end
 
     ##
@@ -425,8 +425,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::PhyMasterSlaveMode] :modes The PHY master/slave modes to set for the specified interfaces.
     def set_phy_master_slave_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -439,8 +439,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the specified interfaces.
     def set_prefer_sfp_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -452,8 +452,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::FlowControlType] :flow_controls The configured/requested flow control types to set for the specified interface names.
     def set_requested_flow_control(opts)
-      check_params(opts,[:flow_controls])
-      super
+      opts = check_params(opts,[:flow_controls])
+      super(opts)
     end
 
     ##
@@ -471,8 +471,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The auto edge-port detection states to set for the specified interface names.
     def set_stp_auto_edge_port_detection_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -486,8 +486,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The edge-port states to set for the specified interface names.
     def set_stp_edge_port_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -507,8 +507,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The STP enabled states to set for the specified interface names.
     def set_stp_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -520,8 +520,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::STPLinkType] :link_types The STP link types to set for the specified interface names.
     def set_stp_link_type(opts)
-      check_params(opts,[:link_types])
-      super
+      opts = check_params(opts,[:link_types])
+      super(opts)
     end
 
     ##
@@ -536,8 +536,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The STP protocol detection reset states to set for the specified interface names.
     def set_stp_protocol_detection_reset_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

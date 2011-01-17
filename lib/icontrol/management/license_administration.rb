@@ -25,8 +25,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :registration_keys The list of registration keys to do a CRC check.
     def check_registration_key_crc(opts)
-      check_params(opts,[:registration_keys])
-      super
+      opts = check_params(opts,[:registration_keys])
+      super(opts)
     end
 
     ##
@@ -151,8 +151,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :registration_keys The list of registration keys used to get the kernel dossier.
     def system_dossier(opts)
-      check_params(opts,[:registration_keys])
-      super
+      opts = check_params(opts,[:registration_keys])
+      super(opts)
     end
 
     ##
@@ -185,8 +185,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [char] :license_file_data The license file data.
     def install_license(opts)
-      check_params(opts,[:license_file_data])
-      super
+      opts = check_params(opts,[:license_file_data])
+      super(opts)
     end
 
     ##
@@ -198,8 +198,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :license_file The license file location.
     def install_license_from_file(opts)
-      check_params(opts,[:license_file])
-      super
+      opts = check_params(opts,[:license_file])
+      super(opts)
     end
 
     ##

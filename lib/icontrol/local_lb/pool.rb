@@ -21,8 +21,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to add to the pools.
     def add_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -35,8 +35,8 @@ module IControl::LocalLB
     # @option opts [IControl::LocalLB::LBMethod] :lb_methods The load balancing methods to use for the pools.
     # @option opts [IControl::Common::IPPortDefinition[]] :members The lists of initial members of the pools.
     def create(opts)
-      check_params(opts,[:lb_methods,:members])
-      super
+      opts = check_params(opts,[:lb_methods,:members])
+      super(opts)
     end
 
     ##
@@ -58,8 +58,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PersistenceMode] :persistence_modes The persistence modes from which we delete the persistence records.			 If the specified persistence mode is PERSIST_MODE_NONE, then all persistence			 records regardless of persistence mode will be deleted for that pool.
     def delete_persistence_record(opts)
-      check_params(opts,[:persistence_modes])
-      super
+      opts = check_params(opts,[:persistence_modes])
+      super(opts)
     end
 
     ##
@@ -294,8 +294,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PersistenceMode] :persistence_modes The persistence modes from which we retrieve the persistence records.			 If the specified persistence mode is PERSIST_MODE_NONE, then all persistence			 records regardless of persistence mode will be returned for that pool.
     def persistence_record(opts)
-      check_params(opts,[:persistence_modes])
-      super
+      opts = check_params(opts,[:persistence_modes])
+      super(opts)
     end
 
     ##
@@ -371,8 +371,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to delete from the pools.
     def remove_member(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -406,8 +406,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ServiceDownAction] :actions The action to take when the node goes down for the specified pools.
     def set_action_on_service_down(opts)
-      check_params(opts,[:actions])
-      super
+      opts = check_params(opts,[:actions])
+      super(opts)
     end
 
     ##
@@ -419,8 +419,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The NAT allow/disallow states of the specified pools.
     def set_allow_nat_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -432,8 +432,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The SNAT allow/disallow states of the specified pools.
     def set_allow_snat_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -445,8 +445,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :values The client IP ToS values.
     def set_client_ip_tos(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -458,8 +458,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :values The client-side link QoS values.
     def set_client_link_qos(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -471,8 +471,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :unit_ids The gateway failsafe unit IDs of the specified pools.
     def set_gateway_failsafe_unit_id(opts)
-      check_params(opts,[:unit_ids])
-      super
+      opts = check_params(opts,[:unit_ids])
+      super(opts)
     end
 
     ##
@@ -484,8 +484,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::LBMethod] :lb_methods The load balancing methods to use for the pools.
     def set_lb_method(opts)
-      check_params(opts,[:lb_methods])
-      super
+      opts = check_params(opts,[:lb_methods])
+      super(opts)
     end
 
     ##
@@ -497,8 +497,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :values The minimum active member counts of the specified pools.
     def set_minimum_active_member(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -510,8 +510,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :values The minimum UP member counts of the specified pools.
     def set_minimum_up_member(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -524,8 +524,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::HAAction] :actions The actions to be taken if the minimum number of members required		 to be UP for the specified pools is not met.
     def set_minimum_up_member_action(opts)
-      check_params(opts,[:actions])
-      super
+      opts = check_params(opts,[:actions])
+      super(opts)
     end
 
     ##
@@ -538,8 +538,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The minimum UP member states of the specified pools.
     def set_minimum_up_member_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -552,8 +552,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Pool::MonitorAssociation] :monitor_associations The monitor associations that will be used to evaluate the specified pools.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -565,8 +565,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :values The server IP ToS values.
     def set_server_ip_tos(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -578,8 +578,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :values The server link QoS values.
     def set_server_link_qos(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -591,8 +591,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :simple_timeouts The simple timeouts.
     def set_simple_timeout(opts)
-      check_params(opts,[:simple_timeouts])
-      super
+      opts = check_params(opts,[:simple_timeouts])
+      super(opts)
     end
 
     ##
@@ -605,8 +605,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :values The ramp-up times.
     def set_slow_ramp_time(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##

@@ -108,8 +108,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :ip_or_hostnames The IP addresses or hostnames used by the servers.
     def set_ip_or_hostname(opts)
-      check_params(opts,[:ip_or_hostnames])
-      super
+      opts = check_params(opts,[:ip_or_hostnames])
+      super(opts)
     end
 
     ##
@@ -121,8 +121,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ports The ports used by the servers.
     def set_port(opts)
-      check_params(opts,[:ports])
-      super
+      opts = check_params(opts,[:ports])
+      super(opts)
     end
 
     ##
@@ -134,8 +134,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :secrets The secrets used by the servers.
     def set_secret(opts)
-      check_params(opts,[:secrets])
-      super
+      opts = check_params(opts,[:secrets])
+      super(opts)
     end
 
     ##
@@ -147,8 +147,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :timeouts The timeouts used by the servers.
     def set_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##

@@ -13,8 +13,8 @@ module IControl::ARX
     # @option opts [String] :volume The volume name.
     # @option opts [String] :shares A list of share names.
     def definition(opts)
-      check_params(opts,[:volume,:shares])
-      super
+      opts = check_params(opts,[:volume,:shares])
+      super(opts)
     end
 
     ##
@@ -24,8 +24,8 @@ module IControl::ARX
     # @param [Hash] opts
     # @option opts [String] :volume The volume name.
     def list(opts)
-      check_params(opts,[:volume])
-      super
+      opts = check_params(opts,[:volume])
+      super(opts)
     end
 
 

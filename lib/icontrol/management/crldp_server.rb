@@ -109,8 +109,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :base_dns The base DNs used by the servers.
     def set_base_dn(opts)
-      check_params(opts,[:base_dns])
-      super
+      opts = check_params(opts,[:base_dns])
+      super(opts)
     end
 
     ##
@@ -122,8 +122,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :hostnames The hostnames used by the servers.
     def set_hostname(opts)
-      check_params(opts,[:hostnames])
-      super
+      opts = check_params(opts,[:hostnames])
+      super(opts)
     end
 
     ##
@@ -135,8 +135,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ports The ports used by the servers.
     def set_port(opts)
-      check_params(opts,[:ports])
-      super
+      opts = check_params(opts,[:ports])
+      super(opts)
     end
 
     ##
@@ -149,8 +149,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_reverse_dn_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

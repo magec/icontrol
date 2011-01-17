@@ -25,8 +25,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :mac_addresses The MAC addresses.
     def add_trusted_mac_address(opts)
-      check_params(opts,[:mac_addresses])
-      super
+      opts = check_params(opts,[:mac_addresses])
+      super(opts)
     end
 
     ##
@@ -38,8 +38,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :vlans The VLAN names.
     def add_trusted_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##
@@ -102,8 +102,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :mac_addresses The MAC addresses.
     def remove_trusted_mac_address(opts)
-      check_params(opts,[:mac_addresses])
-      super
+      opts = check_params(opts,[:mac_addresses])
+      super(opts)
     end
 
     ##
@@ -115,8 +115,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :vlans The VLAN names.
     def remove_trusted_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
 

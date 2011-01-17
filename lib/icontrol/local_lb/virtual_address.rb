@@ -169,8 +169,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The ARP states to set.
     def set_arp_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -182,8 +182,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64] :limits The connection limits to set.
     def set_connection_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -195,8 +195,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The enabled states to set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -210,8 +210,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set.
     def set_is_floating_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -223,8 +223,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The route advertisement states to set.
     def set_route_advertisement_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -237,8 +237,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::VirtualAddressStatusDependency] :scopes The status dependency scopes to set.
     def set_status_dependency_scope(opts)
-      check_params(opts,[:scopes])
-      super
+      opts = check_params(opts,[:scopes])
+      super(opts)
     end
 
     ##
@@ -250,8 +250,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :unit_ids The unit IDs to set.
     def set_unit_id(opts)
-      check_params(opts,[:unit_ids])
-      super
+      opts = check_params(opts,[:unit_ids])
+      super(opts)
     end
 
     ##

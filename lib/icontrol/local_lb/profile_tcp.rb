@@ -555,8 +555,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_ack_on_push_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -571,8 +571,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_appropriate_byte_counting_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -585,8 +585,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_bandwidth_delay_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -599,8 +599,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The timeouts for the specified TCP profiles.
     def set_close_wait_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -619,8 +619,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_cmetrics_cache_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -632,8 +632,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileTCPCongestionControlMode] :values The TCP congestion control modes.
     def set_congestion_control_mode(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -646,8 +646,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -660,8 +660,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_deferred_accept_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -674,8 +674,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_delayed_ack_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -687,8 +687,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_duplicate_selective_ack_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -701,8 +701,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_ecn_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -715,8 +715,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The timeouts for the specified TCP profiles.
     def set_fin_wait_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -729,8 +729,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_high_performance_tcp_extension_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -743,8 +743,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeouts for the specified TCP profiles.
     def set_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -756,8 +756,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :values The client-side IP TOS values.
     def set_ip_tos_to_client(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -769,8 +769,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :intervals The keep-alive intervals for the specified TCP profiles.
     def set_keep_alive_interval(opts)
-      check_params(opts,[:intervals])
-      super
+      opts = check_params(opts,[:intervals])
+      super(opts)
     end
 
     ##
@@ -782,8 +782,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_limited_transmit_recovery_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -795,8 +795,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :values The client-side link QoS values.
     def set_link_qos_to_client(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -808,8 +808,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :retries The maximum retransmission count of data segments for the specified TCP profiles.
     def set_maximum_data_retransmission(opts)
-      check_params(opts,[:retries])
-      super
+      opts = check_params(opts,[:retries])
+      super(opts)
     end
 
     ##
@@ -821,8 +821,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :retries The maximum retransmission count of SYN segments for the specified TCP profiles.
     def set_maximum_syn_retransmission(opts)
-      check_params(opts,[:retries])
-      super
+      opts = check_params(opts,[:retries])
+      super(opts)
     end
 
     ##
@@ -836,8 +836,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :passphrases The MD5 passphrases for the specified profiles.
     def set_md5_signature_passphrase(opts)
-      check_params(opts,[:passphrases])
-      super
+      opts = check_params(opts,[:passphrases])
+      super(opts)
     end
 
     ##
@@ -850,8 +850,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_md5_signature_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -866,8 +866,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :values The packet loss ignore burst setting for the specified TCP profiles.
     def set_packet_loss_ignore_burst(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -880,8 +880,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :thresholds The threshold for the specified TCP profiles.
     def set_packet_loss_ignore_rate(opts)
-      check_params(opts,[:thresholds])
-      super
+      opts = check_params(opts,[:thresholds])
+      super(opts)
     end
 
     ##
@@ -893,8 +893,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :levels The high proxy buffer level for the specified TCP profiles.
     def set_proxy_buffer_high(opts)
-      check_params(opts,[:levels])
-      super
+      opts = check_params(opts,[:levels])
+      super(opts)
     end
 
     ##
@@ -906,8 +906,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :levels The low proxy buffer level for the specified TCP profiles.
     def set_proxy_buffer_low(opts)
-      check_params(opts,[:levels])
-      super
+      opts = check_params(opts,[:levels])
+      super(opts)
     end
 
     ##
@@ -919,8 +919,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_proxy_mss_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -933,8 +933,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_proxy_option_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -946,8 +946,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The receive window sizes for the specified TCP profiles.
     def set_receive_window_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -960,8 +960,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The key reset on timeout states for the specified TCP profiles.
     def set_reset_on_timeout_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -973,8 +973,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_selective_ack_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -986,8 +986,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The send buffer sizes for the specified TCP profiles.
     def set_send_buffer_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -1000,8 +1000,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_slow_start_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1014,8 +1014,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_time_wait_recycle_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1027,8 +1027,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The timeouts for the specified TCP profiles.
     def set_time_wait_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -1043,8 +1043,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_use_nagle_algorithm_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1058,8 +1058,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified TCP profiles.
     def set_verified_accept_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

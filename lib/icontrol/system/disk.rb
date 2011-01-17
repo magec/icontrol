@@ -41,8 +41,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String[]] :serial_numbers The serial numbers of the physical disks to add to each specified logical disk array.
     def add_array_member(opts)
-      check_params(opts,[:serial_numbers])
-      super
+      opts = check_params(opts,[:serial_numbers])
+      super(opts)
     end
 
     ##
@@ -59,8 +59,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Disk::LogicalDisk[]] :names The identifiers of the logical disks to add to each specified logical disk array.
     def add_array_member_by_logical_id(opts)
-      check_params(opts,[:names])
-      super
+      opts = check_params(opts,[:names])
+      super(opts)
     end
 
     ##
@@ -87,8 +87,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :serial_numbers The serial numbers of the disks of interest.
     def array_status(opts)
-      check_params(opts,[:serial_numbers])
-      super
+      opts = check_params(opts,[:serial_numbers])
+      super(opts)
     end
 
     ##
@@ -101,8 +101,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long] :ids The identifiers for the disk bays of interest.
     def bay_disk_serial_number(opts)
-      check_params(opts,[:ids])
-      super
+      opts = check_params(opts,[:ids])
+      super(opts)
     end
 
     ##
@@ -197,8 +197,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :serial_numbers The serial numbers of the disks of interest.
     def name(opts)
-      check_params(opts,[:serial_numbers])
-      super
+      opts = check_params(opts,[:serial_numbers])
+      super(opts)
     end
 
     ##
@@ -212,8 +212,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :serial_numbers The serial numbers of the disks of interest.
     def slot_id(opts)
-      check_params(opts,[:serial_numbers])
-      super
+      opts = check_params(opts,[:serial_numbers])
+      super(opts)
     end
 
     ##
@@ -235,8 +235,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :serial_numbers The serial numbers of the disks of interest.
     def is_array_member(opts)
-      check_params(opts,[:serial_numbers])
-      super
+      opts = check_params(opts,[:serial_numbers])
+      super(opts)
     end
 
     ##
@@ -261,8 +261,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String[]] :serial_numbers The serial numbers of the physical disks to add to each specified logical disk array.
     def remove_array_member(opts)
-      check_params(opts,[:serial_numbers])
-      super
+      opts = check_params(opts,[:serial_numbers])
+      super(opts)
     end
 
     ##
@@ -280,8 +280,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::Disk::LogicalDisk[]] :names
     def remove_array_member_by_logical_id(opts)
-      check_params(opts,[:names])
-      super
+      opts = check_params(opts,[:names])
+      super(opts)
     end
 
     ##

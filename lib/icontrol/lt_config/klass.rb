@@ -15,8 +15,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [IControl::LTConfig::ClassInstanceKey] :class_instance_keys Class instance keys defining the keys	 for the new instances. Each of these specifies the	 name of the instance, the class name of the	 instance, and if appropriate, a container class for	 the instance.
     def create_instance(opts)
-      check_params(opts,[:class_instance_keys])
-      super
+      opts = check_params(opts,[:class_instance_keys])
+      super(opts)
     end
 
     ##
@@ -28,8 +28,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [IControl::LTConfig::ClassInstanceKey] :class_instance_keys Class instance keys defining the keys	 for the instances to delete. Each of these specifies	 the name of the instance, the class name of the	 instance, and if appropriate, a container class for	 the instance.
     def delete_instance(opts)
-      check_params(opts,[:class_instance_keys])
-      super
+      opts = check_params(opts,[:class_instance_keys])
+      super(opts)
     end
 
     ##

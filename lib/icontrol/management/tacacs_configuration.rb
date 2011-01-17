@@ -14,8 +14,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :servers The servers to add to the TACACS configurations.
     def add_server(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -30,8 +30,8 @@ module IControl::Management
     # @option opts [String] :protocol_names The TACACS+ servers' listening protocol names used by the configurations.
     # @option opts [String[]] :servers The list of servers to be assigned to each of the configurations.
     def create(opts)
-      check_params(opts,[:secrets,:service_names,:protocol_names,:servers])
-      super
+      opts = check_params(opts,[:secrets,:service_names,:protocol_names,:servers])
+      super(opts)
     end
 
     ##
@@ -175,8 +175,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :servers The servers to remove from the TACACS configurations.
     def remove_server(opts)
-      check_params(opts,[:servers])
-      super
+      opts = check_params(opts,[:servers])
+      super(opts)
     end
 
     ##
@@ -190,8 +190,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The accounting-to-all states of the specified configurations.
     def set_accounting_to_all_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -203,8 +203,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The syslog debugging states of the specified configurations.
     def set_debug_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -216,8 +216,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The encryption states of the specified configurations.
     def set_encryption_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -232,8 +232,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The first-hit states of the specified configurations.
     def set_first_hit_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -245,8 +245,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :protocol_names The service names used by the configurations.
     def set_protocol_name(opts)
-      check_params(opts,[:protocol_names])
-      super
+      opts = check_params(opts,[:protocol_names])
+      super(opts)
     end
 
     ##
@@ -258,8 +258,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :secrets The secrets used by the configurations.
     def set_secret(opts)
-      check_params(opts,[:secrets])
-      super
+      opts = check_params(opts,[:secrets])
+      super(opts)
     end
 
     ##
@@ -271,8 +271,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :service_names The service names used by the configurations.
     def set_service_name(opts)
-      check_params(opts,[:service_names])
-      super
+      opts = check_params(opts,[:service_names])
+      super(opts)
     end
 
 

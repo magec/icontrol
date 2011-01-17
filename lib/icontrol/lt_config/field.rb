@@ -17,8 +17,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get type information, with one list for each class specified, each with one entry for each field requested.
     def application_data(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -32,8 +32,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get clustered states, with one list for each class specified, each with one entry for each field requested.
     def clustered_state(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -47,8 +47,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get configsyncd states, with one list for each class specified, each with one entry for each field requested.
     def configsyncd_state(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -63,8 +63,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get type information, with one list for each class specified, each with one entry for each field requested.
     def db_variable_mirror_information(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -78,8 +78,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get type information, with one list for each class specified, each with one entry for each field requested.
     def default(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -93,8 +93,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get type information, with one list for each class specified, each with one entry for each field requested.
     def display_name(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -119,8 +119,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get required states, with one list for each class specified, each with one entry for each field requested.
     def required_state(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -136,8 +136,8 @@ module IControl::LTConfig
     # @param [Hash] opts
     # @option opts [String[]] :field_names A list of (list of) fields for which to get type information, with one list for each class specified, each with one entry for each field requested.
     def type_information(opts)
-      check_params(opts,[:field_names])
-      super
+      opts = check_params(opts,[:field_names])
+      super(opts)
     end
 
     ##
@@ -154,8 +154,8 @@ module IControl::LTConfig
     # @option opts [IControl::LTConfig::ClassInstanceKey] :class_instance_key The class instance containing the field of interest.
     # @option opts [String] :field_instance_name A field instance for which to get value.
     def value(opts)
-      check_params(opts,[:class_instance_key,:field_instance_name])
-      super
+      opts = check_params(opts,[:class_instance_key,:field_instance_name])
+      super(opts)
     end
 
     ##
@@ -170,8 +170,8 @@ module IControl::LTConfig
     # @option opts [IControl::LTConfig::ClassInstanceKey] :class_instance_keys The class instances containing the fields of interest.
     # @option opts [String[]] :field_instance_names A list of (list of) field instances for which to get values, with one list for each class instance specified, each with one entry for each field requested. As a convenience, if the fields are the same for each class instance, you may pass just 1 list of fields to be used for all class instances. In any case, the class instance must have the fields requested on pain of exception.
     def values(opts)
-      check_params(opts,[:class_instance_keys,:field_instance_names])
-      super
+      opts = check_params(opts,[:class_instance_keys,:field_instance_names])
+      super(opts)
     end
 
     ##
@@ -197,8 +197,8 @@ module IControl::LTConfig
     # @option opts [String] :field_instance_name A field instance for which to set value.
     # @option opts [String] :value A field instance value. The value is given as a string when using this method.
     def set_value(opts)
-      check_params(opts,[:create_instances_if_needed,:class_instance_key,:field_instance_name,:value])
-      super
+      opts = check_params(opts,[:create_instances_if_needed,:class_instance_key,:field_instance_name,:value])
+      super(opts)
     end
 
     ##
@@ -214,8 +214,8 @@ module IControl::LTConfig
     # @option opts [String[]] :field_instance_names A list of (list of) field instances for which to set values, with one list for each class instance specified, each with one entry for each field to set. As a convenience, if the fields are the same for each class instance, you may pass just 1 list of fields to be used for all class instances. In any case, the class instance must have the fields requested on pain of exception.
     # @option opts [String[]] :values A list of (list of) field instance values, with one list for each class specified, each with one entry for each field specified. Values are given as strings when using this method. As a convenience, if the values are the same for each class instance, you may pass just 1 list of values to be used for all class instances. In any case, the number of fields must match the number of values for a given class instance (and must make sense for each class instance) on pain of exception.
     def set_values(opts)
-      check_params(opts,[:create_instances_if_needed,:class_instance_keys,:field_instance_names,:values])
-      super
+      opts = check_params(opts,[:create_instances_if_needed,:class_instance_keys,:field_instance_names,:values])
+      super(opts)
     end
 
 

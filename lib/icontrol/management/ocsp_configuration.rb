@@ -14,8 +14,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :responders The responders to add to the OCSP configurations.
     def add_responder(opts)
-      check_params(opts,[:responders])
-      super
+      opts = check_params(opts,[:responders])
+      super(opts)
     end
 
     ##
@@ -27,8 +27,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :responders The list of responders to be assigned to each of the configurations.
     def create(opts)
-      check_params(opts,[:responders])
-      super
+      opts = check_params(opts,[:responders])
+      super(opts)
     end
 
     ##
@@ -100,8 +100,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String[]] :responders The responders to remove from the OCSP configurations.
     def remove_responder(opts)
-      check_params(opts,[:responders])
-      super
+      opts = check_params(opts,[:responders])
+      super(opts)
     end
 
 

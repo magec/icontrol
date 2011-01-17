@@ -142,8 +142,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :defaults WCCP-GRE tunnel profile from which each specified WCCP-GRE tunnel profile inherits its unspecified attribute values (default: wccpgre)
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -156,8 +156,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::ProfileWCCPGRE::ProfileWCCPGREForwarding] :modes Forwarding specification for packets leaving a WCCP-GRE tunnel for each specified WCCP-GRE tunnel profile (default: WCCP_GRE_FORWARD_NORMAL)
     def set_egress_forwarding(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -170,8 +170,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileEnabledState] :states Enabled state for including the checksum in the transmitted packets for each specified WCCP-GRE tunnel profile (default: disabled)
     def set_include_checksum_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -184,8 +184,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileEnabledState] :states Enabled state for validating the checksum on the received packets for each specified WCCP-GRE tunnel profile
     def set_validate_checksum_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -197,8 +197,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileULong] :versions WCCP version currently in use for each specified WCCP-GRE tunnel profiles
     def set_wccp_version(opts)
-      check_params(opts,[:versions])
-      super
+      opts = check_params(opts,[:versions])
+      super(opts)
     end
 
     ##

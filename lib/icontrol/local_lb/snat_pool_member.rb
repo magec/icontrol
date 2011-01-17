@@ -30,8 +30,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :members The SNATPool member addresses.
     def statistics(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -51,8 +51,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :members The SNATPool member addresses.
     def reset_statistics(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##

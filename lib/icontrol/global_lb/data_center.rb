@@ -172,8 +172,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :contacts The contact information.
     def set_contact_information(opts)
-      check_params(opts,[:contacts])
-      super
+      opts = check_params(opts,[:contacts])
+      super(opts)
     end
 
     ##
@@ -185,8 +185,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The enabled states to set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -198,8 +198,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :locations The location information.
     def set_location_information(opts)
-      check_params(opts,[:locations])
-      super
+      opts = check_params(opts,[:locations])
+      super(opts)
     end
 
     ##

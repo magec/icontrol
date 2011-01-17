@@ -11,8 +11,8 @@
 # @param [Hash] opts <% parameters_filtered.each do |param| %>
 # @option opts [<%= convert_to_ruby(param.properties[:type],true).gsub("Sequence","[]") %>] :<%= param.properties[:name] %> <%= param.properties[:comment] %>  <% end %> 
 def <%= method_name %>(opts)
-  check_params(opts,[<%= parameters_filtered.map {|i| ":" + i.properties[:name] }.join(",") %>])
-  super
+  opts = check_params(opts,[<%= parameters_filtered.map {|i| ":" + i.properties[:name] }.join(",") %>])
+  super(opts)			      
 end
 <% else %>
 def <%= method_name %>

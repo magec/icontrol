@@ -15,8 +15,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :statement_names The names of the acl Statements
     def delete_acl_statement(opts)
-      check_params(opts,[:statement_names])
-      super
+      opts = check_params(opts,[:statement_names])
+      super(opts)
     end
 
     ##
@@ -39,8 +39,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :path_names The path_names for the include files
     def delete_include_statement(opts)
-      check_params(opts,[:path_names])
-      super
+      opts = check_params(opts,[:path_names])
+      super(opts)
     end
 
     ##
@@ -52,8 +52,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :statement_names The names of the statements to delete
     def delete_key_statement(opts)
-      check_params(opts,[:statement_names])
-      super
+      opts = check_params(opts,[:statement_names])
+      super(opts)
     end
 
     ##
@@ -87,8 +87,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :statement_names The statements to delete.
     def delete_server_statement(opts)
-      check_params(opts,[:statement_names])
-      super
+      opts = check_params(opts,[:statement_names])
+      super(opts)
     end
 
     ##
@@ -156,8 +156,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::StatementDefinition] :statement The "controls" statement definition.
     def set_controls_statement(opts)
-      check_params(opts,[:statement])
-      super
+      opts = check_params(opts,[:statement])
+      super(opts)
     end
 
     ##
@@ -192,8 +192,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::StatementDefinition] :statement The statement definition.
     def set_logging_statement(opts)
-      check_params(opts,[:statement])
-      super
+      opts = check_params(opts,[:statement])
+      super(opts)
     end
 
     ##
@@ -207,8 +207,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::StatementDefinition] :statement The statement definition.
     def set_options_statement(opts)
-      check_params(opts,[:statement])
-      super
+      opts = check_params(opts,[:statement])
+      super(opts)
     end
 
     ##
@@ -232,8 +232,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::StatementDefinition] :statement The statement definition.
     def set_trusted_keys_statement(opts)
-      check_params(opts,[:statement])
-      super
+      opts = check_params(opts,[:statement])
+      super(opts)
     end
 
 

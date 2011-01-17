@@ -37,8 +37,8 @@ module IControl::GlobalLB
     # @option opts [IControl::GlobalLB::DNSSECKey::KeyAlgorithm] :algorithms Digital signature algorithm (See KeyAlgorithm ) for each specified key
     # @option opts [IControl::Common::EnabledState] :fips Specifies whether the FIPS device should be used for storing and retrieving the keys
     def create(opts)
-      check_params(opts,[:sizes,:types,:algorithms,:fips])
-      super
+      opts = check_params(opts,[:sizes,:types,:algorithms,:fips])
+      super(opts)
     end
 
     ##
@@ -130,8 +130,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64[]] :generations Identifiers for the key generations to query for each specified DNSSEC key
     def generation_expiration_time(opts)
-      check_params(opts,[:generations])
-      super
+      opts = check_params(opts,[:generations])
+      super(opts)
     end
 
     ##
@@ -144,8 +144,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64[]] :generations Identifiers for the key generations to query for each specified DNSSEC key
     def generation_public_text(opts)
-      check_params(opts,[:generations])
-      super
+      opts = check_params(opts,[:generations])
+      super(opts)
     end
 
     ##
@@ -158,8 +158,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64[]] :generations Identifiers for the key generations to query for each specified DNSSEC key
     def generation_rollover_time(opts)
-      check_params(opts,[:generations])
-      super
+      opts = check_params(opts,[:generations])
+      super(opts)
     end
 
     ##
@@ -257,8 +257,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states Enabled state for each specified DNSSEC key (default: enabled)
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -272,8 +272,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :times Expiration period (seconds) for each specified DNSSEC key (default: zero - never expires)
     def set_expiration_period(opts)
-      check_params(opts,[:times])
-      super
+      opts = check_params(opts,[:times])
+      super(opts)
     end
 
     ##
@@ -288,8 +288,8 @@ module IControl::GlobalLB
     # @option opts [IControl::Common::ULong64[]] :generations Identifiers for the key generations to modify for each specified DNSSEC key
     # @option opts [IControl::Common::TimeStamp[]] :times Expiration date and time for each specified DNSSEC key generation (default: as specified in the key)
     def set_generation_expiration_time(opts)
-      check_params(opts,[:generations,:times])
-      super
+      opts = check_params(opts,[:generations,:times])
+      super(opts)
     end
 
     ##
@@ -304,8 +304,8 @@ module IControl::GlobalLB
     # @option opts [IControl::Common::ULong64[]] :generations Identifiers for the key generations to modify for each specified DNSSEC key
     # @option opts [IControl::Common::TimeStamp[]] :times Rollover date and time for each specified DNSSEC key generation (default: as specified in the key)
     def set_generation_rollover_time(opts)
-      check_params(opts,[:generations,:times])
-      super
+      opts = check_params(opts,[:generations,:times])
+      super(opts)
     end
 
     ##
@@ -319,8 +319,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :times Rollover period (seconds) for each specified DNSSEC key (default: zero - one-shot key (never rolls over))
     def set_rollover_period(opts)
-      check_params(opts,[:times])
-      super
+      opts = check_params(opts,[:times])
+      super(opts)
     end
 
     ##
@@ -335,8 +335,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :times Signature publication period (seconds) for each specified DNSSEC key (default: zero - standard BIND value)
     def set_signature_publication_period(opts)
-      check_params(opts,[:times])
-      super
+      opts = check_params(opts,[:times])
+      super(opts)
     end
 
     ##
@@ -350,8 +350,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :times Signature validity period (seconds) for each specified DNSSEC key (default: zero - standard BIND value)
     def set_signature_validity_period(opts)
-      check_params(opts,[:times])
-      super
+      opts = check_params(opts,[:times])
+      super(opts)
     end
 
     ##
@@ -363,8 +363,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :times DNSKEY record Time To Live (TTL) (seconds) for each specified DNSSEC key (default: 86400 (1 day))
     def set_time_to_live(opts)
-      check_params(opts,[:times])
-      super
+      opts = check_params(opts,[:times])
+      super(opts)
     end
 
 

@@ -27,8 +27,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The lists of interfaces to add to the specified trunks.
     def add_interface(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -41,8 +41,8 @@ module IControl::Networking
     # @option opts [boolean] :lacp_states The LACP enabled states associated with the specified trunks.
     # @option opts [String[]] :interfaces The interfaces associated with the specified trunks.
     def create(opts)
-      check_params(opts,[:lacp_states,:interfaces])
-      super
+      opts = check_params(opts,[:lacp_states,:interfaces])
+      super(opts)
     end
 
     ##
@@ -271,8 +271,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :interfaces The lists of interfaces to remove from the specified trunks.
     def remove_interface(opts)
-      check_params(opts,[:interfaces])
-      super
+      opts = check_params(opts,[:interfaces])
+      super(opts)
     end
 
     ##
@@ -298,8 +298,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states indicating whether active LACP is enabled/disabled.
     def set_active_lacp_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -311,8 +311,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::Trunk::DistributionHashOption] :hashing_options The frame distribution hashing option used by the specified trunks..
     def set_distribution_hash_option(opts)
-      check_params(opts,[:hashing_options])
-      super
+      opts = check_params(opts,[:hashing_options])
+      super(opts)
     end
 
     ##
@@ -324,8 +324,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states indicating whether LACP is enabled/disabled for the specified trunks.
     def set_lacp_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -337,8 +337,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::Trunk::LACPTimeoutOption] :timeout_options The LACP timeout options for the specified trunks.
     def set_lacp_timeout_option(opts)
-      check_params(opts,[:timeout_options])
-      super
+      opts = check_params(opts,[:timeout_options])
+      super(opts)
     end
 
     ##
@@ -350,8 +350,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::Trunk::LinkSelectionPolicy] :policies The link selection policies used by the specified trunks.
     def set_link_selection_policy(opts)
-      check_params(opts,[:policies])
-      super
+      opts = check_params(opts,[:policies])
+      super(opts)
     end
 
     ##
@@ -369,8 +369,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The STP enabled states to set for the specified interface names.
     def set_stp_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -385,8 +385,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The STP protocol detection reset states to set for the specified interface names.
     def set_stp_protocol_detection_reset_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

@@ -485,8 +485,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SinkType] :sink_type The trap sink type.
     def trap_sinks(opts)
-      check_params(opts,[:sink_type])
-      super
+      opts = check_params(opts,[:sink_type])
+      super(opts)
     end
 
     ##
@@ -517,8 +517,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AccessInformation] :access_info A list of access map definitions.
     def remove_access_info(opts)
-      check_params(opts,[:access_info])
-      super
+      opts = check_params(opts,[:access_info])
+      super(opts)
     end
 
     ##
@@ -530,8 +530,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :group_id The group id.
     def remove_agent_group_id(opts)
-      check_params(opts,[:group_id])
-      super
+      opts = check_params(opts,[:group_id])
+      super(opts)
     end
 
     ##
@@ -543,8 +543,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AgentInterface] :agent_intf The agent interface information.
     def remove_agent_interface(opts)
-      check_params(opts,[:agent_intf])
-      super
+      opts = check_params(opts,[:agent_intf])
+      super(opts)
     end
 
     ##
@@ -557,8 +557,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AgentListenAddressPort] :agent_listen_addresses The agent listen information.
     def remove_agent_listen_address(opts)
-      check_params(opts,[:agent_listen_addresses])
-      super
+      opts = check_params(opts,[:agent_listen_addresses])
+      super(opts)
     end
 
     ##
@@ -571,8 +571,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The agent trap enabled state.
     def remove_agent_trap_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -584,8 +584,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :user_id The agent user id.
     def remove_agent_user_id(opts)
-      check_params(opts,[:user_id])
-      super
+      opts = check_params(opts,[:user_id])
+      super(opts)
     end
 
     ##
@@ -597,8 +597,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AgentXInformation] :agentx_info The AgentX information.
     def remove_agentx_information(opts)
-      check_params(opts,[:agentx_info])
-      super
+      opts = check_params(opts,[:agentx_info])
+      super(opts)
     end
 
     ##
@@ -611,8 +611,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The authentication trap enabled state.
     def remove_auth_trap_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -624,8 +624,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::DiskCheckInformation] :disk_info The disk information for the check.
     def remove_check_disk(opts)
-      check_params(opts,[:disk_info])
-      super
+      opts = check_params(opts,[:disk_info])
+      super(opts)
     end
 
     ##
@@ -637,8 +637,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::FileCheckInformation] :file_info The file check information.
     def remove_check_file(opts)
-      check_params(opts,[:file_info])
-      super
+      opts = check_params(opts,[:file_info])
+      super(opts)
     end
 
     ##
@@ -650,8 +650,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::LoadAverageInformation] :load_info The load check information.
     def remove_check_load(opts)
-      check_params(opts,[:load_info])
-      super
+      opts = check_params(opts,[:load_info])
+      super(opts)
     end
 
     ##
@@ -667,8 +667,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::ProcessInformation] :proc_info The process check to remove.
     def remove_check_process(opts)
-      check_params(opts,[:proc_info])
-      super
+      opts = check_params(opts,[:proc_info])
+      super(opts)
     end
 
     ##
@@ -680,8 +680,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::ClientAccess] :client_access_info The client access information.
     def remove_client_access(opts)
-      check_params(opts,[:client_access_info])
-      super
+      opts = check_params(opts,[:client_access_info])
+      super(opts)
     end
 
     ##
@@ -693,8 +693,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SecurityInformation] :security_info The security mapping information.
     def remove_community_to_security_info(opts)
-      check_params(opts,[:security_info])
-      super
+      opts = check_params(opts,[:security_info])
+      super(opts)
     end
 
     ##
@@ -706,8 +706,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::UserInformation] :user_info The user information.
     def remove_create_user(opts)
-      check_params(opts,[:user_info])
-      super
+      opts = check_params(opts,[:user_info])
+      super(opts)
     end
 
     ##
@@ -719,8 +719,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::DynamicLoadableModule] :mod_info The module information.
     def remove_dynamic_loadable_module(opts)
-      check_params(opts,[:mod_info])
-      super
+      opts = check_params(opts,[:mod_info])
+      super(opts)
     end
 
     ##
@@ -732,8 +732,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :engine_id The engine identifier.
     def remove_engine_id(opts)
-      check_params(opts,[:engine_id])
-      super
+      opts = check_params(opts,[:engine_id])
+      super(opts)
     end
 
     ##
@@ -745,8 +745,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::MibnumNameProgArgs] :exec_info The program instance information.
     def remove_exec(opts)
-      check_params(opts,[:exec_info])
-      super
+      opts = check_params(opts,[:exec_info])
+      super(opts)
     end
 
     ##
@@ -758,8 +758,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::NameProgArgs] :exec_info The program information for the fix command.
     def remove_exec_fix(opts)
-      check_params(opts,[:exec_info])
-      super
+      opts = check_params(opts,[:exec_info])
+      super(opts)
     end
 
     ##
@@ -792,8 +792,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::GroupInformation] :group_info The group mapping information.
     def remove_group_info(opts)
-      check_params(opts,[:group_info])
-      super
+      opts = check_params(opts,[:group_info])
+      super(opts)
     end
 
     ##
@@ -805,8 +805,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :ignore_disk List of disk devices to ignore
     def remove_ignore_disk(opts)
-      check_params(opts,[:ignore_disk])
-      super
+      opts = check_params(opts,[:ignore_disk])
+      super(opts)
     end
 
     ##
@@ -818,8 +818,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::PassThroughInformation] :passthru_info The pass through information.
     def remove_pass_through(opts)
-      check_params(opts,[:passthru_info])
-      super
+      opts = check_params(opts,[:passthru_info])
+      super(opts)
     end
 
     ##
@@ -831,8 +831,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::PassThroughInformation] :passthru_info The persist pass through information.
     def remove_pass_through_persist(opts)
-      check_params(opts,[:passthru_info])
-      super
+      opts = check_params(opts,[:passthru_info])
+      super(opts)
     end
 
     ##
@@ -844,8 +844,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::NameProgArgs] :fix_info The program information for the process fix.
     def remove_process_fix(opts)
-      check_params(opts,[:fix_info])
-      super
+      opts = check_params(opts,[:fix_info])
+      super(opts)
     end
 
     ##
@@ -857,8 +857,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :proxy_info The proxy information.
     def remove_proxy(opts)
-      check_params(opts,[:proxy_info])
-      super
+      opts = check_params(opts,[:proxy_info])
+      super(opts)
     end
 
     ##
@@ -870,8 +870,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperSecurityInformation] :ro_community_info The read-only community information.
     def remove_readonly_community(opts)
-      check_params(opts,[:ro_community_info])
-      super
+      opts = check_params(opts,[:ro_community_info])
+      super(opts)
     end
 
     ##
@@ -883,8 +883,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperUserInformation] :ro_user_info The read-only user information.
     def remove_readonly_user(opts)
-      check_params(opts,[:ro_user_info])
-      super
+      opts = check_params(opts,[:ro_user_info])
+      super(opts)
     end
 
     ##
@@ -896,8 +896,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperSecurityInformation] :rw_community_info The read-write community information.
     def remove_readwrite_community(opts)
-      check_params(opts,[:rw_community_info])
-      super
+      opts = check_params(opts,[:rw_community_info])
+      super(opts)
     end
 
     ##
@@ -909,8 +909,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperUserInformation] :rw_user_info The read-write user information.
     def remove_readwrite_user(opts)
-      check_params(opts,[:rw_user_info])
-      super
+      opts = check_params(opts,[:rw_user_info])
+      super(opts)
     end
 
     ##
@@ -922,8 +922,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SmuxSubAgentInformation] :subagent_info The sub-agent information.
     def remove_smux_subagent(opts)
-      check_params(opts,[:subagent_info])
-      super
+      opts = check_params(opts,[:subagent_info])
+      super(opts)
     end
 
     ##
@@ -940,8 +940,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :usage The usage information.
     def remove_storage_use_nfs(opts)
-      check_params(opts,[:usage])
-      super
+      opts = check_params(opts,[:usage])
+      super(opts)
     end
 
     ##
@@ -957,8 +957,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SystemInformation] :system_info The system information.
     def remove_system_information(opts)
-      check_params(opts,[:system_info])
-      super
+      opts = check_params(opts,[:system_info])
+      super(opts)
     end
 
     ##
@@ -971,8 +971,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :community The trap community string.
     def remove_trap_community(opts)
-      check_params(opts,[:community])
-      super
+      opts = check_params(opts,[:community])
+      super(opts)
     end
 
     ##
@@ -984,8 +984,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SinkType] :sink_type The trap sink type.
     def remove_trap_sinks(opts)
-      check_params(opts,[:sink_type])
-      super
+      opts = check_params(opts,[:sink_type])
+      super(opts)
     end
 
     ##
@@ -997,8 +997,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::ViewInformation] :view_info The view information.
     def remove_view_info(opts)
-      check_params(opts,[:view_info])
-      super
+      opts = check_params(opts,[:view_info])
+      super(opts)
     end
 
     ##
@@ -1010,8 +1010,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AccessInformation] :access_info A list of access map definitions.
     def set_access_info(opts)
-      check_params(opts,[:access_info])
-      super
+      opts = check_params(opts,[:access_info])
+      super(opts)
     end
 
     ##
@@ -1024,8 +1024,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :group_id The group id.
     def set_agent_group_id(opts)
-      check_params(opts,[:group_id])
-      super
+      opts = check_params(opts,[:group_id])
+      super(opts)
     end
 
     ##
@@ -1038,8 +1038,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AgentInterface] :agent_intf The agent interface information.
     def set_agent_interface(opts)
-      check_params(opts,[:agent_intf])
-      super
+      opts = check_params(opts,[:agent_intf])
+      super(opts)
     end
 
     ##
@@ -1052,8 +1052,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AgentListenAddressPort] :agent_listen_addresses The agent listen information.
     def set_agent_listen_address(opts)
-      check_params(opts,[:agent_listen_addresses])
-      super
+      opts = check_params(opts,[:agent_listen_addresses])
+      super(opts)
     end
 
     ##
@@ -1065,8 +1065,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The agent trap enabled state.
     def set_agent_trap_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1079,8 +1079,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :user_id The agent user id.
     def set_agent_user_id(opts)
-      check_params(opts,[:user_id])
-      super
+      opts = check_params(opts,[:user_id])
+      super(opts)
     end
 
     ##
@@ -1092,8 +1092,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::AgentXInformation] :agentx_info The AgentX information.
     def set_agentx_information(opts)
-      check_params(opts,[:agentx_info])
-      super
+      opts = check_params(opts,[:agentx_info])
+      super(opts)
     end
 
     ##
@@ -1106,8 +1106,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :state The authentication trap enabled state.
     def set_auth_trap_state(opts)
-      check_params(opts,[:state])
-      super
+      opts = check_params(opts,[:state])
+      super(opts)
     end
 
     ##
@@ -1122,8 +1122,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::DiskCheckInformation] :disk_info The disk information for the check.
     def set_check_disk(opts)
-      check_params(opts,[:disk_info])
-      super
+      opts = check_params(opts,[:disk_info])
+      super(opts)
     end
 
     ##
@@ -1136,8 +1136,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::FileCheckInformation] :file_info The file check information.
     def set_check_file(opts)
-      check_params(opts,[:file_info])
-      super
+      opts = check_params(opts,[:file_info])
+      super(opts)
     end
 
     ##
@@ -1152,8 +1152,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::LoadAverageInformation] :load_info The load check information.
     def set_check_load(opts)
-      check_params(opts,[:load_info])
-      super
+      opts = check_params(opts,[:load_info])
+      super(opts)
     end
 
     ##
@@ -1169,8 +1169,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::ProcessInformation] :proc_info The process check to add.
     def set_check_process(opts)
-      check_params(opts,[:proc_info])
-      super
+      opts = check_params(opts,[:proc_info])
+      super(opts)
     end
 
     ##
@@ -1183,8 +1183,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::ClientAccess] :client_access_info The access control information.
     def set_client_access(opts)
-      check_params(opts,[:client_access_info])
-      super
+      opts = check_params(opts,[:client_access_info])
+      super(opts)
     end
 
     ##
@@ -1197,8 +1197,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SecurityInformation] :security_info The security mapping information.
     def set_community_to_security_info(opts)
-      check_params(opts,[:security_info])
-      super
+      opts = check_params(opts,[:security_info])
+      super(opts)
     end
 
     ##
@@ -1214,8 +1214,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::UserInformation] :user_info The user information.
     def set_create_user(opts)
-      check_params(opts,[:user_info])
-      super
+      opts = check_params(opts,[:user_info])
+      super(opts)
     end
 
     ##
@@ -1231,8 +1231,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::DynamicLoadableModule] :mod_info The module information.
     def set_dynamic_loadable_module(opts)
-      check_params(opts,[:mod_info])
-      super
+      opts = check_params(opts,[:mod_info])
+      super(opts)
     end
 
     ##
@@ -1245,8 +1245,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :engine_id The engine identifier.
     def set_engine_id(opts)
-      check_params(opts,[:engine_id])
-      super
+      opts = check_params(opts,[:engine_id])
+      super(opts)
     end
 
     ##
@@ -1262,8 +1262,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::MibnumNameProgArgs] :exec_info The program instance information.
     def set_exec(opts)
-      check_params(opts,[:exec_info])
-      super
+      opts = check_params(opts,[:exec_info])
+      super(opts)
     end
 
     ##
@@ -1276,8 +1276,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::NameProgArgs] :exec_info The program information for the fix command.
     def set_exec_fix(opts)
-      check_params(opts,[:exec_info])
-      super
+      opts = check_params(opts,[:exec_info])
+      super(opts)
     end
 
     ##
@@ -1312,8 +1312,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::GroupInformation] :group_info The group mapping information.
     def set_group_info(opts)
-      check_params(opts,[:group_info])
-      super
+      opts = check_params(opts,[:group_info])
+      super(opts)
     end
 
     ##
@@ -1329,8 +1329,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :ignore_disk List of disk devices to ignore
     def set_ignore_disk(opts)
-      check_params(opts,[:ignore_disk])
-      super
+      opts = check_params(opts,[:ignore_disk])
+      super(opts)
     end
 
     ##
@@ -1343,8 +1343,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::PassThroughInformation] :passthru_info The pass through information.
     def set_pass_through(opts)
-      check_params(opts,[:passthru_info])
-      super
+      opts = check_params(opts,[:passthru_info])
+      super(opts)
     end
 
     ##
@@ -1358,8 +1358,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::PassThroughInformation] :passthru_info The pass through information.
     def set_pass_through_persist(opts)
-      check_params(opts,[:passthru_info])
-      super
+      opts = check_params(opts,[:passthru_info])
+      super(opts)
     end
 
     ##
@@ -1372,8 +1372,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::NameProgArgs] :fix_info The program information for the process fix.
     def set_process_fix(opts)
-      check_params(opts,[:fix_info])
-      super
+      opts = check_params(opts,[:fix_info])
+      super(opts)
     end
 
     ##
@@ -1386,8 +1386,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :proxy_info The proxy information.
     def set_proxy(opts)
-      check_params(opts,[:proxy_info])
-      super
+      opts = check_params(opts,[:proxy_info])
+      super(opts)
     end
 
     ##
@@ -1400,8 +1400,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperSecurityInformation] :ro_community_info The read-only community information.
     def set_readonly_community(opts)
-      check_params(opts,[:ro_community_info])
-      super
+      opts = check_params(opts,[:ro_community_info])
+      super(opts)
     end
 
     ##
@@ -1413,8 +1413,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperUserInformation] :ro_user_info The read-only user information.
     def set_readonly_user(opts)
-      check_params(opts,[:ro_user_info])
-      super
+      opts = check_params(opts,[:ro_user_info])
+      super(opts)
     end
 
     ##
@@ -1427,8 +1427,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperSecurityInformation] :rw_community_info The read-write community information.
     def set_readwrite_community(opts)
-      check_params(opts,[:rw_community_info])
-      super
+      opts = check_params(opts,[:rw_community_info])
+      super(opts)
     end
 
     ##
@@ -1440,8 +1440,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::WrapperUserInformation] :rw_user_info The read-write user information.
     def set_readwrite_user(opts)
-      check_params(opts,[:rw_user_info])
-      super
+      opts = check_params(opts,[:rw_user_info])
+      super(opts)
     end
 
     ##
@@ -1453,8 +1453,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SmuxSubAgentInformation] :subagent_info The sub-agent information.
     def set_smux_subagent(opts)
-      check_params(opts,[:subagent_info])
-      super
+      opts = check_params(opts,[:subagent_info])
+      super(opts)
     end
 
     ##
@@ -1471,8 +1471,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :usage The usage information.
     def set_storage_use_nfs(opts)
-      check_params(opts,[:usage])
-      super
+      opts = check_params(opts,[:usage])
+      super(opts)
     end
 
     ##
@@ -1487,8 +1487,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SystemInformation] :system_info The system information.
     def set_system_information(opts)
-      check_params(opts,[:system_info])
-      super
+      opts = check_params(opts,[:system_info])
+      super(opts)
     end
 
     ##
@@ -1501,8 +1501,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :community The community string.
     def set_trap_community(opts)
-      check_params(opts,[:community])
-      super
+      opts = check_params(opts,[:community])
+      super(opts)
     end
 
     ##
@@ -1516,8 +1516,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::SinkType] :sink_type The trap sink type.
     def set_trap_sinks(opts)
-      check_params(opts,[:sink_type])
-      super
+      opts = check_params(opts,[:sink_type])
+      super(opts)
     end
 
     ##
@@ -1529,8 +1529,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::SNMPConfiguration::ViewInformation] :view_info The view information.
     def set_view_info(opts)
-      check_params(opts,[:view_info])
-      super
+      opts = check_params(opts,[:view_info])
+      super(opts)
     end
 
     ##

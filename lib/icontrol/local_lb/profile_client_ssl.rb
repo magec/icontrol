@@ -18,8 +18,8 @@ module IControl::LocalLB
     # @option opts [IControl::LocalLB::ProfileString] :keys The key filenames to be used by BIG-IP acting as an SSL server.
     # @option opts [IControl::LocalLB::ProfileString] :certs The certificate filenames to be used by BIG-IP acting as an SSL server.
     def create(opts)
-      check_params(opts,[:keys,:certs])
-      super
+      opts = check_params(opts,[:keys,:certs])
+      super(opts)
     end
 
     ##
@@ -407,8 +407,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The connection timeouts (in seconds) after sending an alert for the specified client SSL profiles.
     def set_alert_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -421,8 +421,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to indicate whether to allow non-SSL connections to pass through as cleartext.
     def set_allow_nonssl_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -434,8 +434,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :depths The client certificate chain maximum traversal depth for the specified client SSL profiles.
     def set_authenticate_depth(opts)
-      check_params(opts,[:depths])
-      super
+      opts = check_params(opts,[:depths])
+      super(opts)
     end
 
     ##
@@ -449,8 +449,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to request the client certificate once for the specified client SSL profiles.
     def set_authenticate_once_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -462,8 +462,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :cas The CA filenames for the specified client SSL profiles.
     def set_ca_file(opts)
-      check_params(opts,[:cas])
-      super
+      opts = check_params(opts,[:cas])
+      super(opts)
     end
 
     ##
@@ -475,8 +475,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :cache_sizes The SSL session cache sizes for the specified client SSL profiles.
     def set_cache_size(opts)
-      check_params(opts,[:cache_sizes])
-      super
+      opts = check_params(opts,[:cache_sizes])
+      super(opts)
     end
 
     ##
@@ -488,8 +488,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The SSL session cache timeouts for the specified client SSL profiles.
     def set_cache_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -501,8 +501,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :certs The certificate filenames to be used by BIG-IP acting as an SSL server.
     def set_certificate_file(opts)
-      check_params(opts,[:certs])
-      super
+      opts = check_params(opts,[:certs])
+      super(opts)
     end
 
     ##
@@ -514,8 +514,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :chains The certificate chain filenames for the specified client SSL profiles.
     def set_chain_file(opts)
-      check_params(opts,[:chains])
-      super
+      opts = check_params(opts,[:chains])
+      super(opts)
     end
 
     ##
@@ -527,8 +527,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileStringArray] :ciphers The cipher lists for the specified client SSL profiles.
     def set_cipher_list(opts)
-      check_params(opts,[:ciphers])
-      super
+      opts = check_params(opts,[:ciphers])
+      super(opts)
     end
 
     ##
@@ -540,8 +540,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :client_cert_cas The client certificate CA filenames for the specified client SSL profiles.
     def set_client_certificate_ca_file(opts)
-      check_params(opts,[:client_cert_cas])
-      super
+      opts = check_params(opts,[:client_cert_cas])
+      super(opts)
     end
 
     ##
@@ -553,8 +553,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :crls The CRL filenames to be used by BIG-IP acting as an SSL server.
     def set_crl_file(opts)
-      check_params(opts,[:crls])
-      super
+      opts = check_params(opts,[:crls])
+      super(opts)
     end
 
     ##
@@ -567,8 +567,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -581,8 +581,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The connection timeouts (in seconds) during handshake phase for the specified client SSL profiles.
     def set_handshake_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -594,8 +594,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :keys The key filenames to be used by BIG-IP acting as an SSL server.
     def set_key_file(opts)
-      check_params(opts,[:keys])
-      super
+      opts = check_params(opts,[:keys])
+      super(opts)
     end
 
     ##
@@ -607,8 +607,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to emulate modSSL for the specified client SSL profiles.
     def set_modssl_emulation_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -620,8 +620,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :passphrases The key passphrases (if any) for the specified client SSL profiles.
     def set_passphrase(opts)
-      check_params(opts,[:passphrases])
-      super
+      opts = check_params(opts,[:passphrases])
+      super(opts)
     end
 
     ##
@@ -633,8 +633,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileClientSSLCertificateMode] :modes The peer certification modes for the specified client SSL profiles.
     def set_peer_certificate_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -646,8 +646,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileProfileMode] :modes The modes of the specified client SSL profiles.
     def set_profile_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -659,8 +659,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :delays The SSL renegotiation maximum record delay for the specified client SSL profiles.
     def set_renegotiation_maximum_record_delay(opts)
-      check_params(opts,[:delays])
-      super
+      opts = check_params(opts,[:delays])
+      super(opts)
     end
 
     ##
@@ -672,8 +672,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :periods The SSL renegotiation periods for the specified client SSL profiles.
     def set_renegotiation_period(opts)
-      check_params(opts,[:periods])
-      super
+      opts = check_params(opts,[:periods])
+      super(opts)
     end
 
     ##
@@ -689,8 +689,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_renegotiation_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -702,8 +702,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :throughputs The SSL renegotiation throughputs for the specified client SSL profiles.
     def set_renegotiation_throughput(opts)
-      check_params(opts,[:throughputs])
-      super
+      opts = check_params(opts,[:throughputs])
+      super(opts)
     end
 
     ##
@@ -715,8 +715,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileSSLOption] :options The list of SSL options for the specified client SSL profiles.
     def set_ssl_option(opts)
-      check_params(opts,[:options])
-      super
+      opts = check_params(opts,[:options])
+      super(opts)
     end
 
     ##
@@ -730,8 +730,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to enforce strict SSL session resumption per RFC2246 for the specified client SSL profiles.
     def set_strict_resume_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -744,8 +744,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to do an unclean shutdown for the specified client SSL profiles.
     def set_unclean_shutdown_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

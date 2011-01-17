@@ -22,8 +22,8 @@ module IControl::LocalLB
     # @option opts [long] :unit_ids The controller for the NATs in an active-active, redundant load balancer configuration.
     # @option opts [IControl::Common::VLANFilterList] :vlans The list of VLANs used to filter the client connections on ingress VLAN.
     def create(opts)
-      check_params(opts,[:unit_ids,:vlans])
-      super
+      opts = check_params(opts,[:unit_ids,:vlans])
+      super(opts)
     end
 
     ##
@@ -151,8 +151,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The ARP states to set.
     def set_arp_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -164,8 +164,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states Enable or disable the specified SNAT translation addresses.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -177,8 +177,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :unit_ids The Unit IDs to set.
     def set_unit_id(opts)
-      check_params(opts,[:unit_ids])
-      super
+      opts = check_params(opts,[:unit_ids])
+      super(opts)
     end
 
     ##
@@ -190,8 +190,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::VLANFilterList] :vlans The VLAN names to add to the list of enabled/disabled VLANs .
     def set_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##

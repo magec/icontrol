@@ -49,8 +49,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Application::ApplicationContextObject] :application_objects The list of application context objects.
     def disable_application_context_object(opts)
-      check_params(opts,[:application_objects])
-      super
+      opts = check_params(opts,[:application_objects])
+      super(opts)
     end
 
     ##
@@ -62,8 +62,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Application::ApplicationContextObject] :application_objects The list of application context objects.
     def enable_application_context_object(opts)
-      check_params(opts,[:application_objects])
-      super
+      opts = check_params(opts,[:application_objects])
+      super(opts)
     end
 
     ##
@@ -76,8 +76,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Application::ApplicationContextObject] :application_objects The list of application context objects.
     def application_context_status(opts)
-      check_params(opts,[:application_objects])
-      super
+      opts = check_params(opts,[:application_objects])
+      super(opts)
     end
 
     ##
@@ -152,8 +152,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::AvailabilityDependency] :values The availability dependency for the specified applications.
     def set_availability_dependency(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -165,8 +165,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the applications.
     def set_persistence_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -178,8 +178,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [long] :values The persistence TTLs of the specified applications.
     def set_persistence_ttl(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##

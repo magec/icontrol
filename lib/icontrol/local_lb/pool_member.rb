@@ -178,8 +178,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def statistics(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -204,8 +204,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberMonitorAssociationRemoval[]] :monitor_associations The monitor association removal rules that will be used to remove the monitor associations			 for the specified pool members.
     def remove_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -217,8 +217,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def reset_statistics(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -230,8 +230,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberConnectionLimit[]] :limits The members and the connection limits to be set.
     def set_connection_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -243,8 +243,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberDynamicRatio[]] :dynamic_ratios The members and the dynamic ratios to be set.
     def set_dynamic_ratio(opts)
-      check_params(opts,[:dynamic_ratios])
-      super
+      opts = check_params(opts,[:dynamic_ratios])
+      super(opts)
     end
 
     ##
@@ -257,8 +257,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberMonitorAssociation[]] :monitor_associations The monitor associations that will be used to evaluate the specified pool members.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -270,8 +270,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberMonitorState[]] :monitor_states The members and the monitor/availability states to be set.
     def set_monitor_state(opts)
-      check_params(opts,[:monitor_states])
-      super
+      opts = check_params(opts,[:monitor_states])
+      super(opts)
     end
 
     ##
@@ -283,8 +283,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberPriority[]] :priorities The members and the priorities to be set.
     def set_priority(opts)
-      check_params(opts,[:priorities])
-      super
+      opts = check_params(opts,[:priorities])
+      super(opts)
     end
 
     ##
@@ -296,8 +296,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberRatio[]] :ratios The members and the ratios to be set.
     def set_ratio(opts)
-      check_params(opts,[:ratios])
-      super
+      opts = check_params(opts,[:ratios])
+      super(opts)
     end
 
     ##
@@ -310,8 +310,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::PoolMember::MemberSessionState[]] :session_states The members and the session states to be set.
     def set_session_enabled_state(opts)
-      check_params(opts,[:session_states])
-      super
+      opts = check_params(opts,[:session_states])
+      super(opts)
     end
 
     ##

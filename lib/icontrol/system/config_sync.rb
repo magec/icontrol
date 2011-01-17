@@ -60,8 +60,8 @@ module IControl::System
     # @option opts [long] :chunk_size The chunk/block size of the file data to read from the device.
     # @option opts [long] :file_offset The file offset that indicates where to read the next chunk of file data from.
     def download_configuration(opts)
-      check_params(opts,[:config_name,:chunk_size,:file_offset])
-      super
+      opts = check_params(opts,[:config_name,:chunk_size,:file_offset])
+      super(opts)
     end
 
     ##
@@ -76,8 +76,8 @@ module IControl::System
     # @option opts [long] :chunk_size The chunk/block size of the file data to read from the device.
     # @option opts [long] :file_offset The file offset that indicates where to read the next chunk of file data from.
     def download_file(opts)
-      check_params(opts,[:file_name,:chunk_size,:file_offset])
-      super
+      opts = check_params(opts,[:file_name,:chunk_size,:file_offset])
+      super(opts)
     end
 
     ##
@@ -121,8 +121,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :passphrase The passphrase used to decrypt the archive so we can install it.
     def install_all_encrypted_configuration(opts)
-      check_params(opts,[:passphrase])
-      super
+      opts = check_params(opts,[:passphrase])
+      super(opts)
     end
 
     ##
@@ -146,8 +146,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :passphrase The passphrase used to decrypt the archive so we can install it.
     def install_encrypted_configuration(opts)
-      check_params(opts,[:passphrase])
-      super
+      opts = check_params(opts,[:passphrase])
+      super(opts)
     end
 
     ##
@@ -161,8 +161,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::ConfigSync::LoadMode] :load_flag The flag specifying the type of load to perform.
     def load_configuration(opts)
-      check_params(opts,[:load_flag])
-      super
+      opts = check_params(opts,[:load_flag])
+      super(opts)
     end
 
     ##
@@ -176,8 +176,8 @@ module IControl::System
     # @option opts [String] :from_path The full path of the file to be moved.
     # @option opts [String] :to_path The full path for the file to moved to.
     def move_file(opts)
-      check_params(opts,[:from_path,:to_path])
-      super
+      opts = check_params(opts,[:from_path,:to_path])
+      super(opts)
     end
 
     ##
@@ -202,8 +202,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::ConfigSync::SaveMode] :save_flag The flag specifying the type of save to perform.
     def save_configuration(opts)
-      check_params(opts,[:save_flag])
-      super
+      opts = check_params(opts,[:save_flag])
+      super(opts)
     end
 
     ##
@@ -216,8 +216,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [String] :passphrase The passphrase used to encrypt the saved archive.
     def save_encrypted_configuration(opts)
-      check_params(opts,[:passphrase])
-      super
+      opts = check_params(opts,[:passphrase])
+      super(opts)
     end
 
     ##
@@ -237,8 +237,8 @@ module IControl::System
     # @option opts [IControl::System::ConfigSync::ConfigExcludeComponent] :features_to_exclude standard features to be excluded from saved configuration
     # @option opts [IControl::System::ConfigSync::ConfigIncludeComponent] :features_to_include non-standard features to be included in the saved configuration
     def save_partial_configuration(opts)
-      check_params(opts,[:save_flag,:features_to_exclude,:features_to_include])
-      super
+      opts = check_params(opts,[:save_flag,:features_to_exclude,:features_to_include])
+      super(opts)
     end
 
     ##
@@ -257,8 +257,8 @@ module IControl::System
     # @option opts [IControl::System::ConfigSync::ConfigExcludeComponent] :features_to_exclude standard features to be excluded from saved configuration
     # @option opts [IControl::System::ConfigSync::ConfigIncludeComponent] :features_to_include non-standard features to be included in the saved configuration
     def save_partial_encrypted_configuration(opts)
-      check_params(opts,[:passphrase,:features_to_exclude,:features_to_include])
-      super
+      opts = check_params(opts,[:passphrase,:features_to_exclude,:features_to_include])
+      super(opts)
     end
 
     ##
@@ -271,8 +271,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::System::ConfigSync::SyncMode] :sync_flag The mode of synchronization between the devices.
     def synchronize_configuration(opts)
-      check_params(opts,[:sync_flag])
-      super
+      opts = check_params(opts,[:sync_flag])
+      super(opts)
     end
 
     ##
@@ -285,8 +285,8 @@ module IControl::System
     # @option opts [String] :config_name The name of the configuration archive to be saved on the device. Length limit: 255.		 The configuration name should not include any path information, since it will		 be saved automatically to a designated directory.		 The file chunk size is implicitly known by calculating the length of		 the contents of the configuration data ( see file_data parameter) being uploaded.
     # @option opts [IControl::System::ConfigSync::FileTransferContext] :file_context The context of the transfer operation.
     def upload_configuration(opts)
-      check_params(opts,[:config_name,:file_context])
-      super
+      opts = check_params(opts,[:config_name,:file_context])
+      super(opts)
     end
 
     ##
@@ -299,8 +299,8 @@ module IControl::System
     # @option opts [String] :file_name The name of the file to be saved on the device. Length limit: 255.		 The file chunk size is implicitly known by calculating the length of		 the contents of the file data ( see file_data parameter) being uploaded.
     # @option opts [IControl::System::ConfigSync::FileTransferContext] :file_context The context of the transfer operation.
     def upload_file(opts)
-      check_params(opts,[:file_name,:file_context])
-      super
+      opts = check_params(opts,[:file_name,:file_context])
+      super(opts)
     end
 
     ##

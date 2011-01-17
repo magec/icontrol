@@ -21,8 +21,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be added to the "exclude" list.
     def add_compression_content_type_exclude(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -38,8 +38,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be added to the "include" list.
     def add_compression_content_type_include(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -56,8 +56,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be added to the "exclude" list.
     def add_compression_uri_exclude(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -73,8 +73,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be added to the "include" list.
     def add_compression_uri_include(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -86,8 +86,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :cookies The lists of cookies to be encrypted.
     def add_cookie_encryption(opts)
-      check_params(opts,[:cookies])
-      super
+      opts = check_params(opts,[:cookies])
+      super(opts)
     end
 
     ##
@@ -101,8 +101,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :status_codes The lists of status codes.
     def add_fallback_status_code(opts)
-      check_params(opts,[:status_codes])
-      super
+      opts = check_params(opts,[:status_codes])
+      super(opts)
     end
 
     ##
@@ -114,8 +114,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :headers The lists of permitted response headers.
     def add_permitted_response_header(opts)
-      check_params(opts,[:headers])
-      super
+      opts = check_params(opts,[:headers])
+      super(opts)
     end
 
     ##
@@ -132,8 +132,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be added to the "exclude" list.
     def add_ramcache_uri_exclude(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -149,8 +149,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be added to the "include" list.
     def add_ramcache_uri_include(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -162,8 +162,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be added to the "pinned" list.
     def add_ramcache_uri_pinned(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -855,8 +855,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be removed from the "exclude" list.
     def remove_compression_content_type_exclude(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -872,8 +872,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be removed from the "include" list.
     def remove_compression_content_type_include(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -890,8 +890,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be removed from the "exclude" list.
     def remove_compression_uri_exclude(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -907,8 +907,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be removed from the "include" list.
     def remove_compression_uri_include(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -920,8 +920,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :cookies The lists of cookies to be encrypted.
     def remove_cookie_encryption(opts)
-      check_params(opts,[:cookies])
-      super
+      opts = check_params(opts,[:cookies])
+      super(opts)
     end
 
     ##
@@ -935,8 +935,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :status_codes The lists of status codes.
     def remove_fallback_status_code(opts)
-      check_params(opts,[:status_codes])
-      super
+      opts = check_params(opts,[:status_codes])
+      super(opts)
     end
 
     ##
@@ -948,8 +948,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :headers The lists of permitted response headers.
     def remove_permitted_response_header(opts)
-      check_params(opts,[:headers])
-      super
+      opts = check_params(opts,[:headers])
+      super(opts)
     end
 
     ##
@@ -966,8 +966,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be removed from the "exclude" list.
     def remove_ramcache_uri_exclude(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -983,8 +983,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be removed from the "include" list.
     def remove_ramcache_uri_include(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -997,8 +997,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :reg_expressions The lists of regular expressions to be removed from the "pinned" list.
     def remove_ramcache_uri_pinned(opts)
-      check_params(opts,[:reg_expressions])
-      super
+      opts = check_params(opts,[:reg_expressions])
+      super(opts)
     end
 
     ##
@@ -1020,8 +1020,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :realms The basic authentication realms of the specified HTTP profiles.
     def set_basic_auth_realm(opts)
-      check_params(opts,[:realms])
-      super
+      opts = check_params(opts,[:realms])
+      super(opts)
     end
 
     ##
@@ -1035,8 +1035,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states indicating whether to allow compression on HTTP 1.0 responses.
     def set_compression_allow_http_10_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1048,8 +1048,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states that specify whether to workaround browser bugs when doing compression.
     def set_compression_browser_workaround_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1063,8 +1063,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The compression buffer sizes.
     def set_compression_buffer_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -1077,8 +1077,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :thresholds The high threshold in CPU saving mode.
     def set_compression_cpu_saver_high_threshold(opts)
-      check_params(opts,[:thresholds])
-      super
+      opts = check_params(opts,[:thresholds])
+      super(opts)
     end
 
     ##
@@ -1091,8 +1091,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :thresholds The low threshold in CPU saving mode.
     def set_compression_cpu_saver_low_threshold(opts)
-      check_params(opts,[:thresholds])
-      super
+      opts = check_params(opts,[:thresholds])
+      super(opts)
     end
 
     ##
@@ -1104,8 +1104,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states that specify whether to enable CPU saving mode when doing compression.
     def set_compression_cpu_saver_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1117,8 +1117,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :levels The compression GZIP levels.
     def set_compression_level(opts)
-      check_params(opts,[:levels])
-      super
+      opts = check_params(opts,[:levels])
+      super(opts)
     end
 
     ##
@@ -1134,8 +1134,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :levels The compression memory levels.
     def set_compression_memory_level(opts)
-      check_params(opts,[:levels])
-      super
+      opts = check_params(opts,[:levels])
+      super(opts)
     end
 
     ##
@@ -1148,8 +1148,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The minimum lengths of server responses.
     def set_compression_minimum_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -1161,8 +1161,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileHttpCompressionMode] :modes The HTTP compression modes for the specified HTTP profiles.
     def set_compression_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1177,8 +1177,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states indicating whether to insert the "Vary:" headers in the server responses.
     def set_compression_vary_header_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1194,8 +1194,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The compression window sizes.
     def set_compression_window_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -1207,8 +1207,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :passphrases The passphrases used to encrypt the cookies.
     def set_cookie_encryption_passphrase(opts)
-      check_params(opts,[:passphrases])
-      super
+      opts = check_params(opts,[:passphrases])
+      super(opts)
     end
 
     ##
@@ -1291,8 +1291,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -1334,8 +1334,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :fallbacks The fallback host names.
     def set_fallback_host_name(opts)
-      check_params(opts,[:fallbacks])
-      super
+      opts = check_params(opts,[:fallbacks])
+      super(opts)
     end
 
     ##
@@ -1347,8 +1347,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :headers The headers to be erased for the specified HTTP profiles.
     def set_header_erase(opts)
-      check_params(opts,[:headers])
-      super
+      opts = check_params(opts,[:headers])
+      super(opts)
     end
 
     ##
@@ -1360,8 +1360,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :headers The headers to be inserted for the specified HTTP profiles.
     def set_header_insert(opts)
-      check_params(opts,[:headers])
-      super
+      opts = check_params(opts,[:headers])
+      super(opts)
     end
 
     ##
@@ -1373,8 +1373,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileProfileMode] :modes The insert X-Forwarded-For header mode for the specified profiles.
     def set_insert_xforwarded_for_header_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1391,8 +1391,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states indicating how we handle the "Accept-Encoding:" header.
     def set_keep_accept_encoding_header_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1405,8 +1405,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The LWS maximum column sizes.
     def set_lws_maximum_column(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -1418,8 +1418,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :separators The LWS separators of the specified HTTP profiles.
     def set_lws_separator(opts)
-      check_params(opts,[:separators])
-      super
+      opts = check_params(opts,[:separators])
+      super(opts)
     end
 
     ##
@@ -1431,8 +1431,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The maximum header sizes.
     def set_maximum_header_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -1445,8 +1445,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_requests The maximum number of HTTP requests allowed in a connection.
     def set_maximum_requests(opts)
-      check_params(opts,[:maximum_requests])
-      super
+      opts = check_params(opts,[:maximum_requests])
+      super(opts)
     end
 
     ##
@@ -1459,8 +1459,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The OneConnect HTTP header transformation states for the specified HTTP profiles.
     def set_oneconnect_header_transformation_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -1472,8 +1472,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileProfileMode] :modes The pipelining mode for the specified profiles.
     def set_pipelining_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1485,8 +1485,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileCompressionMethod] :compression_methods The preferred compression methods.
     def set_preferred_compression_method(opts)
-      check_params(opts,[:compression_methods])
-      super
+      opts = check_params(opts,[:compression_methods])
+      super(opts)
     end
 
     ##
@@ -1498,8 +1498,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :aging_rates The aging rate for the RAM cache.
     def set_ramcache_aging_rate(opts)
-      check_params(opts,[:aging_rates])
-      super
+      opts = check_params(opts,[:aging_rates])
+      super(opts)
     end
 
     ##
@@ -1511,8 +1511,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileRamCacheCacheControlMode] :modes The client cache control mode.
     def set_ramcache_ignore_client_cache_control_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1524,8 +1524,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileProfileMode] :modes The mode that indicates whether to insert the Age headers for the specified profiles.
     def set_ramcache_insert_age_header_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1537,8 +1537,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_age The maximum age of a cached object in the RAM cache.
     def set_ramcache_maximum_age(opts)
-      check_params(opts,[:maximum_age])
-      super
+      opts = check_params(opts,[:maximum_age])
+      super(opts)
     end
 
     ##
@@ -1550,8 +1550,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_entries The maximum number of cache entries allowed in the RAM cache.
     def set_ramcache_maximum_entry(opts)
-      check_params(opts,[:maximum_entries])
-      super
+      opts = check_params(opts,[:maximum_entries])
+      super(opts)
     end
 
     ##
@@ -1563,8 +1563,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileProfileMode] :modes The RAM cache mode for the specified profiles.
     def set_ramcache_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1576,8 +1576,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_size The maximum size requirement of a cached object in the RAM cache.
     def set_ramcache_object_maximum_size(opts)
-      check_params(opts,[:maximum_size])
-      super
+      opts = check_params(opts,[:maximum_size])
+      super(opts)
     end
 
     ##
@@ -1589,8 +1589,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :minimum_size The minimum size requirement of a cached object in the RAM cache.
     def set_ramcache_object_minimum_size(opts)
-      check_params(opts,[:minimum_size])
-      super
+      opts = check_params(opts,[:minimum_size])
+      super(opts)
     end
 
     ##
@@ -1602,8 +1602,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The size (MB) of the RAM cache.
     def set_ramcache_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -1615,8 +1615,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileHttpRedirectRewriteMode] :modes The HTTP redirect/rewrite modes.
     def set_redirect_rewrite_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1628,8 +1628,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileHttpChunkMode] :modes The HTTP chunk modes.
     def set_response_chunk_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -1641,8 +1641,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The translate extended request states for the specified profiles.
     def set_security_enabled_request_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

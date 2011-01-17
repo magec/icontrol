@@ -18,8 +18,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Region::RegionItem[]] :items The region items to be added to the region definitions.
     def add_region_item(opts)
-      check_params(opts,[:items])
-      super
+      opts = check_params(opts,[:items])
+      super(opts)
     end
 
     ##
@@ -31,8 +31,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Region::RegionItem[]] :items The region items that make up the region definitions.
     def create(opts)
-      check_params(opts,[:items])
-      super
+      opts = check_params(opts,[:items])
+      super(opts)
     end
 
     ##
@@ -104,8 +104,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Region::RegionItem[]] :items The region items to be removed from the region definitions.
     def remove_region_item(opts)
-      check_params(opts,[:items])
-      super
+      opts = check_params(opts,[:items])
+      super(opts)
     end
 
     ##

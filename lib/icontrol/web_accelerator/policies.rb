@@ -44,8 +44,8 @@ module IControl::WebAccelerator
     # @option opts [String] :filename The filename of the Policy file to install. Length limit: 255.
     # @option opts [boolean] :overwrite If true, the imported policy will overwrite any existing policy of the same name.
     def import_policy(opts)
-      check_params(opts,[:filename,:overwrite])
-      super
+      opts = check_params(opts,[:filename,:overwrite])
+      super(opts)
     end
 
 

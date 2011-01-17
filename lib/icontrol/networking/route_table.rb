@@ -25,8 +25,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::RouteTable::RouteAttribute] :attributes The attributes for the specified management routes.
     def add_management_route(opts)
-      check_params(opts,[:attributes])
-      super
+      opts = check_params(opts,[:attributes])
+      super(opts)
     end
 
     ##
@@ -38,8 +38,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::RouteTable::RouteAttribute] :attributes The static route attributes to add.
     def add_static_route(opts)
-      check_params(opts,[:attributes])
-      super
+      opts = check_params(opts,[:attributes])
+      super(opts)
     end
 
     ##
@@ -92,8 +92,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :destinations The destination IP addresses.
     def dynamic_route(opts)
-      check_params(opts,[:destinations])
-      super
+      opts = check_params(opts,[:destinations])
+      super(opts)
     end
 
     ##
@@ -150,8 +150,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :destinations The destination IP addresses.
     def route_table_metric_statistics_for_destination(opts)
-      check_params(opts,[:destinations])
-      super
+      opts = check_params(opts,[:destinations])
+      super(opts)
     end
 
     ##
@@ -164,8 +164,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :mac_addresses The MAC addresses.
     def route_table_metric_statistics_for_mac(opts)
-      check_params(opts,[:mac_addresses])
-      super
+      opts = check_params(opts,[:mac_addresses])
+      super(opts)
     end
 
     ##
@@ -262,8 +262,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :gateways The gateways for the specified management routes.
     def set_management_route_gateway(opts)
-      check_params(opts,[:gateways])
-      super
+      opts = check_params(opts,[:gateways])
+      super(opts)
     end
 
     ##
@@ -275,8 +275,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :mtus The MTUs for the specified management routes.
     def set_management_route_mtu(opts)
-      check_params(opts,[:mtus])
-      super
+      opts = check_params(opts,[:mtus])
+      super(opts)
     end
 
     ##
@@ -298,8 +298,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :gateways The gateways for the specified static routes.
     def set_static_route_gateway(opts)
-      check_params(opts,[:gateways])
-      super
+      opts = check_params(opts,[:gateways])
+      super(opts)
     end
 
     ##
@@ -311,8 +311,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :mtus The MTUs to destinations.
     def set_static_route_mtu(opts)
-      check_params(opts,[:mtus])
-      super
+      opts = check_params(opts,[:mtus])
+      super(opts)
     end
 
     ##
@@ -325,8 +325,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :pools The pool names.
     def set_static_route_pool(opts)
-      check_params(opts,[:pools])
-      super
+      opts = check_params(opts,[:pools])
+      super(opts)
     end
 
     ##
@@ -348,8 +348,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :vlans The VLAN names.
     def set_static_route_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##

@@ -179,8 +179,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -192,8 +192,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeouts for connections in the specified connection pools.
     def set_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -205,8 +205,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_ages The maximum age (in seconds) after which a connection should not be reused.
     def set_maximum_age(opts)
-      check_params(opts,[:maximum_ages])
-      super
+      opts = check_params(opts,[:maximum_ages])
+      super(opts)
     end
 
     ##
@@ -218,8 +218,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_connections The maximum number of connections for the specified OneConnect profiles.
     def set_maximum_connection(opts)
-      check_params(opts,[:maximum_connections])
-      super
+      opts = check_params(opts,[:maximum_connections])
+      super(opts)
     end
 
     ##
@@ -231,8 +231,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_reuses The maximum times the connections in the pool can be reused.
     def set_maximum_reuse(opts)
-      check_params(opts,[:maximum_reuses])
-      super
+      opts = check_params(opts,[:maximum_reuses])
+      super(opts)
     end
 
     ##
@@ -245,8 +245,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileIPAddress] :source_masks The masks applied to the source addresses to determine eligibility for connection reuse.
     def set_source_mask(opts)
-      check_params(opts,[:source_masks])
-      super
+      opts = check_params(opts,[:source_masks])
+      super(opts)
     end
 
     ##

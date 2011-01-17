@@ -31,8 +31,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::SelfIPPortLockdown::ProtocolPort] :defaults The defaults protocols/ports to add.
     def add_default_protocol_port_access_list(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -55,8 +55,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :self_ips The self IPs .
     def allow_access_list(opts)
-      check_params(opts,[:self_ips])
-      super
+      opts = check_params(opts,[:self_ips])
+      super(opts)
     end
 
     ##
@@ -88,8 +88,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::SelfIPPortLockdown::ProtocolPort] :defaults The defaults protocols/ports to remove.
     def remove_default_protocol_port_access_list(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##

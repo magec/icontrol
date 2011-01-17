@@ -258,11 +258,23 @@ module IControl
     # Checks whether the correct params are passed.
     # It checks just if the needed params are passed (specified in params), if more params are passed, they go straight to the SOAP call
     def check_params(options,params)
-      return NotEnoughParams unless (params - options.keys).empty?
+      # In this case we are being called passing a hash (or something like that), in this case 
+      # we use the normal check when callong
+      puts params.inspect
+      if options.respond_to?(:keys)
+        return options
+      else
+        # now we are using the one parameter form, so there is no need to use a hash (we build it)
+        if params.size == 1          
+          return {params.first =>  options}
+        else
+          raise NotEnoughParams
+        end
+      end
     end
 
     def method_missing(method_name,*args,&block)
-
+      puts args.inspect
       # When calling an instance method we first check whether there is an argument with
       # that name and return it. If that is not the case we fallback in the class default method but adding the instance as
       # argument (the id), cause thats the way the api works, passing the id

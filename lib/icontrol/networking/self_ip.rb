@@ -18,8 +18,8 @@ module IControl::Networking
     # @option opts [long] :unit_ids The unit ids for the self IPs .
     # @option opts [IControl::Common::EnabledState] :floating_states The floating attributes of the self IPs .
     def create(opts)
-      check_params(opts,[:vlan_names,:netmasks,:unit_ids,:floating_states])
-      super
+      opts = check_params(opts,[:vlan_names,:netmasks,:unit_ids,:floating_states])
+      super(opts)
     end
 
     ##
@@ -116,8 +116,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The floating states of the specified self IPs .
     def set_floating_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -129,8 +129,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :netmasks The netmasks of the specified self IPs .
     def set_netmask(opts)
-      check_params(opts,[:netmasks])
-      super
+      opts = check_params(opts,[:netmasks])
+      super(opts)
     end
 
     ##
@@ -144,8 +144,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :unit_ids The unit ids of the specified self IPs .
     def set_unit_id(opts)
-      check_params(opts,[:unit_ids])
-      super
+      opts = check_params(opts,[:unit_ids])
+      super(opts)
     end
 
     ##
@@ -157,8 +157,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :vlan_names The VLAN names.
     def set_vlan(opts)
-      check_params(opts,[:vlan_names])
-      super
+      opts = check_params(opts,[:vlan_names])
+      super(opts)
     end
 
 

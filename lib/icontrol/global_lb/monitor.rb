@@ -42,8 +42,8 @@ module IControl::GlobalLB
     # @option opts [IControl::GlobalLB::Monitor::MonitorTemplate] :templates The names and types of the new monitor templates to create.
     # @option opts [IControl::GlobalLB::Monitor::CommonAttributes] :template_attributes The basic template attributes used to create the new template.
     def create_template(opts)
-      check_params(opts,[:templates,:template_attributes])
-      super
+      opts = check_params(opts,[:templates,:template_attributes])
+      super(opts)
     end
 
     ##
@@ -89,8 +89,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::MonitorInstance] :instances The monitor instances to get enable/disable states.
     def instance_state(opts)
-      check_params(opts,[:instances])
-      super
+      opts = check_params(opts,[:instances])
+      super(opts)
     end
 
     ##
@@ -152,8 +152,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Monitor::IntPropertyType] :property_types The property types from which to get values for the monitor templates.
     def template_integer_property(opts)
-      check_params(opts,[:property_types])
-      super
+      opts = check_params(opts,[:property_types])
+      super(opts)
     end
 
     ##
@@ -199,8 +199,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Monitor::StrPropertyType] :property_types The property types from which to get values for the monitor templates.
     def template_string_property(opts)
-      check_params(opts,[:property_types])
-      super
+      opts = check_params(opts,[:property_types])
+      super(opts)
     end
 
     ##
@@ -235,8 +235,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String] :property_names The user-defined string property names from which to get values for the monitor templates.
     def template_user_defined_string_property(opts)
-      check_params(opts,[:property_names])
-      super
+      opts = check_params(opts,[:property_names])
+      super(opts)
     end
 
     ##
@@ -295,8 +295,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The ignore down response states of the monitor templates.
     def set_ignore_down_response_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -308,8 +308,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::MonitorInstanceState] :instance_states The monitor instances and their enabled/disabled states.
     def set_instance_state(opts)
-      check_params(opts,[:instance_states])
-      super
+      opts = check_params(opts,[:instance_states])
+      super(opts)
     end
 
     ##
@@ -323,8 +323,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The manual resume states of the monitor templates.
     def set_manual_resume_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -338,8 +338,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::MonitorIPPort] :destinations The destinations to set for the specified monitor templates.
     def set_template_destination(opts)
-      check_params(opts,[:destinations])
-      super
+      opts = check_params(opts,[:destinations])
+      super(opts)
     end
 
     ##
@@ -351,8 +351,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Monitor::IntegerValue] :values The property types and values to set for the monitor templates.
     def set_template_integer_property(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -365,8 +365,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [boolean] :reverse_modes The reverse mode states of the monitor templates.
     def set_template_reverse_mode(opts)
-      check_params(opts,[:reverse_modes])
-      super
+      opts = check_params(opts,[:reverse_modes])
+      super(opts)
     end
 
     ##
@@ -381,8 +381,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The enabled/disabled states of the monitor templates.
     def set_template_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -394,8 +394,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Monitor::StringValue] :values The property types and values to set for the monitor templates.
     def set_template_string_property(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -408,8 +408,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [boolean] :transparent_modes The transparent mode states of the monitor templates.
     def set_template_transparent_mode(opts)
-      check_params(opts,[:transparent_modes])
-      super
+      opts = check_params(opts,[:transparent_modes])
+      super(opts)
     end
 
     ##
@@ -421,8 +421,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::Monitor::UserDefinedStringValue] :values The string property names and values to set for the monitor templates.
     def set_template_user_defined_string_property(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##

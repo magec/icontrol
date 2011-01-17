@@ -18,8 +18,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :addresses The lists of IP addresses.
     def add_global_proxy_exclusion(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -31,8 +31,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :member_vlans The lists of child VLANs .
     def add_member(opts)
-      check_params(opts,[:member_vlans])
-      super
+      opts = check_params(opts,[:member_vlans])
+      super(opts)
     end
 
     ##
@@ -44,8 +44,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :addresses The lists of IP addresses.
     def add_proxy_exclusion(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -58,8 +58,8 @@ module IControl::Networking
     # @option opts [long] :vlan_ids The VLAN tag numbers or IDs (valid range is 1-4095).
     # @option opts [String[]] :member_vlans The lists of member VLANs .
     def create(opts)
-      check_params(opts,[:vlan_ids,:member_vlans])
-      super
+      opts = check_params(opts,[:vlan_ids,:member_vlans])
+      super(opts)
     end
 
     ##
@@ -71,8 +71,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :member_vlans The lists of member VLANs .
     def create_v2(opts)
-      check_params(opts,[:member_vlans])
-      super
+      opts = check_params(opts,[:member_vlans])
+      super(opts)
     end
 
     ##
@@ -269,8 +269,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :addresses The lists of IP addresses.
     def remove_global_proxy_exclusion(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -282,8 +282,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :member_vlans The lists of child VLANs .
     def remove_member(opts)
-      check_params(opts,[:member_vlans])
-      super
+      opts = check_params(opts,[:member_vlans])
+      super(opts)
     end
 
     ##
@@ -295,8 +295,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String[]] :addresses The lists of IP addresses.
     def remove_proxy_exclusion(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -309,8 +309,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the specified VLAN group names.
     def set_bridge_all_traffic_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -323,8 +323,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the specified VLAN group names.
     def set_bridge_in_standby_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -337,8 +337,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states to set for the specified VLAN group names.
     def set_bridge_multicast_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -350,8 +350,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :mac_masquerade_addresses The MAC masquerade addresses to set for the specified VLAN groups.
     def set_mac_masquerade_address(opts)
-      check_params(opts,[:mac_masquerade_addresses])
-      super
+      opts = check_params(opts,[:mac_masquerade_addresses])
+      super(opts)
     end
 
     ##
@@ -363,8 +363,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::VLANGroup::VLANGroupTransparency] :modes The transparency modes for the specified VLAN groups.
     def set_transparency_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -377,8 +377,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :vlan_ids The VLAN ID/tag numbers (valid range is 1-4095).
     def set_vlan_id(opts)
-      check_params(opts,[:vlan_ids])
-      super
+      opts = check_params(opts,[:vlan_ids])
+      super(opts)
     end
 
 

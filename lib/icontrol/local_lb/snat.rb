@@ -27,8 +27,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::SNAT::SNATOriginalAddress[]] :addresses The list of original addresses to add to the filters.
     def add_original_address(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -41,8 +41,8 @@ module IControl::LocalLB
     # @option opts [IControl::LocalLB::SNAT::SNATOriginalAddress[]] :original_addresses The list of original client addresses used to filter traffic to the SNATs .
     # @option opts [IControl::Common::VLANFilterList] :vlans The list of VLANs used to filter the client connections on ingress VLAN.
     def create(opts)
-      check_params(opts,[:original_addresses,:vlans])
-      super
+      opts = check_params(opts,[:original_addresses,:vlans])
+      super(opts)
     end
 
     ##
@@ -181,8 +181,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::SNAT::SNATOriginalAddress[]] :addresses The list of original addresses to remove from the filters.
     def remove_original_address(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -204,8 +204,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The connection mirror states to set.
     def set_connection_mirror_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -217,8 +217,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::SourcePortBehavior] :source_port_behaviors The source port behaviors to set.
     def set_source_port_behavior(opts)
-      check_params(opts,[:source_port_behaviors])
-      super
+      opts = check_params(opts,[:source_port_behaviors])
+      super(opts)
     end
 
     ##
@@ -231,8 +231,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::SNAT::Translation] :targets The translation targets to set.
     def set_translation_target(opts)
-      check_params(opts,[:targets])
-      super
+      opts = check_params(opts,[:targets])
+      super(opts)
     end
 
     ##
@@ -244,8 +244,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::VLANFilterList] :vlans The list of VLANs used to filter the ingress VLAN.
     def set_vlan(opts)
-      check_params(opts,[:vlans])
-      super
+      opts = check_params(opts,[:vlans])
+      super(opts)
     end
 
     ##

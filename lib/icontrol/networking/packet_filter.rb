@@ -21,8 +21,8 @@ module IControl::Networking
     # @option opts [IControl::Networking::FilterAction] :actions The list of action of what to do with the traffic should it match each rule.
     # @option opts [String] :expressions The expressions that make up the rules, used to match the ingress traffic. The legal expressions		 for the filters are determined by the version of the pcap library linked into the rule compiler.		 If empty, the associated filters match all packets.
     def create(opts)
-      check_params(opts,[:sort_orders,:actions,:expressions])
-      super
+      opts = check_params(opts,[:sort_orders,:actions,:expressions])
+      super(opts)
     end
 
     ##
@@ -180,8 +180,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::FilterAction] :actions The action of what the filter should do when there is a match.
     def set_action(opts)
-      check_params(opts,[:actions])
-      super
+      opts = check_params(opts,[:actions])
+      super(opts)
     end
 
     ##
@@ -196,8 +196,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :expressions The expressions used to match ingress traffic.
     def set_expression(opts)
-      check_params(opts,[:expressions])
-      super
+      opts = check_params(opts,[:expressions])
+      super(opts)
     end
 
     ##
@@ -210,8 +210,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The logging states.
     def set_log_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -228,8 +228,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :rate_classes The rate classes used to rate limit the traffic.
     def set_rate_class(opts)
-      check_params(opts,[:rate_classes])
-      super
+      opts = check_params(opts,[:rate_classes])
+      super(opts)
     end
 
     ##
@@ -241,8 +241,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :orders The sort order values of the associated filter rules. Legal values for sort-order are		 all integers between 0 and 999, inclusive. No two rules may have the same sort-order value.
     def set_sort_order(opts)
-      check_params(opts,[:orders])
-      super
+      opts = check_params(opts,[:orders])
+      super(opts)
     end
 
     ##
@@ -254,8 +254,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :vlan_names The ingress VLANs to match on. If present, each entry must be a specific		 VLAN name currently in existence. If omitted, the rule matches all VLANs .
     def set_vlan(opts)
-      check_params(opts,[:vlan_names])
-      super
+      opts = check_params(opts,[:vlan_names])
+      super(opts)
     end
 
     ##

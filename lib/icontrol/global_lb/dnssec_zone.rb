@@ -21,8 +21,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String[]] :keys Names of DNSSEC keys to add to each specified DNSSEC zone
     def add_key(opts)
-      check_params(opts,[:keys])
-      super
+      opts = check_params(opts,[:keys])
+      super(opts)
     end
 
     ##
@@ -34,8 +34,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String[]] :keys DNSSEC key names for each specified DNSSEC zone
     def create(opts)
-      check_params(opts,[:keys])
-      super
+      opts = check_params(opts,[:keys])
+      super(opts)
     end
 
     ##
@@ -129,8 +129,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [String[]] :keys Names of DNSSEC keys to delete from each specified DNSSEC zone
     def remove_key(opts)
-      check_params(opts,[:keys])
-      super
+      opts = check_params(opts,[:keys])
+      super(opts)
     end
 
     ##
@@ -143,8 +143,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states Enabled/disabled state for each specified DNSSEC zone (default: enabled)
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
 

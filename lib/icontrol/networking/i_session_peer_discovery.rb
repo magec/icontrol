@@ -136,8 +136,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :discoverable_peer The peer discoverable setting.
     def set_discoverable_peer_enabled_state(opts)
-      check_params(opts,[:discoverable_peer])
-      super
+      opts = check_params(opts,[:discoverable_peer])
+      super(opts)
     end
 
     ##
@@ -150,8 +150,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :discover_peer The discover peer setting
     def set_discovered_peer_enabled_state(opts)
-      check_params(opts,[:discover_peer])
-      super
+      opts = check_params(opts,[:discover_peer])
+      super(opts)
     end
 
     ##
@@ -164,8 +164,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionPeerDiscovery::DiscoveryMode] :discovery_modes The discovery mode setting.
     def set_discovery_mode(opts)
-      check_params(opts,[:discovery_modes])
-      super
+      opts = check_params(opts,[:discovery_modes])
+      super(opts)
     end
 
     ##
@@ -178,8 +178,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::iSessionPeerDiscovery::FilterMode] :discovery_mode The discovery mode setting.
     def set_discovery_mode_enabled_state(opts)
-      check_params(opts,[:discovery_mode])
-      super
+      opts = check_params(opts,[:discovery_mode])
+      super(opts)
     end
 
     ##
@@ -192,8 +192,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [short] :max_backoff_time The max icmp backoff time of the Dynamic Peer Discovery objects.
     def set_icmp_backoff_time(opts)
-      check_params(opts,[:max_backoff_time])
-      super
+      opts = check_params(opts,[:max_backoff_time])
+      super(opts)
     end
 
     ##
@@ -206,8 +206,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [short] :max_requests The max number of requests.
     def set_icmp_max_requests(opts)
-      check_params(opts,[:max_requests])
-      super
+      opts = check_params(opts,[:max_requests])
+      super(opts)
     end
 
     ##
@@ -220,8 +220,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [short] :max_retries The number of retries.
     def set_icmp_max_retries(opts)
-      check_params(opts,[:max_retries])
-      super
+      opts = check_params(opts,[:max_retries])
+      super(opts)
     end
 
     ##
@@ -234,8 +234,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [short] :max_peers The max number of peers.
     def set_max_peer_count(opts)
-      check_params(opts,[:max_peers])
-      super
+      opts = check_params(opts,[:max_peers])
+      super(opts)
     end
 
 

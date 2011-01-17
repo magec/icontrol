@@ -20,8 +20,8 @@ module IControl::Networking
     # @option opts [String] :remote_addresses IP addresses for the remote end of each specified tunnel
     # @option opts [String] :profiles Profile specifying the tunneling protocol for each specified tunnel
     def create(opts)
-      check_params(opts,[:local_addresses,:remote_addresses,:profiles])
-      super
+      opts = check_params(opts,[:local_addresses,:remote_addresses,:profiles])
+      super(opts)
     end
 
     ##
@@ -138,8 +138,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Networking::Tunnel::TunnelDirection] :directions Direction for traffic flow within each specified tunnel
     def set_direction(opts)
-      check_params(opts,[:directions])
-      super
+      opts = check_params(opts,[:directions])
+      super(opts)
     end
 
     ##
@@ -151,8 +151,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :addresses IP addresses for the local end of each specified tunnel
     def set_local_address(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -166,8 +166,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :mtus Maximum transmission unit (MTU) for each specified tunnel (default: 0)
     def set_mtu(opts)
-      check_params(opts,[:mtus])
-      super
+      opts = check_params(opts,[:mtus])
+      super(opts)
     end
 
     ##
@@ -180,8 +180,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :profiles Profile specifying the tunneling protocol for each specified tunnel
     def set_profile(opts)
-      check_params(opts,[:profiles])
-      super
+      opts = check_params(opts,[:profiles])
+      super(opts)
     end
 
     ##
@@ -193,8 +193,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :addresses IP addresses for the remote end of each specified tunnel
     def set_remote_address(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -208,8 +208,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [long] :values Type of Service ( ToS ) value for the encapsulating packet's IP header (default: 65535)
     def set_tos(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
 

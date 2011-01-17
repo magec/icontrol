@@ -18,8 +18,8 @@ module IControl::LocalLB
     # @option opts [IControl::LocalLB::ProfileString] :config_names The configuration used by the profile.
     # @option opts [IControl::LocalLB::ProfileAuthenticationMethod] :auth_methods The authentication method used by the profile.
     def create(opts)
-      check_params(opts,[:config_names,:auth_methods])
-      super
+      opts = check_params(opts,[:config_names,:auth_methods])
+      super(opts)
     end
 
     ##
@@ -192,8 +192,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileAuthenticationMethod] :auth_methods The authentication methods.
     def set_authentication_method(opts)
-      check_params(opts,[:auth_methods])
-      super
+      opts = check_params(opts,[:auth_methods])
+      super(opts)
     end
 
     ##
@@ -205,8 +205,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :config_names The authentication configuration names.
     def set_configuration_name(opts)
-      check_params(opts,[:config_names])
-      super
+      opts = check_params(opts,[:config_names])
+      super(opts)
     end
 
     ##
@@ -218,8 +218,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileCredentialSource] :sources The sources of the credentials.
     def set_credential_source(opts)
-      check_params(opts,[:sources])
-      super
+      opts = check_params(opts,[:sources])
+      super(opts)
     end
 
     ##
@@ -232,8 +232,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -245,8 +245,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeout for the specified auth profiles.
     def set_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -258,8 +258,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileProfileMode] :modes The modes of the specified auth profiles.
     def set_profile_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -271,8 +271,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :rule_names The rule names.
     def set_rule_name(opts)
-      check_params(opts,[:rule_names])
-      super
+      opts = check_params(opts,[:rule_names])
+      super(opts)
     end
 
     ##

@@ -24,8 +24,8 @@ module IControl::Management
     # @option opts [IControl::Management::EventNotification::EventData] :event_data_list A list of EventData notifications.
     # @option opts [IControl::Common::TimeStamp] :time_stamp The time the notification was sent.
     def events_occurred(opts)
-      check_params(opts,[:subscription_id,:event_data_list,:time_stamp])
-      super
+      opts = check_params(opts,[:subscription_id,:event_data_list,:time_stamp])
+      super(opts)
     end
 
     ##

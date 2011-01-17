@@ -145,8 +145,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -158,8 +158,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :sources The source strings to search for in the specified profiles.
     def set_source_string(opts)
-      check_params(opts,[:sources])
-      super
+      opts = check_params(opts,[:sources])
+      super(opts)
     end
 
     ##
@@ -171,8 +171,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :targets The target strings to replace with in the specified profiles.
     def set_tarstring(opts)
-      check_params(opts,[:targets])
-      super
+      opts = check_params(opts,[:targets])
+      super(opts)
     end
 
     ##

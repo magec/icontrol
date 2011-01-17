@@ -24,8 +24,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ViewInfo] :view_infos The ViewInfo structs with the view options to add.
     def add_view_option(opts)
-      check_params(opts,[:view_infos])
-      super
+      opts = check_params(opts,[:view_infos])
+      super(opts)
     end
 
     ##
@@ -47,8 +47,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ViewInfo] :view_infos The ViewInfo structs with the view options to delete
     def delete_view_option(opts)
-      check_params(opts,[:view_infos])
-      super
+      opts = check_params(opts,[:view_infos])
+      super(opts)
     end
 
     ##
@@ -80,8 +80,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :view_names The names of the views to retrieve.
     def view(opts)
-      check_params(opts,[:view_names])
-      super
+      opts = check_params(opts,[:view_names])
+      super(opts)
     end
 
     ##
@@ -103,8 +103,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::ViewInfo] :view_infos The ViewInfo structs with the view options to set.
     def set_view_option(opts)
-      check_params(opts,[:view_infos])
-      super
+      opts = check_params(opts,[:view_infos])
+      super(opts)
     end
 
 

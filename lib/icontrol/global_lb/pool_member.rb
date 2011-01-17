@@ -42,8 +42,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberDependency[]] :dependencies The dependency list of VSes that the specified pool members depend on.
     def add_dependency(opts)
-      check_params(opts,[:dependencies])
-      super
+      opts = check_params(opts,[:dependencies])
+      super(opts)
     end
 
     ##
@@ -67,8 +67,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def dependency(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -81,8 +81,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def enabled_state(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -95,8 +95,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def limit(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -121,8 +121,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def object_status(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -135,8 +135,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def order(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -149,8 +149,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members.
     def ratio(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -163,8 +163,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def statistics(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -184,8 +184,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The pool members to remove the dependencies from.		 These pool members will no longer have any dependency on any other		 virtual servers.
     def remove_all_dependencies(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -198,8 +198,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberDependency[]] :dependencies The dependency list of VSes that the specified pool members depend on.
     def remove_dependency(opts)
-      check_params(opts,[:dependencies])
-      super
+      opts = check_params(opts,[:dependencies])
+      super(opts)
     end
 
     ##
@@ -216,8 +216,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberMonitorAssociationRemoval[]] :monitor_associations The monitor association removal rules that will be used to remove the monitor associations			 for the specified pool members.
     def remove_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -229,8 +229,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::IPPortDefinition[]] :members The members to get statistics from.
     def reset_statistics(opts)
-      check_params(opts,[:members])
-      super
+      opts = check_params(opts,[:members])
+      super(opts)
     end
 
     ##
@@ -242,8 +242,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberEnabledState[]] :states The members and the states to be set.
     def set_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -255,8 +255,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberMetricLimit[]] :limits The pool members' metric limits.
     def set_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -269,8 +269,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberMonitorAssociation[]] :monitor_associations The monitor associations that will be used to evaluate the specified pool members.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -282,8 +282,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberOrder[]] :orders The members and the orders to be set.
     def set_order(opts)
-      check_params(opts,[:orders])
-      super
+      opts = check_params(opts,[:orders])
+      super(opts)
     end
 
     ##
@@ -295,8 +295,8 @@ module IControl::GlobalLB
     # @param [Hash] opts
     # @option opts [IControl::GlobalLB::PoolMember::MemberRatio[]] :ratios The members and the ratios to be set.
     def set_ratio(opts)
-      check_params(opts,[:ratios])
-      super
+      opts = check_params(opts,[:ratios])
+      super(opts)
     end
 
     ##

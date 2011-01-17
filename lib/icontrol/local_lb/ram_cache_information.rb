@@ -48,8 +48,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [boolean] :exact_match Whether to look for an exact match for host and uri. If exact, you must specify host and uri in the key. If non-exact, host and uri can be a subset of the text in a matched entry during the search.
     def evict_ramcache_entry_v2(opts)
-      check_params(opts,[:exact_match])
-      super
+      opts = check_params(opts,[:exact_match])
+      super(opts)
     end
 
     ##

@@ -172,8 +172,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -187,8 +187,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :realms The destination realms for the specified profiles.
     def set_destination_realm(opts)
-      check_params(opts,[:realms])
-      super
+      opts = check_params(opts,[:realms])
+      super(opts)
     end
 
     ##
@@ -202,8 +202,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states to set.
     def set_overwrite_destination_host_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -217,8 +217,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :avps The attribute value pair acting as parent for the persist AVP for the specified profiles.
     def set_parent_avp(opts)
-      check_params(opts,[:avps])
-      super
+      opts = check_params(opts,[:avps])
+      super(opts)
     end
 
     ##
@@ -237,8 +237,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :avps The attribute value pair on which to persist for the specified profiles.
     def set_persist_avp(opts)
-      check_params(opts,[:avps])
-      super
+      opts = check_params(opts,[:avps])
+      super(opts)
     end
 
     ##

@@ -13,8 +13,8 @@ module IControl::ARX
     # @option opts [String] :volume Volume name.
     # @option opts [String] :policies List of policy names.
     def definition(opts)
-      check_params(opts,[:volume,:policies])
-      super
+      opts = check_params(opts,[:volume,:policies])
+      super(opts)
     end
 
     ##
@@ -24,8 +24,8 @@ module IControl::ARX
     # @param [Hash] opts
     # @option opts [String] :volume Volume name.
     def list(opts)
-      check_params(opts,[:volume])
-      super
+      opts = check_params(opts,[:volume])
+      super(opts)
     end
 
     ##
@@ -35,8 +35,8 @@ module IControl::ARX
     # @param [Hash] opts
     # @option opts [String] :schedule Schedule name.
     def schedule(opts)
-      check_params(opts,[:schedule])
-      super
+      opts = check_params(opts,[:schedule])
+      super(opts)
     end
 
 

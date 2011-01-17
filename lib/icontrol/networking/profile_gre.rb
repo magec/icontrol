@@ -115,8 +115,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :defaults GRE tunnel profile from which each specified GRE tunnel profile inherits its unspecified attribute values (default: gre)
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -129,8 +129,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileEnabledState] :states Enabled state for including the checksum in the transmitted packets for each specified GRE tunnel profile (default: disabled)
     def set_include_checksum_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -143,8 +143,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [IControl::Common::ProfileEnabledState] :states Enabled state for validating the checksum on the received packets for each specified GRE tunnel profile
     def set_validate_checksum_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
 

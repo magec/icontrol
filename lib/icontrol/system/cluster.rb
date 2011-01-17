@@ -65,8 +65,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long[]] :slot_ids The list of lists of slot ids.
     def member_enabled_state(opts)
-      check_params(opts,[:slot_ids])
-      super
+      opts = check_params(opts,[:slot_ids])
+      super(opts)
     end
 
     ##
@@ -80,8 +80,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long[]] :slot_ids The list of lists of slot ids.
     def member_ha_state(opts)
-      check_params(opts,[:slot_ids])
-      super
+      opts = check_params(opts,[:slot_ids])
+      super(opts)
     end
 
     ##
@@ -95,8 +95,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long[]] :slot_ids The list of lists of slot ids.
     def member_licensed_state(opts)
-      check_params(opts,[:slot_ids])
-      super
+      opts = check_params(opts,[:slot_ids])
+      super(opts)
     end
 
     ##
@@ -110,8 +110,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long[]] :slot_ids The list of lists of slot ids.
     def member_priming_state(opts)
-      check_params(opts,[:slot_ids])
-      super
+      opts = check_params(opts,[:slot_ids])
+      super(opts)
     end
 
     ##
@@ -192,8 +192,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :cluster_states The list of enabled states.
     def set_cluster_enabled_state(opts)
-      check_params(opts,[:cluster_states])
-      super
+      opts = check_params(opts,[:cluster_states])
+      super(opts)
     end
 
     ##
@@ -206,8 +206,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long] :primary_slots
     def set_current_primary_slot(opts)
-      check_params(opts,[:primary_slots])
-      super
+      opts = check_params(opts,[:primary_slots])
+      super(opts)
     end
 
     ##
@@ -221,8 +221,8 @@ module IControl::System
     # @option opts [long[]] :slot_ids The list of lists of slot ids.
     # @option opts [IControl::Common::EnabledState[]] :member_states
     def set_member_enabled_state(opts)
-      check_params(opts,[:slot_ids,:member_states])
-      super
+      opts = check_params(opts,[:slot_ids,:member_states])
+      super(opts)
     end
 
     ##
@@ -236,8 +236,8 @@ module IControl::System
     # @option opts [long[]] :slot_ids The list of lists of slot ids.
     # @option opts [IControl::Common::EnabledState[]] :priming_states The list of lists of priming states.
     def set_member_priming_state(opts)
-      check_params(opts,[:slot_ids,:priming_states])
-      super
+      opts = check_params(opts,[:slot_ids,:priming_states])
+      super(opts)
     end
 
     ##
@@ -250,8 +250,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [long] :min_up_members The list of minimum up members values.
     def set_min_up_members(opts)
-      check_params(opts,[:min_up_members])
-      super
+      opts = check_params(opts,[:min_up_members])
+      super(opts)
     end
 
     ##
@@ -264,8 +264,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::Common::HAAction] :min_up_actions The list of minimum up members actions.
     def set_min_up_members_action(opts)
-      check_params(opts,[:min_up_actions])
-      super
+      opts = check_params(opts,[:min_up_actions])
+      super(opts)
     end
 
     ##
@@ -278,8 +278,8 @@ module IControl::System
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :min_up_states The list of minimum up members enabled states.
     def set_min_up_members_state(opts)
-      check_params(opts,[:min_up_states])
-      super
+      opts = check_params(opts,[:min_up_states])
+      super(opts)
     end
 
 

@@ -14,8 +14,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String[]] :webapp_names The names of the web applications to add to the specified groups.
     def add_webapp(opts)
-      check_params(opts,[:webapp_names])
-      super
+      opts = check_params(opts,[:webapp_names])
+      super(opts)
     end
 
     ##
@@ -97,8 +97,8 @@ module IControl::ASM
     # @param [Hash] opts
     # @option opts [String[]] :webapp_names The names of the web applications to remove from the specified groups.
     def remove_webapp(opts)
-      check_params(opts,[:webapp_names])
-      super
+      opts = check_params(opts,[:webapp_names])
+      super(opts)
     end
 
 

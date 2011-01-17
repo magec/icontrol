@@ -22,8 +22,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :limits The connection limits.
     def create(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -101,8 +101,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MonitorIP] :addresses The node addresses.
     def monitor_association(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -115,8 +115,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::MonitorIP] :addresses The node addresses.
     def monitor_instance(opts)
-      check_params(opts,[:addresses])
-      super
+      opts = check_params(opts,[:addresses])
+      super(opts)
     end
 
     ##
@@ -216,8 +216,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::NodeAddress::MonitorAssociationRemoval] :monitor_associations The monitor association removal rules that will be used to remove the monitor associations			 for the specified node addresses.
     def remove_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -239,8 +239,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::ULong64] :limits The limits for the specified node addresses.
     def set_connection_limit(opts)
-      check_params(opts,[:limits])
-      super
+      opts = check_params(opts,[:limits])
+      super(opts)
     end
 
     ##
@@ -252,8 +252,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [short] :dynamic_ratios The dynamic ratios for the specified node addresses.
     def set_dynamic_ratio(opts)
-      check_params(opts,[:dynamic_ratios])
-      super
+      opts = check_params(opts,[:dynamic_ratios])
+      super(opts)
     end
 
     ##
@@ -266,8 +266,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::NodeAddress::MonitorAssociation] :monitor_associations The monitor associations that will be used to evaluate the specified node addresses.
     def set_monitor_association(opts)
-      check_params(opts,[:monitor_associations])
-      super
+      opts = check_params(opts,[:monitor_associations])
+      super(opts)
     end
 
     ##
@@ -280,8 +280,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The availability states of the specified node addresses.
     def set_monitor_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -293,8 +293,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [long] :ratios The ratios to be set.
     def set_ratio(opts)
-      check_params(opts,[:ratios])
-      super
+      opts = check_params(opts,[:ratios])
+      super(opts)
     end
 
     ##
@@ -306,8 +306,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :names The screen names to be set.
     def set_screen_name(opts)
-      check_params(opts,[:names])
-      super
+      opts = check_params(opts,[:names])
+      super(opts)
     end
 
     ##
@@ -319,8 +319,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The new session enabled states of the specified node addresses.
     def set_session_enabled_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

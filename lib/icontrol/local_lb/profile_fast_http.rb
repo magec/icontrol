@@ -348,8 +348,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The client close idle timeouts for the specified Fast HTTP profiles.
     def set_client_close_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -362,8 +362,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeout override for unspliced serverside flows in the reuse pool.
     def set_connection_pool_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -375,8 +375,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :reuses The maximum number of times a serverside flow will be reused.
     def set_connection_pool_maximum_reuse(opts)
-      check_params(opts,[:reuses])
-      super
+      opts = check_params(opts,[:reuses])
+      super(opts)
     end
 
     ##
@@ -388,8 +388,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The maximum number of connections to any given LB pool.
     def set_connection_pool_maximum_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -401,8 +401,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The minimum number of connections to any given LB pool.
     def set_connection_pool_minimum_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -415,8 +415,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :increments The connection ramp-up increments for the specified Fast HTTP profiles.
     def set_connection_pool_ramp_increment(opts)
-      check_params(opts,[:increments])
-      super
+      opts = check_params(opts,[:increments])
+      super(opts)
     end
 
     ##
@@ -431,8 +431,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Fast HTTP profiles.
     def set_connection_pool_replenish_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -445,8 +445,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -459,8 +459,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Fast HTTP profiles.
     def set_force_http10_response_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -473,8 +473,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :headers The headers to be inserted for the specified Fast HTTP profiles.
     def set_header_insert(opts)
-      check_params(opts,[:headers])
-      super
+      opts = check_params(opts,[:headers])
+      super(opts)
     end
 
     ##
@@ -487,8 +487,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Fast HTTP profiles.
     def set_http11_close_workarounds_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -501,8 +501,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The idle timeouts for the specified Fast HTTP profiles.
     def set_idle_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -514,8 +514,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileProfileMode] :modes The insert X-Forwarded-For header mode for the specified profiles.
     def set_insert_xforwarded_for_header_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##
@@ -529,8 +529,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The states for the specified Fast HTTP profiles.
     def set_layer7_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -543,8 +543,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :sizes The maximum header sizes.
     def set_maximum_header_size(opts)
-      check_params(opts,[:sizes])
-      super
+      opts = check_params(opts,[:sizes])
+      super(opts)
     end
 
     ##
@@ -556,8 +556,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :maximum_requests The maximum number of Fast HTTP requests allowed in a connection.
     def set_maximum_requests(opts)
-      check_params(opts,[:maximum_requests])
-      super
+      opts = check_params(opts,[:maximum_requests])
+      super(opts)
     end
 
     ##
@@ -570,8 +570,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :mss_overrides The MSS override values for the specified profiles.
     def set_mss_override(opts)
-      check_params(opts,[:mss_overrides])
-      super
+      opts = check_params(opts,[:mss_overrides])
+      super(opts)
     end
 
     ##
@@ -584,8 +584,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The reset on timeout states for the specified Fast HTTP profiles.
     def set_reset_on_timeout_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -599,8 +599,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :timeouts The server close idle timeouts for the specified Fast HTTP profiles.
     def set_server_close_timeout(opts)
-      check_params(opts,[:timeouts])
-      super
+      opts = check_params(opts,[:timeouts])
+      super(opts)
     end
 
     ##
@@ -612,8 +612,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileUncleanShutdownMode] :modes The unclean shutdown mode for the specified profiles.
     def set_unclean_shutdown_mode(opts)
-      check_params(opts,[:modes])
-      super
+      opts = check_params(opts,[:modes])
+      super(opts)
     end
 
     ##

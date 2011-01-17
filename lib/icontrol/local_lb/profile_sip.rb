@@ -215,8 +215,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :defaults The default profiles from which the specified profiles will get default values.
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
     ##
@@ -229,8 +229,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The SIP dialog aware state for the specified			 profiles
     def set_dialog_aware_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -243,8 +243,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The insert Record-Route states for the specified profiles.
     def set_insert_record_route_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -257,8 +257,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The insert Via header states for the specified profiles.
     def set_insert_via_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -271,8 +271,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileULong] :max_message_sizes The maximum SIP message sizes for the specified SIP profiles.
     def set_max_message_size(opts)
-      check_params(opts,[:max_message_sizes])
-      super
+      opts = check_params(opts,[:max_message_sizes])
+      super(opts)
     end
 
     ##
@@ -285,8 +285,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The secure Via header states for the specified profiles.
     def set_secure_via_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -300,8 +300,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :community The community names for the profiles
     def set_sip_community(opts)
-      check_params(opts,[:community])
-      super
+      opts = check_params(opts,[:community])
+      super(opts)
     end
 
     ##
@@ -314,8 +314,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileEnabledState] :states The terminate connection after bye states for the specified profiles.
     def set_terminate_connection_after_bye_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -329,8 +329,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::ProfileString] :via_userdata The via userdata for the specified profiles.
     def set_via_userdata(opts)
-      check_params(opts,[:via_userdata])
-      super
+      opts = check_params(opts,[:via_userdata])
+      super(opts)
     end
 
     ##

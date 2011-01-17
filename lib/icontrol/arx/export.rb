@@ -14,8 +14,8 @@ module IControl::ARX
     # @option opts [IControl::ARX::ProtocolType] :protocol Protocol type.
     # @option opts [String] :exports The list of export names.
     def definition(opts)
-      check_params(opts,[:protocol,:exports])
-      super
+      opts = check_params(opts,[:protocol,:exports])
+      super(opts)
     end
 
     ##
@@ -25,8 +25,8 @@ module IControl::ARX
     # @param [Hash] opts
     # @option opts [IControl::ARX::ProtocolType] :protocol The protocol type.
     def list(opts)
-      check_params(opts,[:protocol])
-      super
+      opts = check_params(opts,[:protocol])
+      super(opts)
     end
 
 

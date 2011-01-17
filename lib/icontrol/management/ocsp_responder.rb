@@ -328,8 +328,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_allow_additional_certificate_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -342,8 +342,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :ca_files The CA file names used by the responders.
     def set_ca_file(opts)
-      check_params(opts,[:ca_files])
-      super
+      opts = check_params(opts,[:ca_files])
+      super(opts)
     end
 
     ##
@@ -356,8 +356,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :ca_paths The CA paths used by the responders.
     def set_ca_path(opts)
-      check_params(opts,[:ca_paths])
-      super
+      opts = check_params(opts,[:ca_paths])
+      super(opts)
     end
 
     ##
@@ -372,8 +372,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_certificate_check_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -386,8 +386,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::OCSPDigestMethod] :digest_methods The signing information to sign the OCSP requests.
     def set_certificate_id_digest_method(opts)
-      check_params(opts,[:digest_methods])
-      super
+      opts = check_params(opts,[:digest_methods])
+      super(opts)
     end
 
     ##
@@ -399,8 +399,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_certificate_verification_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -413,8 +413,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_chain_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -429,8 +429,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_explicit_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -448,8 +448,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_ignore_aia_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -463,8 +463,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_intern_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -476,8 +476,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_nonce_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -492,8 +492,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :other_files The files containing other certificates used by the responders.
     def set_other_certificate_file(opts)
-      check_params(opts,[:other_files])
-      super
+      opts = check_params(opts,[:other_files])
+      super(opts)
     end
 
     ##
@@ -507,8 +507,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_signature_verification_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -520,8 +520,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Management::OCSPResponder::SignInformation] :signers The signing information to sign the OCSP requests.
     def set_signing_information(opts)
-      check_params(opts,[:signers])
-      super
+      opts = check_params(opts,[:signers])
+      super(opts)
     end
 
     ##
@@ -537,8 +537,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ages The status ages for OCSP responses for the specified responders.
     def set_status_age(opts)
-      check_params(opts,[:ages])
-      super
+      opts = check_params(opts,[:ages])
+      super(opts)
     end
 
     ##
@@ -553,8 +553,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_trust_other_certificate_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##
@@ -566,8 +566,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :urls The URLs used by the responders.
     def set_url(opts)
-      check_params(opts,[:urls])
-      super
+      opts = check_params(opts,[:urls])
+      super(opts)
     end
 
     ##
@@ -581,8 +581,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [String] :va_files The files containing explicitly trusted responder certificates.
     def set_va_file(opts)
-      check_params(opts,[:va_files])
-      super
+      opts = check_params(opts,[:va_files])
+      super(opts)
     end
 
     ##
@@ -600,8 +600,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [long] :ranges The validity range of times for OCSP responses for the specified responders.
     def set_validity_period(opts)
-      check_params(opts,[:ranges])
-      super
+      opts = check_params(opts,[:ranges])
+      super(opts)
     end
 
     ##
@@ -615,8 +615,8 @@ module IControl::Management
     # @param [Hash] opts
     # @option opts [IControl::Common::EnabledState] :states The states of the specified responders.
     def set_verification_state(opts)
-      check_params(opts,[:states])
-      super
+      opts = check_params(opts,[:states])
+      super(opts)
     end
 
     ##

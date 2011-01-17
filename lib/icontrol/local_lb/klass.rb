@@ -64,8 +64,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::AddressClass] :classes The class names and the class members.
     def create_address_class(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -79,8 +79,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::MetaInformation] :external_classes The sequence of external classes to create.
     def create_external_class(opts)
-      check_params(opts,[:external_classes])
-      super
+      opts = check_params(opts,[:external_classes])
+      super(opts)
     end
 
     ##
@@ -92,8 +92,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::StringClass] :classes The class names and the class members.
     def create_string_class(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -105,8 +105,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::ValueClass] :classes The class names and the class members.
     def create_value_class(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -159,8 +159,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :classes The classes to delete.
     def delete_class(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -226,8 +226,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names.
     def address_class(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -265,8 +265,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve class meta information from.
     def class_meta_information(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -279,8 +279,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve class types.
     def class_type(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -294,8 +294,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names Names of the requested classes
     def data_separator(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -309,8 +309,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve file formats.
     def external_class_file_format(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -324,8 +324,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve file modes.
     def external_class_file_mode(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -339,8 +339,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names to retrieve file names.
     def external_class_file_name(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -364,8 +364,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names.
     def string_class(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -401,8 +401,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String] :class_names The class names.
     def value_class(opts)
-      check_params(opts,[:class_names])
-      super
+      opts = check_params(opts,[:class_names])
+      super(opts)
     end
 
     ##
@@ -445,8 +445,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::AddressClass] :classes The class names and the class members.		 The result is that the class now has the members specified in		 the class_members, regardless of what the class has before.
     def modify_address_class(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -458,8 +458,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::StringClass] :classes The class names and the class members.		 The result is that the class now has the members specified in		 the class_members, regardless of what the class has before.
     def modify_string_class(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -471,8 +471,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [IControl::LocalLB::Class::ValueClass] :classes The class names and the class members.		 The result is that the class now has the members specified in		 the class_members, regardless of what the class has before.
     def modify_value_class(opts)
-      check_params(opts,[:classes])
-      super
+      opts = check_params(opts,[:classes])
+      super(opts)
     end
 
     ##
@@ -486,8 +486,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :values Data values to associate with each class			 member, organized in the same manner as			 the class member IP addresses			 (default: "" (i.e., no value))
     def set_address_class_member_data_value(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -502,8 +502,8 @@ module IControl::LocalLB
     # @option opts [String] :class_names Names of the requested classes
     # @option opts [String] :separators String separator for each class			 (default: ":=")
     def set_data_separator(opts)
-      check_params(opts,[:class_names,:separators])
-      super
+      opts = check_params(opts,[:class_names,:separators])
+      super(opts)
     end
 
     ##
@@ -518,8 +518,8 @@ module IControl::LocalLB
     # @option opts [String] :class_names The class names to set the file formats.
     # @option opts [IControl::LocalLB::Class::FileFormatType] :file_formats A list of file formats to set for the specified classes.
     def set_external_class_file_format(opts)
-      check_params(opts,[:class_names,:file_formats])
-      super
+      opts = check_params(opts,[:class_names,:file_formats])
+      super(opts)
     end
 
     ##
@@ -534,8 +534,8 @@ module IControl::LocalLB
     # @option opts [String] :class_names The class names to set the file modes.
     # @option opts [IControl::LocalLB::Class::FileModeType] :file_modes A list of file modes to set for the specified classes.
     def set_external_class_file_mode(opts)
-      check_params(opts,[:class_names,:file_modes])
-      super
+      opts = check_params(opts,[:class_names,:file_modes])
+      super(opts)
     end
 
     ##
@@ -550,8 +550,8 @@ module IControl::LocalLB
     # @option opts [String] :class_names The class names to set the file names.
     # @option opts [String] :file_names A list of file names to set for the specified classes.
     def set_external_class_file_name(opts)
-      check_params(opts,[:class_names,:file_names])
-      super
+      opts = check_params(opts,[:class_names,:file_names])
+      super(opts)
     end
 
     ##
@@ -565,8 +565,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :values Data values to associate with each class			 member, organized in the same manner as			 the class member string values			 (default: "" (i.e., no value))
     def set_string_class_member_data_value(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##
@@ -580,8 +580,8 @@ module IControl::LocalLB
     # @param [Hash] opts
     # @option opts [String[]] :values Data values to associate with each class			 member, organized in the same manner as			 the class member integer values			 (default: "" (i.e., no value))
     def set_value_class_member_data_value(opts)
-      check_params(opts,[:values])
-      super
+      opts = check_params(opts,[:values])
+      super(opts)
     end
 
     ##

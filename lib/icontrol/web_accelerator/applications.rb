@@ -21,8 +21,8 @@ module IControl::WebAccelerator
     # @option opts [String] :remote_policy The name of the remote policy to use;			 optional, may be blank.
     # @option opts [String] :requested_hosts A list of strings describing the one or			 more requested hosts to use with this			 application. The format of the strings			 is given above.
     def create(opts)
-      check_params(opts,[:description,:local_policy,:remote_policy,:requested_hosts])
-      super
+      opts = check_params(opts,[:description,:local_policy,:remote_policy,:requested_hosts])
+      super(opts)
     end
 
     ##
@@ -34,8 +34,8 @@ module IControl::WebAccelerator
     # @param [Hash] opts
     # @option opts [String] :applications A list of application names.
     def delete_application(opts)
-      check_params(opts,[:applications])
-      super
+      opts = check_params(opts,[:applications])
+      super(opts)
     end
 
     ##

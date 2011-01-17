@@ -90,8 +90,8 @@ module IControl::Networking
     # @param [Hash] opts
     # @option opts [String] :defaults IP-IP tunnel profile from which each specified IP-IP tunnel profile inherits its unspecified attribute values (default: ipip)
     def set_default_profile(opts)
-      check_params(opts,[:defaults])
-      super
+      opts = check_params(opts,[:defaults])
+      super(opts)
     end
 
 
