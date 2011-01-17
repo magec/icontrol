@@ -45,7 +45,9 @@ module IControl # :nodoc:
 
       # Converts to soap. In this case we fallback to the hash conversion of the attributes
       def to_soap
-        return @attributes
+        aux = {}
+        @attributes.each {|k,v| aux[k.to_s] = v.respond_to?(:to_soap) ? v.to_soap : v }
+        return aux
       end
         
       include IControl::Base::Attributable
