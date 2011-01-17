@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{icontrol}
-  s.version = "0.3.4"
+  s.version = "0.3.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jose Fernandez (magec)"]
@@ -41,8 +41,9 @@ Gem::Specification.new do |s|
     "lib/icontrol/base/attributable.rb",
     "lib/icontrol/base/enumeration.rb",
     "lib/icontrol/base/exception.rb",
-    "lib/icontrol/base/icontrol/local_lb/pool.rb",
     "lib/icontrol/base/icontrol_overlay.rb",
+    "lib/icontrol/base/icontrol_overlay/common.rb",
+    "lib/icontrol/base/icontrol_overlay/local_lb/pool.rb",
     "lib/icontrol/base/mappings.rb",
     "lib/icontrol/base/predeclarations.rb",
     "lib/icontrol/base/sequence.rb",
@@ -179,6 +180,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A ruby client to the BigIP F5}
   s.test_files = [
+    "spec/icontrol/base/struct_spec.rb",
+    "spec/icontrol/common_spec.rb",
     "spec/icontrol/local_lb/pool_member_spec.rb",
     "spec/icontrol/local_lb/pool_spec.rb",
     "spec/icontrol/local_lb/profile_http_class_spec.rb",
