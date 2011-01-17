@@ -16,6 +16,7 @@ require 'base/icontrol_overlay'
 require 'base/xml'
 
 Savon.log = false
+HTTPI.log = false
 HTTPI::Adapter.use = :net_http
 
 # The idea is to create an object proxy to the web service client with the same structure
