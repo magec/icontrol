@@ -16,7 +16,7 @@ module IControl
           return @attributes[:type] || super
         end
 
-        def initialize(attributes)
+        def initialize(attributes = {})
           @attributes = attributes || {}
         end
 
