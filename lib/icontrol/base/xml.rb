@@ -1,4 +1,4 @@
-B1;2400;0crequire 'rexml/parsers/streamparser'
+require 'rexml/parsers/streamparser'
 require 'rexml/parsers/baseparser'
 require 'rexml/light/node'
 require 'rexml/text'
