@@ -49,6 +49,9 @@ module IControl
   # @private Base
   class Base # :nodoc:
 
+    def id
+      @attributes[:id]
+    end
     
     include IControl::Base::Attributable
         
