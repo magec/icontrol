@@ -34,7 +34,7 @@ describe IControl::LocalLB::VirtualServer do
     end
     
     it "Adds/associates authentication profiles to the specified virtual servers." do
-      @virtual_server.authentication_profile.should be_nil
+      @virtual_server.authentication_profile.should == []
       @virtual_server.add_authentication_profile(:profiles => [{:profile_name => "ldap",:priority => 1}] )
       @virtual_server.authentication_profile.first.profile_name.should == "ldap"
     end
@@ -62,7 +62,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Adds/associates clone pools to the specified virtual servers." do
-      @virtual_server.clone_pool.should be_nil
+      @virtual_server.clone_pool.should == []
       @virtual_server.add_clone_pool(:clone_pools => [{:pool_name => @test_pool_name,:type => IControl::LocalLB::ClonePoolType::CLONE_POOL_TYPE_CLIENTSIDE}] )
       @virtual_server.clone_pool.first.pool_name.should == @test_pool_name
     end
@@ -87,7 +87,7 @@ describe IControl::LocalLB::VirtualServer do
 
     it "Adds/associates HTTP class profiles to the specified virtual servers." do
       @virtual_server.add_profile(:profiles => [{:profile_name => "http",:profile_context => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL}])
-      @virtual_server.httpclass_profile.should be_nil
+      @virtual_server.httpclass_profile.should == []
       @virtual_server.add_httpclass_profile(:profiles => [{:profile_name => @profile_http_class_name,:priority => 1}])
       @virtual_server.httpclass_profile.first.profile_name.should == @profile_http_class_name
     end
@@ -102,7 +102,7 @@ describe IControl::LocalLB::VirtualServer do
 
   describe "#add_persistence_profile" do
     it "Adds/associates persistence profiles to the specified virtual servers." do
-      @virtual_server.persistence_profile.should be_nil
+      @virtual_server.persistence_profile.should == []
       @virtual_server.add_persistence_profile(:profiles => [{:profile_name => "dest_addr",:default_profile => false}] )
       @virtual_server.persistence_profile.should_not be_nil
       @virtual_server.persistence_profile.first.profile_name.should == "dest_addr"
@@ -140,7 +140,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Adds/associates rules to the specified virtual servers." do
-      @virtual_server.rule.should be_nil
+      @virtual_server.rule.should == []
       @virtual_server.add_rule(:rules => [{:rule_name => @rule_name ,:priority => 1}])
       @virtual_server.rule.should_not be_nil
     end
@@ -248,7 +248,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Gets the lists of authentication profiles the specified virtual servers are associated with." do
-      @virtual_server.authentication_profile.should be_nil # It's tested in the the setter method
+      @virtual_server.authentication_profile.should == [] # It's tested in the the setter method
     end
   end
 
@@ -258,7 +258,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Gets the lists of clone pools the specified virtual servers are associated with." do
-      @virtual_server.clone_pool.should be_nil # It's tested in the the setter method
+      @virtual_server.clone_pool.should == [] # It's tested in the the setter method
     end
   end
 
@@ -433,7 +433,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Gets the lists of HTTP class profiles the specified virtual servers are associated with. If a specified virtual server is not associated with any HTTP class profile, then the list of HTTP class profiles for that virtual server will be empty." do
-      @virtual_server.httpclass_profile.should be_nil
+      @virtual_server.httpclass_profile.should == []
     end
 
     it "works this way" do
@@ -467,7 +467,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Returns the module scores for the specified virtual servers." do
-      @virtual_server.module_score.should be_nil
+      @virtual_server.module_score.should == []
     end
 
     it "works this way" do
@@ -505,7 +505,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Gets the lists of persistence profiles the specified virtual servers are associated with." do
-      @virtual_server.persistence_profile.should be_nil
+      @virtual_server.persistence_profile.should == []
     end
 
     it "works this way" do
@@ -521,7 +521,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Gets the persistence records based on the specified persistent modes for the specified virtual servers." do
-      @virtual_server.persistence_record(:persistence_mode => IControl::LocalLB::PersistenceMode::PERSISTENCE_MODE_NONE).should be_nil
+      @virtual_server.persistence_record(:persistence_mode => IControl::LocalLB::PersistenceMode::PERSISTENCE_MODE_NONE).should == []
     end
 
     it "works this way" do
@@ -586,7 +586,7 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Gets the lists of rules the specified virtual servers are associated with. If a specified virtual server is not associated with any rule, then the list of rules for that virtual server will be empty." do
-      @virtual_server.rule.should be_nil
+      @virtual_server.rule.should == []
     end
   end
 
@@ -1132,11 +1132,11 @@ describe IControl::LocalLB::VirtualServer do
     end
     
     it "Removes authentication profiles to the specified virtual servers." do
-      @virtual_server.authentication_profile.should be_nil
+      @virtual_server.authentication_profile.should == []
       @virtual_server.add_authentication_profile(:profiles => [{:profile_name => "ldap",:priority => 1}] )
       @virtual_server.authentication_profile.first.profile_name.should == "ldap"
       @virtual_server.remove_authentication_profile(:profiles => [{:profile_name => "ldap",:priority => 1}] )
-      @virtual_server.authentication_profile.should be_nil
+      @virtual_server.authentication_profile.should == []
     end
 
     it "works this way" do
@@ -1163,12 +1163,12 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it " Removes clone pools to the specified virtual servers." do
-      @virtual_server.clone_pool.should be_nil
+      @virtual_server.clone_pool.should == []
       @virtual_server.add_clone_pool(:clone_pools => [{:pool_name => @test_pool_name,:type => IControl::LocalLB::ClonePoolType::CLONE_POOL_TYPE_CLIENTSIDE}])
       @virtual_server.clone_pool.first.pool_name.should == @test_pool_name
       @virtual_server.remove_clone_pool(:clone_pools => [{:pool_name => @test_pool_name,
                                                            :type => IControl::LocalLB::ClonePoolType::CLONE_POOL_TYPE_CLIENTSIDE}])
-      @virtual_server.clone_pool.should be_nil      
+      @virtual_server.clone_pool.should == []
     end
 
     it "works this way" do
@@ -1193,11 +1193,11 @@ describe IControl::LocalLB::VirtualServer do
 
     it "Removes HTTP class profiles to the specified virtual servers." do
       @virtual_server.add_profile(:profiles => [{:profile_name => "http",:profile_context => IControl::LocalLB::ProfileContextType::PROFILE_CONTEXT_TYPE_ALL}])
-      @virtual_server.httpclass_profile.should be_nil
+      @virtual_server.httpclass_profile.should == []
       @virtual_server.add_httpclass_profile(:profiles => [{:profile_name => @profile_http_class_name,:priority => 1}])
       @virtual_server.httpclass_profile.first.profile_name.should == @profile_http_class_name
       @virtual_server.remove_httpclass_profile(:profiles => [{:profile_name => @profile_http_class_name,:priority => 1}])
-      @virtual_server.httpclass_profile.should be_nil
+      @virtual_server.httpclass_profile.should == []
     end
 
     it "works this way" do
@@ -1209,12 +1209,12 @@ describe IControl::LocalLB::VirtualServer do
 
   describe "#remove_persistence_profile" do
     it "Removes persistence profiles to the specified virtual servers." do
-      @virtual_server.persistence_profile.should be_nil
+      @virtual_server.persistence_profile.should == []
       @virtual_server.add_persistence_profile(:profiles => [{:profile_name => "dest_addr",:default_profile => false}] )
       @virtual_server.persistence_profile.should_not be_nil
       @virtual_server.persistence_profile.first.profile_name.should == "dest_addr"
       @virtual_server.remove_persistence_profile(:profiles => [{:profile_name => "dest_addr",:default_profile => false}] )
-      @virtual_server.persistence_profile.should be_nil
+      @virtual_server.persistence_profile.should == []
     end
 
     it "works this way" do
@@ -1251,11 +1251,11 @@ describe IControl::LocalLB::VirtualServer do
     end
 
     it "Removes/associates rules to the specified virtual servers." do
-      @virtual_server.rule.should be_nil
+      @virtual_server.rule.should == []
       @virtual_server.add_rule(:rules => [{:rule_name => @rule_name ,:priority => 1}])
       @virtual_server.rule.should_not be_nil
       @virtual_server.remove_rule(:rules => [{:rule_name => @rule_name ,:priority => 1}])
-      @virtual_server.rule.should be_nil
+      @virtual_server.rule.should == []
     end
 
     it "works this way" do
