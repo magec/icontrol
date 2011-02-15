@@ -5,9 +5,10 @@ class BasicSequence
       @conversion_method = conversion_method
     end
     def from_soap(xml)
-      object = [*xml[:item]].map { |i| i.send(@conversion_method) }
-      return nil if object.empty?
-      return object.length == 1 ? object.first : object
+      return_value = [*xml[:item]].map { |i| i.send(@conversion_method) }
+      return return_value.first if return_value.length == 1
+      return nil if return_value.length == 0
+      return return_value
     end
   end
 end
@@ -71,7 +72,7 @@ module IControl
         else
           if aux.length == 1
             # If is just 1 element we return the element
-            return aux[0]
+            return aux.first
           else
             #otherwise is empty so we return a nil 
             nil
@@ -82,11 +83,9 @@ module IControl
     
     class SequenceSequence
       def self.from_soap(xml)
-        return nil unless xml[:item]
+        return [] unless xml[:item]
         xml[:item][:type] = "A:Array"
-        object = [Mappings.map_object(xml[:item])].flatten
-        return nil if object.compact.length == 0
-        return object
+        return [*Mappings.map_object(xml[:item])].compact
       end
     end
   end
