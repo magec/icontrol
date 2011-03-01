@@ -2,6 +2,7 @@ source :rubygems
 
 gem "savon" ,"~>0.8.1"
 gem "httpi" ,"~>0.7.6"
+gem "bindata"
 
 group :development do
   gem "vcr" ,"~>1.4.0"
