@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{icontrol}
-  s.version = "0.3.6"
+  s.version = "0.3.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jose Fernandez (magec)"]
-  s.date = %q{2011-02-15}
+  s.date = %q{2011-03-01}
   s.description = %q{This gem allows you to Connect to a F5 appliance by means of its web services}
   s.email = %q{jfernandezperez@gmail.com}
   s.extra_rdoc_files = [
@@ -182,6 +182,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/icontrol/base/sequence_spec.rb",
     "spec/icontrol/base/struct_spec.rb",
+    "spec/icontrol/base_spec.rb",
     "spec/icontrol/common_spec.rb",
     "spec/icontrol/local_lb/pool_member_spec.rb",
     "spec/icontrol/local_lb/pool_spec.rb",
@@ -197,6 +198,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<savon>, ["~> 0.8.1"])
       s.add_runtime_dependency(%q<httpi>, ["~> 0.7.6"])
+      s.add_runtime_dependency(%q<bindata>, [">= 0"])
       s.add_development_dependency(%q<vcr>, ["~> 1.4.0"])
       s.add_development_dependency(%q<webmock>, ["~> 1.6"])
       s.add_development_dependency(%q<nokogiri>, [">= 0"])
@@ -210,6 +212,7 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<savon>, ["~> 0.8.1"])
       s.add_dependency(%q<httpi>, ["~> 0.7.6"])
+      s.add_dependency(%q<bindata>, [">= 0"])
       s.add_dependency(%q<vcr>, ["~> 1.4.0"])
       s.add_dependency(%q<webmock>, ["~> 1.6"])
       s.add_dependency(%q<nokogiri>, [">= 0"])
@@ -224,6 +227,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<savon>, ["~> 0.8.1"])
     s.add_dependency(%q<httpi>, ["~> 0.7.6"])
+    s.add_dependency(%q<bindata>, [">= 0"])
     s.add_dependency(%q<vcr>, ["~> 1.4.0"])
     s.add_dependency(%q<webmock>, ["~> 1.6"])
     s.add_dependency(%q<nokogiri>, [">= 0"])
