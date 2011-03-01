@@ -61,6 +61,10 @@ module IControl
       def set_id_name(name)
         @id_name = name
       end
+
+      def mutex
+        @mutex ||= Mutex.new
+      end
       
       def class_name
         name.split("::").last
@@ -222,11 +226,14 @@ module IControl
           begin
             # When calling a soap method we transparently add the ns (I'd rather say we obscurely)
             request = ""
-            response = self.client.request(:wsdl, method_name.to_s) do |soap|
-              soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{parent_modules[1..-1].join(".")}/#{class_name}"              
-              soap.body = convert_to_soap(hash_to_call_args(args.first)) if args.first
-              block.call(soap) if block
-              request = soap.to_xml
+            response = nil
+            mutex.synchronize do              
+              response = self.client.request(:wsdl, method_name.to_s) do |soap|
+                soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{parent_modules[1..-1].join(".")}/#{class_name}"              
+                soap.body = convert_to_soap(hash_to_call_args(args.first)) if args.first
+                block.call(soap) if block
+                request = soap.to_xml
+              end
             end
             return self.map_response(response.to_xml)
           rescue Savon::HTTP::Error, Savon::SOAP::Fault => error
