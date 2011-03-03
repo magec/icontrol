@@ -219,18 +219,26 @@ module IControl
       # This is done this way cause I need access to name and class_name
       # metaprogramming to cross the scope, don't really like it actually.
       # TODO: Make use of the delegation patern much more clean I think
-              
+      # Args are the arguments, bu default every argument is passed as a hash so there should be only 1 element in the args array
+      # In certain cases we use a second parameter to pass internal variables (mainly to solve certain cases)
       def method_missing(method_name,*args,&block)
         raise IControl::NotConfiguredException unless IControl.configured?
-        if self.client  && self.client.wsdl.operations.keys.include?(method_name)
+        current_method_name =  ( self.client.wsdl.operations.keys.include?("get_#{method_name}".to_sym ) ) ?  "get_#{method_name}".to_sym : method_name
+        if self.client  && self.client.wsdl.operations.keys.include?(current_method_name)
           begin
             # When calling a soap method we transparently add the ns (I'd rather say we obscurely)
             request = ""
             response = nil
-            mutex.synchronize do              
-              response = self.client.request(:wsdl, method_name.to_s) do |soap|
+            mutex.synchronize do
+              response = self.client.request(:wsdl, current_method_name.to_s) do |soap|
                 soap.namespaces["xmlns:wsdl"] = "urn:iControl:#{parent_modules[1..-1].join(".")}/#{class_name}"              
-                soap.body = convert_to_soap(hash_to_call_args(args.first)) if args.first
+                if args.first
+                  if args.first[:raw_call]
+                    soap.body = convert_to_soap(args.first)
+                  else
+                    soap.body = convert_to_soap(hash_to_call_args(args.first))
+                  end
+                end
                 block.call(soap) if block
                 request = soap.to_xml
               end
@@ -290,7 +298,6 @@ module IControl
       
       return super if @attributes.has_key? method_name 
       method_name = "get_#{method_name}" if getters.include? method_name
-
       call_arguments = ( args.first || {} ).merge(default_body)
 
       return self.class.send(method_name,call_arguments,&block)
