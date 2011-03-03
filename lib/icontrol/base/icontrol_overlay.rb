@@ -5,3 +5,4 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'icontrol_overlay/local_lb/pool'
 require 'icontrol_overlay/common'
+require 'icontrol_overlay/management/partition'
