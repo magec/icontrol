@@ -86,6 +86,7 @@ module IControl
             wsdl.document = IControl.config[:base_url] + "/iControl/iControlPortal.cgi?WSDL=#{parent_module_name}.#{class_name}"
             http.auth.basic IControl.config[:user],IControl.config[:password]
             http.auth.ssl.verify_mode = :none
+            http.proxy = IControl.config[:http_proxy] if IControl.config[:http_proxy]
           end
         else
           raise IControl::NotConfiguredException

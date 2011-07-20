@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{icontrol}
-  s.version = "0.3.8"
+  s.version = "0.3.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jose Fernandez (magec)"]
-  s.date = %q{2011-03-01}
+  s.date = %q{2011-03-03}
   s.description = %q{This gem allows you to Connect to a F5 appliance by means of its web services}
   s.email = %q{jfernandezperez@gmail.com}
   s.extra_rdoc_files = [
@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
     "lib/icontrol/base/icontrol_overlay.rb",
     "lib/icontrol/base/icontrol_overlay/common.rb",
     "lib/icontrol/base/icontrol_overlay/local_lb/pool.rb",
+    "lib/icontrol/base/icontrol_overlay/management/partition.rb",
     "lib/icontrol/base/mappings.rb",
     "lib/icontrol/base/predeclarations.rb",
     "lib/icontrol/base/sequence.rb",
@@ -188,6 +189,7 @@ Gem::Specification.new do |s|
     "spec/icontrol/local_lb/pool_spec.rb",
     "spec/icontrol/local_lb/profile_http_class_spec.rb",
     "spec/icontrol/local_lb/virtual_server_spec.rb",
+    "spec/icontrol/management/partition_spec.rb",
     "spec/spec_helper.rb"
   ]
 
