@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org/'
 
 gem "savon" ,"~>0.8.1"
 gem "httpi" ,"~>0.7.6"
